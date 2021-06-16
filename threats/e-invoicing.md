@@ -4,6 +4,10 @@
 
 ## 0. objectives
 
+Applicable policies?
+
+Applicable standards?
+
 | Objective       | Details                                                      |
 | --------------- | ------------------------------------------------------------ |
 | Confidentiality | *Out of scope*                                               |
@@ -26,7 +30,7 @@
 
 ## 2. application composition
 
-_Threat dragon diagram (logical)_
+![e-invoicing](e-invoicing.png)
 
 ## 3. threats
 
