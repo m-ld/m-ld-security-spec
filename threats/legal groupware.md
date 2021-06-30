@@ -1,4 +1,4 @@
-# Collaborative e-Invoicing Threat Model
+# Legal Groupware Threat Model
 
 ## 0. objectives
 
@@ -28,7 +28,7 @@
 
 ## 2. application composition
 
-![e-invoicing](e-invoicing.threat-dragon.png)
+![legal groupware](legal groupware.threat-dragon.png)
 
 ## 3. threats
 
