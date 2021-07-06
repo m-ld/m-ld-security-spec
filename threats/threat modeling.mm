@@ -390,28 +390,11 @@
 <node TEXT="e-Invoicing" ID="ID_1007244327" CREATED="1623836841575" MODIFIED="1623836847011">
 <node TEXT="0. objectives" ID="ID_921387855" CREATED="1624901877822" MODIFIED="1624902077701">
 <node TEXT="Define e-Invoicing, meaning of collaborative, e.g. contract points" ID="ID_1506738107" CREATED="1624902093370" MODIFIED="1624902097400"/>
-<node TEXT="Standards" FOLDED="true" ID="ID_875760278" CREATED="1624354501096" MODIFIED="1624902144460">
-<node TEXT="Peppol" FOLDED="true" ID="ID_572319296" CREATED="1624354504555" MODIFIED="1624354739561" LINK="https://peppol.eu/what-is-peppol/peppol-transport-infrastructure/">
-<node TEXT="Security is PKI" ID="ID_808417362" CREATED="1624354741668" MODIFIED="1624354756634"/>
-<node TEXT="Peppol Digital Certificate" ID="ID_1618660557" CREATED="1624354764495" MODIFIED="1624354782160"/>
-<node TEXT="SOAP, WSDL, WS-Security" ID="ID_1590617437" CREATED="1624355063900" MODIFIED="1624355080171"/>
-<node TEXT="PEPPOL Transport Infrastructure&#xa;Technical Overview (2011)" FOLDED="true" ID="ID_1957468734" CREATED="1624355533187" MODIFIED="1624355567977" LINK="https://www.galaxygw.com/wp-content/uploads/openpeppol/20111122-peppol-transport-infrastructure-v1.17.pdf">
-<node TEXT="1. Trust is established using a Public Key Infrastructure (PKI)" ID="ID_871590464" CREATED="1624356530284" MODIFIED="1624356532093"/>
-<node TEXT="2. Service providers sign an agreement before&#xa;they join the infrastructure" ID="ID_1719212512" CREATED="1624356532635" MODIFIED="1624356543010"/>
-<node TEXT="3. Secure communication protocols" ID="ID_1582446302" CREATED="1624356549465" MODIFIED="1624356551065"/>
-<node TEXT="4. Operational security requirements for service&#xa;providers" ID="ID_250559904" CREATED="1624356559253" MODIFIED="1624356573321"/>
-<node TEXT="5. Sender authentication" ID="ID_1129972413" CREATED="1624356573890" MODIFIED="1624356574927"/>
-</node>
-<node TEXT="UBL Invoice" ID="ID_1355976345" CREATED="1624903761914" MODIFIED="1624903770319" LINK="https://docs.peppol.eu/poacc/billing/3.0/syntax/ubl-invoice/tree/">
-<node TEXT="has &quot;preceding invoice&quot; document reference (+date)" ID="ID_1325727491" CREATED="1624903771297" MODIFIED="1624903838328"/>
-<node TEXT="otherwise, no versioning" ID="ID_1889219002" CREATED="1624903812192" MODIFIED="1624903821981"/>
-</node>
-<node TEXT="&quot;Peppol Access Point provider&quot;" ID="ID_1658728007" CREATED="1624358693322" MODIFIED="1624358709334"/>
-<node TEXT="Example BPMN workflows for BIS specifications" ID="ID_1664877591" CREATED="1624904281940" MODIFIED="1624904336122"/>
-</node>
-<node TEXT="Directive 2014/55/EU" FOLDED="true" ID="ID_299773487" CREATED="1624360186729" MODIFIED="1624360198858" LINK="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32014L0055">
+<node TEXT="Standards" ID="ID_875760278" CREATED="1624354501096" MODIFIED="1624902144460">
+<node TEXT="Directive 2014/55/EU" FOLDED="true" ID="ID_299773487" CREATED="1624360186729" MODIFIED="1625501435914" LINK="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32014L0055">
+<icon BUILTIN="button_ok"/>
 <node TEXT="requires &quot;a European standard for the semantic data model of the core elements of an electronic invoice (the ‘European standard on electronic invoicing’)&quot;" ID="ID_807274693" CREATED="1624360227005" MODIFIED="1624360235265"/>
-<node TEXT="core elements of an e-Invoice" ID="ID_1449623295" CREATED="1624360277226" MODIFIED="1624360283900">
+<node TEXT="core elements of an e-Invoice" ID="ID_1449623295" CREATED="1624360277226" MODIFIED="1625501435912">
 <node TEXT="process and invoice identifiers" ID="ID_483024259" CREATED="1624360300796" MODIFIED="1624360311227"/>
 <node TEXT="invoice period" ID="ID_126606347" CREATED="1624360286125" MODIFIED="1624360295724"/>
 <node TEXT="seller information" ID="ID_288578035" CREATED="1624360296532" MODIFIED="1624360316593"/>
@@ -428,11 +411,34 @@
 </node>
 <node TEXT="nothing about security (except as an exception for special measures)" ID="ID_1999505630" CREATED="1624360412681" MODIFIED="1624360457733"/>
 </node>
-<node TEXT="EN 16931" FOLDED="true" ID="ID_986642236" CREATED="1624360658513" MODIFIED="1624360665196" LINK="https://standards.cen.eu/dyn/www/f?p=204:110:0::::FSP_PROJECT,FSP_ORG_ID:60602,1883209&amp;cs=104E4C4FA3744A8DEA8E98A7B500306FD">
+<node TEXT="EN 16931" FOLDED="true" ID="ID_986642236" CREATED="1624360658513" MODIFIED="1625231611683" LINK="https://standards.cen.eu/dyn/www/f?p=204:110:0::::FSP_PROJECT,FSP_ORG_ID:60602,1883209&amp;cs=104E4C4FA3744A8DEA8E98A7B500306FD">
+<icon BUILTIN="button_ok"/>
 <node TEXT="a semantic data model of the core elements of an electronic invoice" ID="ID_876843484" CREATED="1624360679708" MODIFIED="1624360681488"/>
 <node TEXT="nothing about security" ID="ID_1494617296" CREATED="1624360681958" MODIFIED="1624360686427"/>
 </node>
-<node TEXT="CEF eDelivery Building Block&#xa;Security Controls" FOLDED="true" ID="ID_271934788" CREATED="1624361083911" MODIFIED="1624361579087" LINK="https://ec.europa.eu/cefdigital/wiki/display/CEFDIGITAL/Security+Controls+guidance?preview=/82773295/82802571/(CEFeDelivery).(SecurityControls).(v1.00).pdf">
+<node TEXT="Peppol" FOLDED="true" ID="ID_572319296" CREATED="1624354504555" MODIFIED="1624354739561" LINK="https://peppol.eu/what-is-peppol/peppol-transport-infrastructure/">
+<node TEXT="Security is PKI" ID="ID_808417362" CREATED="1624354741668" MODIFIED="1624354756634"/>
+<node TEXT="Peppol Digital Certificate" ID="ID_1618660557" CREATED="1624354764495" MODIFIED="1624354782160"/>
+<node TEXT="SOAP, WSDL, WS-Security" ID="ID_1590617437" CREATED="1624355063900" MODIFIED="1624355080171"/>
+<node TEXT="PEPPOL Transport Infrastructure&#xa;Technical Overview (2011)" ID="ID_1957468734" CREATED="1624355533187" MODIFIED="1625231615171" LINK="https://www.galaxygw.com/wp-content/uploads/openpeppol/20111122-peppol-transport-infrastructure-v1.17.pdf">
+<icon BUILTIN="button_ok"/>
+<node TEXT="1. Trust is established using a Public Key Infrastructure (PKI)" ID="ID_871590464" CREATED="1624356530284" MODIFIED="1624356532093"/>
+<node TEXT="2. Service providers sign an agreement before&#xa;they join the infrastructure" ID="ID_1719212512" CREATED="1624356532635" MODIFIED="1624356543010"/>
+<node TEXT="3. Secure communication protocols" ID="ID_1582446302" CREATED="1624356549465" MODIFIED="1624356551065"/>
+<node TEXT="4. Operational security requirements for service&#xa;providers" ID="ID_250559904" CREATED="1624356559253" MODIFIED="1624356573321"/>
+<node TEXT="5. Sender authentication" ID="ID_1129972413" CREATED="1624356573890" MODIFIED="1624356574927"/>
+</node>
+<node TEXT="UBL Invoice" ID="ID_1355976345" CREATED="1624903761914" MODIFIED="1624903770319" LINK="https://docs.peppol.eu/poacc/billing/3.0/syntax/ubl-invoice/tree/">
+<node TEXT="has &quot;preceding invoice&quot; document reference (+date)" ID="ID_1325727491" CREATED="1624903771297" MODIFIED="1624903838328"/>
+<node TEXT="otherwise, no versioning" ID="ID_1889219002" CREATED="1624903812192" MODIFIED="1624903821981"/>
+</node>
+<node TEXT="&quot;Peppol Access Point provider&quot;" ID="ID_1658728007" CREATED="1624358693322" MODIFIED="1624358709334"/>
+<node TEXT="Example BPMN workflows for BIS specifications" ID="ID_1664877591" CREATED="1624904281940" MODIFIED="1625231621336">
+<icon BUILTIN="button_ok"/>
+</node>
+</node>
+<node TEXT="CEF eDelivery Building Block&#xa;Security Controls" FOLDED="true" ID="ID_271934788" CREATED="1624361083911" MODIFIED="1625231623137" LINK="https://ec.europa.eu/cefdigital/wiki/display/CEFDIGITAL/Security+Controls+guidance?preview=/82773295/82802571/(CEFeDelivery).(SecurityControls).(v1.00).pdf">
+<icon BUILTIN="button_ok"/>
 <node TEXT="four-cornermodel" ID="ID_1363858602" CREATED="1624361131951" MODIFIED="1624361134124">
 <node TEXT="why?" ID="ID_1396085802" CREATED="1624361136507" MODIFIED="1624461468383">
 <font ITALIC="true"/>
@@ -466,8 +472,9 @@
 </node>
 </node>
 <node TEXT="Commercial" FOLDED="true" ID="ID_1068764690" CREATED="1624358754704" MODIFIED="1624358763841">
-<node TEXT="Tradeshift" ID="ID_1882361649" CREATED="1624357436724" MODIFIED="1624357440638">
-<node TEXT="Information Security Policy" FOLDED="true" ID="ID_1655256953" CREATED="1624357450517" MODIFIED="1624357459228" LINK="https://tradeshift.com/agreements/information-security-policy/">
+<node TEXT="Tradeshift" ID="ID_1882361649" CREATED="1624357436724" MODIFIED="1625241784528">
+<icon BUILTIN="button_ok"/>
+<node TEXT="Information Security Policy" ID="ID_1655256953" CREATED="1624357450517" MODIFIED="1625241446952" LINK="https://tradeshift.com/agreements/information-security-policy/">
 <node TEXT="Traceability. ... keep over a reasonable period of time of the logs of the actions carried out in its Platform used as part of the Services" ID="ID_1131775887" CREATED="1624357488229" MODIFIED="1624357511104"/>
 <node TEXT="Malicious programs. ... necessary precautions... on the Tradeshift platform and employee workstations." ID="ID_966526207" CREATED="1624357522092" MODIFIED="1624357542849"/>
 <node TEXT="Obligation of information and correction on security incidents" ID="ID_1977480373" CREATED="1624357564405" MODIFIED="1624357565678"/>
@@ -478,7 +485,8 @@
 <node TEXT="Incident response" ID="ID_1312924207" CREATED="1624357654475" MODIFIED="1624357655591"/>
 </node>
 </node>
-<node TEXT="Kissflow" ID="ID_1839850618" CREATED="1624357794992" MODIFIED="1624357797660">
+<node TEXT="Kissflow" ID="ID_1839850618" CREATED="1624357794992" MODIFIED="1625241787374">
+<icon BUILTIN="button_ok"/>
 <node TEXT="FAQs" ID="ID_1126965805" CREATED="1624357807705" MODIFIED="1624357815584" LINK="https://help.kissflow.com/en/articles/454087-faqs">
 <node TEXT="SSL over HTTPS" ID="ID_571579404" CREATED="1624357827686" MODIFIED="1624357828801"/>
 <node TEXT="All data encrypted at rest" ID="ID_497598464" CREATED="1624357831061" MODIFIED="1624357839669"/>
@@ -490,7 +498,9 @@
 <node TEXT="OAuth, SAML" ID="ID_1947268097" CREATED="1624357939379" MODIFIED="1624357963446"/>
 </node>
 <node TEXT="Basware" ID="ID_1017877813" CREATED="1624358595984" MODIFIED="1624358600768">
-<node TEXT="Security Measures Annex" ID="ID_15598810" CREATED="1624358601204" MODIFIED="1624358616913" LINK="https://www.basware.com/Basware/files/c6/c69a3db2-8e57-460a-9631-c19572a0c9ba.pdf"/>
+<node TEXT="Security Measures Annex" ID="ID_15598810" CREATED="1624358601204" MODIFIED="1625241279201" LINK="https://www.basware.com/Basware/files/c6/c69a3db2-8e57-460a-9631-c19572a0c9ba.pdf">
+<icon BUILTIN="button_ok"/>
+</node>
 </node>
 <node TEXT="Microsoft Dynamics 365 Procurement and sourcing" ID="ID_1276718436" CREATED="1624902374804" MODIFIED="1624902407415" LINK="https://docs.microsoft.com/en-us/dynamics365/supply-chain/procurement/procurement-sourcing-overview">
 <node TEXT="includes Purchase Tenders (so RfQs can be sent to one or to multiple potential suppliers)" ID="ID_840958781" CREATED="1624902452410" MODIFIED="1624902453773"/>
@@ -501,19 +511,31 @@
 <node TEXT="Using XML as input AND output" ID="ID_990131282" CREATED="1624904420049" MODIFIED="1624904429387"/>
 <node TEXT="confidentiality" ID="ID_551137414" CREATED="1624904438319" MODIFIED="1624967736880">
 <font BOLD="true"/>
-<node TEXT="invoice and operations confidential to third parties" ID="ID_974532003" CREATED="1624904444890" MODIFIED="1624956081343"/>
-<node TEXT="If have read access, nothing is confidential" ID="ID_1567271860" CREATED="1624904458255" MODIFIED="1624904467807"/>
-<node TEXT="Fine-grained view permissions out of scope" ID="ID_1852482337" CREATED="1624904471047" MODIFIED="1624904479294"/>
+<node TEXT="invoice and operations confidential to third parties" ID="ID_974532003" CREATED="1624904444890" MODIFIED="1625501605898">
+<icon BUILTIN="button_ok"/>
 </node>
-<node TEXT="integrity" ID="ID_394699690" CREATED="1624904484164" MODIFIED="1624904489913">
+<node TEXT="If have read access, nothing is confidential" ID="ID_1567271860" CREATED="1624904458255" MODIFIED="1625501610691">
+<icon BUILTIN="button_cancel"/>
+</node>
+<node TEXT="Fine-grained view permissions out of scope" ID="ID_1852482337" CREATED="1624904471047" MODIFIED="1625501613919">
+<icon BUILTIN="button_cancel"/>
+</node>
+</node>
+<node TEXT="integrity" FOLDED="true" ID="ID_394699690" CREATED="1624904484164" MODIFIED="1624904489913">
 <font BOLD="true"/>
-<node TEXT="Adhere to data model / disallow invalid" ID="ID_1596863314" CREATED="1624904490330" MODIFIED="1624904517670"/>
-<node TEXT="Is this an RfQ or a tender?" ID="ID_1269842060" CREATED="1624904498543" MODIFIED="1624904504900"/>
-<node TEXT="State at *contract* points can be signed (both parties agree based on content; not just convergence" ID="ID_1099285409" CREATED="1624904519086" MODIFIED="1624904545885"/>
-<node TEXT="agreement can be cumulative: &quot;I agree with this so long as nothing changes except your agreement&quot;)" ID="ID_1699246724" CREATED="1624904546874" MODIFIED="1624904547910"/>
-<node TEXT="Contract points: request for quote (non-binding), tender (promise to give contract to winner), PO (tender to specific vendor), quote" ID="ID_1698838065" CREATED="1624904557416" MODIFIED="1624904558677"/>
+<node TEXT="Adhere to data model / disallow invalid" ID="ID_1596863314" CREATED="1624904490330" MODIFIED="1625501617868">
+<icon BUILTIN="button_ok"/>
 </node>
-<node TEXT="availability" ID="ID_1766568619" CREATED="1624904574583" MODIFIED="1624904580074">
+<node TEXT="Is this an RfQ or a tender?" ID="ID_1269842060" CREATED="1624904498543" MODIFIED="1624904504900"/>
+<node TEXT="State at *contract* points can be signed (both parties agree based on content; not just convergence" ID="ID_1099285409" CREATED="1624904519086" MODIFIED="1625501623898">
+<icon BUILTIN="button_ok"/>
+</node>
+<node TEXT="agreement can be cumulative: &quot;I agree with this so long as nothing changes except your agreement&quot;)" ID="ID_1699246724" CREATED="1624904546874" MODIFIED="1624904547910"/>
+<node TEXT="Contract points: request for quote (non-binding), tender (promise to give contract to winner), PO (tender to specific vendor), quote" ID="ID_1698838065" CREATED="1624904557416" MODIFIED="1625501773063">
+<icon BUILTIN="button_ok"/>
+</node>
+</node>
+<node TEXT="availability" FOLDED="true" ID="ID_1766568619" CREATED="1624904574583" MODIFIED="1624904580074">
 <font BOLD="true"/>
 <node TEXT="Offline (client is offline)" ID="ID_393522421" CREATED="1624904580389" MODIFIED="1624904588805"/>
 <node TEXT="Server is offline (nice to have)" ID="ID_1010053678" CREATED="1624904590075" MODIFIED="1624904600629"/>
@@ -521,17 +543,28 @@
 <node TEXT="Contracts (double agreement) require exchange of something" ID="ID_864831703" CREATED="1624904606039" MODIFIED="1624904619856"/>
 <node TEXT="&quot;Common knowledge&quot; requires read receipts" ID="ID_1784425125" CREATED="1624904620384" MODIFIED="1624904630758"/>
 </node>
-<node TEXT="auditing" ID="ID_777469640" CREATED="1624904654248" MODIFIED="1624904661538">
+<node TEXT="auditing" FOLDED="true" ID="ID_777469640" CREATED="1624904654248" MODIFIED="1624904661538">
 <font BOLD="true"/>
-<node TEXT="All visible operations are timestamped (signed?) and attributable to user identity" ID="ID_1201461025" CREATED="1624904662291" MODIFIED="1624904688551"/>
-<node TEXT="Different histories due to concurrent/offline operations can be inspected at contract points (nice to have)" ID="ID_1124852942" CREATED="1624904690901" MODIFIED="1624904718331"/>
-<node TEXT="Divergent histories can be compared (nice to have)" ID="ID_731559463" CREATED="1624904720073" MODIFIED="1624904729749"/>
-<node TEXT="Purchase chains?" ID="ID_1360272672" CREATED="1624904730007" MODIFIED="1624904736342"/>
+<node TEXT="All visible operations are timestamped (signed?) and attributable to user identity" ID="ID_1201461025" CREATED="1624904662291" MODIFIED="1625569186052">
+<icon BUILTIN="button_ok"/>
 </node>
-<node TEXT="authentication" ID="ID_1714106959" CREATED="1624904739322" MODIFIED="1624904744621">
+<node TEXT="Different histories due to concurrent/offline operations can be inspected at contract points (nice to have)" ID="ID_1124852942" CREATED="1624904690901" MODIFIED="1625572011724">
+<icon BUILTIN="button_ok"/>
+</node>
+<node TEXT="Divergent histories can be compared (nice to have)" ID="ID_731559463" CREATED="1624904720073" MODIFIED="1625572017867">
+<icon BUILTIN="button_cancel"/>
+</node>
+<node TEXT="Purchase chains?" ID="ID_1360272672" CREATED="1624904730007" MODIFIED="1625572019037">
+<icon BUILTIN="button_cancel"/>
+</node>
+</node>
+<node TEXT="authentication" FOLDED="true" ID="ID_1714106959" CREATED="1624904739322" MODIFIED="1625584199431">
 <font BOLD="true"/>
-<node TEXT="Users strongly identified" ID="ID_1211764726" CREATED="1624904745139" MODIFIED="1624904752577"/>
-<node TEXT="Machine strongly identified" ID="ID_1042268944" CREATED="1624904753914" MODIFIED="1624904762477">
+<node TEXT="Users strongly identified" ID="ID_1211764726" CREATED="1624904745139" MODIFIED="1625584193790">
+<icon BUILTIN="button_ok"/>
+</node>
+<node TEXT="Machine strongly identified" ID="ID_1042268944" CREATED="1624904753914" MODIFIED="1625584199431">
+<icon BUILTIN="button_ok"/>
 <node TEXT="Tax rate" ID="ID_576062497" CREATED="1624904763027" MODIFIED="1624904766291"/>
 <node TEXT="Packing rates, e.g. multiple crates (seller/buyer algorithm)" ID="ID_832360353" CREATED="1624904766684" MODIFIED="1624904792280"/>
 <node TEXT="Most calculations are simple enough, results don&apos;t need to be in the signed data" ID="ID_1331857141" CREATED="1624904796013" MODIFIED="1624904815118"/>
@@ -551,7 +584,7 @@
 <node TEXT="Central registry sysadmin" ID="ID_746987840" CREATED="1624904895703" MODIFIED="1624904902296"/>
 </node>
 </node>
-<node TEXT="1. application profile" FOLDED="true" ID="ID_40203371" CREATED="1624862571031" MODIFIED="1625219099318">
+<node TEXT="1. application profile" ID="ID_40203371" CREATED="1624862571031" MODIFIED="1625219099318">
 <node TEXT="users" ID="ID_339267580" CREATED="1624904916190" MODIFIED="1624904918924">
 <font BOLD="true"/>
 <node TEXT="Buyer" ID="ID_946688858" CREATED="1624904921128" MODIFIED="1624904922829"/>
@@ -568,9 +601,12 @@
 <node TEXT="data" ID="ID_1015757453" CREATED="1624904965759" MODIFIED="1625219099318">
 <font BOLD="true"/>
 <node TEXT="DraftInvoice data type" ID="ID_725480110" CREATED="1624862610123" MODIFIED="1624862643551" LINK="https://github.com/pondersource/collaborative-invoice-composition/blob/main/index.ts"/>
-<node TEXT="&quot;invoice&quot; data type and access rules" ID="ID_1382221825" CREATED="1624862583190" MODIFIED="1624862594688" LINK="https://github.com/federatedbookkeeping/research/issues/4"/>
+<node TEXT="&quot;invoice&quot; data type and access rules" ID="ID_1382221825" CREATED="1624862583190" MODIFIED="1625501269043" LINK="https://github.com/federatedbookkeeping/research/issues/4">
+<arrowlink SHAPE="CUBIC_CURVE" COLOR="#000000" WIDTH="2" TRANSPARENCY="200" FONT_SIZE="9" FONT_FAMILY="SansSerif" DESTINATION="ID_1699246724" STARTINCLINATION="395;0;" ENDINCLINATION="395;0;" STARTARROW="NONE" ENDARROW="DEFAULT"/>
 </node>
-<node TEXT="deployment" ID="ID_36068305" CREATED="1624904995763" MODIFIED="1624905001906">
+</node>
+<node TEXT="deployment" ID="ID_36068305" CREATED="1624904995763" MODIFIED="1625502199274">
+<arrowlink SHAPE="CUBIC_CURVE" COLOR="#000000" WIDTH="2" TRANSPARENCY="200" FONT_SIZE="9" FONT_FAMILY="SansSerif" DESTINATION="ID_1766568619" STARTINCLINATION="407;0;" ENDINCLINATION="407;0;" STARTARROW="NONE" ENDARROW="DEFAULT"/>
 <font BOLD="true"/>
 <node TEXT="Mobile devices (secured?)" ID="ID_1210599955" CREATED="1624905002232" MODIFIED="1624905009726"/>
 <node TEXT="Web browsers" ID="ID_1633477272" CREATED="1624905010085" MODIFIED="1624905013326"/>
@@ -717,6 +753,7 @@
 <node TEXT="ISO27001" ID="ID_57579013" CREATED="1625138273279" MODIFIED="1625138278298"/>
 </node>
 <node TEXT="Standards" ID="ID_1278728603" CREATED="1625137013896" MODIFIED="1625137016983">
+<node TEXT="Akoma Ntoso (EU vocabulary)" ID="ID_1895406871" CREATED="1625556198790" MODIFIED="1625556218796" LINK="http://www.akomantoso.org"/>
 <node TEXT="Commercial" ID="ID_517673581" CREATED="1625137023358" MODIFIED="1625137027645">
 <node TEXT="Azure Information Protection" ID="ID_373113580" CREATED="1625136477912" MODIFIED="1625137227176" LINK="https://docs.microsoft.com/en-us/azure/information-protection/how-does-it-work">
 <node TEXT="Labels applied to documents" ID="ID_868450733" CREATED="1625136670444" MODIFIED="1625136676836"/>
