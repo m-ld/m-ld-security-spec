@@ -35,7 +35,7 @@ Threat modelling will be applied to the proposed system with the general structu
 ### 1. application profile
 
 - Deployment – hypothetical, but realistic, based on existing systems in the user domain
-- User roles
+- Actors (including users & machines, including roles and groups, as appropriate)
 - Data classification
 - Dependencies – significant third-party systems & services required for system operation
 
