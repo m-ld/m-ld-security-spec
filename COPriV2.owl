@@ -1,0 +1,1886 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.copri-final/copri.owl#"
+     xml:base="http://www.copri-final/copri.owl"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:copri="http://www.copri-final/copri.owl#"
+     xmlns:copri2="http://www.copri-final/copri2.owl#">
+    <owl:Ontology rdf:about="http://www.copri-final/copri.owl">
+        <rdfs:comment>COPri 2 - Core Ontology for Privacy engineering</rdfs:comment>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.copri-final/copri.owl#hasConsentPoU -->
+
+    <owl:ObjectProperty rdf:about="http://www.copri-final/copri.owl#hasConsentPoU">
+        <rdfs:domain rdf:resource="http://www.copri-final/copri2.owl#Consent"/>
+        <rdfs:range rdf:resource="http://www.copri-final/copri2.owl#PurposeOfUseType"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.copri-final/copri.owl#isRelevantTo -->
+
+    <owl:ObjectProperty rdf:about="http://www.copri-final/copri.owl#isRelevantTo">
+        <rdfs:domain rdf:resource="http://www.copri-final/copri2.owl#PersonalInformation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.copri-final/copri.owl#toUse -->
+
+    <owl:ObjectProperty rdf:about="http://www.copri-final/copri.owl#toUse">
+        <rdfs:domain rdf:resource="http://www.copri-final/copri2.owl#Consent"/>
+        <rdfs:range rdf:resource="http://www.copri-final/copri2.owl#PersonalInformation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#adopts -->
+
+    <owl:ObjectProperty rdf:about="http://www.copri-final/copri2.owl#adopts">
+        <rdfs:domain rdf:resource="http://www.copri-final/copri2.owl#Actor"/>
+        <rdfs:range rdf:resource="http://www.copri-final/copri2.owl#Delegation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#aims -->
+
+    <owl:ObjectProperty rdf:about="http://www.copri-final/copri2.owl#aims">
+        <rdfs:domain rdf:resource="http://www.copri-final/copri2.owl#Actor"/>
+        <rdfs:range rdf:resource="http://www.copri-final/copri2.owl#Goal"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#andDecomposed -->
+
+    <owl:ObjectProperty rdf:about="http://www.copri-final/copri2.owl#andDecomposed">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:domain rdf:resource="http://www.copri-final/copri2.owl#Goal"/>
+        <rdfs:range rdf:resource="http://www.copri-final/copri2.owl#Goal"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#appliedTo -->
+
+    <owl:ObjectProperty rdf:about="http://www.copri-final/copri2.owl#appliedTo">
+        <rdfs:domain rdf:resource="http://www.copri-final/copri2.owl#PrivacyMechanism"/>
+        <rdfs:range rdf:resource="http://www.copri-final/copri2.owl#PersonalInformation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#concerning -->
+
+    <owl:ObjectProperty rdf:about="http://www.copri-final/copri2.owl#concerning">
+        <rdfs:domain rdf:resource="http://www.copri-final/copri2.owl#PrivacyRequirement"/>
+        <rdfs:range rdf:resource="http://www.copri-final/copri2.owl#PersonalInformation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#delegatee -->
+
+    <owl:ObjectProperty rdf:about="http://www.copri-final/copri2.owl#delegatee">
+        <rdfs:domain rdf:resource="http://www.copri-final/copri2.owl#Delegation"/>
+        <rdfs:range rdf:resource="http://www.copri-final/copri2.owl#Actor"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#delegator -->
+
+    <owl:ObjectProperty rdf:about="http://www.copri-final/copri2.owl#delegator">
+        <rdfs:domain rdf:resource="http://www.copri-final/copri2.owl#Actor"/>
+        <rdfs:range rdf:resource="http://www.copri-final/copri2.owl#Delegation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#describes -->
+
+    <owl:ObjectProperty rdf:about="http://www.copri-final/copri2.owl#describes">
+        <rdfs:domain rdf:resource="http://www.copri-final/copri2.owl#PersonalInformation"/>
+        <rdfs:range rdf:resource="http://www.copri-final/copri2.owl#Goal"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#exploits -->
+
+    <owl:ObjectProperty rdf:about="http://www.copri-final/copri2.owl#exploits">
+        <rdfs:domain rdf:resource="http://www.copri-final/copri2.owl#Threat"/>
+        <rdfs:range rdf:resource="http://www.copri-final/copri2.owl#Vulnerability"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#goalDelegatum -->
+
+    <owl:ObjectProperty rdf:about="http://www.copri-final/copri2.owl#goalDelegatum">
+        <rdfs:domain rdf:resource="http://www.copri-final/copri2.owl#GoalDelegation"/>
+        <rdfs:range rdf:resource="http://www.copri-final/copri2.owl#Goal"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#goalTrustum -->
+
+    <owl:ObjectProperty rdf:about="http://www.copri-final/copri2.owl#goalTrustum">
+        <rdfs:domain rdf:resource="http://www.copri-final/copri2.owl#Trust"/>
+        <rdfs:range rdf:resource="http://www.copri-final/copri2.owl#Goal"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#grantee -->
+
+    <owl:ObjectProperty rdf:about="http://www.copri-final/copri2.owl#grantee">
+        <rdfs:domain rdf:resource="http://www.copri-final/copri2.owl#Consent"/>
+        <rdfs:range rdf:resource="http://www.copri-final/copri2.owl#Actor"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#granter -->
+
+    <owl:ObjectProperty rdf:about="http://www.copri-final/copri2.owl#granter">
+        <rdfs:domain rdf:resource="http://www.copri-final/copri2.owl#DataSubject"/>
+        <rdfs:range rdf:resource="http://www.copri-final/copri2.owl#Consent"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#hasDelegationType -->
+
+    <owl:ObjectProperty rdf:about="http://www.copri-final/copri2.owl#hasDelegationType">
+        <rdfs:domain rdf:resource="http://www.copri-final/copri2.owl#Delegation"/>
+        <rdfs:range rdf:resource="http://www.copri-final/copri2.owl#DelegationType"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#hasImpact -->
+
+    <owl:ObjectProperty rdf:about="http://www.copri-final/copri2.owl#hasImpact">
+        <rdfs:domain rdf:resource="http://www.copri-final/copri2.owl#Threat"/>
+        <rdfs:range rdf:resource="http://www.copri-final/copri2.owl#Impact"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#hasNeedtoUseType -->
+
+    <owl:ObjectProperty rdf:about="http://www.copri-final/copri2.owl#hasNeedtoUseType">
+        <rdfs:domain rdf:resource="http://www.copri-final/copri2.owl#Use"/>
+        <rdfs:range rdf:resource="http://www.copri-final/copri2.owl#NeedtoUseType"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#hasPermission -->
+
+    <owl:ObjectProperty rdf:about="http://www.copri-final/copri2.owl#hasPermission">
+        <rdfs:domain rdf:resource="http://www.copri-final/copri2.owl#Actor"/>
+        <rdfs:range rdf:resource="http://www.copri-final/copri2.owl#Permission"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#hasPermissionType -->
+
+    <owl:ObjectProperty rdf:about="http://www.copri-final/copri2.owl#hasPermissionType">
+        <rdfs:domain rdf:resource="http://www.copri-final/copri2.owl#Permission"/>
+        <rdfs:range rdf:resource="http://www.copri-final/copri2.owl#PermissionType"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#hasProbability -->
+
+    <owl:ObjectProperty rdf:about="http://www.copri-final/copri2.owl#hasProbability">
+        <rdfs:domain rdf:resource="http://www.copri-final/copri2.owl#Threat"/>
+        <rdfs:range rdf:resource="http://www.copri-final/copri2.owl#Probability"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#hasProvisionType -->
+
+    <owl:ObjectProperty rdf:about="http://www.copri-final/copri2.owl#hasProvisionType">
+        <rdfs:domain rdf:resource="http://www.copri-final/copri2.owl#Provision"/>
+        <rdfs:range rdf:resource="http://www.copri-final/copri2.owl#ProvisionType"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#hasPurposeOfUseType -->
+
+    <owl:ObjectProperty rdf:about="http://www.copri-final/copri2.owl#hasPurposeOfUseType">
+        <rdfs:domain rdf:resource="http://www.copri-final/copri2.owl#Use"/>
+        <rdfs:range rdf:resource="http://www.copri-final/copri2.owl#PurposeOfUseType"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#hasSensitivity -->
+
+    <owl:ObjectProperty rdf:about="http://www.copri-final/copri2.owl#hasSensitivity">
+        <rdfs:domain rdf:resource="http://www.copri-final/copri2.owl#PersonalInformation"/>
+        <rdfs:range rdf:resource="http://www.copri-final/copri2.owl#SensitivityLevel"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#hasSeverityLevel -->
+
+    <owl:ObjectProperty rdf:about="http://www.copri-final/copri2.owl#hasSeverityLevel">
+        <rdfs:domain rdf:resource="http://www.copri-final/copri2.owl#Impact"/>
+        <rdfs:range rdf:resource="http://www.copri-final/copri2.owl#SeverityLevel"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#hasTrustLevel -->
+
+    <owl:ObjectProperty rdf:about="http://www.copri-final/copri2.owl#hasTrustLevel">
+        <rdfs:domain rdf:resource="http://www.copri-final/copri2.owl#Trust"/>
+        <rdfs:range rdf:resource="http://www.copri-final/copri2.owl#TrustLevel"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#hasTypeOfUse -->
+
+    <owl:ObjectProperty rdf:about="http://www.copri-final/copri2.owl#hasTypeOfUse">
+        <rdfs:domain rdf:resource="http://www.copri-final/copri2.owl#Use"/>
+        <rdfs:range rdf:resource="http://www.copri-final/copri2.owl#TypeOfUse"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#identify -->
+
+    <owl:ObjectProperty rdf:about="http://www.copri-final/copri2.owl#identify">
+        <rdfs:domain rdf:resource="http://www.copri-final/copri2.owl#PII"/>
+        <rdfs:range rdf:resource="http://www.copri-final/copri2.owl#DataSubject"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#impactOver -->
+
+    <owl:ObjectProperty rdf:about="http://www.copri-final/copri2.owl#impactOver">
+        <rdfs:domain rdf:resource="http://www.copri-final/copri2.owl#Impact"/>
+        <rdfs:range rdf:resource="http://www.copri-final/copri2.owl#PersonalInformation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#includes -->
+
+    <owl:ObjectProperty rdf:about="http://www.copri-final/copri2.owl#includes">
+        <rdfs:domain rdf:resource="http://www.copri-final/copri2.owl#IntentionalThreat"/>
+        <rdfs:range rdf:resource="http://www.copri-final/copri2.owl#AttackMethod"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#intends -->
+
+    <owl:ObjectProperty rdf:about="http://www.copri-final/copri2.owl#intends">
+        <rdfs:domain rdf:resource="http://www.copri-final/copri2.owl#Actor"/>
+        <rdfs:range rdf:resource="http://www.copri-final/copri2.owl#IntentionalThreat"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#interpretedBy -->
+
+    <owl:ObjectProperty rdf:about="http://www.copri-final/copri2.owl#interpretedBy">
+        <rdfs:domain rdf:resource="http://www.copri-final/copri2.owl#PrivacyRequirement"/>
+        <rdfs:range rdf:resource="http://www.copri-final/copri2.owl#PrivacyGoal"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#isSubjectTo -->
+
+    <owl:ObjectProperty rdf:about="http://www.copri-final/copri2.owl#isSubjectTo">
+        <rdfs:domain rdf:resource="http://www.copri-final/copri2.owl#PersonalInformation"/>
+        <rdfs:range rdf:resource="http://www.copri-final/copri2.owl#Vulnerability"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#is_a -->
+
+    <owl:ObjectProperty rdf:about="http://www.copri-final/copri2.owl#is_a">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:domain rdf:resource="http://www.copri-final/copri2.owl#Role"/>
+        <rdfs:range rdf:resource="http://www.copri-final/copri2.owl#Role"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#mitigates -->
+
+    <owl:ObjectProperty rdf:about="http://www.copri-final/copri2.owl#mitigates">
+        <rdfs:domain rdf:resource="http://www.copri-final/copri2.owl#PrivacyGoal"/>
+        <rdfs:range rdf:resource="http://www.copri-final/copri2.owl#Vulnerability"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#monitor -->
+
+    <owl:ObjectProperty rdf:about="http://www.copri-final/copri2.owl#monitor">
+        <rdfs:domain rdf:resource="http://www.copri-final/copri2.owl#Actor"/>
+        <rdfs:range rdf:resource="http://www.copri-final/copri2.owl#Monitor"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#monitoree -->
+
+    <owl:ObjectProperty rdf:about="http://www.copri-final/copri2.owl#monitoree">
+        <rdfs:domain rdf:resource="http://www.copri-final/copri2.owl#Monitor"/>
+        <rdfs:range rdf:resource="http://www.copri-final/copri2.owl#Actor"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#ofGoal -->
+
+    <owl:ObjectProperty rdf:about="http://www.copri-final/copri2.owl#ofGoal">
+        <rdfs:domain rdf:resource="http://www.copri-final/copri2.owl#goalMonitor"/>
+        <rdfs:range rdf:resource="http://www.copri-final/copri2.owl#Goal"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#ofPermission -->
+
+    <owl:ObjectProperty rdf:about="http://www.copri-final/copri2.owl#ofPermission">
+        <rdfs:domain rdf:resource="http://www.copri-final/copri2.owl#permissionMonitor"/>
+        <rdfs:range rdf:resource="http://www.copri-final/copri2.owl#Permission"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#orDecomposed -->
+
+    <owl:ObjectProperty rdf:about="http://www.copri-final/copri2.owl#orDecomposed">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:domain rdf:resource="http://www.copri-final/copri2.owl#Goal"/>
+        <rdfs:range rdf:resource="http://www.copri-final/copri2.owl#Goal"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#over -->
+
+    <owl:ObjectProperty rdf:about="http://www.copri-final/copri2.owl#over">
+        <rdfs:domain rdf:resource="http://www.copri-final/copri2.owl#Permission"/>
+        <rdfs:range rdf:resource="http://www.copri-final/copri2.owl#PersonalInformation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#own -->
+
+    <owl:ObjectProperty rdf:about="http://www.copri-final/copri2.owl#own">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.copri-final/copri2.owl#Actor"/>
+        <rdfs:range rdf:resource="http://www.copri-final/copri2.owl#PersonalInformation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#partOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.copri-final/copri2.owl#partOf">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:domain rdf:resource="http://www.copri-final/copri2.owl#Information"/>
+        <rdfs:range rdf:resource="http://www.copri-final/copri2.owl#Information"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#permissionDelegatum -->
+
+    <owl:ObjectProperty rdf:about="http://www.copri-final/copri2.owl#permissionDelegatum">
+        <rdfs:domain rdf:resource="http://www.copri-final/copri2.owl#PermissionDelegation"/>
+        <rdfs:range rdf:resource="http://www.copri-final/copri2.owl#Permission"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#permissionTrustum -->
+
+    <owl:ObjectProperty rdf:about="http://www.copri-final/copri2.owl#permissionTrustum">
+        <rdfs:domain rdf:resource="http://www.copri-final/copri2.owl#Trust"/>
+        <rdfs:range rdf:resource="http://www.copri-final/copri2.owl#Permission"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#plays -->
+
+    <owl:ObjectProperty rdf:about="http://www.copri-final/copri2.owl#plays">
+        <rdfs:domain rdf:resource="http://www.copri-final/copri2.owl#Agent"/>
+        <rdfs:range rdf:resource="http://www.copri-final/copri2.owl#Role"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#provideBy -->
+
+    <owl:ObjectProperty rdf:about="http://www.copri-final/copri2.owl#provideBy">
+        <rdfs:domain rdf:resource="http://www.copri-final/copri2.owl#Actor"/>
+        <rdfs:range rdf:resource="http://www.copri-final/copri2.owl#Provision"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#provideTo -->
+
+    <owl:ObjectProperty rdf:about="http://www.copri-final/copri2.owl#provideTo">
+        <rdfs:domain rdf:resource="http://www.copri-final/copri2.owl#Provision"/>
+        <rdfs:range rdf:resource="http://www.copri-final/copri2.owl#Actor"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#provisionOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.copri-final/copri2.owl#provisionOf">
+        <rdfs:domain rdf:resource="http://www.copri-final/copri2.owl#Provision"/>
+        <rdfs:range rdf:resource="http://www.copri-final/copri2.owl#Information"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#realizedBy -->
+
+    <owl:ObjectProperty rdf:about="http://www.copri-final/copri2.owl#realizedBy">
+        <rdfs:domain rdf:resource="http://www.copri-final/copri2.owl#PrivacyGoal"/>
+        <rdfs:range rdf:resource="http://www.copri-final/copri2.owl#PrivacyConstraint"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#related -->
+
+    <owl:ObjectProperty rdf:about="http://www.copri-final/copri2.owl#related">
+        <rdfs:domain rdf:resource="http://www.copri-final/copri2.owl#PersonalInformation"/>
+        <rdfs:range rdf:resource="http://www.copri-final/copri2.owl#Actor"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#threaten -->
+
+    <owl:ObjectProperty rdf:about="http://www.copri-final/copri2.owl#threaten">
+        <rdfs:domain rdf:resource="http://www.copri-final/copri2.owl#Threat"/>
+        <rdfs:range rdf:resource="http://www.copri-final/copri2.owl#PersonalInformation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#trustee -->
+
+    <owl:ObjectProperty rdf:about="http://www.copri-final/copri2.owl#trustee">
+        <rdfs:domain rdf:resource="http://www.copri-final/copri2.owl#Trust"/>
+        <rdfs:range rdf:resource="http://www.copri-final/copri2.owl#Actor"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#trustor -->
+
+    <owl:ObjectProperty rdf:about="http://www.copri-final/copri2.owl#trustor">
+        <rdfs:domain rdf:resource="http://www.copri-final/copri2.owl#Actor"/>
+        <rdfs:range rdf:resource="http://www.copri-final/copri2.owl#Trust"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#useBy -->
+
+    <owl:ObjectProperty rdf:about="http://www.copri-final/copri2.owl#useBy">
+        <rdfs:domain rdf:resource="http://www.copri-final/copri2.owl#Goal"/>
+        <rdfs:range rdf:resource="http://www.copri-final/copri2.owl#Use"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#useOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.copri-final/copri2.owl#useOf">
+        <rdfs:domain rdf:resource="http://www.copri-final/copri2.owl#Use"/>
+        <rdfs:range rdf:resource="http://www.copri-final/copri2.owl#Information"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.copri-final/copri.owl#Minimization -->
+
+    <owl:Class rdf:about="http://www.copri-final/copri.owl#Minimization">
+        <rdfs:subClassOf rdf:resource="http://www.copri-final/copri2.owl#PrivacyRequirement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#Accountability -->
+
+    <owl:Class rdf:about="http://www.copri-final/copri2.owl#Accountability">
+        <rdfs:subClassOf rdf:resource="http://www.copri-final/copri2.owl#PrivacyRequirement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#Actor -->
+
+    <owl:Class rdf:about="http://www.copri-final/copri2.owl#Actor">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.copri-final/copri2.owl#Agent"/>
+                    <rdf:Description rdf:about="http://www.copri-final/copri2.owl#Role"/>
+                </owl:unionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#Agent -->
+
+    <owl:Class rdf:about="http://www.copri-final/copri2.owl#Agent">
+        <rdfs:subClassOf rdf:resource="http://www.copri-final/copri2.owl#Actor"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.copri-final/copri2.owl#plays"/>
+                <owl:someValuesFrom rdf:resource="http://www.copri-final/copri2.owl#Role"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.copri-final/copri2.owl#plays"/>
+                <owl:allValuesFrom rdf:resource="http://www.copri-final/copri2.owl#Role"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.copri-final/copri2.owl#aims"/>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minQualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.copri-final/copri2.owl#Goal"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#Anonymity -->
+
+    <owl:Class rdf:about="http://www.copri-final/copri2.owl#Anonymity">
+        <rdfs:subClassOf rdf:resource="http://www.copri-final/copri2.owl#PrivacyRequirement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#AttackMethod -->
+
+    <owl:Class rdf:about="http://www.copri-final/copri2.owl#AttackMethod"/>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#Confidentiality -->
+
+    <owl:Class rdf:about="http://www.copri-final/copri2.owl#Confidentiality">
+        <rdfs:subClassOf rdf:resource="http://www.copri-final/copri2.owl#PrivacyRequirement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#Consent -->
+
+    <owl:Class rdf:about="http://www.copri-final/copri2.owl#Consent"/>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#DataController -->
+
+    <owl:Class rdf:about="http://www.copri-final/copri2.owl#DataController">
+        <rdfs:subClassOf rdf:resource="http://www.copri-final/copri2.owl#Role"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#DataProcessor -->
+
+    <owl:Class rdf:about="http://www.copri-final/copri2.owl#DataProcessor">
+        <rdfs:subClassOf rdf:resource="http://www.copri-final/copri2.owl#Role"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#DataSubject -->
+
+    <owl:Class rdf:about="http://www.copri-final/copri2.owl#DataSubject">
+        <rdfs:subClassOf rdf:resource="http://www.copri-final/copri2.owl#Role"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#Delegation -->
+
+    <owl:Class rdf:about="http://www.copri-final/copri2.owl#Delegation">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.copri-final/copri2.owl#GoalDelegation"/>
+                    <rdf:Description rdf:about="http://www.copri-final/copri2.owl#PermissionDelegation"/>
+                </owl:unionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.copri-final/copri2.owl#delegatee"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.copri-final/copri2.owl#Actor"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#DelegationType -->
+
+    <owl:Class rdf:about="http://www.copri-final/copri2.owl#DelegationType"/>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#Goal -->
+
+    <owl:Class rdf:about="http://www.copri-final/copri2.owl#Goal"/>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#GoalDelegation -->
+
+    <owl:Class rdf:about="http://www.copri-final/copri2.owl#GoalDelegation">
+        <rdfs:subClassOf rdf:resource="http://www.copri-final/copri2.owl#Delegation"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.copri-final/copri2.owl#goalDelegatum"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.copri-final/copri2.owl#Goal"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="http://www.copri-final/copri2.owl#PermissionDelegation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#GoalTrust -->
+
+    <owl:Class rdf:about="http://www.copri-final/copri2.owl#GoalTrust">
+        <rdfs:subClassOf rdf:resource="http://www.copri-final/copri2.owl#Trust"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.copri-final/copri2.owl#goalTrustum"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.copri-final/copri2.owl#Goal"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="http://www.copri-final/copri2.owl#PermissionTrust"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#Impact -->
+
+    <owl:Class rdf:about="http://www.copri-final/copri2.owl#Impact">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.copri-final/copri2.owl#hasSeverityLevel"/>
+                <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.copri-final/copri2.owl#impactOver"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.copri-final/copri2.owl#PersonalInformation"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#IncidentalThreat -->
+
+    <owl:Class rdf:about="http://www.copri-final/copri2.owl#IncidentalThreat">
+        <rdfs:subClassOf rdf:resource="http://www.copri-final/copri2.owl#Threat"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.copri-final/copri2.owl#hasProbability"/>
+                <owl:someValuesFrom rdf:resource="http://www.copri-final/copri2.owl#Probability"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.copri-final/copri2.owl#hasProbability"/>
+                <owl:allValuesFrom rdf:resource="http://www.copri-final/copri2.owl#Probability"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.copri-final/copri2.owl#hasProbability"/>
+                <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="http://www.copri-final/copri2.owl#IntentionalThreat"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#Information -->
+
+    <owl:Class rdf:about="http://www.copri-final/copri2.owl#Information">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.copri-final/copri2.owl#Non-personalInformation"/>
+                    <rdf:Description rdf:about="http://www.copri-final/copri2.owl#PersonalInformation"/>
+                </owl:unionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#IntentionalThreat -->
+
+    <owl:Class rdf:about="http://www.copri-final/copri2.owl#IntentionalThreat">
+        <rdfs:subClassOf rdf:resource="http://www.copri-final/copri2.owl#Threat"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.copri-final/copri2.owl#includes"/>
+                <owl:someValuesFrom rdf:resource="http://www.copri-final/copri2.owl#AttackMethod"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.copri-final/copri2.owl#includes"/>
+                <owl:allValuesFrom rdf:resource="http://www.copri-final/copri2.owl#AttackMethod"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.copri-final/copri2.owl#includes"/>
+                <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#Monitor -->
+
+    <owl:Class rdf:about="http://www.copri-final/copri2.owl#Monitor">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.copri-final/copri2.owl#goalMonitor"/>
+                    <rdf:Description rdf:about="http://www.copri-final/copri2.owl#permissionMonitor"/>
+                </owl:unionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.copri-final/copri2.owl#monitoree"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.copri-final/copri2.owl#Actor"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#NeedtoUseType -->
+
+    <owl:Class rdf:about="http://www.copri-final/copri2.owl#NeedtoUseType"/>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#Non-PII -->
+
+    <owl:Class rdf:about="http://www.copri-final/copri2.owl#Non-PII">
+        <rdfs:subClassOf rdf:resource="http://www.copri-final/copri2.owl#PersonalInformation"/>
+        <owl:disjointWith rdf:resource="http://www.copri-final/copri2.owl#PII"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#Non-personalInformation -->
+
+    <owl:Class rdf:about="http://www.copri-final/copri2.owl#Non-personalInformation">
+        <rdfs:subClassOf rdf:resource="http://www.copri-final/copri2.owl#Information"/>
+        <owl:disjointWith rdf:resource="http://www.copri-final/copri2.owl#PersonalInformation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#Notice -->
+
+    <owl:Class rdf:about="http://www.copri-final/copri2.owl#Notice">
+        <rdfs:subClassOf rdf:resource="http://www.copri-final/copri2.owl#PrivacyRequirement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#PII -->
+
+    <owl:Class rdf:about="http://www.copri-final/copri2.owl#PII">
+        <rdfs:subClassOf rdf:resource="http://www.copri-final/copri2.owl#PersonalInformation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#Permission -->
+
+    <owl:Class rdf:about="http://www.copri-final/copri2.owl#Permission">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.copri-final/copri2.owl#over"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.copri-final/copri2.owl#Information"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#PermissionDelegation -->
+
+    <owl:Class rdf:about="http://www.copri-final/copri2.owl#PermissionDelegation">
+        <rdfs:subClassOf rdf:resource="http://www.copri-final/copri2.owl#Delegation"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.copri-final/copri2.owl#permissionDelegatum"/>
+                <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#PermissionTrust -->
+
+    <owl:Class rdf:about="http://www.copri-final/copri2.owl#PermissionTrust">
+        <rdfs:subClassOf rdf:resource="http://www.copri-final/copri2.owl#Trust"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.copri-final/copri2.owl#permissionTrustum"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.copri-final/copri2.owl#Permission"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#PermissionType -->
+
+    <owl:Class rdf:about="http://www.copri-final/copri2.owl#PermissionType"/>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#PersonalInformation -->
+
+    <owl:Class rdf:about="http://www.copri-final/copri2.owl#PersonalInformation">
+        <rdfs:subClassOf rdf:resource="http://www.copri-final/copri2.owl#Information"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.copri-final/copri2.owl#related"/>
+                <owl:someValuesFrom rdf:resource="http://www.copri-final/copri2.owl#Actor"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.copri-final/copri2.owl#related"/>
+                <owl:allValuesFrom rdf:resource="http://www.copri-final/copri2.owl#Actor"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#PrivacyConstraint -->
+
+    <owl:Class rdf:about="http://www.copri-final/copri2.owl#PrivacyConstraint">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.copri-final/copri2.owl#PrivacyMechanism"/>
+                    <rdf:Description rdf:about="http://www.copri-final/copri2.owl#PrivacyPolicy"/>
+                </owl:unionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#PrivacyGoal -->
+
+    <owl:Class rdf:about="http://www.copri-final/copri2.owl#PrivacyGoal">
+        <rdfs:subClassOf rdf:resource="http://www.copri-final/copri2.owl#Goal"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#PrivacyMechanism -->
+
+    <owl:Class rdf:about="http://www.copri-final/copri2.owl#PrivacyMechanism">
+        <rdfs:subClassOf rdf:resource="http://www.copri-final/copri2.owl#PrivacyConstraint"/>
+        <owl:disjointWith rdf:resource="http://www.copri-final/copri2.owl#PrivacyPolicy"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#PrivacyPolicy -->
+
+    <owl:Class rdf:about="http://www.copri-final/copri2.owl#PrivacyPolicy">
+        <rdfs:subClassOf rdf:resource="http://www.copri-final/copri2.owl#PrivacyConstraint"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#PrivacyRequirement -->
+
+    <owl:Class rdf:about="http://www.copri-final/copri2.owl#PrivacyRequirement"/>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#Probability -->
+
+    <owl:Class rdf:about="http://www.copri-final/copri2.owl#Probability"/>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#Provision -->
+
+    <owl:Class rdf:about="http://www.copri-final/copri2.owl#Provision">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.copri-final/copri2.owl#provideTo"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.copri-final/copri2.owl#Actor"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.copri-final/copri2.owl#provisionOf"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.copri-final/copri2.owl#Information"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#ProvisionType -->
+
+    <owl:Class rdf:about="http://www.copri-final/copri2.owl#ProvisionType"/>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#PurposeOfUseType -->
+
+    <owl:Class rdf:about="http://www.copri-final/copri2.owl#PurposeOfUseType"/>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#Role -->
+
+    <owl:Class rdf:about="http://www.copri-final/copri2.owl#Role">
+        <rdfs:subClassOf rdf:resource="http://www.copri-final/copri2.owl#Actor"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#SensitivityLevel -->
+
+    <owl:Class rdf:about="http://www.copri-final/copri2.owl#SensitivityLevel"/>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#SeverityLevel -->
+
+    <owl:Class rdf:about="http://www.copri-final/copri2.owl#SeverityLevel"/>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#Threat -->
+
+    <owl:Class rdf:about="http://www.copri-final/copri2.owl#Threat">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.copri-final/copri2.owl#IncidentalThreat"/>
+                    <rdf:Description rdf:about="http://www.copri-final/copri2.owl#IntentionalThreat"/>
+                </owl:unionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#ThreatActor -->
+
+    <owl:Class rdf:about="http://www.copri-final/copri2.owl#ThreatActor">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.copri-final/copri2.owl#Actor"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.copri-final/copri2.owl#intends"/>
+                        <owl:someValuesFrom rdf:resource="http://www.copri-final/copri2.owl#IntentionalThreat"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.copri-final/copri2.owl#intends"/>
+                        <owl:allValuesFrom rdf:resource="http://www.copri-final/copri2.owl#IntentionalThreat"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#Transparency -->
+
+    <owl:Class rdf:about="http://www.copri-final/copri2.owl#Transparency">
+        <rdfs:subClassOf rdf:resource="http://www.copri-final/copri2.owl#PrivacyRequirement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#Trust -->
+
+    <owl:Class rdf:about="http://www.copri-final/copri2.owl#Trust">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.copri-final/copri2.owl#GoalTrust"/>
+                    <rdf:Description rdf:about="http://www.copri-final/copri2.owl#PermissionTrust"/>
+                </owl:unionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.copri-final/copri2.owl#hasTrustLevel"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.copri-final/copri2.owl#TrustLevel"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.copri-final/copri2.owl#trustee"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.copri-final/copri2.owl#Actor"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#TrustLevel -->
+
+    <owl:Class rdf:about="http://www.copri-final/copri2.owl#TrustLevel"/>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#TypeOfUse -->
+
+    <owl:Class rdf:about="http://www.copri-final/copri2.owl#TypeOfUse"/>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#Unlinkability -->
+
+    <owl:Class rdf:about="http://www.copri-final/copri2.owl#Unlinkability">
+        <rdfs:subClassOf rdf:resource="http://www.copri-final/copri2.owl#PrivacyRequirement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#Unobservability -->
+
+    <owl:Class rdf:about="http://www.copri-final/copri2.owl#Unobservability">
+        <rdfs:subClassOf rdf:resource="http://www.copri-final/copri2.owl#PrivacyRequirement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#Use -->
+
+    <owl:Class rdf:about="http://www.copri-final/copri2.owl#Use"/>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#Vulnerability -->
+
+    <owl:Class rdf:about="http://www.copri-final/copri2.owl#Vulnerability"/>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#goalMonitor -->
+
+    <owl:Class rdf:about="http://www.copri-final/copri2.owl#goalMonitor">
+        <rdfs:subClassOf rdf:resource="http://www.copri-final/copri2.owl#Monitor"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.copri-final/copri2.owl#ofGoal"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.copri-final/copri2.owl#Goal"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="http://www.copri-final/copri2.owl#permissionMonitor"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#permissionMonitor -->
+
+    <owl:Class rdf:about="http://www.copri-final/copri2.owl#permissionMonitor">
+        <rdfs:subClassOf rdf:resource="http://www.copri-final/copri2.owl#Monitor"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.copri-final/copri2.owl#ofPermission"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.copri-final/copri2.owl#Permission"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.copri-final/copri.owl#CQ16_Use -->
+
+    <owl:NamedIndividual rdf:about="http://www.copri-final/copri.owl#CQ16_Use">
+        <rdf:type rdf:resource="http://www.copri-final/copri2.owl#Use"/>
+        <copri2:hasNeedtoUseType rdf:resource="http://www.copri-final/copri2.owl#optional"/>
+        <copri2:hasTypeOfUse rdf:resource="http://www.copri-final/copri2.owl#read"/>
+        <copri2:useBy rdf:resource="http://www.copri-final/copri2.owl#CQ16_G2.1_Monitor_Jacks_activities"/>
+        <copri2:useOf rdf:resource="http://www.copri-final/copri2.owl#i1_Jacks_glucose_level"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.copri-final/copri.owl#CQ16_read_perm_i1_Jacks_glucose_level -->
+
+    <owl:NamedIndividual rdf:about="http://www.copri-final/copri.owl#CQ16_read_perm_i1_Jacks_glucose_level">
+        <rdf:type rdf:resource="http://www.copri-final/copri2.owl#Permission"/>
+        <copri2:hasPermissionType rdf:resource="http://www.copri-final/copri2.owl#permRead"/>
+        <copri2:over rdf:resource="http://www.copri-final/copri2.owl#i1_Jacks_glucose_level"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.copri-final/copri.owl#CQ19_ConsentForService -->
+
+    <owl:NamedIndividual rdf:about="http://www.copri-final/copri.owl#CQ19_ConsentForService">
+        <rdf:type rdf:resource="http://www.copri-final/copri2.owl#Consent"/>
+        <hasConsentPoU rdf:resource="http://www.copri-final/copri2.owl#PoUT_C"/>
+        <toUse rdf:resource="http://www.copri-final/copri2.owl#i2_Jacks_location"/>
+        <copri2:grantee rdf:resource="http://www.copri-final/copri2.owl#Sarah"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.copri-final/copri.owl#STAappropriate -->
+
+    <owl:NamedIndividual rdf:about="http://www.copri-final/copri.owl#STAappropriate"/>
+    
+
+
+    <!-- http://www.copri-final/copri.owl#STInappropriate -->
+
+    <owl:NamedIndividual rdf:about="http://www.copri-final/copri.owl#STInappropriate"/>
+    
+
+
+    <!-- http://www.copri-final/copri.owl#perm_collect -->
+
+    <owl:NamedIndividual rdf:about="http://www.copri-final/copri.owl#perm_collect">
+        <rdf:type rdf:resource="http://www.copri-final/copri2.owl#Permission"/>
+        <copri2:hasPermissionType rdf:resource="http://www.copri-final/copri2.owl#permCollect"/>
+        <copri2:over rdf:resource="http://www.copri-final/copri2.owl#i2_Jacks_location"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.copri-final/copri.owl#using_bathroom -->
+
+    <owl:NamedIndividual rdf:about="http://www.copri-final/copri.owl#using_bathroom"/>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#AM1._de-masking_technique -->
+
+    <owl:NamedIndividual rdf:about="http://www.copri-final/copri2.owl#AM1._de-masking_technique">
+        <rdf:type rdf:resource="http://www.copri-final/copri2.owl#AttackMethod"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#Bob -->
+
+    <owl:NamedIndividual rdf:about="http://www.copri-final/copri2.owl#Bob">
+        <rdf:type rdf:resource="http://www.copri-final/copri2.owl#ThreatActor"/>
+        <copri2:intends rdf:resource="http://www.copri-final/copri2.owl#T1._Linking_info_to_Jack"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#CQ16_G2.1_Monitor_Jacks_activities -->
+
+    <owl:NamedIndividual rdf:about="http://www.copri-final/copri2.owl#CQ16_G2.1_Monitor_Jacks_activities">
+        <rdf:type rdf:resource="http://www.copri-final/copri2.owl#Goal"/>
+        <copri2:useBy rdf:resource="http://www.copri-final/copri.owl#CQ16_Use"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#CQ1_collect_perm_i2_Jacks_location -->
+
+    <owl:NamedIndividual rdf:about="http://www.copri-final/copri2.owl#CQ1_collect_perm_i2_Jacks_location">
+        <rdf:type rdf:resource="http://www.copri-final/copri2.owl#Permission"/>
+        <copri2:hasPermissionType rdf:resource="http://www.copri-final/copri2.owl#permCollect"/>
+        <copri2:over rdf:resource="http://www.copri-final/copri2.owl#i2_Jacks_location"/>
+        <copri2:permissionTrustum rdf:resource="http://www.copri-final/copri2.owl#CQ1_collect_perm_i2_Jacks_location"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#CQ1_dele_col_per_i2_Jacks_location -->
+
+    <owl:NamedIndividual rdf:about="http://www.copri-final/copri2.owl#CQ1_dele_col_per_i2_Jacks_location">
+        <rdf:type rdf:resource="http://www.copri-final/copri2.owl#PermissionDelegation"/>
+        <copri2:delegatee rdf:resource="http://www.copri-final/copri2.owl#Sarah"/>
+        <copri2:hasDelegationType rdf:resource="http://www.copri-final/copri2.owl#repudiation"/>
+        <copri2:permissionDelegatum rdf:resource="http://www.copri-final/copri.owl#perm_collect"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#CQ1_mon_col_per_i2_Jacks_location -->
+
+    <owl:NamedIndividual rdf:about="http://www.copri-final/copri2.owl#CQ1_mon_col_per_i2_Jacks_location">
+        <rdf:type rdf:resource="http://www.copri-final/copri2.owl#permissionMonitor"/>
+        <copri2:monitor rdf:resource="http://www.copri-final/copri2.owl#Jack"/>
+        <copri2:monitoree rdf:resource="http://www.copri-final/copri2.owl#Sarah"/>
+        <copri2:ofPermission rdf:resource="http://www.copri-final/copri.owl#perm_collect"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#CQ1_trust_col_per_i2_Jacks_location -->
+
+    <owl:NamedIndividual rdf:about="http://www.copri-final/copri2.owl#CQ1_trust_col_per_i2_Jacks_location">
+        <rdf:type rdf:resource="http://www.copri-final/copri2.owl#PermissionTrust"/>
+        <copri2:hasTrustLevel rdf:resource="http://www.copri-final/copri2.owl#distrust"/>
+        <copri2:permissionTrustum rdf:resource="http://www.copri-final/copri.owl#perm_collect"/>
+        <copri2:trustee rdf:resource="http://www.copri-final/copri2.owl#Sarah"/>
+        <copri2:trustor rdf:resource="http://www.copri-final/copri2.owl#Jack"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#ER_physician -->
+
+    <owl:NamedIndividual rdf:about="http://www.copri-final/copri2.owl#ER_physician">
+        <rdf:type rdf:resource="http://www.copri-final/copri2.owl#Role"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#G1.1.1_Sleep -->
+
+    <owl:NamedIndividual rdf:about="http://www.copri-final/copri2.owl#G1.1.1_Sleep">
+        <rdf:type rdf:resource="http://www.copri-final/copri2.owl#Goal"/>
+        <copri2:andDecomposed rdf:resource="http://www.copri-final/copri2.owl#G1.1_Perform_basic_activity"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#G1.1.2_Use_bathroom -->
+
+    <owl:NamedIndividual rdf:about="http://www.copri-final/copri2.owl#G1.1.2_Use_bathroom">
+        <rdf:type rdf:resource="http://www.copri-final/copri2.owl#Goal"/>
+        <copri2:andDecomposed rdf:resource="http://www.copri-final/copri2.owl#G1.1_Perform_basic_activity"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#G1.1_Perform_basic_activity -->
+
+    <owl:NamedIndividual rdf:about="http://www.copri-final/copri2.owl#G1.1_Perform_basic_activity">
+        <rdf:type rdf:resource="http://www.copri-final/copri2.owl#Goal"/>
+        <copri2:useBy rdf:resource="http://www.copri-final/copri2.owl#CQ16_G2.1_Monitor_Jacks_activities"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#G2.1.1_Track_Jacks_location -->
+
+    <owl:NamedIndividual rdf:about="http://www.copri-final/copri2.owl#G2.1.1_Track_Jacks_location">
+        <rdf:type rdf:resource="http://www.copri-final/copri2.owl#Goal"/>
+        <copri2:andDecomposed rdf:resource="http://www.copri-final/copri2.owl#CQ16_G2.1_Monitor_Jacks_activities"/>
+        <copri2:useBy rdf:resource="http://www.copri-final/copri2.owl#collect_i1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#G2.1.2_Monitor_Jacks_motion -->
+
+    <owl:NamedIndividual rdf:about="http://www.copri-final/copri2.owl#G2.1.2_Monitor_Jacks_motion">
+        <rdf:type rdf:resource="http://www.copri-final/copri2.owl#Goal"/>
+        <copri2:andDecomposed rdf:resource="http://www.copri-final/copri2.owl#CQ16_G2.1_Monitor_Jacks_activities"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#Jack -->
+
+    <owl:NamedIndividual rdf:about="http://www.copri-final/copri2.owl#Jack">
+        <rdf:type rdf:resource="http://www.copri-final/copri2.owl#Agent"/>
+        <copri2:aims rdf:resource="http://www.copri-final/copri2.owl#G1.1_Perform_basic_activity"/>
+        <copri2:delegator rdf:resource="http://www.copri-final/copri2.owl#CQ1_dele_col_per_i2_Jacks_location"/>
+        <copri2:granter rdf:resource="http://www.copri-final/copri.owl#CQ19_ConsentForService"/>
+        <copri2:monitor rdf:resource="http://www.copri-final/copri2.owl#CQ1_mon_col_per_i2_Jacks_location"/>
+        <copri2:own rdf:resource="http://www.copri-final/copri2.owl#i1_Jacks_glucose_level"/>
+        <copri2:own rdf:resource="http://www.copri-final/copri2.owl#i2_Jacks_location"/>
+        <copri2:plays rdf:resource="http://www.copri-final/copri2.owl#Patient"/>
+        <copri2:trustor rdf:resource="http://www.copri-final/copri2.owl#CQ1_trust_col_per_i2_Jacks_location"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#MG -->
+
+    <owl:NamedIndividual rdf:about="http://www.copri-final/copri2.owl#MG">
+        <rdf:type rdf:resource="http://www.copri-final/copri2.owl#Agent"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#Mike -->
+
+    <owl:NamedIndividual rdf:about="http://www.copri-final/copri2.owl#Mike">
+        <rdf:type rdf:resource="http://www.copri-final/copri2.owl#Agent"/>
+        <copri2:aims rdf:resource="http://www.copri-final/copri2.owl#monitorHealth"/>
+        <copri2:plays rdf:resource="http://www.copri-final/copri2.owl#ER_physician"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#Nurse -->
+
+    <owl:NamedIndividual rdf:about="http://www.copri-final/copri2.owl#Nurse">
+        <rdf:type rdf:resource="http://www.copri-final/copri2.owl#Role"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#PC1_Anonymize -->
+
+    <owl:NamedIndividual rdf:about="http://www.copri-final/copri2.owl#PC1_Anonymize">
+        <rdf:type rdf:resource="http://www.copri-final/copri2.owl#PrivacyMechanism"/>
+        <copri2:appliedTo rdf:resource="http://www.copri-final/copri2.owl#i1_Jacks_glucose_level"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#PC2_Unlinkability -->
+
+    <owl:NamedIndividual rdf:about="http://www.copri-final/copri2.owl#PC2_Unlinkability">
+        <rdf:type rdf:resource="http://www.copri-final/copri2.owl#PrivacyMechanism"/>
+        <copri2:appliedTo rdf:resource="http://www.copri-final/copri2.owl#i1_Jacks_glucose_level"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#PG1._Ensure_anonymity -->
+
+    <owl:NamedIndividual rdf:about="http://www.copri-final/copri2.owl#PG1._Ensure_anonymity">
+        <rdf:type rdf:resource="http://www.copri-final/copri2.owl#PrivacyGoal"/>
+        <copri2:mitigates rdf:resource="http://www.copri-final/copri2.owl#V1._Weak_masking_technique"/>
+        <copri2:realizedBy rdf:resource="http://www.copri-final/copri2.owl#PC1_Anonymize"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#PG2._Ensure_unlinkability -->
+
+    <owl:NamedIndividual rdf:about="http://www.copri-final/copri2.owl#PG2._Ensure_unlinkability">
+        <copri2:realizedBy rdf:resource="http://www.copri-final/copri2.owl#PC2_Unlinkability"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#Patient -->
+
+    <owl:NamedIndividual rdf:about="http://www.copri-final/copri2.owl#Patient">
+        <rdf:type rdf:resource="http://www.copri-final/copri2.owl#DataSubject"/>
+        <rdf:type rdf:resource="http://www.copri-final/copri2.owl#Role"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#PoUT_C -->
+
+    <owl:NamedIndividual rdf:about="http://www.copri-final/copri2.owl#PoUT_C">
+        <rdf:type rdf:resource="http://www.copri-final/copri2.owl#PurposeOfUseType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#PoUT_L -->
+
+    <owl:NamedIndividual rdf:about="http://www.copri-final/copri2.owl#PoUT_L">
+        <rdf:type rdf:resource="http://www.copri-final/copri2.owl#PurposeOfUseType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#PoUT_M -->
+
+    <owl:NamedIndividual rdf:about="http://www.copri-final/copri2.owl#PoUT_M">
+        <rdf:type rdf:resource="http://www.copri-final/copri2.owl#PurposeOfUseType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#PoUT_O -->
+
+    <owl:NamedIndividual rdf:about="http://www.copri-final/copri2.owl#PoUT_O">
+        <rdf:type rdf:resource="http://www.copri-final/copri2.owl#PurposeOfUseType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#PoUT_P -->
+
+    <owl:NamedIndividual rdf:about="http://www.copri-final/copri2.owl#PoUT_P">
+        <rdf:type rdf:resource="http://www.copri-final/copri2.owl#PurposeOfUseType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#PoUT_S -->
+
+    <owl:NamedIndividual rdf:about="http://www.copri-final/copri2.owl#PoUT_S">
+        <rdf:type rdf:resource="http://www.copri-final/copri2.owl#PurposeOfUseType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#Sarah -->
+
+    <owl:NamedIndividual rdf:about="http://www.copri-final/copri2.owl#Sarah">
+        <rdf:type rdf:resource="http://www.copri-final/copri2.owl#Agent"/>
+        <copri2:adopts rdf:resource="http://www.copri-final/copri2.owl#CQ1_dele_col_per_i2_Jacks_location"/>
+        <copri2:aims rdf:resource="http://www.copri-final/copri2.owl#CQ16_G2.1_Monitor_Jacks_activities"/>
+        <copri2:aims rdf:resource="http://www.copri-final/copri2.owl#G2.1.1_Track_Jacks_location"/>
+        <copri2:aims rdf:resource="http://www.copri-final/copri2.owl#monitorHealth"/>
+        <copri2:hasPermission rdf:resource="http://www.copri-final/copri2.owl#CQ1_collect_perm_i2_Jacks_location"/>
+        <copri2:plays rdf:resource="http://www.copri-final/copri2.owl#Nurse"/>
+        <copri2:provideBy rdf:resource="http://www.copri-final/copri2.owl#send_i2_Jacks_location"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#T1._Linking_info_to_Jack -->
+
+    <owl:NamedIndividual rdf:about="http://www.copri-final/copri2.owl#T1._Linking_info_to_Jack">
+        <rdf:type rdf:resource="http://www.copri-final/copri2.owl#IntentionalThreat"/>
+        <copri2:exploits rdf:resource="http://www.copri-final/copri2.owl#V1._Weak_masking_technique"/>
+        <copri2:hasImpact rdf:resource="http://www.copri-final/copri2.owl#sevLhighSeverity"/>
+        <copri2:hasProbability rdf:resource="http://www.copri-final/copri2.owl#plhigh"/>
+        <copri2:includes rdf:resource="http://www.copri-final/copri2.owl#AM1._de-masking_technique"/>
+        <copri2:threaten rdf:resource="http://www.copri-final/copri2.owl#i1_Jacks_glucose_level"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#T2._Linking_info_to_Jack -->
+
+    <owl:NamedIndividual rdf:about="http://www.copri-final/copri2.owl#T2._Linking_info_to_Jack">
+        <rdf:type rdf:resource="http://www.copri-final/copri2.owl#IncidentalThreat"/>
+        <copri2:exploits rdf:resource="http://www.copri-final/copri2.owl#V1._Weak_masking_technique"/>
+        <copri2:hasImpact rdf:resource="http://www.copri-final/copri2.owl#sevLhighSeverity"/>
+        <copri2:hasProbability rdf:resource="http://www.copri-final/copri2.owl#pllow"/>
+        <copri2:threaten rdf:resource="http://www.copri-final/copri2.owl#i1_Jacks_glucose_level"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#V1._Weak_masking_technique -->
+
+    <owl:NamedIndividual rdf:about="http://www.copri-final/copri2.owl#V1._Weak_masking_technique">
+        <rdf:type rdf:resource="http://www.copri-final/copri2.owl#Vulnerability"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#collect -->
+
+    <owl:NamedIndividual rdf:about="http://www.copri-final/copri2.owl#collect">
+        <rdf:type rdf:resource="http://www.copri-final/copri2.owl#TypeOfUse"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#collect_i1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.copri-final/copri2.owl#collect_i1">
+        <rdf:type rdf:resource="http://www.copri-final/copri2.owl#Use"/>
+        <copri2:hasPurposeOfUseType rdf:resource="http://www.copri-final/copri2.owl#PoUT_S"/>
+        <copri2:hasTypeOfUse rdf:resource="http://www.copri-final/copri2.owl#collect"/>
+        <copri2:useOf rdf:resource="http://www.copri-final/copri2.owl#i2_Jacks_location"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#confidentialProv -->
+
+    <owl:NamedIndividual rdf:about="http://www.copri-final/copri2.owl#confidentialProv">
+        <rdf:type rdf:resource="http://www.copri-final/copri2.owl#ProvisionType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#distrust -->
+
+    <owl:NamedIndividual rdf:about="http://www.copri-final/copri2.owl#distrust">
+        <rdf:type rdf:resource="http://www.copri-final/copri2.owl#TrustLevel"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#i1_Jacks_glucose_level -->
+
+    <owl:NamedIndividual rdf:about="http://www.copri-final/copri2.owl#i1_Jacks_glucose_level">
+        <rdf:type rdf:resource="http://www.copri-final/copri2.owl#PersonalInformation"/>
+        <isRelevantTo rdf:resource="http://www.copri-final/copri.owl#using_bathroom"/>
+        <copri2:hasSensitivity rdf:resource="http://www.copri-final/copri2.owl#slSensitive"/>
+        <copri2:isSubjectTo rdf:resource="http://www.copri-final/copri2.owl#V1._Weak_masking_technique"/>
+        <copri2:related rdf:resource="http://www.copri-final/copri2.owl#Jack"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#i2_Jacks_location -->
+
+    <owl:NamedIndividual rdf:about="http://www.copri-final/copri2.owl#i2_Jacks_location">
+        <rdf:type rdf:resource="http://www.copri-final/copri2.owl#PersonalInformation"/>
+        <isRelevantTo rdf:resource="http://www.copri-final/copri.owl#using_bathroom"/>
+        <copri2:describes rdf:resource="http://www.copri-final/copri2.owl#G1.1.2_Use_bathroom"/>
+        <copri2:hasSensitivity rdf:resource="http://www.copri-final/copri2.owl#slNonSensitive"/>
+        <copri2:identify rdf:resource="http://www.copri-final/copri2.owl#Jack"/>
+        <copri2:related rdf:resource="http://www.copri-final/copri2.owl#Jack"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#modify -->
+
+    <owl:NamedIndividual rdf:about="http://www.copri-final/copri2.owl#modify">
+        <rdf:type rdf:resource="http://www.copri-final/copri2.owl#TypeOfUse"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#monitorHealth -->
+
+    <owl:NamedIndividual rdf:about="http://www.copri-final/copri2.owl#monitorHealth">
+        <rdf:type rdf:resource="http://www.copri-final/copri2.owl#Goal"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#nonConfidentialProv -->
+
+    <owl:NamedIndividual rdf:about="http://www.copri-final/copri2.owl#nonConfidentialProv">
+        <rdf:type rdf:resource="http://www.copri-final/copri2.owl#ProvisionType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#nonRepudiation -->
+
+    <owl:NamedIndividual rdf:about="http://www.copri-final/copri2.owl#nonRepudiation">
+        <rdf:type rdf:resource="http://www.copri-final/copri2.owl#DelegationType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#optional -->
+
+    <owl:NamedIndividual rdf:about="http://www.copri-final/copri2.owl#optional">
+        <rdf:type rdf:resource="http://www.copri-final/copri2.owl#NeedtoUseType"/>
+        <copri2:hasNeedtoUseType rdf:resource="http://www.copri-final/copri2.owl#optional"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#permCollect -->
+
+    <owl:NamedIndividual rdf:about="http://www.copri-final/copri2.owl#permCollect">
+        <rdf:type rdf:resource="http://www.copri-final/copri2.owl#PermissionType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#permModify -->
+
+    <owl:NamedIndividual rdf:about="http://www.copri-final/copri2.owl#permModify">
+        <rdf:type rdf:resource="http://www.copri-final/copri2.owl#PermissionType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#permProduce -->
+
+    <owl:NamedIndividual rdf:about="http://www.copri-final/copri2.owl#permProduce">
+        <rdf:type rdf:resource="http://www.copri-final/copri2.owl#PermissionType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#permRead -->
+
+    <owl:NamedIndividual rdf:about="http://www.copri-final/copri2.owl#permRead">
+        <rdf:type rdf:resource="http://www.copri-final/copri2.owl#PermissionType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#plhigh -->
+
+    <owl:NamedIndividual rdf:about="http://www.copri-final/copri2.owl#plhigh">
+        <rdf:type rdf:resource="http://www.copri-final/copri2.owl#Probability"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#pllow -->
+
+    <owl:NamedIndividual rdf:about="http://www.copri-final/copri2.owl#pllow">
+        <rdf:type rdf:resource="http://www.copri-final/copri2.owl#Probability"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#plmedium -->
+
+    <owl:NamedIndividual rdf:about="http://www.copri-final/copri2.owl#plmedium">
+        <rdf:type rdf:resource="http://www.copri-final/copri2.owl#Probability"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#produce -->
+
+    <owl:NamedIndividual rdf:about="http://www.copri-final/copri2.owl#produce">
+        <rdf:type rdf:resource="http://www.copri-final/copri2.owl#TypeOfUse"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#read -->
+
+    <owl:NamedIndividual rdf:about="http://www.copri-final/copri2.owl#read">
+        <rdf:type rdf:resource="http://www.copri-final/copri2.owl#TypeOfUse"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#read_i1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.copri-final/copri2.owl#read_i1">
+        <rdf:type rdf:resource="http://www.copri-final/copri2.owl#Use"/>
+        <copri2:hasNeedtoUseType rdf:resource="http://www.copri-final/copri2.owl#optional"/>
+        <copri2:hasTypeOfUse rdf:resource="http://www.copri-final/copri2.owl#read"/>
+        <copri2:useOf rdf:resource="http://www.copri-final/copri2.owl#i2_Jacks_location"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#repudiation -->
+
+    <owl:NamedIndividual rdf:about="http://www.copri-final/copri2.owl#repudiation">
+        <rdf:type rdf:resource="http://www.copri-final/copri2.owl#DelegationType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#required -->
+
+    <owl:NamedIndividual rdf:about="http://www.copri-final/copri2.owl#required">
+        <rdf:type rdf:resource="http://www.copri-final/copri2.owl#NeedtoUseType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#send_i2_Jacks_location -->
+
+    <owl:NamedIndividual rdf:about="http://www.copri-final/copri2.owl#send_i2_Jacks_location">
+        <rdf:type rdf:resource="http://www.copri-final/copri2.owl#Provision"/>
+        <copri2:hasProvisionType rdf:resource="http://www.copri-final/copri2.owl#nonConfidentialProv"/>
+        <copri2:provideTo rdf:resource="http://www.copri-final/copri2.owl#Mike"/>
+        <copri2:provisionOf rdf:resource="http://www.copri-final/copri2.owl#i1_Jacks_glucose_level"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#sevLhighSeverity -->
+
+    <owl:NamedIndividual rdf:about="http://www.copri-final/copri2.owl#sevLhighSeverity">
+        <rdf:type rdf:resource="http://www.copri-final/copri2.owl#SeverityLevel"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#sevLlowSeverity -->
+
+    <owl:NamedIndividual rdf:about="http://www.copri-final/copri2.owl#sevLlowSeverity">
+        <rdf:type rdf:resource="http://www.copri-final/copri2.owl#SeverityLevel"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#sevLmediumSeverity -->
+
+    <owl:NamedIndividual rdf:about="http://www.copri-final/copri2.owl#sevLmediumSeverity">
+        <rdf:type rdf:resource="http://www.copri-final/copri2.owl#SeverityLevel"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#slNonSensitive -->
+
+    <owl:NamedIndividual rdf:about="http://www.copri-final/copri2.owl#slNonSensitive">
+        <rdf:type rdf:resource="http://www.copri-final/copri2.owl#SensitivityLevel"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#slSensitive -->
+
+    <owl:NamedIndividual rdf:about="http://www.copri-final/copri2.owl#slSensitive">
+        <rdf:type rdf:resource="http://www.copri-final/copri2.owl#SensitivityLevel"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.copri-final/copri2.owl#trust -->
+
+    <owl:NamedIndividual rdf:about="http://www.copri-final/copri2.owl#trust">
+        <rdf:type rdf:resource="http://www.copri-final/copri2.owl#TrustLevel"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.copri-final/copri.owl#Minimization"/>
+            <rdf:Description rdf:about="http://www.copri-final/copri2.owl#Accountability"/>
+            <rdf:Description rdf:about="http://www.copri-final/copri2.owl#Anonymity"/>
+            <rdf:Description rdf:about="http://www.copri-final/copri2.owl#Confidentiality"/>
+            <rdf:Description rdf:about="http://www.copri-final/copri2.owl#Notice"/>
+            <rdf:Description rdf:about="http://www.copri-final/copri2.owl#Transparency"/>
+            <rdf:Description rdf:about="http://www.copri-final/copri2.owl#Unlinkability"/>
+            <rdf:Description rdf:about="http://www.copri-final/copri2.owl#Unobservability"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.copri-final/copri2.owl#Accountability"/>
+            <rdf:Description rdf:about="http://www.copri-final/copri2.owl#Anonymity"/>
+            <rdf:Description rdf:about="http://www.copri-final/copri2.owl#Confidentiality"/>
+            <rdf:Description rdf:about="http://www.copri-final/copri2.owl#Notice"/>
+            <rdf:Description rdf:about="http://www.copri-final/copri2.owl#Transparency"/>
+            <rdf:Description rdf:about="http://www.copri-final/copri2.owl#Unlinkability"/>
+            <rdf:Description rdf:about="http://www.copri-final/copri2.owl#Unobservability"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.copri-final/copri2.owl#DataController"/>
+            <rdf:Description rdf:about="http://www.copri-final/copri2.owl#DataProcessor"/>
+            <rdf:Description rdf:about="http://www.copri-final/copri2.owl#DataSubject"/>
+        </owl:members>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+

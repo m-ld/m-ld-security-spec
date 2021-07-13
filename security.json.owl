@@ -2,7 +2,7 @@
   "@id" : "http://spec.m-ld.org/security",
   "@type" : [ "http://www.w3.org/2002/07/owl#Ontology" ],
   "http://www.w3.org/2002/07/owl#imports" : [ {
-    "@id" : "http://ffrdc.ebiquity.umbc.edu/ns/ontology/"
+    "@id" : "http://www.copri-final/copri.owl"
   }, {
     "@id" : "http://www.grsu.by/net/OdTMBaseThreatModel"
   } ],
