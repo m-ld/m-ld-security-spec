@@ -2,9 +2,9 @@
 
 > Collaborative e-Invoice Composition is an early-stage collaboration project between **m-ld** and [Ponder Source](https://pondersource.com/). Join us on [Gitter](https://gitter.im/federatedbookkeeping/community) to discuss ideas to transform procurement processes for the better.
 
-This document presents a threat model for Collaborative e-Invoice Composition (CIC). The vision behind CIC is that _a buyer and a seller can collaborate in real-time to determine the contents of an invoice_.
+This document presents a threat model for Collaborative e-Invoice Composition (CIC). The vision behind CIC is that _a buyer and a seller can collaborate in real-time to determine the contents of an order_.
 
-The conventional approach to invoicing involves a _process_ (the procurement) and a number of exchanged _artefacts_ (a request for quotation, an order, an invoice, a shipping note, etc). The concept of collaborative e-invoicing notices that while parts of the process have strict conventional rules (some with associated legal regulations), others can be modelled as a negotiation, or even – with implied mutual goodwill – a _collaboration_. If a technical system can be built that supports this model, while still assuring both parties of the security of the procurement transaction (even if goodwill is challenged), that transaction could be enacted without the significant overhead and complexity of repeated document composition and exchange.
+The conventional approach to ordering involves a _process_ (requisition and procurement) and a number of exchanged _artefacts_ (a request for quotation, an order, an invoice, a shipping note, etc). The concept of collaborative e-invoicing notices that while parts of the process have strict conventional rules (some with associated legal regulations), others can be modelled as a negotiation, or even – with implied mutual goodwill – a _collaboration_. If a technical system can be built that supports this model, while still assuring both parties of the security of the procurement transaction (even if goodwill is challenged), that transaction could be enacted without the significant overhead and complexity of repeated document composition and exchange.
 
 See [collaborative-invoice-composition](https://github.com/pondersource/collaborative-invoice-composition) for more details of this concept. For the purpose of this document, we assume that the collaborative model of e-invoicing is viable as a future model for procurement processes, and focus on the security requirements which it entails.
 
@@ -18,9 +18,9 @@ Here we focus on e-invoicing standards relevant to the European Union.
 
 E-invoice _content_ is subject to [Directive 2014/55/EU](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32014L0055), which "requires a European standard for the semantic data model of the core elements of an electronic invoice". This standard has been delivered as [EN 16931-1:2017](https://standards.cen.eu/dyn/www/f?p=204:110:0::::FSP_PROJECT,FSP_ORG_ID:60602,1883209&cs=104E4C4FA3744A8DEA8E98A7B500306FD). Its only security requirement is that "the application of this standard should comply with the requirements for the protection of personal data of Directive 95/46/EC, having due regard to the principles of privacy and data protection by-design, data minimization, purpose limitation, necessity and proportionality".
 
-A standard for the e-invoicing _process_, also conforming to EN 16931, is [Peppol](https://peppol.eu/), "a set of artifacts and specifications enabling cross-border eProcurement. The use of Peppol is governed by a multi-lateral agreement structure". The process basis for the current version of Peppol is defined in its [‘BIS’ Specifications and Guidelines](https://peppol.eu/downloads/post-award/), in BPMN (Business Process Management Notation) diagrams throughout the documentation.
+A standard for the procurement _process_, also conforming to EN 16931, is [Peppol](https://peppol.eu/), "a set of artifacts and specifications enabling cross-border eProcurement. The use of Peppol is governed by a multi-lateral agreement structure". The process basis for the current version of Peppol is defined in its [‘BIS’ Specifications and Guidelines](https://peppol.eu/downloads/post-award/), in BPMN (Business Process Management Notation) diagrams throughout the documentation.
 
-However, Peppol's primary function is to provide a _technical_ standard for e-invoice exchange. It therefore mandates certain infrastructure and security controls at an implementation level, in the [eDelivery Network](https://peppol.eu/what-is-peppol/peppol-transport-infrastructure/) standards, which are based on [CEF eDelivery](https://ec.europa.eu/cefdigital/wiki/display/CEFDIGITAL/eDelivery). In particular, this mandates a 'four corner model' for all message-passing, in which "information exchanged between the original sender in corner one and final recipient in corner four go via access points, corners two and three respectively" [@CEFEDeliveryBuilding2016]:
+However, Peppol's primary function is to provide a _technical_ standard for document exchange. It therefore mandates certain infrastructure and security controls at an implementation level, in the [eDelivery Network](https://peppol.eu/what-is-peppol/peppol-transport-infrastructure/) standards, which are based on [CEF eDelivery](https://ec.europa.eu/cefdigital/wiki/display/CEFDIGITAL/eDelivery). In particular, this mandates a 'four corner model' for all message-passing, in which "information exchanged between the original sender in corner one and final recipient in corner four go via access points, corners two and three respectively" [@CEFEDeliveryBuilding2016]:
 
 ![CEF eDelivery four-corner model](CEF eDelivery four-corner model.png)
 
@@ -39,7 +39,7 @@ Since the CIC process is subtantially different to the document-exchange model o
 
 Note that [in Norway](https://peppol.eu/what-is-peppol/peppol-country-profiles/norway-country-profile/): "In addition to the use of the Peppol infrastructure for eProcurement, Difi has started to use it in a more general eGovernment context. The ISO 20022 payment implementation (https://vefa.difi.no/iso20022/) is using the Peppol infrastructure added with an extra layer of end-to-end (corner1-corner4) security (Secrecy, Authenticity, Integrity and Traceability)."
 
-An example commercial implementation of Peppol is [Basware](https://www.basware.com/). Their Personal Data Processing Appendix [@raevuoriBaswarePersonalData2020], Annex 2, reflects the requirements above but also includes additional security controls, suggestive of additional threats. While most of these are in-line with general cloud service provider practices (e.g. for ISO27001 compliance), selected controls are called out in the following table.
+An example commercial implementation of Peppol is [Basware](https://www.basware.com/). Their Personal Data Processing Appendix [@raevuoriBaswarePersonalData2020], Annex 2, reflects the requirements above but also includes additional security controls, suggestive of additional controlled threats. While most of these are in-line with general cloud service provider practices (e.g. for ISO 27001 compliance), selected controls are called out in the following table.
 
 | Security Control                                             | Implied Threats (STRIDE)                                     |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -60,7 +60,9 @@ Existing electronic procurement standards, then, assume a process model focusing
 
 A draft order must be confidential; visible only to identified user roles, e.g. buyer, seller, shipping agent, lender; and delegates such as notaries and solicitors.
 
-At different stages of the procurement lifecycle, different visibilities apply. It may originate with the buyer (e.g. a tender or Request for Quotation, RfQ) or the seller (e.g. an auction), and at this stage could be shared with multiple second-parties, or even publicly. When a specific seller or buyer has been selected, the ongoing state of the procurement becomes private to the two parties. Note that this applies to the _current_ state; snapshots of _prior_ states may have been legitimately made at any time by parties with read access at that time.
+At different stages of the procurement lifecycle, different visibilities apply. It may originate with a process at the buyer (a _requisition_, e.g. a tender or Request for Quotation, RfQ) or at the seller (e.g. an auction), and at this stage could be shared with multiple second-parties, or even publicly.
+
+When a specific seller or buyer has been selected, the ongoing state of the procurement becomes private to the two parties. It is from this point that we model a draft order, which therefore has strictly one buying party and one selling party.
 
 Each party may associate private data with the draft order, such as alternative suppliers (buyer), or warehouse locations (seller). Other roles may share components of the document, for example, a shipping agent may have access to required information for a customs declaration, but not actual prices paid.
 
@@ -87,9 +89,9 @@ All visible operations on a draft order must be attributable, non-repudiably, to
 
 - A _visible_ operation is one that enacts an atomic change which can be seen by another party.
 - An _actor_ can be a human being or a machine.
-- A machine actor may only enact attributed operations by executing processes for which the process definition and inputs are common knowledge (for example, application of packing rates to line items). If these conditions are not met, the operation must be attributed to a human actor. Alternatively, the result of simple calculations need not be included in the shared draft order data at all, but calculated on display; e.g. totals.
+- A machine actor may only enact attributed operations by executing processes for which the process definition and inputs are common knowledge (for example, application of packing rates to line items). If these conditions are not met, the operation must be verified by, and attributed to, a human actor. Alternatively, the result of simple calculations need not be included in the shared draft order data at all, but calculated on display; e.g. totals.
 
-For the protection of personal information, an operation actor assignment is not necessarily visible to roles other than the auditor. However, the actor's organisation affiliation (employer, or owner) must be visible to all parties with read access to the affected information.
+For the protection of personal information, an operation actor assignment is not necessarily visible to roles other than the auditor. However, the actor's party affiliation (their employer, or owner, acting as buyer or seller) must be visible to all parties with read access to the affected information.
 
 The ordering of visible operations can theoretically vary between parties, for example due to concurrent or offline operations. While this may be accounted for in the data structure, such that the draft order _converges_ to the same state for all parties, the auditable history must preserve _causation_. This requires that if an operation _B_ follows an operation _A_ in the history of the party that enacted _B_, it follows _A_ for all parties.
 
@@ -107,7 +109,7 @@ Existing e-Invoicing standards based on a document-exchange model do not define 
 
 In a collaborative draft order, access control requirements must be explicit, based on:
 
-- Role; e.g. a seller cannot change a line item quantity, and a buyer cannot change a price.
+- Party role; e.g. a seller cannot change a line item quantity, and a buyer cannot change a price.
 - State; e.g. a price cannot be updated after the 'purchase order' _contract point_ (see §[integrity](#integrity)).
 
 An initial analysis of draft order access rules can be found in the [Federated Bookkeeping research project](https://github.com/federatedbookkeeping/research/issues/4). For this analysis, the objective is to be able to compute fine-grained authorisation according to a declared scheme.
@@ -119,47 +121,140 @@ Management of a CIC system may include:
 - Regulatory auditing (see §[auditing](#auditing));
 - Local IT system administration;
 - Installation, maintenance and training activities;
-- Identity and authentication system administration (out of scope);
+- Dependee system administration (e.g. directory system; out of scope);
 - Development and testing activities, including penetration testing;
 
 Other management roles depend on the deployment model, and may include system and database administrators. These may be associated with sub-systems, e.g. the access points of a Peppol/CEF four-corner model.
 
-In general all management activities are subject to normal ICT security good practices, according to applicable standards e.g. ISO 27001.
+All management activities, when conducted according to normal ICT security good practice standards e.g. ISO 27001, should maintain the other objectives above.
+
+Personal mobile and desktop devices should not need to have special security settings applied at the operating system level (although they may do, for example according to an organisational policy).
 
 ## 1. application profile
 
+This section describes a hypothetical CIC application, using decentralised, real-time sharing of a draft order, with only enough detail to elucidate applicable security threats.
+
 ### deployment
+
+The users of CIC interact with the system and each other via an app, available on mobile or desktop devices. For convenience, a web app should also be available. In all cases, the app will use local storage to persist draft order state between sessions, allowing an offline session to be interrupted without data loss.
+
+<img src="./e-invoicing-deployment.svg" alt="e-invoicing deployment" style="background: white;">
+
+<sub>Icons made by <a href="https://www.flaticon.com/authors/xnimrodx" title="xnimrodx">xnimrodx</a> and <a href="https://www.flaticon.com/authors/vitaly-gorbachev" title="Vitaly Gorbachev">Vitaly Gorbachev</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></sub>
+
+Users of the system will access each other and dependee systems via a local network or the internet. While fully peer-to-peer message delivery options are possible, they are not in widespread use, and so we model a message _broker_ as a service on the network, which is responsible for delivering control messages and draft order change operations. The broker may be implemented as a single server, a cluster, or a world-wide service; but for our purposes we will assume a  process with its own trust boundary.
+
+For persistence of the draft order between sessions, and for parties to be able to access the latest available information whether or not another party is online, a copy of the draft order will be stored in a cloud service accessible to all parties – the _draft order service_. This persistent copy will be kept up-to-date as the network allows when edits are made; recognising that at any time, a party might have a local copy that is more recently updated, for example if they are offline.
 
 ### users
 
+To support the objectives, users of the CIC system are modeled as follows. A user assigned one or more _user-roles_ in the scope of a draft order, and belong to a _party_, which itself has a _party-role_. (This is derived from the Peppol/CEF four-corner model, with an access point representing a party, which has its own associated users.)
+
+| class      | instances                                            | scope            |
+| ---------- | ---------------------------------------------------- | ---------------- |
+| user       | _identified actors_ (human and machine)              | directory system |
+| user-role  | writer, reader, signer, auditor, shipping calculator | draft order      |
+| party      | _organisation or user_                               | directory system |
+| party-role | buyer, seller, shipping agent, notary, lender        | draft order      |
+
+Examples:
+
+| user     | user-role | party               | party-role |
+| -------- | --------- | ------------------- | ---------- |
+| Bart     | writer    | Bart                | buyer      |
+| Homer    | writer    | Springfield Nuclear | seller     |
+| Mr Burns | signer    | Springfield Nuclear | seller     |
+
 ### data
+
+An initial analysis of draft order data can be found in the [Federated Bookkeeping research project](https://github.com/federatedbookkeeping/research/issues/4). In addition to access control rules, a draft order is subject to state changes. Note that the referenced ticket proposes some fine-grained state transitions related to a negotiation e.g. 'seller proposes'. In this analysis we propose a free-form negotiation which more closely aligns with a human interaction, in between the required _contract points_ introduced in §[integrity](#intergrity), as follows:
+
+[![draft order states](./e-invoice-states.svg)](https://dreampuf.github.io/GraphvizOnline/#digraph%20G%20%7B%0A%20%20rankdir%3D%22LR%22%3B%0A%20%20draft%20-%3E%20agreed%3B%0A%20%20agreed%20-%3E%20shipped%3B%0A%20%20agreed%20-%3E%20paid%3B%0A%20%20shipped%20-%3E%20received%3B%0A%20%20received%20-%3E%20concluded%3B%0A%20%20received%20-%3E%20disputed%3B%0A%20%20paid%20-%3E%20concluded%3B%0A%7D)
+
+The following access rules apply to users and states:
+
+| datum                                                | required party-role for write | required state for write |
+| ---------------------------------------------------- | ----------------------------- | ------------------------ |
+| seller, buyer and order identity                     | at creation only              | at creation only         |
+| line item: product id, quantity                      | buyer                         | draft                    |
+| line item: gross unit price, tax rate, shipping cost | seller                        | draft                    |
+| shipping destination                                 | buyer                         | draft                    |
+| total invoice amount (calculated)                    | _never_                       | draft                    |
+| payment terms                                        | seller                        | draft                    |
+
+In addition to current state data, we also consider the history of operations which give rise to it (the _journal_), for auditing purposes. Informally, these are statements of a delta from a previous state to a new state, e.g. "set the quantity of fuel rods being ordered from zero to ten".
+
+If the journal contains multiple sequential entries originating on the same copy of the data (associated with a user identity and device, or a machine identity and address), then these entries may be compressed to fewer entries (or just one entry) according to some strategy intended for readability during auditing.
+
+Noting that, in parallel with the order state, the journal also appears in multiple locations (see §[deployment](#deployment)): The _persistent_ copy will maintain an unabridged journal of all operations since the creation of each draft order. In contrast, the apps on user devices are free to discard local journal entries for operations that have been successfully transmitted, as required, to manage local storage utilisation.
 
 ### dependencies
 
+| third-party system           | required | purpose & notes                                              |
+| ---------------------------- | -------- | ------------------------------------------------------------ |
+| identity management          | required | Provides identities for user authentication                  |
+| authentication system        | required | Authenticates users to the required level of assurance and provides tokens or keys to the application so that it can act on behalf of the user. |
+| bookkeeping system           | optional | Regulation-compliant system of record for financial transactions, conventionally a cloud or enterprise service. Contract point documents and totals will be stored here. |
+| email/other messaging system | optional | Used for notifications and secure sending of contract point documents. |
+
 ## 2. application composition
 
+The data flow diagram shows the processes, data stores, actors, data flows and trust boundaries (see [key](../threat-dragon-key.png)) which are subject to threats. Note that compared to the [deployment](#deployment) diagram above, only one user is shown, to avoid duplication for other equivalent users.
+
 ![e-invoicing](e-invoicing.threat-dragon.png)
+
+### user
+
+The human user of the draft order system interacts with the authentication service to obtain an authentication token which is valid for the local app. In this model we do not specify the implementation details of the token creation; nevertheless, something like [OpenID Connect](https://openid.net/connect/) would be typical. The authentication service itself is out of scope.
+
+Once authenticated, the user makes data entries into the draft order, according to their access rights.
+
+### local app
+
+The local desktop or mobile app accepts data entries from the user and updates the local state of the draft invoice. The update are propagated to other copies of the draft order by publishing them to the messaging service. Changes are also propagated to the local storage on the device, so that if the network is unavailable, they are not lost when the app is closed or otherwise terminates.
+
+Note that data entry, operation publication and saves to local storage may be subject to batching or other optimisations to limit traffic.
+
+The local app also coordinates contract points directly with the draft order service. This process requires the local app and the draft order service to have a network connection. Multiple local app instances may be involved, (e.g. at both the buyer and seller) at the same time or possibly sequentially, depending on the coordination protocol.
+
+### messaging
+
+The messaging service propagates data updates to every remote copy of the draft order in a publish/subscribe pattern. Each published message is delivered to multiple subscribers concurrently ("fan out").
+
+In order to publish and subscribe to the messaging service, any client must present a valid authentication token. This token is verified with the authentication service as required (not necessarily with every client interaction).
+
+Note that the messaging service may be implemented as a cluster or even a global service spanning data centres and edge devices.
+
+### draft order service
+
+The draft order service serves three primary functions:
+
+1. It maintains the persistent copy of the draft order, so that if a user device rejoins the collaboration, it is able to 'see' the most recent state possible (not including edits made on offline devices that have not yet re-connected). It also sustains a level of data safety in case user devices are destroyed. It therefore acts as a subscriber to the messaging service, for which it needs an authentication token (as decribed above). In this case, this is a machine token, not representing any specific user.
+2. It offers a suitable protocol for contract coordination (e.g. [a two-phase commit](https://en.wikipedia.org/wiki/Two-phase_commit_protocol)). The outcome of a contract point can be a document, in which case the service may be responsible for composing the document. If the document requires digital signatures, these are obtained as part of the contract coordination. As the protocol is not (necessarily) enacted through the messaging service, the draft order service must be able to verify user tokens passed to it by contract participants.
+3. At suitable points, it updates the local bookkeeping system. This could include both filing documents, and notifying values such as invoice totals. This may require authentication of the service to the bookkeeping system, but may also rely on the organisation local area network.
 
 ## 3. threats
 
 ### agents
 
-| Agent | Motivation | Capability |
-| ----- | ---------- | ---------- |
-|       |            |            |
+| Agent                | Motivation                                                   | Capability                                            |
+| -------------------- | ------------------------------------------------------------ | ----------------------------------------------------- |
+| Legitimate user      | Financial advantage<br />Grievance<br />Whistleblowing<br />Corruption | Disclosure via side-channel<br />Incorrect data entry |
+| Competitor           | Business Intelligence<br />Sabotage<br />Anti-competitive    | Social engineering<br />Hacker engagement             |
+| System administrator | _as legitimate user_                                         | Direct access to components                           |
+| Hacker               | Direct financial gain<br />Whistleblowing<br />Bribery, ransom<br />Blackmail | Miscellaneous attacks via network                     |
 
 ### attacks
 
-| Category               | Attack | Vector | Agent |
-| ---------------------- | ------ | ------ | ----- |
-| Spoofing               |        |        |       |
-| Tampering              |        |        |       |
-| Repudiation            |        |        |       |
-| Disclosure             |        |        |       |
-| Denial-of-Service      |        |        |       |
-| Elevation of Privilege |        |        |       |
-
-
+| Category               | Goals                                                        | Attacks                                                      | Agents                                                    |
+| ---------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | --------------------------------------------------------- |
+| Spoofing               | Obtain payment without intent to deliver                     | Identity theft (of seller)                                   | Hacker                                                    |
+| Tampering              | Force an illegitimate contract (e.g. incorrect pricing)<br />Theft of goods (e.g. incorrect delivery address) | Message forgery<br />Identity theft<br />Direct tampering of storage | Legitimate user<br />System administrator<br />Hacker     |
+| Repudiation            | Repudiate contract obligations<br />Deny responsibility      | Signature forgery<br />Identity theft<br />Direct tampering of storage | Legitimate user                                           |
+| Disclosure             | Discover semi-secret (e.g. discount) pricing<br />Discover semi-secret product lines | Normal flow, but with illegitimate party identity, possibly at scale | Competitor<br />Hacker                                    |
+|                        | Discover orders in progress<br />Blackmail                   | Communication interception<br />Identity theft<br />Direct access to storage | Competitor<br />Hacker<br />System administrator          |
+| Denial-of-Service      | Prevent orders (e.g. anti-competitive)                       | Data volume (e.g. large documents)<br />Data velocity (e.g. generated messages) | Competitor<br />Hacker<br />System administrator          |
+| Elevation of Privilege | Terminate competitive orders<br />_other attacks_            | Injection<br />Identity theft<br />Social engineering        | Legitimate user<br />System administrator<br />Competitor |
 
 ---
 
