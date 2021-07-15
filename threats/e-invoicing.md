@@ -22,7 +22,7 @@ A standard for the procurement _process_, also conforming to EN 16931, is [Peppo
 
 However, Peppol's primary function is to provide a _technical_ standard for document exchange. It therefore mandates certain infrastructure and security controls at an implementation level, in the [eDelivery Network](https://peppol.eu/what-is-peppol/peppol-transport-infrastructure/) standards, which are based on [CEF eDelivery](https://ec.europa.eu/cefdigital/wiki/display/CEFDIGITAL/eDelivery). In particular, this mandates a 'four corner model' for all message-passing, in which "information exchanged between the original sender in corner one and final recipient in corner four go via access points, corners two and three respectively" [@CEFEDeliveryBuilding2016]:
 
-![CEF eDelivery four-corner model](CEF eDelivery four-corner model.png)
+![CEF eDelivery four-corner model](./CEF%20eDelivery%20four-corner%20model.png)
 
 Since the CIC process is subtantially different to the document-exchange model of Peppol, we choose to reverse-engineer its threat model basis based on its process model, technical infrastructure and security controls. The following table summarises the immediately inferrable threats. The following sections will also make reference to Peppol sources, as appropriate.
 
