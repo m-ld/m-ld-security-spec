@@ -9,4 +9,9 @@
   "http://www.w3.org/2002/07/owl#versionIRI" : [ {
     "@id" : "http://spec.m-ld.org/security/v0-6"
   } ]
+}, {
+  "@id" : "http://www.copri-final/copri2.owl#Actor",
+  "http://www.w3.org/2002/07/owl#equivalentClass" : [ {
+    "@id" : "http://www.grsu.by/net/OdTMBaseThreatModel#ExternalInteractor"
+  } ]
 } ]
