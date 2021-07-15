@@ -46,7 +46,12 @@ This section will comprise a data flow diagram composed with the [OWASP Threat D
 ### 3. threats
 
 - Agents – including motivations and capability.
-- Attacks, analysed according to the [STRIDE model](https://docs.microsoft.com/en-us/previous-versions/commerce-server/ee823878(v=cs.20)) (Spoofing, Tampering, Repudiation, Information Disclosure, Denial-of-Service & Elevation of Privilege) – including vectors and associated agents.
+- Attacks – according to the [STRIDE model](https://docs.microsoft.com/en-us/previous-versions/commerce-server/ee823878(v=cs.20)) (Spoofing, Tampering, Repudiation, Information Disclosure, Denial-of-Service & Elevation of Privilege) – identifying vectors and associated agents.
+- Vectors – relating attacks to likely target components.
+
+### 4. summary
+
+Prioritising the analysed threat vectors and relating them to the next phase of security design.
 
 ---
 

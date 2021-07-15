@@ -2,5 +2,7 @@
 <catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
     <uri id="Imports Wizard Entry" name="http://www.copri-final/copri.owl" uri="https://raw.githubusercontent.com/m-ld/m-ld-security-spec/main/COPriV2.owl"/>
     <uri id="Imports Wizard Entry" name="http://www.grsu.by/net/OdTMBaseThreatModel" uri="https://github.com/OWASP/OdTM/raw/master/OdTMBaseThreatModel.owl"/>
-    <group id="Folder Repository, directory=, recursive=true, Auto-Update=true, version=2" prefer="public" xml:base=""/>
+    <group id="Folder Repository, directory=, recursive=true, Auto-Update=true, version=2" prefer="public" xml:base="">
+        <uri id="Automatically generated entry, Timestamp=1626364850474" name="http://www.copri-final/copri.owl" uri="COPriV2.owl"/>
+    </group>
 </catalog>
