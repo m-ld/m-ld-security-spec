@@ -1,5 +1,7 @@
 # Collaborative e-Invoice Composition Threat Model
 
+_The motivation and structure of this document are described in the [folder README](./README.md)._
+
 > Collaborative e-Invoice Composition is an early-stage collaboration project between **m-ld** and [Ponder Source](https://pondersource.com/). Join us on [Gitter](https://gitter.im/federatedbookkeeping/community) to discuss ideas to transform procurement processes for the better.
 
 This document presents a threat model for Collaborative e-Invoice Composition (CIC). The vision behind CIC is that _a buyer and a seller can collaborate in real-time to determine the contents of an order_.
@@ -12,9 +14,9 @@ See [collaborative-invoice-composition](https://github.com/pondersource/collabor
 
 The function of a CIC system is to allow the parties involved in a procurement transaction to contribute live changes to a single logical document – the "draft order" – which represents all the relevant information about the procurement. For example, the buyer can set the requested quantities of items to be bought; and the seller can set prices. Note that the language already implies authorisations – for example, the buyer is not allowed to set prices. This will be further refined by significant changes of state – for example, during a negotiation prices can change, but once payment has been processed, further changes may not be allowed.
 
-### standards
+### policies & standards
 
-Here we focus on e-invoicing standards relevant to the European Union.
+Here we focus on e-invoicing policies & standards relevant to the European Union.
 
 E-invoice _content_ is subject to [Directive 2014/55/EU](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32014L0055), which "requires a European standard for the semantic data model of the core elements of an electronic invoice". This standard has been delivered as [EN 16931-1:2017](https://standards.cen.eu/dyn/www/f?p=204:110:0::::FSP_PROJECT,FSP_ORG_ID:60602,1883209&cs=104E4C4FA3744A8DEA8E98A7B500306FD). Its only security requirement is that "the application of this standard should comply with the requirements for the protection of personal data of Directive 95/46/EC, having due regard to the principles of privacy and data protection by-design, data minimization, purpose limitation, necessity and proportionality".
 
@@ -64,12 +66,16 @@ At different stages of the procurement lifecycle, different visibilities apply. 
 
 When a specific seller or buyer has been selected, the ongoing state of the procurement becomes private to the two parties. It is from this point that we model a draft order, which therefore has strictly one buying party and one selling party.
 
-Each party may associate private data with the draft order, such as alternative suppliers (buyer), or warehouse locations (seller). Other roles may share components of the document, for example, a shipping agent may have access to required information for a customs declaration, but not actual prices paid.
+Each party may associate private data with the draft order, such as alternative suppliers (buyer), or warehouse locations (seller). Such associated data are out of scope of this analysis. Other roles may share components of the document, for example, a shipping agent may have access to required information for a customs declaration, but not actual prices paid.
 
-Also confidential is the _history_ of the draft order (see also §[auditing](#auditing)). Parties should only have visibility on
+Also confidential is the _history_ of the draft order (see also §[auditing](#auditing)). Parties should only have visibility on:
 
 - the history of components to which they have access, and
 - historical operations during the period of their read access.
+
+| Loss                        | Category    | Severity (depends on)     |
+| --------------------------- | ----------- | ------------------------- |
+| Disclosure of trade secrets | Competitive | Low (scope of disclosure) |
 
 ### integrity
 
@@ -79,9 +85,20 @@ At any moment, the 'current' state of a draft order can be different between par
 
 The relevant security property of a _contract point_ is that it is non-repudiable by either party.
 
+| Losses                   | Category     | Severity (depends on)                    |
+| ------------------------ | ------------ | ---------------------------------------- |
+| Payment without delivery | Replacement  | Medium (invoice value)                   |
+| Incorrect payment        | Replacement  | Medium (invoice value)                   |
+| Theft of goods           | Replacement  | Medium (invoice value)                   |
+| Destruction of order     | Productivity | Low (procurement bureaucracy & progress) |
+
 ### availability
 
 The CIC system must be sufficiently available so that it is never a bottleneck in the procurement process. In order to provide the advertised benefits over a centralised system it must also be available to an offline party – with the proviso that they will not see the activities of other parties; and that modifications made in this state may need to be negotiated once back online, prior to a _contract point_ (see §[integrity](#integrity)).
+
+| Losses       | Category     | Severity (depends on)        |
+| ------------ | ------------ | ---------------------------- |
+| Order delays | Productivity | Medium (attacker capability) |
 
 ### auditing
 
@@ -95,6 +112,10 @@ For the protection of personal information, an operation actor assignment is not
 
 The ordering of visible operations can theoretically vary between parties, for example due to concurrent or offline operations. While this may be accounted for in the data structure, such that the draft order _converges_ to the same state for all parties, the auditable history must preserve _causation_. This requires that if an operation _B_ follows an operation _A_ in the history of the party that enacted _B_, it follows _A_ for all parties.
 
+| Losses     | Category                       | Severity (depends on)       |
+| ---------- | ------------------------------ | --------------------------- |
+| Litigation | Fines & Judgements, Reputation | Medium (legal fees & fines) |
+
 ### authentication
 
 An actor (human or machine, see §[auditing](#auditing)) must be strongly identified and authenticated for access to a draft order according to its §[authorisation](#authorisation).
@@ -102,6 +123,10 @@ An actor (human or machine, see §[auditing](#auditing)) must be strongly identi
 Authentication is defined in the [eIDAS regulation, Article 3(5)](https://www.eid.as/#article3) as “an electronic process that enables the electronic identification of a natural or legal person, or the origin and integrity of data in electronic form to be confirmed”. In the Peppol/CEF four-corner model, authentication strength is dependent on the security policy of the access point.
 
 Specific authentication requirements are out of scope.
+
+| Losses                                                   |
+| -------------------------------------------------------- |
+| _per confidentiality, integrity, availability, auditing_ |
 
 ### authorisation
 
@@ -113,6 +138,10 @@ In a collaborative draft order, access control requirements must be explicit, ba
 - State; e.g. a price cannot be updated after the 'purchase order' _contract point_ (see §[integrity](#integrity)).
 
 An initial analysis of draft order access rules can be found in the [Federated Bookkeeping research project](https://github.com/federatedbookkeeping/research/issues/4). For this analysis, the objective is to be able to compute fine-grained authorisation according to a declared scheme.
+
+| Losses                                                   |
+| -------------------------------------------------------- |
+| _per confidentiality, integrity, availability, auditing_ |
 
 ### management
 
@@ -129,6 +158,10 @@ Other management roles depend on the deployment model, and may include system an
 All management activities, when conducted according to normal ICT security good practice standards e.g. ISO 27001, should maintain the other objectives above.
 
 Personal mobile and desktop devices should not need to have special security settings applied at the operating system level (although they may do, for example according to an organisational policy).
+
+| Losses                                                   |
+| -------------------------------------------------------- |
+| _per confidentiality, integrity, availability, auditing_ |
 
 ## 1. application profile
 
@@ -255,6 +288,28 @@ The draft order service serves three primary functions:
 |                        | Discover orders in progress<br />Blackmail                   | Communication interception<br />Identity theft<br />Direct access to storage | Competitor<br />Hacker<br />System administrator          |
 | Denial-of-Service      | Prevent orders (e.g. anti-competitive)                       | Data volume (e.g. large documents)<br />Data velocity (e.g. generated messages) | Competitor<br />Hacker<br />System administrator          |
 | Elevation of Privilege | Terminate competitive orders<br />_other attacks_            | Injection<br />Identity theft<br />Social engineering        | Legitimate user<br />System administrator<br />Competitor |
+
+### vectors
+
+| Attack                             | Components                                        | Comment                                                      |
+| ---------------------------------- | ------------------------------------------------- | ------------------------------------------------------------ |
+| Identity theft                     | Authentication                                    | _Out of scope_                                               |
+| Message forgery                    | _All data flows_<br />Messaging                   | Can occur in the network or at process boundaries            |
+| Direct tampering of storage        | Local storage<br />Server storage                 | Requires direct access to components                         |
+| Signature forgery                  | Local app<br />Messaging<br />Draft order service | Requires direct access to components<br />e.g. injection of dynamically-loaded components |
+| Communication interception         | _All data flows_<br />Messaging                   |                                                              |
+| Denial-of-service by data volume   | Messaging<br />Draft order service                |                                                              |
+| Denial-of-service by data velocity | Messaging<br />Draft order service                |                                                              |
+| Injection                          | Local app                                         |                                                              |
+| Social engineering                 | User                                              |                                                              |
+
+## 4. summary
+
+The CIC system proposed can be characterised as a hybrid centralised/decentralised information system, in which  authority (especially in the eyes of policy and regulation) primarily resides with the order parties – buyer and seller organisations; and these are already in posession of centralised systems, most pertinently for bookkeeping. However for a draft order, authority is shared between these parties, and in particular, authorisation must be enacted without reliance on a central third party.
+
+The data ontology (draft order structure) is very well defined in authoritative standards and is unlikely to be different between system instances. So ontology data would not be shared in the dataset. However, the possibility of message forgery, direct tampering of storage and injection attacks means that maintenance of the live data integrity must still be controlled.
+
+The identified losses suggest that the most important threats to control in a CIC system concern integrity and auditing, because of the risk of financial loss and litigation. Availability risks are mitigated by the possibility of fallback to conventional practices, and the severity of confidentiality risks are generally low.
 
 ---
 
