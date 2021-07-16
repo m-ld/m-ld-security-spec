@@ -305,7 +305,7 @@ The draft order service serves three primary functions:
 
 ## 4. summary
 
-The CIC system proposed can be characterised as a hybrid centralised/decentralised information system, in which  authority (especially in the eyes of policy and regulation) primarily resides with the order parties – buyer and seller organisations; and these are already in posession of centralised systems, most pertinently for bookkeeping. However for a draft order, authority is shared between these parties, and in particular, authorisation must be enacted without reliance on a central third party.
+The CIC system proposed can be characterised as a hybrid centralised/decentralised information system, in which  authority (especially in the eyes of policy and regulation) primarily resides with the order parties – buyer and seller organisations; and these are already in possession of centralised systems, most pertinently for bookkeeping. However for a draft order, authority is shared between these parties, and in particular, authorisation must be enacted without reliance on a central third party.
 
 The data ontology (draft order structure) is very well defined in authoritative standards and is unlikely to be different between system instances. So ontology data would not be shared in the dataset. However, the possibility of message forgery, direct tampering of storage and injection attacks means that maintenance of the live data integrity must still be controlled.
 
