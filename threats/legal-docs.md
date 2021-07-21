@@ -33,6 +33,8 @@ The image below from the [HyperLaw](https://www.hyperlaw.co.uk/) website illustr
 
 ![HyperLaw screenshot](https://www.hyperlaw.co.uk/app/uploads/2019/01/V1-Home_Devices_3_Process_2560px-1.png)
 
+In respect of all of the objectives below, law firms are very shaped by their clients needs and tend to be extremely risk averse – they want to be seen to be as secure as their client, and implementing ‘best practice’ security. There is no incentive to take a risk in pursuit of a goal unless the goal cannot be achieved without it, and the client is fully on-board.
+
 ### policies & standards
 
 Here we focus on policies & standards relevant to the United Kingdom.
@@ -45,13 +47,15 @@ Even in this restricted domain, the approach to content has historically been fo
 
 Another formal XML schema, compatible with CEN Metalex but with more comprehensive metadata, is [Akoma Ntoso](http://www.akomantoso.org/?page_id=47). Its version 1.0 is adopted as an OASIS standard by the [LegalDocML](https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=legaldocml) Technical Committee. These standards capture the characteristic paragraphs/clauses structure of a legal document.
 
+For documents relating to court procedure, specific content forms may be required. In the UK, these are given as template Microsoft Word documents (e.g. for [criminal](https://www.gov.uk/guidance/criminal-procedure-rules-forms) and [civil](https://www.justice.gov.uk/courts/procedure-rules/civil/standard-directions/list-of-cases-of-common-occurrence) cases), typically only containing standard headers and required wordings.
+
 Approaches to full machine-readability for legal content have included not only formalising it as ontologies [@casanovasSemanticWebLegal2016], but also as code [@Ma2020Writing], whether authored as such or inferred from text using machine learning algorithms. The ideas in this space are diverse and still largely academic; however startups are popping up, such as [Juro](https://juro.com/) for contracts, and [Legalese](https://legalese.com/aboutus), which is developing "user-facing web apps in different verticals and domains".
 
 In respect of legal document _systems_, there is a similar lack of domain-specific regulatory standards. The UK Law Society provides a [Cybersecurity guide for solicitors](https://www.lawsociety.org.uk/topics/cybersecurity/cybersecurity-for-solicitors) which mandates adherence to the General Data Protection Regulation (GDPR) – because most legal instruments contain personal data – and otherwise makes generally applicable security recommendations. For cloud suppliers, it suggests a minimum of [ISO 27001](https://www.iso.org/isoiec-27001-information-security.html) compliance – a very general cybersecurity standard. The [NCSC](https://www.ncsc.gov.uk/) has also [issued cyber security advice](https://www.ncsc.gov.uk/news/cyber-security-advice-issued-law-firms-first-legal-threat-report) to law firms, but again this amounts to adherence to its generic [Cyber Essentials](https://www.ncsc.gov.uk/cyberessentials/overview) guidance.
 
 Commercial legal document management systems in common use include [HyperLaw](https://www.hyperlaw.co.uk/) and [LawConnect](https://www.lawconnect.co.uk/). These are cloud services which advertise prioritisation of security, but as expected, not against any domain-specific standard. LawConnect have a public [Security Policy](https://www.lawconnect.co.uk/information-security-policy.html) page, with the following highlights (assigned to implied threats):
 
-| Clause                                                       | Implied Threats (STRIDE)                                     |
+| clause                                                       | implied threats (STRIDE)                                     |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | 1. & 2. GDPR compliance                                      | Information Disclosure                                       |
 | 4. Data Sovereignty and Integrations<br />"highly available, active-active scalable solution situated in the ISO 27001 certified AWS datacentres in Dublin" | Spoofing<br />Tampering<br />Information Disclosure<br />Denial-of-Service |
@@ -61,23 +65,114 @@ Commercial legal document management systems in common use include [HyperLaw](ht
 
 HyperLaw advertise the [results of a penetration test](https://www.hyperlaw.co.uk/article/hyperlaw-successfully-completes-penetration-testing-with-network-security-experts-sec-1/), again demonstrating resistance to generic IT security threats. As a plus, they cite their utilisation of the Microsoft Azure platform.
 
-It is not clear whether HyperLaw use it, but Microsoft provide a way to cryptographically control information rights: [Azure RMS](https://docs.microsoft.com/en-us/azure/information-protection/how-does-it-work). This allows shared documents to be labelled with policies, which are enforced by applications – this depends on the cooperation of the application in use, but the approach is practical due to the market dominance of Microsoft Office. The key contribution of this technology is that _protection settings remain with data, even if it leaves organisation boundaries_.
+Legal document management may also be subject to a number of other security-related policies, such as:
+
+- Data sovereignty/locality: data must not leave a jurisdiction
+- "No-cloud" policies: typically, organisations with their own data centres
+- Traffic inspection e.g. [cloud access security brokers](https://en.wikipedia.org/wiki/Cloud_access_security_broker)
+- Approved services lists (although this is not directly addressable)
 
 ### confidentiality
 
+Legal documents are typically confidential; visible only to named users, associated with named organisations (if applicable). Due to the prevalence of personal information, they are almost always subject to GDPR. In particular, data must be destroyed on client request at any time.
 
+Some legal document sharing scenarios can have very specific confidentiality requirements, such as:
+
+- To 'black out' or 'white out' highly-specific portions of a document (not using e.g. text colour formatting or overlying rectangles, because they are reversible).
+- To remove metadata such as version history and authors.
+- To replace text with images as an impediment to copy/paste and indexing.
+
+When using e-documents this has led to the common practice of printing out and re-scanning as an image.
+
+When using P2PL-doc, such sharing should also break the link to the original document, so that no new updates are provided.
+
+| losses                          | category                                 | severity (depends on)      |
+| ------------------------------- | ---------------------------------------- | -------------------------- |
+| Disclosure of legal information | Response, Fines & Judgements, Reputation | High (scope of disclosure) |
 
 ### integrity
 
+As discussed in [§policies & standards](#policies--standards), legal content is very variable and not generally machine-readable, relying on expert assessment by lawyers and courts. Where schemas are available, they define metadata rather than content. However, for legal documents a structure of numbered and nested paragraphs usually expected, and metadata and annotations may apply at the level of language structure (e.g. paragraph, sentence, word).
+
+However, in cases where specific headings or wordings are required, such as for court procedure documents, non-conformance can cause delays.
+
+In addition, future directions for ontology- or code-driven formalisation of content (hereafter 'content form') for a much wider range of documents should be supported. This would allow conformance to an expected document structure to be machine-checkable, saving time and money.
+
+| losses                                        | category     | severity (depends on)                 |
+| --------------------------------------------- | ------------ | ------------------------------------- |
+| Non-conformity to required document structure | Productivity | Medium (procedure complexity & stage) |
+
 ### availability
+
+The P2PL-doc system must be sufficiently available so that it is never a bottleneck in client interactions or legal proceedings. It should preferably be available to an offline party – with the proviso that they will not see the activities of other parties. (UK courts [have Wifi available](https://www.gov.uk/government/news/improving-wifi-in-our-criminal-courts) for use by legal professionals; but anecdotally it is not always reliable.)
+
+| losses                    | category                 | severity (depends on)              |
+| ------------------------- | ------------------------ | ---------------------------------- |
+| Client interaction delays | Productivity, Reputation | Medium (attacker capability)       |
+| Legal proceedings delays  | Productivity, Reputation | High (attacker capability & stage) |
 
 ### auditing
 
+Auditing of the P2PL-doc system should support GDPR compliance and general business practice audits. Document snapshots filed in other systems (e.g. the [HMCTS Common Platform](https://www.gov.uk/guidance/hmcts-services-common-platform)) should be traceable to their equivalent version in P2PL-doc and attributable, non-repudiably, to specific users.
+
+There is otherwise no regulatory requirement for fine-grained attribution of individual edits to specific users, although some version history capability is generally expected in document management systems.
+
+| losses                 | category                       | severity (depends on)       |
+| ---------------------- | ------------------------------ | --------------------------- |
+| Litigation (e.g. GDPR) | Fines & Judgements, Reputation | Medium (legal fees & fines) |
+
 ### authentication
+
+A user must be strongly identified and authenticated for access to a legal document according to their §[authorisation](#authorisation).
+
+In some cloud-based document sharing systems (e.g. Google Docs, Microsoft Office, Slack), it is not possible to make explicit requirements of the authentication policies of other tenant organisations, e.g. to mandate two-factor authentication (2FA). Solutions to this may be unsatisfactory:
+
+- Conduct a security audit of the organisation; this can be expensive and time-consuming, as it depends on security or IT staff.
+- On-board the other party to the source tenant; this can be awkward if the system is linked to the organisation's directory (e.g. Microsoft Active Directory).
+
+P2PL-doc should make it possible to enforce a consistent security policy for authentication.
+
+Other requirements on the authentication system itself are out of scope.
+
+| Losses                                                   |
+| -------------------------------------------------------- |
+| *per confidentiality, integrity, availability, auditing* |
 
 ### authorisation
 
+In addition to read permission, named users (see [§confidentiality](#confidentiality)) may or may not have permission to make changes to documents. The following example information scopes may be subject to differential access rights:
+
+| scope                                                        | typical edit rights   |
+| ------------------------------------------------------------ | --------------------- |
+| Document metadata (e.g. identity, version, date)             | not directly editable |
+| Document information (e.g. title, tags)                      | authors               |
+| Paragraph structure & text                                   | authors               |
+| Content form (if applicable, see [§integrity](#integrity); may constrain the above) | creator               |
+| Annotations & suggestions (redline)                          | authors & reviewers   |
+
+| losses                                                   |
+| -------------------------------------------------------- |
+| *per confidentiality, integrity, availability, auditing* |
+
 ### management
+
+Management of a P2PL-doc system may include:
+
+- Regulatory auditing (see §[auditing](#auditing));
+- Local IT system administration;
+- Installation, maintenance and training activities;
+- Dependee system administration (e.g. directory system; out of scope);
+- Development and testing activities, including penetration testing.
+
+Other management roles depend on the deployment model, and may include system and database administrators.
+
+All management activities, when conducted according to normal ICT security good practice standards e.g. ISO 27001, should maintain the other objectives above.
+
+Personal mobile and desktop devices should not need to have special security settings applied at the operating system level (although they may do, for example according to an organisational policy).
+
+| Losses                                                   |
+| -------------------------------------------------------- |
+| *per confidentiality, integrity, availability, auditing* |
 
 ## 1. application profile
 
@@ -97,7 +192,7 @@ It is not clear whether HyperLaw use it, but Microsoft provide a way to cryptogr
 
 ### agents
 
-| Agent                                                        | Motivation         | Capability            |
+| agent                                                        | motivation         | capability            |
 | ------------------------------------------------------------ | ------------------ | --------------------- |
 | Hacker (not so much)<br />but we do consolidate information  | Money              | Malware<br />Phishing |
 | Internal – acting for defence or prosecution (or other cases) want to segregate internally ("information barriers") | Passive, bias      |                       |
@@ -109,7 +204,7 @@ It is not clear whether HyperLaw use it, but Microsoft provide a way to cryptogr
 
 ### attacks
 
-| Category               | Attack     | Vector | Agent |
+| category               | attack     | vector | agent |
 | ---------------------- | ---------- | ------ | ----- |
 | Spoofing               |            |        |       |
 | Tampering              |            |        |       |
