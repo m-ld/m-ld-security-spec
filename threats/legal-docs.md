@@ -2,23 +2,23 @@
 
 *The motivation and structure of this document are described in the [folder README](https://github.com/m-ld/m-ld-security-spec/blob/e-invoicing/threats/README.md).*
 
-This document presents a threat model for a peer-to-peer legal content system (P2PL-doc). The vision behind P2PL-doc is that barristers and solicitors, their clients, and key third-parties can collaborate on a digitial representation of key legal content, either independently, in real-time, or offline, as the situation demands; while also having certainty over data sovereignty.
+This document presents a threat model for a peer-to-peer legal content system, _p2pl-doc_. The vision behind p2pl-doc is that barristers and solicitors, their clients, and key third-parties can collaborate on a digitial representation of key legal content, either independently, in real-time, or offline, as the situation demands; while also having certainty over data sovereignty.
 
 The state-of-the-art for legal information management is transitioning from paper and generic e-document based workflows to specialised cloud-based systems, with significant advantages for the speed and efficiency of legal activities such as case preparation, delivery of legal advice, and conveyancing. However, conventional cloud-based systems can also present new complications, such as ensuring data sovereignty [@ettlingCloudBiggestThreat2015]; supporting offline working; and integrating with other IT systems (e.g. at corporate clients and courts) via a proprietary data interface.
 
-P2PL-doc is intended to address these complications by decoupling data storage from app provisioning. The app offers editing (plus tagging & annotation) of legal content. It uses data storage local to where it is deployed; this can be on a user device or a server. Content is synchronised between locations using an information sharing component like **m-ld**. Thus:
+p2pl-doc is intended to address these complications by decoupling data storage from app provisioning. The app offers editing (plus tagging & annotation) of legal content. It uses data storage local to where it is running; this can be on a user device or a server. Content is synchronised between locations using an information sharing component like **m-ld**. Thus:
 
 - Data storage locations can be precisely specified per-document to alleviate concerns over sovereignty, while still supporting replication for fault-tolerance.
 - The information sharing component natively supports offline and real-time collaborative editing in the app.
 - Integration with other IT systems is facilitated by the use of a standard interface for content, designed for interoperation and portability (JSON-LD, in **m-ld**).
 
-For the purpose of this document, we assume that the collaborative model of P2PL-doc is viable as a future model for legal content sharing, and focus on the security requirements which it entails.
+For the purpose of this document, we assume that the collaborative model of p2pl-doc is viable as a future model for legal content sharing, and focus on the security requirements which it entails.
 
-> If P2PL-doc sounds like a great solution for your legal content sharing problem, we would be delighted to [hear from you!](https://m_-ld.org/hello/)
+> If p2pl-doc sounds like a great solution for your legal content sharing problem, we would be delighted to [hear from you!](https://m_-ld.org/hello/)
 
 ## 0. objectives
 
-The function of a P2PL-doc system is to allow the parties involved in a legal engagement to share relevant 'documents', where the content of these documents may change over time. The content will often be highly sensitive in nature; may contain Personally-Identifiable Information (PII); and may be subject to localisation rules, e.g. they must not leave the country.
+The function of a p2pl-doc system is to allow the parties involved in a legal engagement to share relevant 'documents', where the content of these documents may change over time. The content will often be highly sensitive in nature; may contain Personally-Identifiable Information (PII); and may be subject to localisation rules, e.g. they must not leave the country.
 
 The image below from the [HyperLaw](https://www.hyperlaw.co.uk/) website illustrates the general form of a legal document management system.
 
@@ -43,7 +43,7 @@ The "documents" in a legal document management system could be of any type, incl
 
 Even in this restricted domain, the approach to content has historically been for dedicated professionals (lawyers) to both produce and assess documents manually. This allows for significant variability and extensibility of content; it is also impossible to automate, and so, expensive. As a result, _comprehensive_ standards for machine-processable legal content do not exist as such.
 
-[CEN Metalex](http://www.metalex.eu/) defines an XML Schema and OWL ontology for "sources of law and references to sources of law". While a legal instrument can be fully represented in XML or RDF using CEN Metalex, only metadata (e.g. versions, dates and references) are formalised; the body of the document is represented as plain text arranged in nested paragraphs. It is used  by legislation.gov.uk and has its own managed service doc.metalex.eu, containing Dutch regulations.
+[CEN Metalex](http://www.metalex.eu/) defines an XML Schema and OWL ontology for "sources of law and references to sources of law". While a legal instrument can be fully represented in XML or RDF using CEN Metalex, only metadata (e.g. versions, dates and references) are formalised; the body of the document is represented as plain text arranged in nested paragraphs.
 
 Another formal XML schema, compatible with CEN Metalex but with more comprehensive metadata, is [Akoma Ntoso](http://www.akomantoso.org/?page_id=47). Its version 1.0 is adopted as an OASIS standard by the [LegalDocML](https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=legaldocml) Technical Committee. These standards capture the characteristic paragraphs/clauses structure of a legal document.
 
@@ -84,7 +84,7 @@ Some legal document sharing scenarios can have very specific confidentiality req
 
 When using e-documents this has led to the common practice of printing out and re-scanning as an image.
 
-When using P2PL-doc, such sharing should also break the link to the original document, so that no new updates are provided.
+When using p2pl-doc, such sharing should also break the link to the original document, so that no new updates are provided.
 
 | losses                          | category                                 | severity (depends on)      |
 | ------------------------------- | ---------------------------------------- | -------------------------- |
@@ -104,7 +104,7 @@ In addition, future directions for ontology- or code-driven formalisation of con
 
 ### availability
 
-The P2PL-doc system must be sufficiently available so that it is never a bottleneck in client interactions or legal proceedings. It should preferably be available to an offline party – with the proviso that they will not see the activities of other parties. (UK courts [have Wifi available](https://www.gov.uk/government/news/improving-wifi-in-our-criminal-courts) for use by legal professionals; but anecdotally it is not always reliable.)
+The p2pl-doc system must be sufficiently available so that it is never a bottleneck in client interactions or legal proceedings. It should preferably be available to an offline party – with the proviso that they will not see the activities of other parties. (UK courts [have Wifi available](https://www.gov.uk/government/news/improving-wifi-in-our-criminal-courts) for use by legal professionals; but anecdotally it is not always reliable.)
 
 | losses                    | category                 | severity (depends on)              |
 | ------------------------- | ------------------------ | ---------------------------------- |
@@ -113,7 +113,7 @@ The P2PL-doc system must be sufficiently available so that it is never a bottlen
 
 ### auditing
 
-Auditing of the P2PL-doc system should support GDPR compliance and general business practice audits. Document snapshots filed in other systems (e.g. the [HMCTS Common Platform](https://www.gov.uk/guidance/hmcts-services-common-platform)) should be traceable to their equivalent version in P2PL-doc and attributable, non-repudiably, to specific users.
+Auditing of the p2pl-doc system should support GDPR compliance and general business practice audits. Document snapshots filed in other systems (e.g. the [HMCTS Common Platform](https://www.gov.uk/guidance/hmcts-services-common-platform)) should be traceable to their equivalent version in p2pl-doc and attributable, non-repudiably, to specific users.
 
 There is otherwise no regulatory requirement for fine-grained attribution of individual edits to specific users, although some version history capability is generally expected in document management systems.
 
@@ -130,7 +130,7 @@ In some cloud-based document sharing systems (e.g. Google Docs, Microsoft Office
 - Conduct a security audit of the organisation; this can be expensive and time-consuming, as it depends on security or IT staff.
 - On-board the other party to the source tenant; this can be awkward if the system is linked to the organisation's directory (e.g. Microsoft Active Directory).
 
-P2PL-doc should make it possible to enforce a consistent security policy for authentication.
+p2pl-doc should make it possible to enforce a consistent security policy for authentication.
 
 Other requirements on the authentication system itself are out of scope.
 
@@ -156,7 +156,7 @@ In addition to read permission, named users (see [§confidentiality](#confidenti
 
 ### management
 
-Management of a P2PL-doc system may include:
+Management of a p2pl-doc system may include:
 
 - Regulatory auditing (see §[auditing](#auditing));
 - Local IT system administration;
@@ -176,17 +176,93 @@ Personal mobile and desktop devices should not need to have special security set
 
 ## 1. application profile
 
+This section describes a hypothetical p2pl-doc application, using decentralised, real-time sharing of legal documents, with only enough detail to elucidate applicable security threats.
+
+For the purposes of a manageable scope and applicability to **m-ld**, in the application we will consider documents with the conventional numbered paragraph structure, which may conform to some schema (e.g. ontology-based or a content form). Other documents, and generic groupware functionality (e.g. tasks and calendaring) which may be bundled in commercial legal document management systems are not considered.
+
 ### deployment
+
+The users of p2pl-doc interact with the system and each other via an app, available on mobile or desktop devices. For convenience, a web app should also be available. In all cases, the app will use local storage to persist document state between sessions, allowing an offline session to be interrupted without data loss.
+
+![p2pl-docs deployment](./legal-docs-deployment.svg)
+
+<sup>Icons made by [xnimrodx](https://www.flaticon.com/authors/xnimrodx) and [Vitaly Gorbachev](https://www.flaticon.com/authors/vitaly-gorbachev) from [www.flaticon.com](https://www.flaticon.com/)</sup>
+
+Users of the system will access each other and dependee systems via a local network or the internet. The users are identified using an _identity service_ (also performaing authentication), which is shown as a cloud service but could also be deployed at the law firm.
+
+While fully peer-to-peer message delivery options are possible, they are not in widespread use, and so we model a _message broker_ as a service on the cloud, which is responsible for delivering control messages and document change operations. The broker may be implemented as a single server, a cluster, or a world-wide service; but for our purposes we will assume a process with its own trust boundary. (In anticipation of design, note that the broker does not need access to message content, so messages can be encrypted end-to-end.)
+
+For persistence of the document between sessions, and for parties to be able to access the latest available information whether or not another party is online, a copy of the document will be stored in a service accessible to all parties – the *p2pl-doc storage service*. This persistent copy will be kept up-to-date as the network allows when edits are made; recognising that at any time, a party might have a local copy that is more recently updated, for example if they are offline. 
+
+The p2pl-doc storage service can be partitioned and replicated easily, usually without IT support, by the law firm – including to the cloud or to the client organisation (it is shown deployed to the law firm, as the default). Each partition of the service can serve separate documents. This means that persistent copies can be physically relocated to comply with data sovereignty or other client requirements, without degradation of service, so long as at least one location serving the document is sufficiently available.
 
 ### users
 
+Users of the p2pl-doc system are employees of a law firm, primarily lawyers and executives, and their assistants; and clients of the firm.
+
+With respect to individual documents, users can have specific permissions, similar to other document sharing systems, such as owner, viewer, editor and reviewer. Permission assignments can change at any time (with the proviso that there is always an owner); and the system should be flexible enough to support other permissions in future (e.g. approver).
+
 ### data
+
+The data in a p2pl-doc system consists of legal documents. In this threat model we will not attempt to perfectly model all legal documents, so the analysis here is intended to be indicative and sufficient for a threat analysis.
+
+Each document's information has a structure that is given by a schema, which is extensible. The base schema contains:
+
+- Metadata e.g. Document identifier, Title, Date, Author(s), Type/Legal Matter, Language, Status
+- Clauses (nested numbered paragraphs)
+- Definitions (glossary)
+- Tags, Comments, Suggestions ('redline'; associated with clauses)
+- Signature(s)
+
+Refinements of the base schema are available for specific document types. E.g. a [witness statement](https://www.justice.gov.uk/courts/procedure-rules/civil/standard-directions/general/witness-statements) additionally contains:
+
+- Case and claim number
+- Full name and address of the witness
+- Mandatory paragraph: 'I believe that the facts stated in this witness statement are true.'
+
+It should be possible for the system to not only validate the document against the schema, but to use the schema to guide authoring, e.g. by automatically adding the mandatory declaration of a witness statement.
+
+Further, since so little legal content is machine-readable, one possible benefit of a schema-based system is to encourage a network effect, in which users of the system contribute new schemas as they arise. So, the definition of the schema itself should be editable – with suitable authorisation controls.
 
 ### dependencies
 
+| third-party system                   | required | purpose & notes                                              |
+| ------------------------------------ | -------- | ------------------------------------------------------------ |
+| identity management                  | required | Provides identities for user authentication                  |
+| authentication system                | required | Authenticates users to the required level of assurance and provides tokens or keys to the application so that it can act on behalf of the user. |
+| court digital case management system | optional | An example target for export of legal documents, traceable back to the p2pl-doc system |
+
 ## 2. application composition
 
+The data flow diagram shows the processes, data stores, actors, data flows and trust boundaries (see [key](../threat-dragon-key.png)) which are subject to threats. Note that compared to the [deployment](#deployment) diagram above, only one user is shown, to avoid duplication for other equivalent users.
+
 ![legal document](legal-docs.threat-dragon.png)
+
+### user
+
+The human user of the legal document system interacts with the authentication service to obtain an authentication token which is valid for the local app. In this model we do not specify the implementation details of the token creation; nevertheless, something like [OpenID Connect](https://openid.net/connect/) would be typical. The authentication service itself is out of scope.
+
+Once authenticated, the user makes modifications to the legal document (authoring, tagging, commenting, suggesting, etc.), according to their access rights.
+
+### local app
+
+The local desktop or mobile app accepts modifications from the user and updates the local state of the legal document. The update are propagated to other copies of the legal document by publishing them to the messaging service. Changes are also propagated to the local storage on the device, so that if the network is unavailable, they are not lost when the app is closed or otherwise terminates.
+
+Note that document modification, operation publication and saves to local storage may be subject to batching or other optimisations to limit traffic.
+
+When appropriate, the user can instruct the app to export a document to some third-party system.
+
+### messaging
+
+The messaging service propagates document modifications to every remote copy of the legal document in a publish/subscribe pattern. Each published message is delivered to multiple subscribers concurrently ("fan out").
+
+In order to publish and subscribe to the messaging service, any client must present a valid authentication token. This token is verified with the authentication service as required (not necessarily with every client interaction).
+
+Note that the messaging service may be implemented as a cluster or even a global service spanning data centres and edge devices.
+
+### p2pl-doc storage service
+
+The p2pl-doc storage service maintains a persistent copy of each legal document, so that if a user device rejoins the collaboration, it is able to 'see' the most recent state possible (not including edits made on offline devices that have not yet re-connected). It also sustains a level of data safety in case user devices are destroyed. It therefore acts as a subscriber to the messaging service, for which it needs an authentication token (as decribed above). In this case, this is a machine token, not representing any specific user.
 
 ## 3. threats
 
