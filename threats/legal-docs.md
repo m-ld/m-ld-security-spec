@@ -76,6 +76,8 @@ Legal document management may also be subject to a number of other security-rela
 
 Legal documents are typically confidential; visible only to named users, associated with named organisations (if applicable). Due to the prevalence of personal information, they are almost always subject to GDPR. In particular, data must be destroyed on client request at any time.
 
+For barristers in particular, different lawyers in the same chambers could be acting for defence or prosecution (or on other cases); so access control must operate on an individual document basis.
+
 Some legal document sharing scenarios can have very specific confidentiality requirements, such as:
 
 - To 'black out' or 'white out' highly-specific portions of a document (not using e.g. text colour formatting or overlying rectangles, because they are reversible).
@@ -192,9 +194,11 @@ Users of the system will access each other and dependee systems via a local netw
 
 While fully peer-to-peer message delivery options are possible, they are not in widespread use, and so we model a _message broker_ as a service on the cloud, which is responsible for delivering control messages and document change operations. The broker may be implemented as a single server, a cluster, or a world-wide service; but for our purposes we will assume a process with its own trust boundary. (In anticipation of design, note that the broker does not need access to message content, so messages can be encrypted end-to-end.)
 
-For persistence of the document between sessions, and for parties to be able to access the latest available information whether or not another party is online, a copy of the document will be stored in a service accessible to all parties – the *p2pl-doc storage service*. This persistent copy will be kept up-to-date as the network allows when edits are made; recognising that at any time, a party might have a local copy that is more recently updated, for example if they are offline. 
+For persistence of the document between sessions, and for parties to be able to access the latest available information whether or not another party is online, a copy of the document will be stored in a service accessible to all parties – the *storage service*. This persistent copy will be kept up-to-date as the network allows when edits are made; recognising that at any time, a party might have a local copy that is more recently updated, for example if they are offline. 
 
-The p2pl-doc storage service can be partitioned and replicated easily, usually without IT support, by the law firm – including to the cloud or to the client organisation (it is shown deployed to the law firm, as the default). Each partition of the service can serve separate documents. This means that persistent copies can be physically relocated to comply with data sovereignty or other client requirements, without degradation of service, so long as at least one location serving the document is sufficiently available.
+The storage service can be partitioned and replicated easily, usually without IT support, by the law firm – including to the cloud or to the client organisation (it is shown deployed to the law firm, as the default). Each partition of the service can serve separate documents. This means that persistent copies can be physically relocated to comply with data sovereignty or other client requirements, without degradation of service, so long as at least one location serving the document is sufficiently available.
+
+A key feature of document management systems is the ability to search across documents. This presents a challenge to a peer-to-peer system, in which there is no central repository to be indexed – and possibly not even a central registry of what documents exist. Therefore we propose a search service based on the cloud, which is responsible for directing searchers to specific documents, while respecting access control. For example, it should not be possible to infer the content of a document to which you do not have read access, by finding it with a search term.
 
 ### users
 
@@ -218,11 +222,11 @@ Refinements of the base schema are available for specific document types. E.g. a
 
 - Case and claim number
 - Full name and address of the witness
-- Mandatory paragraph: 'I believe that the facts stated in this witness statement are true.'
+- Mandatory declaration: 'I believe that the facts stated in this witness statement are true.'
 
-It should be possible for the system to not only validate the document against the schema, but to use the schema to guide authoring, e.g. by automatically adding the mandatory declaration of a witness statement.
+It should be possible for the system to not only validate the document against the schema, but to use the schema to guide authoring, e.g. by automatically adding the mandatory declaration into a witness statement.
 
-Further, since so little legal content is machine-readable, one possible benefit of a schema-based system is to encourage a network effect, in which users of the system contribute new schemas as they arise. So, the definition of the schema itself should be editable – with suitable authorisation controls.
+Further, since so little legal content is machine-readable, one possible benefit of a schema-based system is to encourage a network effect, in which users of the system contribute new schemas as they arise; these are then available for re-use in the same organisation or even between organisations. So, the definition of the schema itself should be editable – with suitable authorisation controls.
 
 ### dependencies
 
@@ -260,34 +264,56 @@ In order to publish and subscribe to the messaging service, any client must pres
 
 Note that the messaging service may be implemented as a cluster or even a global service spanning data centres and edge devices.
 
-### p2pl-doc storage service
+### storage service
 
-The p2pl-doc storage service maintains a persistent copy of each legal document, so that if a user device rejoins the collaboration, it is able to 'see' the most recent state possible (not including edits made on offline devices that have not yet re-connected). It also sustains a level of data safety in case user devices are destroyed. It therefore acts as a subscriber to the messaging service, for which it needs an authentication token (as decribed above). In this case, this is a machine token, not representing any specific user.
+The storage service maintains a persistent copy of each legal document, so that if a user device rejoins the collaboration, it is able to 'see' the most recent state possible (not including edits made on offline devices that have not yet re-connected). It also sustains a level of data safety in case user devices are destroyed. It therefore acts as a subscriber to the messaging service, for which it needs an authentication token (as decribed above). In this case, this is a machine token, not representing any specific user.
+
+This service also updates the search service with the latest searchable terms from the documents.
+
+### search service
+
+The search service maintains an index of available legal documents (see [§deployment](#deployment)). It is updated by the storage service, and queried by the local app when requested by the user.
 
 ## 3. threats
 
 ### agents
 
-| agent                                                        | motivation         | capability            |
-| ------------------------------------------------------------ | ------------------ | --------------------- |
-| Hacker (not so much)<br />but we do consolidate information  | Money              | Malware<br />Phishing |
-| Internal – acting for defence or prosecution (or other cases) want to segregate internally ("information barriers") | Passive, bias      |                       |
-| Client (who owns the data – lines badly drawn)               | Passive, data loss |                       |
-| Opposing side (but not come across)                          |                    |                       |
-| Cloud providers – we do want search indexing, but want to rescind (hence private encryption key) |                    |                       |
-| Governments – e.g. USA federal law for backdoor? "It's not in the US is it" |                    |                       |
-|                                                              |                    |                       |
+| agent                                                        | motivation                                                   | capability                                                   |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Legitimate user                                              | Grievance<br/>Whistleblowing<br/>Corruption<br />Biasing the case | Disclosure via side-channel<br/>Incorrect content entry<br />Device loss |
+| Opposing counsel (note: very unlikely to mount a direct, deliberate attack) | Accidental                                                   | Access to shared case documents e.g. witness statements      |
+| Opposing party (e.g. plaintiff/defendant)                    | Strengthening their argument<br />Biasing the case           | As public; but may engage hackers                            |
+| Cloud provider                                               | Analytics<br />User profiling                                | Direct access to storage<br />Cookies                        |
+| Government                                                   | National security                                            | Requests for data under surveillance acts                    |
+| Hacker / hacktivist                                          | Direct financial gain<br/>Whistleblowing<br/>Bribery, ransom<br/>Blackmail | Miscellaneous attacks via network<br />Malware<br />Phishing |
+| System Administrator                                         | *as legitimate user*                                         | Direct access to components                                  |
 
 ### attacks
 
-| category               | attack     | vector | agent |
-| ---------------------- | ---------- | ------ | ----- |
-| Spoofing               |            |        |       |
-| Tampering              |            |        |       |
-| Repudiation            |            |        |       |
-| Disclosure             | Phishing   |        |       |
-| Denial-of-Service      | Ransomware |        |       |
-| Elevation of Privilege |            |        |       |
+| category               | goals                                                        | attacks                                                      | agents                                                       |
+| ---------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Spoofing               | Elicit illegitimate payments, e.g. to third-party account<br />Submit illegitimate evidence | Identity theft                                               | Hacker<br />Opposing party                                   |
+| Tampering              | Falsify evidence<br />                                       | Message forgery<br />Identity theft<br />Direct tampering of storage | Legitimate user<br />System administrator<br />Hacker        |
+| Repudiation            | Deny legitimacy of evidence                                  | Signature forgery<br />Identity theft<br />Direct tampering of storage | Legitimate user                                              |
+| Disclosure             | Discovering personal information or secrets of opposing party<br /> | Communication interception<br />Identity theft<br />Direct access to storage | Opposing party<br />Hacker<br />Government                   |
+|                        | Tracking & profiling                                         | Social engineering e.g. unclear terms of use<br />Direct access to storage | Cloud provider                                               |
+| Denial-of-Service      | Delay proceedings                                            | Data volume (e.g. large documents) Data velocity (e.g. generated messages) | Opposing party<br />Hacker<br />System administrator         |
+| Elevation of Privilege | *other attacks*                                              | Injection<br />Identity theft<br />Social engineering        | Legitimate user<br />System administrator<br />Opposing party |
+
+### vectors
+
+| attack                      | components                                    | comment                                                      |
+| --------------------------- | --------------------------------------------- | ------------------------------------------------------------ |
+| Identity theft              | Authentication                                | *Out of scope*                                               |
+| Message forgery             | *All data flows*<br />Messaging               | Can occur in the network or at process boundaries            |
+| Direct tampering of storage | Local storage<br />Server storage             | Requires direct access to components                         |
+| Signature forgery           | Local app<br />Messaging<br />Storage service | Requires direct access to components e.g. injection of dynamically-loaded components |
+| Communication interception  | *All data flows*<br />Messaging               |                                                              |
+| Denial-of-service           | Messaging<br />Search service                 |                                                              |
+| Injection                   | Local app<br />Search service                 |                                                              |
+| Social engineering          | User                                          |                                                              |
+
+## 4. summary
 
 
 
