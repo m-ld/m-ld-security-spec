@@ -305,17 +305,21 @@ The search service maintains an index of available legal documents (see [§deplo
 | attack                      | components                                    | comment                                                      |
 | --------------------------- | --------------------------------------------- | ------------------------------------------------------------ |
 | Identity theft              | Authentication                                | *Out of scope*                                               |
-| Message forgery             | *All data flows*<br />Messaging               | Can occur in the network or at process boundaries            |
+| Message forgery             | *all data flows*<br />Messaging               | Can occur in the network or at process boundaries            |
 | Direct tampering of storage | Local storage<br />Server storage             | Requires direct access to components                         |
 | Signature forgery           | Local app<br />Messaging<br />Storage service | Requires direct access to components e.g. injection of dynamically-loaded components |
-| Communication interception  | *All data flows*<br />Messaging               |                                                              |
+| Communication interception  | *all data flows*<br />Messaging               |                                                              |
 | Denial-of-service           | Messaging<br />Search service                 |                                                              |
 | Injection                   | Local app<br />Search service                 |                                                              |
 | Social engineering          | User                                          |                                                              |
 
 ## 4. summary
 
+The p2pl-doc system proposed can be characterised as a hybrid centralised/decentralised information system, in which authority over document content is distributed between legal professionals and their clients. The system would have multiple integrations, including to incumbent centralised document management and groupware systems, and to state-owned cloud systems.
 
+Documents in conventional legal document systems are semi-structured in the software, with partial or no formal schemas, while being perceived as strongly structured by their human authors – future systems that close this gap will be able to offer lawyers increased efficiency with re-use of common patterns, and semantically-aware features like suggestions and similarity searching. One way to encourage this would be to offer schema editing alongside content editing, so the benefits are immediately apparent. This requires fine-grained authorisation controls.
+
+The most important threats to a p2pl-doc system relate to disclosure of private information. Threats to integrity are generally mitigated by the existing strong culture of review and approval; as automation becomes more prevalent, these will become more severe. Threats to auditing are not generally different to a conventional document management system; and availability risks are mitigated by the possibility of fallback to conventional practices.
 
 ---
 
