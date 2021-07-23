@@ -8,7 +8,7 @@ This document presents a threat model for Collaborative e-Invoice Composition (C
 
 The conventional approach to ordering involves a _process_ (requisition and procurement) and a number of exchanged _artefacts_ (a request for quotation, an order, an invoice, a shipping note, etc). The concept of collaborative e-invoicing notices that while parts of the process have strict conventional rules (some with associated legal regulations), others can be modelled as a negotiation, or even – with implied mutual goodwill – a _collaboration_.
 
-This collaboration works on a _shared document_ respresenting the procurement. It behaves as if the document is a file that is simultaneously available in multiple physical locations. Changes to the document are committed to all locations, transparently, as fast as the network allows. If one location is offline, then the local changes are merged into every other location when the network becomes available.
+This collaboration is conceived as working on a _shared document_ representing the procurement. The document is simultaneously available in multiple physical locations. Changes to the document are committed to all locations, transparently, as fast as the network allows. If one location is offline, then the local changes are merged into every other location when the network becomes available.
 
 If a technical system can be built that supports this model, while still assuring both parties of the security of the procurement transaction (even if goodwill is challenged), that transaction could be enacted without the significant overhead and complexity of repeated document composition and exchange.
 
