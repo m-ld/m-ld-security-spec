@@ -4,15 +4,19 @@ _The motivation and structure of this document are described in the [folder READ
 
 > Collaborative e-Invoice Composition is an early-stage collaboration project between **m-ld** and [Ponder Source](https://pondersource.com/). Join us on [Gitter](https://gitter.im/federatedbookkeeping/community) to discuss ideas to transform procurement processes for the better.
 
-This document presents a threat model for Collaborative e-Invoice Composition (CIC). The vision behind CIC is that _a buyer and a seller can collaborate in real-time to determine the contents of an order_.
+This document presents a threat model for Collaborative e-Invoice Composition (CIC). The vision behind CIC is that _a buyer and a seller can collaborate to determine the contents of an order_.
 
-The conventional approach to ordering involves a _process_ (requisition and procurement) and a number of exchanged _artefacts_ (a request for quotation, an order, an invoice, a shipping note, etc). The concept of collaborative e-invoicing notices that while parts of the process have strict conventional rules (some with associated legal regulations), others can be modelled as a negotiation, or even – with implied mutual goodwill – a _collaboration_. If a technical system can be built that supports this model, while still assuring both parties of the security of the procurement transaction (even if goodwill is challenged), that transaction could be enacted without the significant overhead and complexity of repeated document composition and exchange.
+The conventional approach to ordering involves a _process_ (requisition and procurement) and a number of exchanged _artefacts_ (a request for quotation, an order, an invoice, a shipping note, etc). The concept of collaborative e-invoicing notices that while parts of the process have strict conventional rules (some with associated legal regulations), others can be modelled as a negotiation, or even – with implied mutual goodwill – a _collaboration_.
+
+This collaboration works on a _shared document_ respresenting the procurement. It behaves as if the document is a file that is simultaneously available in multiple physical locations. Changes to the document are committed to all locations, transparently, as fast as the network allows. If one location is offline, then the local changes are merged into every other location when the network becomes available.
+
+If a technical system can be built that supports this model, while still assuring both parties of the security of the procurement transaction (even if goodwill is challenged), that transaction could be enacted without the significant overhead and complexity of repeated document composition and exchange.
 
 See [collaborative-invoice-composition](https://github.com/pondersource/collaborative-invoice-composition) for more details of this concept. For the purpose of this document, we assume that the collaborative model of e-invoicing is viable as a future model for procurement processes, and focus on the security requirements which it entails.
 
 ## 0. objectives
 
-The function of a CIC system is to allow the parties involved in a procurement transaction to contribute live changes to a single logical document – the "draft order" – which represents all the relevant information about the procurement. For example, the buyer can set the requested quantities of items to be bought; and the seller can set prices. Note that the language already implies authorisations – for example, the buyer is not allowed to set prices. This will be further refined by significant changes of state – for example, during a negotiation prices can change, but once payment has been processed, further changes may not be allowed.
+The function of a CIC system is to allow the parties involved in a procurement transaction to contribute changes to a shared document – the "draft order" – which represents all the relevant information about the procurement. For example, the buyer can set the requested quantities of items to be bought; and the seller can set prices. Note that the language already implies authorisations – for example, the buyer is not allowed to set prices. This will be further refined by significant changes of state – for example, during a negotiation prices can change, but once payment has been processed, further changes may not be allowed.
 
 ### policies & standards
 
@@ -28,7 +32,7 @@ However, Peppol's primary function is to provide a _technical_ standard for docu
 
 Since the CIC process is subtantially different to the document-exchange model of Peppol, we choose to reverse-engineer its threat model basis based on its process model, technical infrastructure and security controls. The following table summarises the immediately inferrable threats. The following sections will also make reference to Peppol sources, as appropriate.
 
-| Technical Requirement                                        | Implied Threats (STRIDE)                                     |
+| technical rquirement                                         | implied threats (STRIDE)                                     |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | Trust is established using a Public Key Infrastructure (PKI)<br />[@cicirielloPEPPOLTransportInfrastructure2011] | Spoofing<br />Tampering<br />Repudiation<br />Information Disclosure |
 | Service providers sign an agreement before they join the infrastructure<br />• Agreement regulates responsibilities, requirements, liability<br />• Compliance checks may be performed<br />[@cicirielloPEPPOLTransportInfrastructure2011] | Repudiation                                                  |
@@ -43,7 +47,7 @@ Note that [in Norway](https://peppol.eu/what-is-peppol/peppol-country-profiles/n
 
 An example commercial implementation of Peppol is [Basware](https://www.basware.com/). Their Personal Data Processing Appendix [@raevuoriBaswarePersonalData2020], Annex 2, reflects the requirements above but also includes additional security controls, suggestive of additional controlled threats. While most of these are in-line with general cloud service provider practices (e.g. for ISO 27001 compliance), selected controls are called out in the following table.
 
-| Security Control                                             | Implied Threats (STRIDE)                                     |
+| security control                                             | implied threats (STRIDE)                                     |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | Personnel security (hiring, maintaining and terminating employees) | Tampering<br />Information Disclosure<br />Elevation of Privilege |
 | Asset Management (data or asset disposal)                    | Information Disclosure                                       |
@@ -73,9 +77,9 @@ Also confidential is the _history_ of the draft order (see also §[auditing](#au
 - the history of components to which they have access, and
 - historical operations during the period of their read access.
 
-| Loss                        | Category    | Severity (depends on)     |
-| --------------------------- | ----------- | ------------------------- |
-| Disclosure of trade secrets | Competitive | Low (scope of disclosure) |
+| losses                      | category    | indicative severity (depends on) |
+| --------------------------- | ----------- | -------------------------------- |
+| Disclosure of trade secrets | Competitive | Low (scope of disclosure)        |
 
 ### integrity
 
@@ -85,7 +89,7 @@ At any moment, the 'current' state of a draft order can be different between par
 
 The relevant security property of a _contract point_ is that it is non-repudiable by either party.
 
-| Losses                   | Category     | Severity (depends on)                    |
+| losses                   | category     | indicative severity (depends on)         |
 | ------------------------ | ------------ | ---------------------------------------- |
 | Payment without delivery | Replacement  | Medium (invoice value)                   |
 | Incorrect payment        | Replacement  | Medium (invoice value)                   |
@@ -96,9 +100,9 @@ The relevant security property of a _contract point_ is that it is non-repudiabl
 
 The CIC system must be sufficiently available so that it is never a bottleneck in the procurement process. In order to provide the advertised benefits over a centralised system it must also be available to an offline party – with the proviso that they will not see the activities of other parties; and that modifications made in this state may need to be negotiated once back online, prior to a _contract point_ (see §[integrity](#integrity)).
 
-| Losses       | Category     | Severity (depends on)        |
-| ------------ | ------------ | ---------------------------- |
-| Order delays | Productivity | Medium (attacker capability) |
+| losses       | category     | indicative severity (depends on) |
+| ------------ | ------------ | -------------------------------- |
+| Order delays | Productivity | Medium (attacker capability)     |
 
 ### auditing
 
@@ -112,9 +116,9 @@ For the protection of personal information, an operation actor assignment is not
 
 The ordering of visible operations can theoretically vary between parties, for example due to concurrent or offline operations. While this may be accounted for in the data structure, such that the draft order _converges_ to the same state for all parties, the auditable history must preserve _causation_. This requires that if an operation _B_ follows an operation _A_ in the history of the party that enacted _B_, it follows _A_ for all parties.
 
-| Losses     | Category                       | Severity (depends on)       |
-| ---------- | ------------------------------ | --------------------------- |
-| Litigation | Fines & Judgements, Reputation | Medium (legal fees & fines) |
+| losses     | category                       | indicative severity (depends on) |
+| ---------- | ------------------------------ | -------------------------------- |
+| Litigation | Fines & Judgements, Reputation | Medium (legal fees & fines)      |
 
 ### authentication
 
@@ -124,7 +128,7 @@ Authentication is defined in the [eIDAS regulation, Article 3(5)](https://www.ei
 
 Specific authentication requirements are out of scope.
 
-| Losses                                                   |
+| losses                                                   |
 | -------------------------------------------------------- |
 | _per confidentiality, integrity, availability, auditing_ |
 
@@ -139,7 +143,7 @@ In a collaborative draft order, access control requirements must be explicit, ba
 
 An initial analysis of draft order access rules can be found in the [Federated Bookkeeping research project](https://github.com/federatedbookkeeping/research/issues/4). For this analysis, the objective is to be able to compute fine-grained authorisation according to a declared scheme.
 
-| Losses                                                   |
+| losses                                                   |
 | -------------------------------------------------------- |
 | _per confidentiality, integrity, availability, auditing_ |
 
@@ -159,13 +163,13 @@ All management activities, when conducted according to normal ICT security good 
 
 Personal mobile and desktop devices should not need to have special security settings applied at the operating system level (although they may do, for example according to an organisational policy).
 
-| Losses                                                   |
+| losses                                                   |
 | -------------------------------------------------------- |
 | _per confidentiality, integrity, availability, auditing_ |
 
 ## 1. application profile
 
-This section describes a hypothetical CIC application, using decentralised, real-time sharing of a draft order, with only enough detail to elucidate applicable security threats.
+This section describes a hypothetical CIC application, using decentralised sharing of a draft order, with only enough detail to elucidate applicable security threats.
 
 ### deployment
 
@@ -232,9 +236,10 @@ Noting that, in parallel with the order state, the journal also appears in multi
 
 ## 2. application composition
 
-The data flow diagram shows the processes, data stores, actors, data flows and trust boundaries (see [key](../threat-dragon-key.png)) which are subject to threats. Note that compared to the [deployment](#deployment) diagram above, only one user is shown, to avoid duplication for other equivalent users.
+The data flow diagram shows the processes, data stores, actors, data flows and trust boundaries which are subject to threats. Note that compared to the [deployment](#deployment) diagram above, only one user is shown, to avoid duplication for other equivalent users.
 
-![e-invoicing](e-invoicing.threat-dragon.png)
+| ![e-invoicing](e-invoicing.threat-dragon.png) | key<br />![key](../threat-dragon-key.png) |
+| --------------------------------------------- | ----------------------------------------- |
 
 ### user
 
@@ -270,7 +275,7 @@ The draft order service serves three primary functions:
 
 ### agents
 
-| Agent                | Motivation                                                   | Capability                                            |
+| agent                | motivation                                                   | capability                                            |
 | -------------------- | ------------------------------------------------------------ | ----------------------------------------------------- |
 | Legitimate user      | Financial advantage<br />Grievance<br />Whistleblowing<br />Corruption | Disclosure via side-channel<br />Incorrect data entry |
 | Competitor           | Business Intelligence<br />Sabotage<br />Anti-competitive    | Social engineering<br />Hacker engagement             |
@@ -279,7 +284,7 @@ The draft order service serves three primary functions:
 
 ### attacks
 
-| Category               | Goals                                                        | Attacks                                                      | Agents                                                    |
+| category               | goals                                                        | attacks                                                      | agents                                                    |
 | ---------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | --------------------------------------------------------- |
 | Spoofing               | Obtain payment without intent to deliver                     | Identity theft (of seller)                                   | Hacker                                                    |
 | Tampering              | Force an illegitimate contract (e.g. incorrect pricing)<br />Theft of goods (e.g. incorrect delivery address) | Message forgery<br />Identity theft<br />Direct tampering of storage | Legitimate user<br />System administrator<br />Hacker     |
@@ -291,7 +296,7 @@ The draft order service serves three primary functions:
 
 ### vectors
 
-| Attack                             | Components                                        | Comment                                                      |
+| attack                             | components                                        | comment                                                      |
 | ---------------------------------- | ------------------------------------------------- | ------------------------------------------------------------ |
 | Identity theft                     | Authentication                                    | _Out of scope_                                               |
 | Message forgery                    | _All data flows_<br />Messaging                   | Can occur in the network or at process boundaries            |
@@ -307,7 +312,7 @@ The draft order service serves three primary functions:
 
 The CIC system proposed can be characterised as a hybrid centralised/decentralised information system, in which  authority (especially in the eyes of policy and regulation) primarily resides with the order parties – buyer and seller organisations; and these are already in possession of centralised systems, most pertinently for bookkeeping. However for a draft order, authority is shared between these parties, and in particular, authorisation must be enacted without reliance on a central third party.
 
-The data ontology (draft order structure) is very well defined in authoritative standards and is unlikely to be different between system instances. So ontology data would not be shared in the dataset. However, the possibility of message forgery, direct tampering of storage and injection attacks means that maintenance of the live data integrity must still be controlled.
+The data ontology (draft order structure) is very well defined in authoritative standards and is unlikely to be different between system instances. So ontology data would not be shared in the dataset. However, the possibility of message forgery, direct tampering of storage and injection attacks means that maintenance of the data integrity must still be controlled.
 
 The identified losses suggest that the most important threats to control in a CIC system concern integrity and auditing, because of the risk of financial loss and litigation. Availability risks are mitigated by the possibility of fallback to conventional practices, and the severity of confidentiality risks are generally low.
 
