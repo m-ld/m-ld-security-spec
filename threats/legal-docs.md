@@ -88,9 +88,9 @@ When using e-documents this has led to the common practice of printing out and r
 
 When using p2pl-doc, such sharing should also break the link to the original document, so that no new updates are provided.
 
-| losses                          | category                                 | severity (depends on)      |
-| ------------------------------- | ---------------------------------------- | -------------------------- |
-| Disclosure of legal information | Response, Fines & Judgements, Reputation | High (scope of disclosure) |
+| losses                          | category                                 | indicative severity (depends on) |
+| ------------------------------- | ---------------------------------------- | -------------------------------- |
+| Disclosure of legal information | Response, Fines & Judgements, Reputation | High (scope of disclosure)       |
 
 ### integrity
 
@@ -100,7 +100,7 @@ However, in cases where specific headings or wordings are required, such as for 
 
 In addition, future directions for ontology- or code-driven formalisation of content (hereafter 'content form') for a much wider range of documents should be supported. This would allow conformance to an expected document structure to be machine-checkable, saving time and money.
 
-| losses                                        | category     | severity (depends on)                 |
+| losses                                        | category     | indicative severity (depends on)      |
 | --------------------------------------------- | ------------ | ------------------------------------- |
 | Non-conformity to required document structure | Productivity | Medium (procedure complexity & stage) |
 
@@ -108,7 +108,7 @@ In addition, future directions for ontology- or code-driven formalisation of con
 
 The p2pl-doc system must be sufficiently available so that it is never a bottleneck in client interactions or legal proceedings. It should preferably be available to an offline party – with the proviso that they will not see the activities of other parties. (UK courts [have Wifi available](https://www.gov.uk/government/news/improving-wifi-in-our-criminal-courts) for use by legal professionals; but anecdotally it is not always reliable.)
 
-| losses                    | category                 | severity (depends on)              |
+| losses                    | category                 | indicative severity (depends on)   |
 | ------------------------- | ------------------------ | ---------------------------------- |
 | Client interaction delays | Productivity, Reputation | Medium (attacker capability)       |
 | Legal proceedings delays  | Productivity, Reputation | High (attacker capability & stage) |
@@ -119,9 +119,9 @@ Auditing of the p2pl-doc system should support GDPR compliance and general busin
 
 There is otherwise no regulatory requirement for fine-grained attribution of individual edits to specific users, although some version history capability is generally expected in document management systems.
 
-| losses                 | category                       | severity (depends on)       |
-| ---------------------- | ------------------------------ | --------------------------- |
-| Litigation (e.g. GDPR) | Fines & Judgements, Reputation | Medium (legal fees & fines) |
+| losses                 | category                       | indicative severity (depends on) |
+| ---------------------- | ------------------------------ | -------------------------------- |
+| Litigation (e.g. GDPR) | Fines & Judgements, Reputation | Medium (legal fees & fines)      |
 
 ### authentication
 
@@ -178,7 +178,7 @@ Personal mobile and desktop devices should not need to have special security set
 
 ## 1. application profile
 
-This section describes a hypothetical p2pl-doc application, using decentralised, real-time sharing of legal documents, with only enough detail to elucidate applicable security threats.
+This section describes a hypothetical p2pl-doc application, using decentralised sharing of legal documents, with only enough detail to elucidate applicable security threats.
 
 For the purposes of a manageable scope and applicability to **m-ld**, in the application we will consider documents with the conventional numbered paragraph structure, which may conform to some schema (e.g. ontology-based or a content form). Other documents, and generic groupware functionality (e.g. tasks and calendaring) which may be bundled in commercial legal document management systems are not considered.
 
@@ -238,9 +238,10 @@ Further, since so little legal content is machine-readable, one possible benefit
 
 ## 2. application composition
 
-The data flow diagram shows the processes, data stores, actors, data flows and trust boundaries (see [key](../threat-dragon-key.png)) which are subject to threats. Note that compared to the [deployment](#deployment) diagram above, only one user is shown, to avoid duplication for other equivalent users.
+The data flow diagram shows the processes, data stores, actors, data flows and trust boundaries which are subject to threats. Note that compared to the [deployment](#deployment) diagram above, only one user is shown, to avoid duplication for other equivalent users.
 
-![legal document](legal-docs.threat-dragon.png)
+| ![legal document](legal-docs.threat-dragon.png) | key<br />![key](../threat-dragon-key.png) |
+| ----------------------------------------------- | ----------------------------------------- |
 
 ### user
 
