@@ -7,6 +7,23 @@
   abstract = {Common approach of the threat modelling includes an analysis of computer system architecture on early stages of development process and creation of threat model. Data Flow Diagrams (DFD) are often used to represent the system organization. The main challenge with threat modelling is that there are no formal approaches to describe the computer system architecture and structured knowledge sources of threats and countermeasures. To overcome these restrictions we have created ontology-driven threat modelling (OdTM) framework based on base threat model, used to develop various domain-specific threat models. Each domain-specific threat model contains a set of typical components of some architectural domain, threats and countermeasures. A system architect describes its computer system with DFD diagram; then automatic reasoning procedures are used to semantically interpret the diagram and figure out relevant threats and countermeasures for the system. We approach a conception of context security patterns as countermeasures. Context security pattern contains a precise description of security problem and its solution. Also it has criteria that allow to automatically map it to system component. We propose three ways to integrate context security patterns with domain-specific threat models: with data flow templates, through association with threats, and the use of labels. All the models, discussed in this work, can be implemented as OWL (Web Ontology Language) ontologies with Description logics (DL) as a mathematical background.}
 }
 
+@article{casanovasSemanticWebLegal2016,
+  title = {Semantic {{Web}} for the {{Legal Domain}}: {{The}}\&nbsp;next Step},
+  shorttitle = {Semantic {{Web}} for the {{Legal Domain}}},
+  author = {Casanovas, Pompeu and Palmirani, Monica and Peroni, Silvio and {van Engers}, Tom and Vitali, Fabio},
+  year = {2016},
+  month = jan,
+  journal = {Semantic Web},
+  volume = {7},
+  number = {3},
+  pages = {213--227},
+  publisher = {{IOS Press}},
+  issn = {1570-0844},
+  doi = {10.3233/SW-160224},
+  abstract = {Ontology-driven systems with reasoning capabilities in the legal field are now better understood. Legal concepts are not discrete, but make up a dynamic continuum between common sense terms, specific technical use, and professional knowledge, in an e},
+  language = {en}
+}
+
 @misc{CEFEDeliveryBuilding2016,
   title = {{{CEF eDelivery Building Block Security Controls}} Guidance},
   year = {2016},
@@ -27,6 +44,29 @@
   abstract = {The purpose of this document is to provide interested organisations with a deeper understanding of the PEPPOL Transport Infrastructure, its key features, components and governance}
 }
 
+@misc{CyberThreatUK2018,
+  title = {The Cyber Threat to {{UK}} Legal Sector},
+  year = {2018},
+  month = jul,
+  publisher = {{National Cyber Security Centre}},
+  url = {https://www.ncsc.gov.uk/report/-the-cyber-threat-to-uk-legal-sector--2018-report},
+  urldate = {2021-07-20},
+  abstract = {A new report from the NCSC explaining how UK law firms - of all sizes - can protect themselves from common cyber threats.},
+  language = {en}
+}
+
+@misc{ettlingCloudBiggestThreat2015,
+  title = {The {{Cloud}}'s {{Biggest Threat Are Data Sovereignty Laws}}},
+  author = {Ettling, Mike},
+  year = {2015},
+  month = dec,
+  journal = {TechCrunch},
+  url = {https://social.techcrunch.com/2015/12/26/the-clouds-biggest-threat-are-data-sovereignty-laws/},
+  urldate = {2021-07-16},
+  abstract = {The beauty of the cloud is the promise of simplification and standardization -- without regard to physical or geographic boundaries. It's this ``any time, any place, any device'' flexibility that is driving rapid adoption. However, new government regulations on data sovereignty threaten to complicate\ldots},
+  language = {en-US}
+}
+
 @misc{franzThreePartsSecurity,
   title = {The {{Three Parts}} of {{Security}}},
   author = {Franz, Bill},
@@ -44,8 +84,8 @@
   abstract = {Using the factor analysis of information risk (FAIR) methodology developed over ten years and adopted by corporations worldwide, Measuring and Managing Information Risk provides a proven and credible framework for understanding, measuring, and analyzing information risk of any size or complexity. Intended for organizations that need to either build a risk management program from the ground up or strengthen an existing one, this book provides a unique and fresh perspective on how to do a basic quantitative risk analysis. Covering such key areas as risk theory, risk calculation, scenario modeling, and communicating risk within the organization, Measuring and Managing Information Risk helps managers make better business decisions by understanding their organizational risk.Uses factor analysis of information risk (FAIR) as a methodology for measuring and managing risk in any organization.Carefully balances theory with practical applicability and relevant stories of successful implementation.Includes examples from a wide variety of businesses and situations presented in an accessible writing style.},
   googlebooks = {oAR0AwAAQBAJ},
   isbn = {978-0-12-799932-6},
-  keywords = {Business \& Economics / Information Management,Computers / Security / General},
-  language = {en}
+  language = {en},
+  keywords = {Business \& Economics / Information Management,Computers / Security / General}
 }
 
 @article{gharibCOPriCoreOntology2021,
@@ -53,14 +93,14 @@
   author = {Gharib, Mohamad and Giorgini, Paolo and Mylopoulos, John},
   year = {2021},
   month = may,
+  journal = {Data \& Knowledge Engineering},
   volume = {133},
   pages = {101888},
   issn = {0169-023X},
   doi = {10.1016/j.datak.2021.101888},
   abstract = {Nowadays, most enterprises collect, store, and manage personal information of customers to deliver their services. In such a setting, privacy has emerged as a key concern since companies often neglect or even misuse personal data. In response to multiple massive breaches of personal data, governments around the world have enacted laws and regulations for privacy protection. These laws dictate privacy requirements for any system that acquires and manages personal data. Unfortunately, these requirements are often incomplete and/or inaccurate as many RE practitioners are insufficiently versed with privacy requirements and how are they different from other requirements, such as security. To tackle this problem, we developed a comprehensive ontology for privacy requirements. In particular, the contributions of this work include the derivation of an ontology from a previously conducted systematic literature review, an implementation using an ontology definition tool (Prot\'eg\'e), a demonstration of its coverage through an extensive example on Ambient Assisted Living, and a validation through competency questions. Also, we evaluate the ontology against the common pitfalls for ontologies with the help of some software tools, lexical semantics experts, and privacy and security researchers. The ontology presented herein (COPri v.2) has been enhanced with extensions motivated by the feedback received from privacy and security experts.},
-  journal = {Data \& Knowledge Engineering},
-  keywords = {Conceptual modeling,PbD,Privacy by Design,Privacy ontology,Privacy requirements,Requirements engineering},
-  language = {en}
+  language = {en},
+  keywords = {Conceptual modeling,PbD,Privacy by Design,Privacy ontology,Privacy requirements,Requirements engineering}
 }
 
 @misc{jagannathanAdvancedThreatModelling2012,
@@ -84,7 +124,17 @@
   abstract = {Secure messaging apps like WhatsApp, Signal, and iMessage have brought end-to-end encryption to over 1 billion users. The protocols underlying these apps provide much stronger security properties than earlier encryption systems such as PGP/GnuPG. This makes them an interesting basis for implementing CRDT-based data systems with end-to-end security: if we simply send all the CRDT operations or state updates via a secure messaging protocol, we inherit its strong security properties. However, there are lots of subtleties about the guarantees provided by secure messaging protocols: in particular, the properties that hold for communication between two parties often don't easily generalise to groups of more than two participants. This talk will summarise the current state of research in secure group messaging, and discuss how we can bring this work into the world of CRDTs.}
 }
 
+@article{Ma2020Writing,
+  title = {Writing in Sign: {{Code}} as the next Contract Language? \ding{45}️ ⏭ 💻},
+  author = {Ma, Megan},
+  year = {2020-08-14, 2020-8-14},
+  journal = {MIT Computational Law Report},
+  url = {https://law.mit.edu/pub/writinginsign},
+  abstract = {The use of formal logic for governance has a rich ancestry. From Liebniz to Boole, mathematical notation was conceivably dialogic; capable of expression and construction of arguments. With the rise of artificial legal intelligence, computable contracts \textendash{} and more broadly, computable law \textendash{} are making a powerful return. Contracts may be represented as computer data with terms made `machine-readable' through a process of conversion: from descriptive natural language to consonant computer instruction. Conditions of agreements are not explained but listed as structured data records. However, despite the capacity to express contracts in an alternative computable form, no means exist for interpreting the code. Rather, the interpretation of contractual obligations is perceived as irrelevant. Should digital data inscription and processing be considered a form of legal writing? If so, would it change the character of law? This paper considers the conundrum: what is the significance of the medium in contract drafting? The paper is, therefore, a thought experiment on the translation of text to numbers by unpacking several formal programming languages used in computable contracts. In identifying the logic of these languages, the paper studies methods of legal writing. The hypothesis is that, by analyzing the components of both legal and programming languages, we can develop a richer dialogue on the sociological implications of translating law into algorithmic form. Furthermore, we can begin to consider what contextual information would be required to `interpret' algorithmic contractual language.}
+}
+
 @phdthesis{millerRobustCompositionUnified2006,
+  type = {{{PhD Thesis}}},
   title = {Robust {{Composition}}: {{Towards}} a {{Unified Approach}} to {{Access Control}} and {{Concurrency Control}}},
   author = {Miller, Mark Samuel},
   year = {2006},
@@ -92,8 +142,7 @@
   address = {{Baltimore, Maryland, USA}},
   url = {http://www.erights.org/talks/thesis/markm-thesis.pdf},
   urldate = {2021-06-27},
-  school = {Johns Hopkins University},
-  type = {{{PhD Thesis}}}
+  school = {Johns Hopkins University}
 }
 
 @inproceedings{netterRefiningPatternBasedReference2010,
@@ -135,15 +184,15 @@
   author = {Pereira, T. and Barreto, L. and Amaral, A.},
   year = {2017},
   month = jan,
+  journal = {Procedia Manufacturing},
+  series = {Manufacturing {{Engineering Society International Conference}} 2017, {{MESIC}} 2017, 28-30 {{June}} 2017, {{Vigo}} ({{Pontevedra}}), {{Spain}}},
   volume = {13},
   pages = {1253--1260},
   issn = {2351-9789},
   doi = {10.1016/j.promfg.2017.09.047},
   abstract = {Currently Information and Communication Technologies (ICT) support most of the industrial manufacturing processes. The IT revolution has brought an important transformation in organizations with high impacts, which are comparable to the mechanization and electricity brought in the first and second industrial revolution. This evolvement has promoted the emergence of cloud-based systems, the Internet of Things (IoT), Big Data, Industry 4.0, BYOD (Bring Your Own Device) and CYOD (Choose Your Own Device) trends. However, new technological solutions always carry security vulnerabilities, which most of time reveal unexpected risks. In fact, with increasing reliance on technology to gain competitive advantage, security issues have been one of the most critical and challenging requirements for conducting successful business. In this paper, it is highlighted some reflections regarding the challenges of Industry 4.0 emphasizing the security issues, towards raising awareness for security good practices within Industry 4.0.},
-  journal = {Procedia Manufacturing},
-  keywords = {Communication Technologies (ICT),Industry 4.0,Information,Security Challenges,Security Incidents},
   language = {en},
-  series = {Manufacturing {{Engineering Society International Conference}} 2017, {{MESIC}} 2017, 28-30 {{June}} 2017, {{Vigo}} ({{Pontevedra}}), {{Spain}}}
+  keywords = {Communication Technologies (ICT),Industry 4.0,Information,Security Challenges,Security Incidents}
 }
 
 @misc{raevuoriBaswarePersonalData2020,
@@ -161,15 +210,15 @@
   author = {Souag, Amina and Salinesi, Camille and Mazo, Ra{\'u}l and {Comyn-Wattiau}, Isabelle},
   editor = {Piessens, Frank and Caballero, Juan and Bielova, Nataliia},
   year = {2015},
+  series = {Lecture {{Notes}} in {{Computer Science}}},
   pages = {157--177},
   publisher = {{Springer International Publishing}},
   address = {{Cham}},
   doi = {10.1007/978-3-319-15618-7_13},
   abstract = {Security is an important issue that needs to be taken into account at all stages of information system development, including early requirements elicitation. Early analysis of security makes it possible to predict threats and their impacts and define adequate security requirements before the system is in place. Security requirements are difficult to elicit, analyze, and manage. The fact that analysts' knowledge about security is often tacit makes the task of security requirements elicitation even harder. Ontologies are known for being a good way to formalize knowledge. Ontologies, in particular, have been proved useful to support reusability. Requirements engineering based on predefined ontologies can make the job of requirement engineering much easier and faster. However, this very much depends on the quality of the ontology that is used. Some security ontologies for security requirements have been proposed in the literature. None of them stands out as complete. This paper presents a core and generic security ontology for security requirements engineering. Its core and generic status is attained thanks to its coverage of wide and high-level security concepts and relationships. We implemented the ontology and developed an interactive environment to facilitate the use of the ontology during the security requirements engineering process. The proposed security ontology was evaluated by checking its validity and completeness compared to other ontologies. Moreover, a controlled experiment with end-users was performed to evaluate its usability.},
   isbn = {978-3-319-15618-7},
-  keywords = {concepts,elicitation,ontology,Security,security requirements},
   language = {en},
-  series = {Lecture {{Notes}} in {{Computer Science}}}
+  keywords = {concepts,elicitation,ontology,Security,security requirements}
 }
 
 @article{syedUCOUnifiedCybersecurity2016,
@@ -181,9 +230,9 @@
   publisher = {{AAAI Press}},
   doi = {10.13016/M2862BG1V},
   abstract = {In this paper we describe the Unified Cybersecurity Ontology (UCO) that is intended to support information integration and cyber situational awareness in cybersecurity systems. The ontology incorporates and integrates heterogeneous data and knowledge schemas from different cybersecurity systems and most commonly used cybersecurity standards for information sharing and exchange. The UCO ontology has also been mapped to a number of existing cybersecurity ontologies as well as concepts in the Linked Open Data cloud. Similar to DBpedia which serves as the core for general knowledge in Linked Open Data cloud, we envision UCO to serve as the core for cybersecurity domain, which would evolve and grow with the passage of time with additional cybersecurity data sets as they become available. We also present a prototype system and concrete use cases supported by the UCO ontology. To the best of our knowledge, this is the first cybersecurity ontology that has been mapped to general world ontologies to support broader and diverse security use cases. We compare the resulting ontology with previous efforts, discuss its strengths and limitations, and describe potential future work directions.},
-  annotation = {Accepted: 2018-10-31T17:48:05Z},
   copyright = {This item is likely protected under Title 17 of the U.S. Copyright Law. Unless on a Creative Commons license, for uses protected by Copyright Law, contact the copyright holder or the author.},
-  language = {en\_US}
+  language = {en\_US},
+  annotation = {Accepted: 2018-10-31T17:48:05Z}
 }
 
 @article{yaacoubRoboticsCyberSecurity2021,
@@ -192,20 +241,20 @@
   author = {Yaacoub, Jean-Paul A. and Noura, Hassan N. and Salman, Ola and Chehab, Ali},
   year = {2021},
   month = mar,
+  journal = {International Journal of Information Security},
   issn = {1615-5270},
   doi = {10.1007/s10207-021-00545-8},
   abstract = {The recent digital revolution led robots to become integrated more than ever into different domains such as agricultural, medical, industrial, military, police (law enforcement), and logistics. Robots are devoted to serve, facilitate, and enhance the human life. However, many incidents have been occurring, leading to serious injuries and devastating impacts such as the unnecessary loss of human lives. Unintended accidents will always take place, but the ones caused by malicious attacks represent a very challenging issue. This includes maliciously hijacking and controlling robots and causing serious economic and financial losses. This paper reviews the main security vulnerabilities, threats, risks, and their impacts, and the main security attacks within the robotics domain. In this context, different approaches and recommendations are presented in order to enhance and improve the security level of robotic systems such as multi-factor device/user authentication schemes, in addition to multi-factor cryptographic algorithms. We also review the recently presented security solutions for robotic systems.},
-  journal = {International Journal of Information Security},
   language = {en}
 }
 
 @misc{zimmermannWhyWrotePGP1999,
+  type = {Essay},
   title = {Why {{I Wrote PGP}}},
   author = {Zimmermann, Philip},
   year = {1999},
   url = {http://www.philzimmermann.com/EN/essays/WhyIWrotePGP.html},
-  urldate = {2021-06-22},
-  type = {Essay}
+  urldate = {2021-06-22}
 }
 
 
