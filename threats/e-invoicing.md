@@ -257,7 +257,7 @@ Once authenticated, the user makes data entries into the order, according to the
 
 ### local app
 
-The local desktop or mobile app accepts data entries from the user and updates the local state of the draft invoice. The update are propagated to other copies of the order by publishing them to the messaging service. Changes are also propagated to the local storage on the device, so that if the network is unavailable, they are not lost when the app is closed or otherwise terminates.
+The local desktop or mobile app accepts data entries from the user and updates the local state of the order. The update are propagated to other copies of the order by publishing them to the messaging service. Changes are also propagated to the local storage on the device, so that if the network is unavailable, they are not lost when the app is closed or otherwise terminates.
 
 Note that data entry, operation publication and saves to local storage may be subject to batching or other optimisations to limit traffic.
 
@@ -304,17 +304,17 @@ The order service serves three primary functions:
 
 ### vectors
 
-| attack                             | components                                        | comment                                                      |
-| ---------------------------------- | ------------------------------------------------- | ------------------------------------------------------------ |
-| Identity theft                     | Authentication                                    | _Out of scope_                                               |
-| Message forgery                    | _All data flows_<br />Messaging                   | Can occur in the network or at process boundaries            |
-| Direct tampering of storage        | Local storage<br />Server storage                 | Requires direct access to components                         |
-| Signature forgery                  | Local app<br />Messaging<br />Draft order service | Requires direct access to components<br />e.g. injection of dynamically-loaded components |
-| Communication interception         | _All data flows_<br />Messaging                   |                                                              |
-| Denial-of-service by data volume   | Messaging<br />Draft order service                |                                                              |
-| Denial-of-service by data velocity | Messaging<br />Draft order service                |                                                              |
-| Injection                          | Local app                                         |                                                              |
-| Social engineering                 | User                                              |                                                              |
+| attack                             | components                                  | comment                                                      |
+| ---------------------------------- | ------------------------------------------- | ------------------------------------------------------------ |
+| Identity theft                     | Authentication                              | _Out of scope_                                               |
+| Message forgery                    | _All data flows_<br />Messaging             | Can occur in the network or at process boundaries            |
+| Direct tampering of storage        | Local storage<br />Server storage           | Requires direct access to components                         |
+| Signature forgery                  | Local app<br />Messaging<br />Order service | Requires direct access to components<br />e.g. injection of dynamically-loaded components |
+| Communication interception         | _All data flows_<br />Messaging             |                                                              |
+| Denial-of-service by data volume   | Messaging<br />Order service                |                                                              |
+| Denial-of-service by data velocity | Messaging<br />Order service                |                                                              |
+| Injection                          | Local app                                   |                                                              |
+| Social engineering                 | User                                        |                                                              |
 
 ## 4. summary
 
