@@ -6,7 +6,7 @@ _The motivation and structure of this document are described in the [folder READ
 
 This document presents a threat model for Collaborative e-Invoice Composition (CIC). The vision behind CIC is that _a buyer and a seller can collaborate to determine the contents of an order_.
 
-The conventional approach to ordering involves a _process_ (requisition and procurement) and a number of exchanged _artefacts_ (a request for quotation, an order, an invoice, a shipping note, etc). The concept of collaborative e-invoicing notices that while parts of the process have strict conventional rules (some with associated legal regulations), others can be modelled as a negotiation, or even – with implied mutual goodwill – a _collaboration_.
+The conventional approach to ordering involves a _process_ (requisition and procurement) and a number of exchanged _artefacts_ (a request for quotation, a purchase order, a sales order, an invoice, a shipping note, etc). The concept of collaborative e-invoicing notices that while parts of the process have strict conventional rules (some with associated legal regulations), others can be modelled as a negotiation, or even – with implied mutual goodwill – a _collaboration_.
 
 This collaboration is conceived as working on a _shared document_ representing the procurement. The document is simultaneously available in multiple physical locations. Changes to the document are committed to all locations, transparently, as fast as the network allows. If one location is offline, then the local changes are merged into every other location when the network becomes available.
 
@@ -16,7 +16,7 @@ See [collaborative-invoice-composition](https://github.com/pondersource/collabor
 
 ## 0. objectives
 
-The function of a CIC system is to allow the parties involved in a procurement transaction to contribute changes to a shared document – the "draft order" – which represents all the relevant information about the procurement. For example, the buyer can set the requested quantities of items to be bought; and the seller can set prices. Note that the language already implies authorisations – for example, the buyer is not allowed to set prices. This will be further refined by significant changes of state – for example, during a negotiation prices can change, but once payment has been processed, further changes may not be allowed.
+The function of a CIC system is to allow the parties involved in a procurement transaction to contribute changes to a shared document – the "order" – which represents all the relevant information about the procurement. For example, the buyer can set the requested quantities of items to be bought; and the seller can set prices. Note that the language already implies authorisations – for example, the buyer is not allowed to set prices. This will be further refined by significant changes of state – for example, during a negotiation prices can change, but once payment has been processed, further changes may not be allowed.
 
 ### policies & standards
 
@@ -64,15 +64,15 @@ Existing electronic procurement standards, then, assume a process model focusing
 
 ### confidentiality
 
-A draft order must be confidential; visible only to identified user roles, e.g. buyer, seller, shipping agent, lender; and delegates such as notaries and solicitors.
+An order must be confidential; visible only to identified user roles, e.g. buyer, seller, shipping agent, lender; and delegates such as notaries and solicitors.
 
-At different stages of the procurement lifecycle, different visibilities apply. It may originate with a process at the buyer (a _requisition_, e.g. a tender or Request for Quotation, RfQ) or at the seller (e.g. an auction), and at this stage could be shared with multiple second-parties, or even publicly.
+At different stages of the lifecycle of a procurement, different visibilities apply. It may originate with a process at the buyer (a _requisition_, e.g. a tender or Request for Quotation, RfQ) or at the seller (e.g. an auction), and at this stage could be shared with multiple second-parties, or even publicly.
 
-When a specific seller or buyer has been selected, the ongoing state of the procurement becomes private to the two parties. It is from this point that we model a draft order, which therefore has strictly one buying party and one selling party.
+When a specific seller or buyer has been selected, the ongoing state of the procurement becomes private to the two parties. It is from this point that we model an order, which therefore has strictly one buying party and one selling party.
 
-Each party may associate private data with the draft order, such as alternative suppliers (buyer), or warehouse locations (seller). Such associated data are out of scope of this analysis. Other roles may share components of the document, for example, a shipping agent may have access to required information for a customs declaration, but not actual prices paid.
+Each party may associate private data with the order, such as alternative suppliers (buyer), or warehouse locations (seller). Such associated data are out of scope of this analysis. Other roles may share components of the document, for example, a shipping agent may have access to required information for a customs declaration, but not actual prices paid.
 
-Also confidential is the _history_ of the draft order (see also §[auditing](#auditing)). Parties should only have visibility on:
+Also confidential is the _history_ of the order (see also §[auditing](#auditing)). Parties should only have visibility on:
 
 - the history of components to which they have access, and
 - historical operations during the period of their read access.
@@ -83,11 +83,14 @@ Also confidential is the _history_ of the draft order (see also §[auditing](#au
 
 ### integrity
 
-A draft order data model has invariants (e.g. quantity of an item is always greater than or equal to zero, and for discrete items must be an integer), as well as pre-conditions and post-conditions for operations (e.g. a quantity cannot be changed if its item has been shipped).
+The order data model has invariants (e.g. quantity of an item is always greater than or equal to zero, and for discrete items must be an integer), as well as pre-conditions and post-conditions for operations (e.g. a quantity cannot be changed if its item has been shipped).
 
-At any moment, the 'current' state of a draft order can be different between parties, e.g. if a change has just been made and has not been received by another party; this is especially manifest if one or other party is offline. Nevetheless, it is necessary for some states to be unambiguously 'contractual', e.g. if physical assets are to be committed, or for legal reasons. These _contract points_ correspond to documents in a conventional e-invoicing system, such as: tender, quote, purchase order, despatch advice, invoice.
+At any moment, the 'current' state of an order can be different between parties, e.g. if a change has just been made and has not been received by another party; this is especially manifest if one or other party is offline. Nevetheless, it is necessary for some states to be unambiguously 'contractual', e.g. if physical assets are to be committed, or for legal reasons. These _contract points_ correspond to documents in a conventional e-invoicing system, such as: tender, quote, purchase order, sales order, despatch advice, invoice.
 
-The relevant security property of a _contract point_ is that it is non-repudiable by either party.
+The relevant security properties of a _contract point_ are:
+
+- It is non-repudiable by either party
+- Its information is recoverable (e.g. by taking a snapshot and storing it separately)
 
 | losses                   | category     | indicative severity (depends on)         |
 | ------------------------ | ------------ | ---------------------------------------- |
@@ -106,15 +109,15 @@ The CIC system must be sufficiently available so that it is never a bottleneck i
 
 ### auditing
 
-All visible operations on a draft order must be attributable, non-repudiably, to a single actor identity (not just a role), and reliably time-stamped. This information must be available to an authorised auditor.
+All visible operations on an order must be attributable, non-repudiably, to a single actor identity (not just a role), and reliably time-stamped. This information must be available to an authorised auditor.
 
 - A _visible_ operation is one that enacts an atomic change which can be seen by another party.
 - An _actor_ can be a human being or a machine.
-- A machine actor may only enact attributed operations by executing processes for which the process definition and inputs are common knowledge (for example, application of packing rates to line items). If these conditions are not met, the operation must be verified by, and attributed to, a human actor. Alternatively, the result of simple calculations need not be included in the shared draft order data at all, but calculated on display; e.g. totals.
+- A machine actor may only enact attributed operations by executing processes for which the process definition and inputs are common knowledge (for example, application of packing rates to line items). If these conditions are not met, the operation must be verified by, and attributed to, a human actor. Alternatively, the result of simple calculations need not be included in the shared order data at all, but calculated on display; e.g. totals.
 
 For the protection of personal information, an operation actor assignment is not necessarily visible to roles other than the auditor. However, the actor's party affiliation (their employer, or owner, acting as buyer or seller) must be visible to all parties with read access to the affected information.
 
-The ordering of visible operations can theoretically vary between parties, for example due to concurrent or offline operations. While this may be accounted for in the data structure, such that the draft order _converges_ to the same state for all parties, the auditable history must preserve _causation_. This requires that if an operation _B_ follows an operation _A_ in the history of the party that enacted _B_, it follows _A_ for all parties.
+The ordering of visible operations can theoretically vary between parties, for example due to concurrent or offline operations. While this may be accounted for in the data structure, such that the order _converges_ to the same state for all parties, the auditable history must preserve _causation_. This requires that if an operation _B_ follows an operation _A_ in the history of the party that enacted _B_, it follows _A_ for all parties.
 
 | losses     | category                       | indicative severity (depends on) |
 | ---------- | ------------------------------ | -------------------------------- |
@@ -122,7 +125,7 @@ The ordering of visible operations can theoretically vary between parties, for e
 
 ### authentication
 
-An actor (human or machine, see §[auditing](#auditing)) must be strongly identified and authenticated for access to a draft order according to its §[authorisation](#authorisation).
+An actor (human or machine, see §[auditing](#auditing)) must be strongly identified and authenticated for access to an order according to its §[authorisation](#authorisation).
 
 Authentication is defined in the [eIDAS regulation, Article 3(5)](https://www.eid.as/#article3) as “an electronic process that enables the electronic identification of a natural or legal person, or the origin and integrity of data in electronic form to be confirmed”. In the Peppol/CEF four-corner model, authentication strength is dependent on the security policy of the access point.
 
@@ -136,12 +139,12 @@ Specific authentication requirements are out of scope.
 
 Existing e-Invoicing standards based on a document-exchange model do not define fine-grained access controls, as each document is immutable and sent explicitly to a known (and identified) recipient.
 
-In a collaborative draft order, access control requirements must be explicit, based on:
+In a collaborative order, access control requirements must be explicit, based on:
 
 - Party role; e.g. a seller cannot change a line item quantity, and a buyer cannot change a price.
-- State; e.g. a price cannot be updated after the 'purchase order' _contract point_ (see §[integrity](#integrity)).
+- State; e.g. a price cannot be updated after the 'sales order' _contract point_ (see §[integrity](#integrity)).
 
-An initial analysis of draft order access rules can be found in the [Federated Bookkeeping research project](https://github.com/federatedbookkeeping/research/issues/4). For this analysis, the objective is to be able to compute fine-grained authorisation according to a declared scheme.
+An initial analysis of order access rules can be found in the [Federated Bookkeeping research project](https://github.com/federatedbookkeeping/research/issues/4). For this analysis, the objective is to be able to compute fine-grained authorisation according to a declared scheme.
 
 | losses                                                   |
 | -------------------------------------------------------- |
@@ -169,30 +172,30 @@ Personal mobile and desktop devices should not need to have special security set
 
 ## 1. application profile
 
-This section describes a hypothetical CIC application, using decentralised sharing of a draft order, with only enough detail to elucidate applicable security threats.
+This section describes a hypothetical CIC application, using decentralised sharing of an order, with only enough detail to elucidate applicable security threats.
 
 ### deployment
 
-The users of CIC interact with the system and each other via an app, available on mobile or desktop devices. For convenience, a web app should also be available. In all cases, the app will use local storage to persist draft order state between sessions, allowing an offline session to be interrupted without data loss.
+The users of CIC interact with the system and each other via an app, available on mobile or desktop devices. For convenience, a web app should also be available. In all cases, the app will use local storage to persist order state between sessions, allowing an offline session to be interrupted without data loss.
 
 <img src="./e-invoicing-deployment.svg" alt="e-invoicing deployment" style="background: white;">
 
 <sub>Icons made by <a href="https://www.flaticon.com/authors/xnimrodx" title="xnimrodx">xnimrodx</a> and <a href="https://www.flaticon.com/authors/vitaly-gorbachev" title="Vitaly Gorbachev">Vitaly Gorbachev</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></sub>
 
-Users of the system will access each other and dependee systems via a local network or the internet. While fully peer-to-peer message delivery options are possible, they are not in widespread use, and so we model a message _broker_ as a service on the network, which is responsible for delivering control messages and draft order change operations. The broker may be implemented as a single server, a cluster, or a world-wide service; but for our purposes we will assume a  process with its own trust boundary.
+Users of the system will access each other and dependee systems via a local network or the internet. While fully peer-to-peer message delivery options are possible, they are not in widespread use, and so we model a message _broker_ as a service on the network, which is responsible for delivering control messages and order change operations. The broker may be implemented as a single server, a cluster, or a world-wide service; but for our purposes we will assume a  process with its own trust boundary.
 
-For persistence of the draft order between sessions, and for parties to be able to access the latest available information whether or not another party is online, a copy of the draft order will be stored in a cloud service accessible to all parties – the _draft order service_. This persistent copy will be kept up-to-date as the network allows when edits are made; recognising that at any time, a party might have a local copy that is more recently updated, for example if they are offline.
+For persistence of the order between sessions, and for parties to be able to access the latest available information whether or not another party is online, a copy of the order will be stored in a cloud service accessible to all parties – the _order service_. This persistent copy will be kept up-to-date as the network allows when edits are made; recognising that at any time, a party might have a local copy that is more recently updated, for example if they are offline.
 
 ### users
 
-To support the objectives, users of the CIC system are modeled as follows. A user assigned one or more _user-roles_ in the scope of a draft order, and belong to a _party_, which itself has a _party-role_. (This is derived from the Peppol/CEF four-corner model, with an access point representing a party, which has its own associated users.)
+To support the objectives, users of the CIC system are modeled as follows. A user assigned one or more _user-roles_ in the scope of an order, and belong to a _party_, which itself has a _party-role_. (This is derived from the Peppol/CEF four-corner model, with an access point representing a party, which has its own associated users.)
 
 | class      | instances                                            | scope            |
 | ---------- | ---------------------------------------------------- | ---------------- |
 | user       | _identified actors_ (human and machine)              | directory system |
-| user-role  | writer, reader, signer, auditor, shipping calculator | draft order      |
+| user-role  | writer, reader, signer, auditor, shipping calculator | order            |
 | party      | _organisation or user_                               | directory system |
-| party-role | buyer, seller, shipping agent, notary, lender        | draft order      |
+| party-role | buyer, seller, shipping agent, notary, lender        | order            |
 
 Examples:
 
@@ -204,9 +207,14 @@ Examples:
 
 ### data
 
-An initial analysis of draft order data can be found in the [Federated Bookkeeping research project](https://github.com/federatedbookkeeping/research/issues/4). In addition to access control rules, a draft order is subject to state changes. Note that the referenced ticket proposes some fine-grained state transitions related to a negotiation e.g. 'seller proposes'. In this analysis we propose a free-form negotiation which more closely aligns with a human interaction, in between the required _contract points_ introduced in §[integrity](#intergrity), as follows:
+An initial analysis of order data can be found in the [Federated Bookkeeping research project](https://github.com/federatedbookkeeping/research/issues/4). In addition to access control rules, an order is subject to state changes. Note that the referenced ticket proposes some fine-grained state transitions related to a negotiation e.g. 'seller proposes'. In this analysis we propose a free-form negotiation which more closely aligns with a human interaction, in between the required _contract points_ introduced in §[integrity](#intergrity).
 
-[![draft order states](./e-invoice-states.svg)](https://dreampuf.github.io/GraphvizOnline/#digraph%20G%20%7B%0A%20%20rankdir%3D%22LR%22%3B%0A%20%20draft%20-%3E%20agreed%3B%0A%20%20agreed%20-%3E%20shipped%3B%0A%20%20agreed%20-%3E%20paid%3B%0A%20%20shipped%20-%3E%20received%3B%0A%20%20received%20-%3E%20concluded%3B%0A%20%20received%20-%3E%20disputed%3B%0A%20%20paid%20-%3E%20concluded%3B%0A%7D)
+[![order states](./e-invoice-states.svg)](https://dreampuf.github.io/GraphvizOnline/#digraph%20G%20%7B%0A%20%20rankdir%3D%22LR%22%3B%0A%20%20draft%20-%3E%20agreed%3B%0A%20%20agreed%20-%3E%20shipped%3B%0A%20%20agreed%20-%3E%20paid%3B%0A%20%20shipped%20-%3E%20received%3B%0A%20%20received%20-%3E%20concluded%3B%0A%20%20received%20-%3E%20disputed%3B%0A%20%20paid%20-%3E%20concluded%3B%0A%7D)
+
+Note:
+
+- In larger-scale procurements, these contract points may apply to sub-parts of the order; for example, a purchase order may be fulfilled by multiple sales orders, as driven by e.g. batch manufacturing or stock availability.
+- Some sellers may require payment prior to shipping; this is a specialisation of the general flow.
 
 The following access rules apply to users and states:
 
@@ -223,7 +231,7 @@ In addition to current state data, we also consider the history of operations wh
 
 If the journal contains multiple sequential entries originating on the same copy of the data (associated with a user identity and device, or a machine identity and address), then these entries may be compressed to fewer entries (or just one entry) according to some strategy intended for readability during auditing.
 
-Noting that, in parallel with the order state, the journal also appears in multiple locations (see §[deployment](#deployment)): The _persistent_ copy will maintain an unabridged journal of all operations since the creation of each draft order. In contrast, the apps on user devices are free to discard local journal entries for operations that have been successfully transmitted, as required, to manage local storage utilisation.
+Noting that, in parallel with the order state, the journal also appears in multiple locations (see §[deployment](#deployment)): the _persistent_ copy will maintain an unabridged journal of all operations since the creation of each order. In contrast, the apps on user devices are free to discard local journal entries for operations that have been successfully transmitted, as required, to manage local storage utilisation.
 
 ### dependencies
 
@@ -243,32 +251,32 @@ The data flow diagram shows the processes, data stores, actors, data flows and t
 
 ### user
 
-The human user of the draft order system interacts with the authentication service to obtain an authentication token which is valid for the local app. In this model we do not specify the implementation details of the token creation; nevertheless, something like [OpenID Connect](https://openid.net/connect/) would be typical. The authentication service itself is out of scope.
+The human user of the order system interacts with the authentication service to obtain an authentication token which is valid for the local app. In this model we do not specify the implementation details of the token creation; nevertheless, something like [OpenID Connect](https://openid.net/connect/) would be typical. The authentication service itself is out of scope.
 
-Once authenticated, the user makes data entries into the draft order, according to their access rights.
+Once authenticated, the user makes data entries into the order, according to their access rights.
 
 ### local app
 
-The local desktop or mobile app accepts data entries from the user and updates the local state of the draft invoice. The update are propagated to other copies of the draft order by publishing them to the messaging service. Changes are also propagated to the local storage on the device, so that if the network is unavailable, they are not lost when the app is closed or otherwise terminates.
+The local desktop or mobile app accepts data entries from the user and updates the local state of the draft invoice. The update are propagated to other copies of the order by publishing them to the messaging service. Changes are also propagated to the local storage on the device, so that if the network is unavailable, they are not lost when the app is closed or otherwise terminates.
 
 Note that data entry, operation publication and saves to local storage may be subject to batching or other optimisations to limit traffic.
 
-The local app also coordinates contract points directly with the draft order service. This process requires the local app and the draft order service to have a network connection. Multiple local app instances may be involved, (e.g. at both the buyer and seller) at the same time or possibly sequentially, depending on the coordination protocol.
+The local app also coordinates contract points directly with the order service. This process requires the local app and the order service to have a network connection. Multiple local app instances may be involved, (e.g. at both the buyer and seller) at the same time or possibly sequentially, depending on the coordination protocol.
 
 ### messaging
 
-The messaging service propagates data updates to every remote copy of the draft order in a publish/subscribe pattern. Each published message is delivered to multiple subscribers concurrently ("fan out").
+The messaging service propagates data updates to every remote copy of the order in a publish/subscribe pattern. Each published message is delivered to multiple subscribers concurrently ("fan out").
 
 In order to publish and subscribe to the messaging service, any client must present a valid authentication token. This token is verified with the authentication service as required (not necessarily with every client interaction).
 
 Note that the messaging service may be implemented as a cluster or even a global service spanning data centres and edge devices.
 
-### draft order service
+### order service
 
-The draft order service serves three primary functions:
+The order service serves three primary functions:
 
-1. It maintains the persistent copy of the draft order, so that if a user device rejoins the collaboration, it is able to 'see' the most recent state possible (not including edits made on offline devices that have not yet re-connected). It also sustains a level of data safety in case user devices are destroyed. It therefore acts as a subscriber to the messaging service, for which it needs an authentication token (as decribed above). In this case, this is a machine token, not representing any specific user.
-2. It offers a suitable protocol for contract coordination (e.g. [a two-phase commit](https://en.wikipedia.org/wiki/Two-phase_commit_protocol)). The outcome of a contract point can be a document, in which case the service may be responsible for composing the document. If the document requires digital signatures, these are obtained as part of the contract coordination. As the protocol is not (necessarily) enacted through the messaging service, the draft order service must be able to verify user tokens passed to it by contract participants.
+1. It maintains the persistent copy of the order, so that if a user device rejoins the collaboration, it is able to 'see' the most recent state possible (not including edits made on offline devices that have not yet re-connected). It also sustains a level of data safety in case user devices are destroyed. It therefore acts as a subscriber to the messaging service, for which it needs an authentication token (as decribed above). In this case, this is a machine token, not representing any specific user.
+2. It offers a suitable protocol for contract coordination (e.g. [a two-phase commit](https://en.wikipedia.org/wiki/Two-phase_commit_protocol)). The outcome of a contract point can be a document, in which case the service may be responsible for composing the document. If the document requires digital signatures, these are obtained as part of the contract coordination. As the protocol is not (necessarily) enacted through the messaging service, the order service must be able to verify user tokens passed to it by contract participants.
 3. At suitable points, it updates the local bookkeeping system. This could include both filing documents, and notifying values such as invoice totals. This may require authentication of the service to the bookkeeping system, but may also rely on the organisation local area network.
 
 ## 3. threats
@@ -290,7 +298,7 @@ The draft order service serves three primary functions:
 | Tampering              | Force an illegitimate contract (e.g. incorrect pricing)<br />Theft of goods (e.g. incorrect delivery address) | Message forgery<br />Identity theft<br />Direct tampering of storage | Legitimate user<br />System administrator<br />Hacker     |
 | Repudiation            | Repudiate contract obligations<br />Deny responsibility      | Signature forgery<br />Identity theft<br />Direct tampering of storage | Legitimate user                                           |
 | Disclosure             | Discover semi-secret (e.g. discount) pricing<br />Discover semi-secret product lines | Normal flow, but with illegitimate party identity, possibly at scale | Competitor<br />Hacker                                    |
-|                        | Discover orders in progress<br />Blackmail                   | Communication interception<br />Identity theft<br />Direct access to storage | Competitor<br />Hacker<br />System administrator          |
+|                        | Discover orders in progress<br />Discover personally-identifiable information (PII), e.g. addresses<br />Blackmail | Communication interception<br />Identity theft<br />Direct access to storage | Competitor<br />Hacker<br />System administrator          |
 | Denial-of-Service      | Prevent orders (e.g. anti-competitive)                       | Data volume (e.g. large documents)<br />Data velocity (e.g. generated messages) | Competitor<br />Hacker<br />System administrator          |
 | Elevation of Privilege | Terminate competitive orders<br />_other attacks_            | Injection<br />Identity theft<br />Social engineering        | Legitimate user<br />System administrator<br />Competitor |
 
@@ -310,9 +318,9 @@ The draft order service serves three primary functions:
 
 ## 4. summary
 
-The CIC system proposed can be characterised as a hybrid centralised/decentralised information system, in which  authority (especially in the eyes of policy and regulation) primarily resides with the order parties – buyer and seller organisations; and these are already in possession of centralised systems, most pertinently for bookkeeping. However for a draft order, authority is shared between these parties, and in particular, authorisation must be enacted without reliance on a central third party.
+The CIC system proposed can be characterised as a hybrid centralised/decentralised information system, in which  authority (especially in the eyes of policy and regulation) primarily resides with the order parties – buyer and seller organisations; and these are already in possession of centralised systems, most pertinently for bookkeeping. However for an order, authority is shared between these parties, and in particular, authorisation must be enacted without reliance on a central third party.
 
-The data ontology (draft order structure) is very well defined in authoritative standards and is unlikely to be different between system instances. So ontology data would not be shared in the dataset. However, the possibility of message forgery, direct tampering of storage and injection attacks means that maintenance of the data integrity must still be controlled.
+The data ontology (order structure) is very well defined in authoritative standards and is unlikely to be different between system instances. So ontology data would not be shared in the dataset. However, the possibility of message forgery, direct tampering of storage and injection attacks means that maintenance of the data integrity must still be controlled.
 
 The identified losses suggest that the most important threats to control in a CIC system concern integrity and auditing, because of the risk of financial loss and litigation. Availability risks are mitigated by the possibility of fallback to conventional practices, and the severity of confidentiality risks are generally low.
 
