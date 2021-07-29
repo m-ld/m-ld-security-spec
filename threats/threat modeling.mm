@@ -171,7 +171,7 @@
 <node TEXT="Methodology" POSITION="left" ID="ID_509111144" CREATED="1623667097890" MODIFIED="1623667111560">
 <edge COLOR="#007c00"/>
 <node TEXT="STRIDE" ID="ID_1846207939" CREATED="1623661576584" MODIFIED="1623667125215">
-<node TEXT="Spoofing" FOLDED="true" ID="ID_1436497058" CREATED="1623661581399" MODIFIED="1623661585135">
+<node TEXT="Spoofing" ID="ID_1436497058" CREATED="1623661581399" MODIFIED="1623661585135">
 <node TEXT="vectors" ID="ID_526017822" CREATED="1623666723553" MODIFIED="1623666727751">
 <node TEXT="process or file" ID="ID_1667963349" CREATED="1623661636672" MODIFIED="1623661640329"/>
 <node TEXT="machine" ID="ID_1083568351" CREATED="1623661640790" MODIFIED="1623661643176"/>
@@ -246,6 +246,9 @@
 <node TEXT="ATT&amp;CK knowledge base of adversary tactics" ID="ID_1873191455" CREATED="1624617134163" MODIFIED="1624617160537" LINK="https://attack.mitre.org/"/>
 <node TEXT="OWASP Ontology-driven threat modelling (OdTM) framework (OWL)" ID="ID_1309581105" CREATED="1624617236585" MODIFIED="1624617260271" LINK="https://github.com/OWASP/OdTM/"/>
 <node TEXT="Ebiquity Unified-Cybersecurity-Ontology" ID="ID_1789151278" CREATED="1624617283387" MODIFIED="1624617305350" LINK="http://ebiquity.github.io/Unified-Cybersecurity-Ontology/"/>
+</node>
+<node TEXT="FAIR" ID="ID_1954004756" CREATED="1626791595537" MODIFIED="1626791598993">
+<node TEXT="Losses" ID="ID_94003605" CREATED="1626791605550" MODIFIED="1626791613913" LINK="https://www.risklens.com/resource-center/blog/the-six-types-of-loss-in-cyber-incidents"/>
 </node>
 <node TEXT="OWASP Threat Modeling Workshop" ID="ID_193727076" CREATED="1623664871620" MODIFIED="1623840234796" LINK="https://owasp.org/www-pdf-archive/AdvancedThreatModeling.pdf">
 <node TEXT="Precursors" ID="ID_972315980" CREATED="1623664887674" MODIFIED="1623664891838">
@@ -387,7 +390,7 @@
 <node TEXT="3. threats" ID="ID_1068193644" CREATED="1624949752831" MODIFIED="1624949762158" LINK="#ID_1995364736"/>
 </node>
 </node>
-<node TEXT="e-Invoicing" ID="ID_1007244327" CREATED="1623836841575" MODIFIED="1623836847011">
+<node TEXT="e-Invoicing" FOLDED="true" ID="ID_1007244327" CREATED="1623836841575" MODIFIED="1623836847011">
 <node TEXT="0. objectives" FOLDED="true" ID="ID_921387855" CREATED="1624901877822" MODIFIED="1625586831273">
 <node TEXT="Define e-Invoicing, meaning of collaborative, e.g. contract points" ID="ID_1506738107" CREATED="1624902093370" MODIFIED="1624902097400"/>
 <node TEXT="Standards" ID="ID_875760278" CREATED="1624354501096" MODIFIED="1624902144460">
@@ -707,20 +710,15 @@
 </node>
 </node>
 </node>
-<node TEXT="Legal" FOLDED="true" ID="ID_1409529566" CREATED="1623669300112" MODIFIED="1625217499523" LINK="https://docs.google.com/document/d/14KPi3QUIpQOnZuTsaLbabcYBNNLkC0lrTZRZCacLBkg">
+<node TEXT="Legal" ID="ID_1409529566" CREATED="1623669300112" MODIFIED="1625217499523" LINK="https://docs.google.com/document/d/14KPi3QUIpQOnZuTsaLbabcYBNNLkC0lrTZRZCacLBkg">
 <node TEXT="Motivating app?" ID="ID_1619980611" CREATED="1623662489604" MODIFIED="1623775979115">
 <node TEXT="p2p legal doc sharing" ID="ID_1556614777" CREATED="1625133291547" MODIFIED="1625133473642">
 <node TEXT="document editing &amp; annotation" ID="ID_699811952" CREATED="1625133711716" MODIFIED="1625133778411"/>
-<node TEXT="courtroom has no connectivity" ID="ID_1921647532" CREATED="1625133778793" MODIFIED="1625133786141"/>
+<node TEXT="courtroom has no connectivity" ID="ID_1921647532" CREATED="1625133778793" MODIFIED="1626460165546">
+<icon BUILTIN="help"/>
+<node TEXT="does not seem to be true" ID="ID_1653942507" CREATED="1626460123169" MODIFIED="1626460132611" LINK="https://www.quora.com/Why-dont-lawyers-use-their-laptops-or-tablets-to-carry-electronic-documents-instead-of-carrying-heavy-luggages-to-court"/>
+</node>
 <node TEXT="no cloud storage (necessary)" ID="ID_1630590168" CREATED="1625137670780" MODIFIED="1625137679129"/>
-<node TEXT="semi-structured" ID="ID_356633408" CREATED="1625137722972" MODIFIED="1625137729938">
-<node TEXT="diagrams" ID="ID_393080611" CREATED="1625137697714" MODIFIED="1625137704264"/>
-<node TEXT="clauses" ID="ID_1179169071" CREATED="1625137737351" MODIFIED="1625137739602">
-<node TEXT="(good unit for change tracking)" ID="ID_1439067385" CREATED="1625137803955" MODIFIED="1625137811899"/>
-</node>
-<node TEXT="redline document = a new version with changes" ID="ID_1713891412" CREATED="1625137714377" MODIFIED="1625137887009"/>
-<node TEXT="could be form-based" ID="ID_1090071484" CREATED="1625137757118" MODIFIED="1625137762452"/>
-</node>
 </node>
 <node TEXT="incumbents" ID="ID_1553136987" CREATED="1625133587677" MODIFIED="1625133594417">
 <node TEXT="doc repos" ID="ID_1164626842" CREATED="1625133615815" MODIFIED="1625133949254">
@@ -754,15 +752,12 @@
 </node>
 </node>
 </node>
-<node TEXT="Policies" ID="ID_562319343" CREATED="1623776036830" MODIFIED="1625133519544">
-<node TEXT="ad-hoc" ID="ID_619515830" CREATED="1625138220760" MODIFIED="1625138228536">
-<node TEXT="data locality / sovereignty" ID="ID_699719973" CREATED="1623776066902" MODIFIED="1623776178114"/>
-<node TEXT="no cloud" ID="ID_104023771" CREATED="1623776080842" MODIFIED="1623776085917"/>
-<node TEXT="approved services" ID="ID_786764128" CREATED="1623776088391" MODIFIED="1623776091823"/>
-<node TEXT="security auditing" ID="ID_1629604201" CREATED="1623776131435" MODIFIED="1623776138310">
-<node TEXT="by legal team" ID="ID_721309429" CREATED="1623776147894" MODIFIED="1623776152744"/>
-<node TEXT="by client" ID="ID_107242067" CREATED="1623776153013" MODIFIED="1623776154814"/>
-</node>
+<node TEXT="0. objectives" ID="ID_1378124546" CREATED="1625138319733" MODIFIED="1625138326155">
+<font BOLD="true"/>
+<node TEXT="policies" FOLDED="true" ID="ID_562319343" CREATED="1623776036830" MODIFIED="1626460812289">
+<font BOLD="true"/>
+<node TEXT="ad-hoc" ID="ID_619515830" CREATED="1625138220760" MODIFIED="1626792430513">
+<icon BUILTIN="button_ok"/>
 <node TEXT="risk-averse mentality" ID="ID_27557499" CREATED="1623776228537" MODIFIED="1623776247507">
 <node TEXT="&quot;best practices&quot;" ID="ID_751809683" CREATED="1623776276948" MODIFIED="1623776282956"/>
 <node TEXT="shaped by client" ID="ID_1131815818" CREATED="1623776289593" MODIFIED="1623776293353"/>
@@ -771,65 +766,108 @@
 </node>
 <node TEXT="... but collaboration" ID="ID_1229609911" CREATED="1623776102656" MODIFIED="1623836110033"/>
 </node>
+<node TEXT="Law Society" ID="ID_1016568102" CREATED="1626697651406" MODIFIED="1626792432381" LINK="https://www.lawsociety.org.uk/topics/cybersecurity/cybersecurity-for-solicitors">
+<icon BUILTIN="button_ok"/>
 <node TEXT="GDPR" ID="ID_1422439551" CREATED="1625138247031" MODIFIED="1625138253895"/>
 <node TEXT="NCSC Cyber Essentials certification" ID="ID_1528000837" CREATED="1625138254243" MODIFIED="1625138263604"/>
 <node TEXT="Lexcel Certification" ID="ID_793307522" CREATED="1625138264525" MODIFIED="1625138272054"/>
 <node TEXT="ISO27001" ID="ID_57579013" CREATED="1625138273279" MODIFIED="1625138278298"/>
 </node>
-<node TEXT="Standards" ID="ID_1278728603" CREATED="1625137013896" MODIFIED="1625137016983">
-<node TEXT="Akoma Ntoso (EU vocabulary)" ID="ID_1895406871" CREATED="1625556198790" MODIFIED="1625556218796" LINK="http://www.akomantoso.org"/>
+</node>
+<node TEXT="standards" ID="ID_1278728603" CREATED="1625137013896" MODIFIED="1626460820964">
+<font BOLD="true"/>
+<node TEXT="Common Platform (UK)" ID="ID_889105142" CREATED="1626451403208" MODIFIED="1626451418894" LINK="https://www.gov.uk/guidance/hmcts-services-common-platform">
+<node TEXT="Q&amp;A" ID="ID_1323615160" CREATED="1626451447075" MODIFIED="1626451452412" LINK="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/952343/HMCT467_Common_Platform_Q_A_webinars_.pdf"/>
+<node TEXT="Risk and Assurance Approach" ID="ID_373868611" CREATED="1626707540306" MODIFIED="1626707654706" LINK="https://insidehmcts.blog.gov.uk/wp-content/uploads/sites/171/2016/09/CPP-Security-Update-Defence-Practitioners.pdf">
+<node TEXT="Cloud Security Alliance" ID="ID_1890872900" CREATED="1626707584779" MODIFIED="1626707586863">
+<node TEXT="Cloud Controls Matrix" ID="ID_1828996726" CREATED="1626707595153" MODIFIED="1626707597552"/>
+<node TEXT="Cloud Assessments Initiative Questionnaire" ID="ID_1395321382" CREATED="1626707609610" MODIFIED="1626707612897"/>
+<node TEXT="CSA STAR" ID="ID_225310365" CREATED="1626707622469" MODIFIED="1626707625048"/>
+</node>
+<node TEXT="ISO Standards (27001, 27017, 27018)" ID="ID_31927072" CREATED="1626707626104" MODIFIED="1626707635387"/>
+<node TEXT="Industry approaches – COBIT/ITIL" ID="ID_546475230" CREATED="1626707635801" MODIFIED="1626707645030"/>
+</node>
+</node>
+<node TEXT="Court templates" ID="ID_1713220830" CREATED="1626936658119" MODIFIED="1626936925681">
+<node TEXT="Criminal" ID="ID_1419563390" CREATED="1626936666557" MODIFIED="1626936673931" LINK="https://www.gov.uk/guidance/criminal-procedure-rules-forms"/>
+<node TEXT="Civil" ID="ID_1698291166" CREATED="1626936689385" MODIFIED="1626936693584" LINK="https://www.justice.gov.uk/courts/procedure-rules/civil/standard-directions/list-of-cases-of-common-occurrence"/>
+</node>
+<node TEXT="CEN Metalex" ID="ID_1001827954" CREATED="1626698721462" MODIFIED="1626792393578" LINK="http://www.metalex.eu/">
+<icon BUILTIN="button_ok"/>
+<node TEXT="sources of law and references to sources of law" ID="ID_1300040064" CREATED="1626698780214" MODIFIED="1626698782050"/>
+<node TEXT="Used by legislation.gov.uk" ID="ID_1812543032" CREATED="1626698731273" MODIFIED="1626698749478"/>
+</node>
+<node TEXT="UK Legislation Schema" ID="ID_1299469311" CREATED="1626936932475" MODIFIED="1626936959747" LINK="http://www.legislation.gov.uk/schema/legislation.xsd">
+<icon BUILTIN="yes"/>
+</node>
+<node TEXT="FIBO Legal Document (ontology class)" ID="ID_562856172" CREATED="1626699842665" MODIFIED="1626792397167" LINK="https://spec.edmcouncil.org/fibo/ontology/FND/Arrangements/Documents/LegalDocument">
+<icon BUILTIN="button_ok"/>
+</node>
+<node TEXT="Akoma Ntoso (EU vocabulary)" ID="ID_1895406871" CREATED="1625556198790" MODIFIED="1626792395986" LINK="http://www.akomantoso.org">
+<icon BUILTIN="button_ok"/>
+</node>
 <node TEXT="Commercial" ID="ID_517673581" CREATED="1625137023358" MODIFIED="1625137027645">
-<node TEXT="Azure Information Protection" ID="ID_373113580" CREATED="1625136477912" MODIFIED="1625137227176" LINK="https://docs.microsoft.com/en-us/azure/information-protection/how-does-it-work">
+<node TEXT="Azure Information Protection" ID="ID_373113580" CREATED="1625136477912" MODIFIED="1626855480558" LINK="https://docs.microsoft.com/en-us/azure/information-protection/how-does-it-work">
+<icon BUILTIN="button_cancel"/>
 <node TEXT="Labels applied to documents" ID="ID_868450733" CREATED="1625136670444" MODIFIED="1625136676836"/>
 <node TEXT="Document encrypted with policy set" ID="ID_1643851574" CREATED="1625136853989" MODIFIED="1625136870417"/>
 <node TEXT="rights are enforced by app" ID="ID_1234896912" CREATED="1625136639122" MODIFIED="1625136918265"/>
-<node TEXT="requires connectivity to Azure Rights Management Service" ID="ID_1809440903" CREATED="1625137077406" MODIFIED="1625137356244">
+<node TEXT="requires connectivity to Azure Rights Management Service" ID="ID_1809440903" CREATED="1625137077406" MODIFIED="1626777054891">
 <arrowlink SHAPE="CUBIC_CURVE" COLOR="#000000" WIDTH="2" TRANSPARENCY="200" FONT_SIZE="9" FONT_FAMILY="SansSerif" DESTINATION="ID_750935738" STARTINCLINATION="410;0;" ENDINCLINATION="410;0;" STARTARROW="NONE" ENDARROW="DEFAULT"/>
 </node>
 <node TEXT="does not require cloud storage" ID="ID_627054899" CREATED="1625136931653" MODIFIED="1625136936559"/>
 <node TEXT="Works on MS docs" ID="ID_1711841127" CREATED="1625136650204" MODIFIED="1625136654290"/>
 <node TEXT="Can automate on keywords" ID="ID_392151464" CREATED="1625136659610" MODIFIED="1625136665994"/>
 </node>
-<node TEXT="LawConnect" ID="ID_1874603800" CREATED="1625139461760" MODIFIED="1625139466230" LINK="https://www.lawconnect.co.uk/">
+<node TEXT="LawConnect" ID="ID_1874603800" CREATED="1625139461760" MODIFIED="1626792400149" LINK="https://www.lawconnect.co.uk/">
+<icon BUILTIN="button_ok"/>
 <node TEXT="Dublin datacentre" ID="ID_1775207188" CREATED="1625139499506" MODIFIED="1625139509498"/>
+<node TEXT="Security Policy" ID="ID_783168638" CREATED="1626698046981" MODIFIED="1626698062284" LINK="https://www.lawconnect.co.uk/information-security-policy.html"/>
+</node>
+<node TEXT="HyperLaw" ID="ID_623740561" CREATED="1626451508814" MODIFIED="1626792400959" LINK="https://www.hyperlaw.co.uk/">
+<icon BUILTIN="button_ok"/>
+<node TEXT="Use for barristers" ID="ID_1735691774" CREATED="1626451657514" MODIFIED="1626452057978" LINK="https://www.hyperlaw.co.uk/product_page/hyperlaw-barrister/">
+<node TEXT="case preparation" ID="ID_195630099" CREATED="1626451727623" MODIFIED="1626451729279"/>
+<node TEXT="OCR of uploaded docs" ID="ID_206916510" CREATED="1626451734036" MODIFIED="1626451748393"/>
+<node TEXT="&quot;structured, ordered &amp; indexed&quot;" ID="ID_643502317" CREATED="1626451740369" MODIFIED="1626451761791"/>
+<node TEXT="tag &amp; annotation tools" ID="ID_387629741" CREATED="1626451763792" MODIFIED="1626451784629"/>
 </node>
 </node>
-<node TEXT="Smart contracts" ID="ID_830556639" CREATED="1625138106520" MODIFIED="1625138132195" LINK="https://docs.google.com/document/d/14KPi3QUIpQOnZuTsaLbabcYBNNLkC0lrTZRZCacLBkg/edit#">
+<node TEXT="Juro: machine-readable contracts" ID="ID_262933390" CREATED="1626700340556" MODIFIED="1626792401633" LINK="https://juro.com/">
+<icon BUILTIN="button_ok"/>
+</node>
+<node TEXT="Legalese: DSL for Legal" ID="ID_171729762" CREATED="1626701533065" MODIFIED="1626792402781" LINK="https://legalese.com/aboutus">
+<icon BUILTIN="button_ok"/>
+</node>
+<node TEXT="Prose: content structuring editor" ID="ID_1895359259" CREATED="1626972067760" MODIFIED="1626972125062" LINK="https://www.tryprose.com/home"/>
+</node>
+<node TEXT="Smart contracts" ID="ID_830556639" CREATED="1625138106520" MODIFIED="1626792414842" LINK="https://docs.google.com/document/d/14KPi3QUIpQOnZuTsaLbabcYBNNLkC0lrTZRZCacLBkg/edit#">
+<icon BUILTIN="help"/>
 <node TEXT="not sure what for" ID="ID_1863951381" CREATED="1625138114936" MODIFIED="1625138118099"/>
 </node>
+<node TEXT="ad-hoc" ID="ID_191053201" CREATED="1626855359401" MODIFIED="1626855363228">
+<node TEXT="Data locality &amp; sovereignty" ID="ID_327446200" CREATED="1625138501983" MODIFIED="1625138503627"/>
+<node TEXT="Sometimes: no cloud" ID="ID_990523312" CREATED="1625138505145" MODIFIED="1625138511773"/>
+<node TEXT="approved services" ID="ID_786764128" CREATED="1623776088391" MODIFIED="1623776091823"/>
+<node TEXT="CASB (traffic inspection)" FOLDED="true" ID="ID_805752613" CREATED="1623776474078" MODIFIED="1623776547983">
+<node TEXT="Identify and evaluate all the cloud apps in use (Shadow IT)&#xa;Enforce cloud application management policies in existing web proxies or firewalls&#xa;Create and enforce granular policies to govern handling of sensitive information, including compliance-related content&#xa;Encrypt or tokenize sensitive content to enforce privacy&#xa;Detect and block unusual account behavior indicative of malicious activity&#xa;Integrate cloud visibility and controls with your existing security solutions" ID="ID_209213833" CREATED="1626790857139" MODIFIED="1626790860123"/>
 </node>
-<node TEXT="Agents" ID="ID_1564329206" CREATED="1623776320430" MODIFIED="1623776343855">
-<node TEXT="seeking &apos;data&apos;" ID="ID_833267428" CREATED="1623776378708" MODIFIED="1623776395225"/>
-<node TEXT="denial of service" ID="ID_567220660" CREATED="1623776395527" MODIFIED="1623776399804"/>
-<node TEXT="insiders" ID="ID_900228193" CREATED="1623776406485" MODIFIED="1623776412270"/>
 </node>
-<node TEXT="Data" ID="ID_1260046346" CREATED="1623776439516" MODIFIED="1623776441014">
-<node TEXT="Highly sensitive" ID="ID_1820158619" CREATED="1623776442239" MODIFIED="1623776447056"/>
-<node TEXT="PII" ID="ID_1709061113" CREATED="1623776447324" MODIFIED="1623776450330"/>
-<node TEXT="Ownership may be unclear" ID="ID_547835757" CREATED="1623776552437" MODIFIED="1623776566918">
-<node TEXT="client" ID="ID_262030775" CREATED="1623776567209" MODIFIED="1623776574849"/>
-<node TEXT="law firm" ID="ID_1216700701" CREATED="1623776575421" MODIFIED="1623776578449"/>
-<node TEXT="lawyer" ID="ID_1045573065" CREATED="1623776578785" MODIFIED="1623776582173"/>
 </node>
-<node TEXT="Disclosure could bias a case" ID="ID_909942465" CREATED="1625137782837" MODIFIED="1625137789510"/>
-<node TEXT="Privacy enhancing technologies (PETs)?" ID="ID_538387385" CREATED="1625138382692" MODIFIED="1625138384314"/>
-</node>
-<node TEXT="Existing controls" ID="ID_1481201372" CREATED="1623776461533" MODIFIED="1623776473686">
-<node TEXT="CASB (traffic inspection)" ID="ID_805752613" CREATED="1623776474078" MODIFIED="1623776547983"/>
-</node>
-<node TEXT="0. objectives" ID="ID_1378124546" CREATED="1625138319733" MODIFIED="1625138326155">
-<font BOLD="true"/>
 <node TEXT="confidentiality" ID="ID_1223773416" CREATED="1625138327215" MODIFIED="1625138334887">
 <font BOLD="true"/>
+<node TEXT="shredding" ID="ID_1207346458" CREATED="1626460648614" MODIFIED="1626801083432">
+<icon BUILTIN="button_ok"/>
+</node>
+<node TEXT="blackout/whiteout" ID="ID_1548664998" CREATED="1626854372332" MODIFIED="1626863980455" LINK="https://www.quora.com/Why-dont-lawyers-use-their-laptops-or-tablets-to-carry-electronic-documents-instead-of-carrying-heavy-luggages-to-court/answer/Joseph-Wang-9">
+<icon BUILTIN="button_ok"/>
+</node>
 </node>
 <node TEXT="integrity" ID="ID_1313489430" CREATED="1625138398791" MODIFIED="1625138405125">
 <font BOLD="true"/>
-<node TEXT="Sending false messages [@lawsoc] to clients, to e.g. change bank details" ID="ID_1346113499" CREATED="1625138405508" MODIFIED="1625138407490"/>
 </node>
 <node TEXT="availability" ID="ID_741540946" CREATED="1625138411156" MODIFIED="1625138414171">
 <font BOLD="true"/>
-<node TEXT="ransomware" ID="ID_1812605423" CREATED="1625138415803" MODIFIED="1625138418471"/>
-<node TEXT="supply chain compromise" ID="ID_798367498" CREATED="1625138418716" MODIFIED="1625138423274"/>
 </node>
 <node TEXT="auditing" ID="ID_525522321" CREATED="1625138425242" MODIFIED="1625138429056">
 <font BOLD="true"/>
@@ -845,12 +883,46 @@
 </node>
 <node TEXT="management" ID="ID_1232188467" CREATED="1625138498248" MODIFIED="1625138501432">
 <font BOLD="true"/>
-<node TEXT="Data locality &amp; sovereignty" ID="ID_327446200" CREATED="1625138501983" MODIFIED="1625138503627"/>
-<node TEXT="Sometimes: no cloud" ID="ID_990523312" CREATED="1625138505145" MODIFIED="1625138511773"/>
 </node>
 </node>
 <node TEXT="1. application profile" ID="ID_1647214172" CREATED="1625138524181" MODIFIED="1625138540258">
 <font BOLD="true"/>
+<node TEXT="deployment" ID="ID_119651684" CREATED="1626460662677" MODIFIED="1626863992954">
+<icon BUILTIN="button_ok"/>
+<font BOLD="true"/>
+</node>
+<node TEXT="users" ID="ID_1903360734" CREATED="1626460667312" MODIFIED="1626879386553">
+<icon BUILTIN="button_ok"/>
+<font BOLD="true"/>
+</node>
+<node TEXT="data" ID="ID_1260046346" CREATED="1623776439516" MODIFIED="1626460697011">
+<font BOLD="true"/>
+<node TEXT="Document types" ID="ID_1435115481" CREATED="1626879420360" MODIFIED="1626879431930" LINK="https://www.netlawman.co.uk/"/>
+<node TEXT="Highly sensitive" ID="ID_1820158619" CREATED="1623776442239" MODIFIED="1623776447056"/>
+<node TEXT="semi-structured" ID="ID_356633408" CREATED="1625137722972" MODIFIED="1625137729938">
+<node TEXT="diagrams" ID="ID_393080611" CREATED="1625137697714" MODIFIED="1625137704264"/>
+<node TEXT="clauses" ID="ID_1179169071" CREATED="1625137737351" MODIFIED="1625137739602">
+<node TEXT="(good unit for change tracking)" ID="ID_1439067385" CREATED="1625137803955" MODIFIED="1625137811899"/>
+</node>
+<node TEXT="redline document = a new version with changes" ID="ID_1713891412" CREATED="1625137714377" MODIFIED="1625137887009"/>
+<node TEXT="could be form-based" ID="ID_1090071484" CREATED="1625137757118" MODIFIED="1625137762452"/>
+</node>
+<node TEXT="PII" ID="ID_1709061113" CREATED="1623776447324" MODIFIED="1623776450330"/>
+<node TEXT="Ownership may be unclear" ID="ID_547835757" CREATED="1623776552437" MODIFIED="1623776566918">
+<node TEXT="client" ID="ID_262030775" CREATED="1623776567209" MODIFIED="1623776574849"/>
+<node TEXT="law firm" ID="ID_1216700701" CREATED="1623776575421" MODIFIED="1623776578449"/>
+<node TEXT="lawyer" ID="ID_1045573065" CREATED="1623776578785" MODIFIED="1623776582173"/>
+</node>
+<node TEXT="Disclosure could bias a case" ID="ID_909942465" CREATED="1625137782837" MODIFIED="1625137789510"/>
+<node TEXT="Privacy enhancing technologies (PETs)?" ID="ID_538387385" CREATED="1625138382692" MODIFIED="1625138384314"/>
+</node>
+<node TEXT="dependencies" ID="ID_425725574" CREATED="1626460672847" MODIFIED="1626460678984">
+<font BOLD="true"/>
+<node TEXT="Courts (Common Platform)" ID="ID_772693605" CREATED="1626854859358" MODIFIED="1626854874649"/>
+<node TEXT="Doc Mgmt (Sharepoint)" ID="ID_1874566904" CREATED="1626854865050" MODIFIED="1626854893167"/>
+<node TEXT="Authentication" ID="ID_891364561" CREATED="1626854893412" MODIFIED="1626854900918"/>
+<node TEXT="Export" ID="ID_664054870" CREATED="1626854901141" MODIFIED="1626854907612"/>
+</node>
 </node>
 <node TEXT="2. application composition" ID="ID_1013099396" CREATED="1625138532855" MODIFIED="1625138540641">
 <font BOLD="true"/>
@@ -860,10 +932,21 @@
 <node TEXT="agents" ID="ID_985271957" CREATED="1625138557731" MODIFIED="1625138560239">
 <font BOLD="true"/>
 <node TEXT="&lt;some in doc&gt;" ID="ID_1541423116" CREATED="1625138574123" MODIFIED="1625138612242"/>
+<node TEXT="seeking &apos;data&apos;" ID="ID_833267428" CREATED="1623776378708" MODIFIED="1623776395225"/>
+<node TEXT="denial of service" ID="ID_567220660" CREATED="1623776395527" MODIFIED="1623776399804"/>
+<node TEXT="insiders" ID="ID_900228193" CREATED="1623776406485" MODIFIED="1623776412270">
+<node TEXT="acting for defence or prosecution (or other cases) want to segregate internally (&quot;information barriers&quot;)" ID="ID_137462278" CREATED="1626957514691" MODIFIED="1626957516866"/>
+</node>
+<node TEXT="Cloud providers – we do want search indexing, but want to rescind (hence private encryption key)" ID="ID_922222356" CREATED="1626959733226" MODIFIED="1626959736632"/>
 </node>
 <node TEXT="attacks" ID="ID_1210334835" CREATED="1625138598931" MODIFIED="1625138603186">
 <font BOLD="true"/>
 <node TEXT="&lt;some in doc&gt;" ID="ID_1620554628" CREATED="1625138603746" MODIFIED="1625138608676"/>
+<node TEXT="ransomware" ID="ID_1812605423" CREATED="1625138415803" MODIFIED="1625138418471"/>
+<node TEXT="supply chain compromise" ID="ID_798367498" CREATED="1625138418716" MODIFIED="1625138423274"/>
+<node TEXT="Sending false messages [@lawsoc] to clients, to e.g. change bank details" ID="ID_1346113499" CREATED="1625138405508" MODIFIED="1625138407490"/>
+<node TEXT="pfishing" ID="ID_1680905404" CREATED="1626972648955" MODIFIED="1626972654774"/>
+<node TEXT="ransomware" ID="ID_315402156" CREATED="1626972655806" MODIFIED="1626972658576"/>
 </node>
 </node>
 </node>
