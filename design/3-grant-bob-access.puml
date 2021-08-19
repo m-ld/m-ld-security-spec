@@ -1,0 +1,38 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+hide footbox
+
+database "Alice's clone" as genesis
+box Bob's device
+control "app" as proc2
+database "clone" as clone2
+end box
+
+genesis -> messaging: Op3 ≪agree≫
+rnote left
+<code>
+INSERT
+  Bob mld:publicKey 5678 .
+  Bob mld:hasAccess { "@id": "?" } STATUTE
+</code>
+(gives Bob write permission to anything)
+end note
+
+messaging -> clone2 ++: Op3
+clone2 -> clone2: ACL constraint apply
+rnote over clone2: ≪agree≫ ""Bob mld:hasAccess { "@id": "?" }""
+clone2 -> proc2 --: Op3 ≪update≫
+
+proc2 -> clone2 ++: Op4 ≪transaction≫
+rnote left: ""INSERT"" //[anything]//
+
+clone2 -> clone2: ACL constraint check
+
+clone2 -> messaging: Op4
+clone2 --> proc2: //resolve//
+clone2 -> proc2 --: Op4 ≪update≫
+messaging -> genesis ++: Op4
+genesis -> genesis --: ACL constraint apply
+
+@enduml

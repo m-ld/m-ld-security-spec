@@ -1,0 +1,30 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+hide footbox
+
+database "Alice's clone" as genesis
+box Bob's device
+control "app" as proc2
+database "clone" as clone2
+end box
+
+proc2 -> proc2: Authenticate Bob
+proc2 -> clone2 **: start on ""domain.ex.org""
+
+clone2 <-> genesis: snapshot
+rnote left
+<code>
+Alice mld:publicKey token1 .
+Alice a mld:GenesisPrincipal STATUTE .
+domain.ex.org mld:access mld:ACL STATUTE
+end note
+
+proc2 -> clone2 ++: Op1 ≪transaction≫
+rnote left: ""INSERT"" //[anything]//
+
+clone2 -> clone2: ACL constraint check
+
+clone2 --> proc2 --: //reject: unauthorised//
+
+@enduml

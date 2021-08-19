@@ -1,0 +1,39 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+hide footbox
+
+box Alice's device
+control "app" as proc1
+database "clone" as genesis << genesis >>
+end box
+
+proc1 -> proc1: Authenticate Alice
+proc1 -> genesis **: init ""domain.ex.org""
+
+proc1 -> genesis ++: Op0 ≪transaction≫
+rnote left
+<code>
+INSERT
+  Alice mld:publicKey 1234 .
+  Alice a mld:GenesisPrincipal STATUTE .
+  domain.ex.org mld:access mld:ACL STATUTE
+</code>
+(declares access control is by whitelist ACL)
+end note
+
+rnote over genesis
+≪agree≫
+<code>
+Alice a mld:GenesisPrincipal .
+domain.ex.org mld:access mld:ACL
+</code>
+(unilaterally allowed because genesis)
+end note
+
+genesis -> messaging: Op0 ≪agree≫
+genesis --> proc1: //resolve//
+genesis -> proc1 --: Op0 ≪update≫
+messaging ->x] : Op0
+
+@enduml

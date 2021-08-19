@@ -1,0 +1,36 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+hide footbox
+
+database "Alice's clone" as genesis
+database "Bob's clone" as clone2
+box Claire's device\n(closer to Bob)
+control "app" as proc4
+database "clone" as clone4
+end box
+
+genesis -> messaging: Op3 ≪agree≫
+rnote left: revoke Bob's write permission
+
+clone2 -> messaging: Op4
+rnote left: ""INSERT"" //[anything]//
+
+messaging -> clone4 ++: Op4
+clone4 -> proc4 --++: Op4 ≪update≫
+note over proc4: app-triggered update
+
+proc4 -> clone4 --++: Op5 ≪transaction≫
+clone4 -> messaging --: Op5
+
+messaging -> clone4 ++: Op3
+note left: Op3 agreement pre-dates Op4 & Op5
+clone4 -> proc4 ++: Fork or Revoke?
+note over proc4: App instances can collaborate to decide
+proc4 --> clone4 --: Revoke
+clone4 -> clone4: Revoke Op4 + Op5
+note over clone4: Op4 & Op5 also removed from Journal
+clone4 -> clone4: Apply Op3
+clone4 -> proc4 --: Op3 - (Op4 + Op5) ≪update≫
+
+@enduml

@@ -103,6 +103,23 @@
   keywords = {Conceptual modeling,PbD,Privacy by Design,Privacy ontology,Privacy requirements,Requirements engineering}
 }
 
+@article{hellersteinKeepingCALMWhen2019,
+  title = {Keeping {{CALM}}: {{When Distributed Consistency}} Is {{Easy}}},
+  shorttitle = {Keeping {{CALM}}},
+  author = {Hellerstein, Joseph M. and Alvaro, Peter},
+  year = {2019},
+  month = jan,
+  journal = {arXiv:1901.01930 [cs]},
+  eprint = {1901.01930},
+  eprinttype = {arxiv},
+  primaryclass = {cs},
+  url = {http://arxiv.org/abs/1901.01930},
+  urldate = {2021-08-11},
+  abstract = {A key concern in modern distributed systems is to avoid the cost of coordination while maintaining consistent semantics. Until recently, there was no answer to the question of when coordination is actually required. In this paper we present an informal introduction to the CALM Theorem, which answers this question precisely by moving up from traditional storage consistency to consider properties of programs. CALM is an acronym for "consistency as logical monotonicity". The CALM Theorem shows that the programs that have consistent, coordination-free distributed implementations are exactly the programs that can be expressed in monotonic logic. This theoretical result has practical implications for developers of distributed applications. We show how CALM provides a constructive application-level counterpart to conventional "systems" wisdom, such as the apparently negative results of the CAP Theorem. We also discuss ways that monotonic thinking can influence distributed systems design, and how new programming language designs and tools can help developers write consistent, coordination-free code.},
+  archiveprefix = {arXiv},
+  keywords = {Computer Science - Databases,Computer Science - Distributed; Parallel; and Cluster Computing,Computer Science - Programming Languages,Computer Science - Software Engineering}
+}
+
 @misc{jagannathanAdvancedThreatModelling2012,
   title = {Advanced {{Threat Modelling Knowledge Session}}},
   author = {Jagannathan, Venkatesh},
@@ -122,6 +139,19 @@
   url = {https://martin.kleppmann.com/2019/05/15/encrypted-crdts.html},
   urldate = {2021-07-15},
   abstract = {Secure messaging apps like WhatsApp, Signal, and iMessage have brought end-to-end encryption to over 1 billion users. The protocols underlying these apps provide much stronger security properties than earlier encryption systems such as PGP/GnuPG. This makes them an interesting basis for implementing CRDT-based data systems with end-to-end security: if we simply send all the CRDT operations or state updates via a secure messaging protocol, we inherit its strong security properties. However, there are lots of subtleties about the guarantees provided by secure messaging protocols: in particular, the properties that hold for communication between two parties often don't easily generalise to groups of more than two participants. This talk will summarise the current state of research in secure group messaging, and discuss how we can bring this work into the world of CRDTs.}
+}
+
+@article{kokocinskiMixingEventualStrong2021,
+  title = {On {{Mixing Eventual}} and {{Strong Consistency}}: {{Acute Cloud Types}}},
+  shorttitle = {On {{Mixing Eventual}} and {{Strong Consistency}}},
+  author = {Kokocinski, Maciej and Kobus, Tadeusz and Wojciechowski, Pawe Tomasz},
+  year = {2021},
+  journal = {IEEE Transactions on Parallel and Distributed Systems},
+  pages = {1--1},
+  issn = {1558-2183},
+  doi = {10.1109/TPDS.2021.3090318},
+  abstract = {In this article we study the properties of distributed systems that mix eventual and strong consistency. We formalize such systems through acute cloud types (ACTs), abstractions similar to conflict-free replicated data types (CRDTs), which by default work in a highly available, eventually consistent fashion, but which also feature strongly consistent operations for tasks which require global agreement. Unlike other mixed-consistency solutions, ACTs can rely on efficient quorum-based protocols, such as Paxos. Hence, ACTs gracefully tolerate machine and network failures also for the strongly consistent operations. We formally study ACTs and demonstrate phenomena which are neither present in purely eventually consistent nor strongly consistent systems. In particular, we identify temporary operation reordering, which implies interim disagreement between replicas on the relative order in which the client requests were executed. When not handled carefully, this phenomenon may lead to undesired anomalies, including circular causality. We prove an impossibility result which states that temporary operation reordering is unavoidable in mixed-consistency systems with sufficiently complex semantics. Our result is startling, because it shows that apparent strengthening of the semantics of a system (by introducing strongly consistent operations to an eventually consistent system) results in the weakening of the guarantees on the eventually consistent operations.},
+  keywords = {ACT,acute cloud types,Data structures,eventual consistency,fault-tolerance,mixed consistency,Protocols,Reactive power,Scalability,Semantics,Servers,Synchronization}
 }
 
 @article{Ma2020Writing,
