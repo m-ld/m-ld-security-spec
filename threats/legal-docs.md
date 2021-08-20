@@ -74,11 +74,11 @@ Legal document management may also be subject to a number of other security-rela
 
 ### confidentiality
 
-Legal documents are typically confidential; visible only to named users, associated with named organisations (if applicable). Due to the prevalence of personal information, they are almost always subject to GDPR. In particular, data must be destroyed on client request at any time.
+Legal documents are typically confidential; visible only to named users, associated with named organisations (if applicable); and they are subject to a high level of concern over accidental disclosure. Due to the prevalence of personal information, they are almost always subject to GDPR. In particular, data must be destroyed on client request at any time.
 
 For barristers in particular, different lawyers in the same chambers could be acting for defence or prosecution (or on other cases); so access control must operate on an individual document basis.
 
-Some legal document sharing scenarios can have very specific confidentiality requirements, such as:
+Some legal document sharing scenarios can have very specific confidentiality requirements. These relate to the need to share very targetted content with the court or the opposing party.
 
 - To 'black out' or 'white out' highly-specific portions of a document (not using e.g. text colour formatting or overlying rectangles, because they are reversible).
 - To remove metadata such as version history and authors.
@@ -281,13 +281,13 @@ The search service maintains an index of available legal documents (see [§deplo
 
 | agent                                                        | motivation                                                   | capability                                                   |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| Legitimate user                                              | Grievance<br/>Whistleblowing<br/>Corruption<br />Biasing the case | Disclosure via side-channel<br/>Incorrect content entry<br />Device loss |
+| Legitimate user                                              | Grievance<br/>Whistleblowing<br/>Corruption<br />Biasing the case<br />Accidental | Disclosure via side-channel<br/>Incorrect content entry<br />Device loss<br />Setting up incorrect permissions on documents |
 | Opposing counsel (note: very unlikely to mount a direct, deliberate attack) | Accidental                                                   | Access to shared case documents e.g. witness statements      |
 | Opposing party (e.g. plaintiff/defendant)                    | Strengthening their argument<br />Biasing the case           | As public; but may engage hackers                            |
 | Cloud provider                                               | Analytics<br />User profiling                                | Direct access to storage<br />Cookies                        |
 | Government                                                   | National security                                            | Requests for data under surveillance acts                    |
 | Hacker / hacktivist                                          | Direct financial gain<br/>Whistleblowing<br/>Bribery, ransom<br/>Blackmail | Miscellaneous attacks via network<br />Malware<br />Phishing |
-| System Administrator                                         | *as legitimate user*                                         | Direct access to components                                  |
+| System Administrator                                         | *as legitimate user*                                         | Direct access to components<br />Incorrect security configuration |
 
 ### attacks
 
@@ -298,6 +298,7 @@ The search service maintains an index of available legal documents (see [§deplo
 | Repudiation            | Deny legitimacy of evidence                                  | Signature forgery<br />Identity theft<br />Direct tampering of storage | Legitimate user                                              |
 | Disclosure             | Discovering personal information or secrets of opposing party<br /> | Communication interception<br />Identity theft<br />Direct access to storage | Opposing party<br />Hacker<br />Government                   |
 |                        | Tracking & profiling                                         | Social engineering e.g. unclear terms of use<br />Direct access to storage | Cloud provider                                               |
+|                        | Accidental disclosure                                        | Incorrect security setup for the system, folders, or documents | Legitimate user<br />System administrator                    |
 | Denial-of-Service      | Delay proceedings                                            | Data volume (e.g. large documents) Data velocity (e.g. generated messages) | Opposing party<br />Hacker<br />System administrator         |
 | Elevation of Privilege | *other attacks*                                              | Injection<br />Identity theft<br />Social engineering        | Legitimate user<br />System administrator<br />Opposing party |
 
@@ -313,6 +314,7 @@ The search service maintains an index of available legal documents (see [§deplo
 | Denial-of-service           | Messaging<br />Search service                 |                                                              |
 | Injection                   | Local app<br />Search service                 |                                                              |
 | Social engineering          | User                                          |                                                              |
+| Incorrect security setup    | Local app                                     | e.g. Difficulties setting up the right access controls on a document, and verifying that the access controls are working as intended |
 
 ## 4. summary
 
