@@ -1,0 +1,63 @@
+@startuml
+'https://plantuml.com/object-diagram
+
+hide circle
+
+skinparam object {
+  BackgroundColor Pink
+}
+
+abstract class Statute
+note left
+  Defines a scope of data
+  requiring agreement
+end note
+
+Statute o--> "*" AgreementCondition : sufficientCondition
+AgreementCondition --|> Statutory
+
+class PropertyStatute {
+  statutoryProperty : Term
+}
+note left of PropertyStatute
+Applies to changes to a property.
+Does not apply if the Subject
+is new or removed entirely.
+end note
+
+abstract class Statutory
+note right
+Can be mixed-in to any Subject.
+In other diagrams we'll use the
+<<statutory>> stereotype.
+end note
+Statutory o--> "1" Statute : statute
+PropertyStatute --|> Statute
+
+Statute --|> Statutory
+note on link
+A statute is
+itself statutory
+end note
+
+object accessPropertyStatute {
+  statutoryProperty : access
+}
+note top
+  Choice of access control
+  mechanism is statutory
+end note
+accessPropertyStatute --> PropertyStatute : rdf:type
+
+object typePropertyStatute {
+  statutoryProperty = rdf:type
+}
+note top
+  The type of every subject is statutory
+end note
+typePropertyStatute --> PropertyStatute : rdf:type
+
+"rdfs:Class" --|> Statutory
+"rdf:Property" --|> Statutory
+
+@enduml

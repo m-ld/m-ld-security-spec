@@ -1,0 +1,20 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+hide circle
+
+skinparam object {
+  BackgroundColor Pink
+}
+
+class "[rdfs:Class]" as class {
+[rdfs:Property] : [rdfs:range | literal]
+}
+object "[subject]" as subject {
+[property] = [object]
+}
+subject --> class : rdf:type
+class o--> "[rdfs:range | Class]" : [rdfs:Property]
+class --|> "[Superclass]" : rdfs:SubClassOf
+
+@enduml

@@ -16,8 +16,8 @@ rnote left
 <code>
 INSERT
   Alice mld:publicKey 1234 .
-  Alice a mld:GenesisPrincipal STATUTE .
-  domain.ex.org mld:access mld:ACL STATUTE
+  Alice a mld:GenesisPrincipal .
+  domain.ex.org mld:access mld:Permission .
 </code>
 (declares access control is by whitelist ACL)
 end note
@@ -26,7 +26,7 @@ rnote over genesis
 ≪agree≫
 <code>
 Alice a mld:GenesisPrincipal .
-domain.ex.org mld:access mld:ACL
+domain.ex.org mld:access mld:Permission .
 </code>
 (unilaterally allowed because genesis)
 end note

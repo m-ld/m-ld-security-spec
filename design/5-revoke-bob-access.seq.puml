@@ -13,7 +13,7 @@ genesis -> messaging: Op3 ≪agree≫
 rnote left
 <code>
 DELETE
-  Bob mld:hasAccess { "@id": "?" } STATUTE
+  Bob mld:hasAccess { "@id": "?" } .
 </code>
 (revokes Bob's write permission)
 end note

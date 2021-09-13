@@ -1,0 +1,54 @@
+@startuml
+'https://plantuml.com/object-diagram
+
+hide circle
+
+skinparam object {
+  BackgroundColor Pink
+}
+
+object principalIsGenesis
+note right
+  Default condition that allows the
+  genesis principal to agree anything.
+end note
+
+class AgreementCondition <<statutory>>
+AgreementCondition <-- principalIsGenesis : rdf:type
+
+class Principal {
+  publicKey : String
+}
+
+class GenesisPrincipal <<statutory>>
+GenesisPrincipal --|> Principal
+
+principalIsGenesis ..> GenesisPrincipal : <<requires>>
+
+class Authority
+note top
+Authority is permission to unilaterally agree.
+A "lock" is just temporary authority over some data
+(which may not be statutory).
+end note
+Authority --|> AgreementCondition
+Permission "*" <--o Principal : hasPermission
+
+class Permission {
+  appliesToPattern : json-rql
+}
+Authority --|> Permission
+Permission --|> AccessControl
+
+abstract class Consensus
+Consensus --|> AgreementCondition
+
+abstract class External
+External --|> AgreementCondition
+
+object "[domain]" as domain
+
+class AccessControl <<statutory>>
+domain --> "*" AccessControl : access
+
+@enduml

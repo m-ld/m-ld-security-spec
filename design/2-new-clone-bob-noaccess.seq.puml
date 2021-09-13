@@ -16,8 +16,8 @@ clone2 <-> genesis: snapshot
 rnote left
 <code>
 Alice mld:publicKey token1 .
-Alice a mld:GenesisPrincipal STATUTE .
-domain.ex.org mld:access mld:ACL STATUTE
+Alice a mld:GenesisPrincipal .
+domain.ex.org mld:access mld:ACL .
 end note
 
 proc2 -> clone2 ++: Op1 ≪transaction≫
