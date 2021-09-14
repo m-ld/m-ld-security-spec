@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="643px" preserveAspectRatio="none" style="width:784px;height:643px;background:#FFFFFF;" version="1.1" viewBox="0 0 784 643" width="784px" zoomAndPan="magnify"><defs><filter height="300%" id="fqci3a09sym2u" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><rect fill="#DDDDDD" height="624.7676" style="stroke:#A80036;stroke-width:1.0;" width="260.5" x="350" y="6"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="97" x="431.75" y="18.5684">Claire's device</text><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="96" x="432.25" y="33.8789">(closer to Bob)</text><rect fill="#FFFFFF" filter="url(#fqci3a09sym2u)" height="68.6211" style="stroke:#A80036;stroke-width:1.0;" width="10" x="365" y="230.3516"/><rect fill="#FFFFFF" filter="url(#fqci3a09sym2u)" height="68.6211" style="stroke:#A80036;stroke-width:1.0;" width="10" x="365" y="396.9043"/><rect fill="#FFFFFF" filter="url(#fqci3a09sym2u)" height="29.3105" style="stroke:#A80036;stroke-width:1.0;" width="10" x="580" y="201.041"/><rect fill="#FFFFFF" filter="url(#fqci3a09sym2u)" height="29.3105" style="stroke:#A80036;stroke-width:1.0;" width="10" x="580" y="298.9727"/><rect fill="#FFFFFF" filter="url(#fqci3a09sym2u)" height="256.1738" style="stroke:#A80036;stroke-width:1.0;" width="10" x="580" y="362.5938"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="206" x2="206" y1="103.1094" y2="636.7676"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="302" x2="302" y1="103.1094" y2="636.7676"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="370" x2="370" y1="103.1094" y2="636.7676"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="584.5" x2="584.5" y1="103.1094" y2="636.7676"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="728" x2="728" y1="103.1094" y2="636.7676"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="84" x="161" y="100.1563">Alice's clone</text><path d="M188,50.6211 C188,40.6211 206,40.6211 206,40.6211 C206,40.6211 224,40.6211 224,50.6211 L224,76.6211 C224,86.6211 206,86.6211 206,86.6211 C206,86.6211 188,86.6211 188,76.6211 L188,50.6211 " fill="#FEFECE" filter="url(#fqci3a09sym2u)" style="stroke:#000000;stroke-width:1.5;"/><path d="M188,50.6211 C188,60.6211 206,60.6211 206,60.6211 C206,60.6211 224,60.6211 224,50.6211 " fill="none" style="stroke:#000000;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="77" x="261" y="100.1563">Bob's clone</text><path d="M284.5,50.6211 C284.5,40.6211 302.5,40.6211 302.5,40.6211 C302.5,40.6211 320.5,40.6211 320.5,50.6211 L320.5,76.6211 C320.5,86.6211 302.5,86.6211 302.5,86.6211 C302.5,86.6211 284.5,86.6211 284.5,76.6211 L284.5,50.6211 " fill="#FEFECE" filter="url(#fqci3a09sym2u)" style="stroke:#000000;stroke-width:1.5;"/><path d="M284.5,50.6211 C284.5,60.6211 302.5,60.6211 302.5,60.6211 C302.5,60.6211 320.5,60.6211 320.5,50.6211 " fill="none" style="stroke:#000000;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="26" x="354" y="100.1563">app</text><ellipse cx="370" cy="70.6211" fill="#FEFECE" filter="url(#fqci3a09sym2u)" rx="12" ry="12" style="stroke:#A80036;stroke-width:2.0;"/><polygon fill="#A80036" points="366,58.6211,372,53.6211,370,58.6211,372,63.6211,366,58.6211" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="37" x="563.5" y="100.1563">clone</text><path d="M567,50.6211 C567,40.6211 585,40.6211 585,40.6211 C585,40.6211 603,40.6211 603,50.6211 L603,76.6211 C603,86.6211 585,86.6211 585,86.6211 C585,86.6211 567,86.6211 567,76.6211 L567,50.6211 " fill="#FEFECE" filter="url(#fqci3a09sym2u)" style="stroke:#000000;stroke-width:1.5;"/><path d="M567,50.6211 C567,60.6211 585,60.6211 585,60.6211 C585,60.6211 603,60.6211 603,50.6211 " fill="none" style="stroke:#000000;stroke-width:1.5;"/><rect fill="#FEFECE" filter="url(#fqci3a09sym2u)" height="30.4883" style="stroke:#A80036;stroke-width:1.5;" width="88" x="682" y="67.6211"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="74" x="689" y="88.1563">messaging</text><rect fill="#FFFFFF" filter="url(#fqci3a09sym2u)" height="68.6211" style="stroke:#A80036;stroke-width:1.0;" width="10" x="365" y="230.3516"/><rect fill="#FFFFFF" filter="url(#fqci3a09sym2u)" height="68.6211" style="stroke:#A80036;stroke-width:1.0;" width="10" x="365" y="396.9043"/><rect fill="#FFFFFF" filter="url(#fqci3a09sym2u)" height="29.3105" style="stroke:#A80036;stroke-width:1.0;" width="10" x="580" y="201.041"/><rect fill="#FFFFFF" filter="url(#fqci3a09sym2u)" height="29.3105" style="stroke:#A80036;stroke-width:1.0;" width="10" x="580" y="298.9727"/><rect fill="#FFFFFF" filter="url(#fqci3a09sym2u)" height="256.1738" style="stroke:#A80036;stroke-width:1.0;" width="10" x="580" y="362.5938"/><polygon fill="#A80036" points="716,132.4199,726,136.4199,716,140.4199,720,136.4199" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="206" x2="722" y1="136.4199" y2="136.4199"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="83" x="213" y="131.6777">Op3 ≪agree≫</text><rect fill="#FBFB77" filter="url(#fqci3a09sym2u)" height="23" style="stroke:#A80036;stroke-width:1.0;" width="196" x="5" y="118.1094"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="188" x="9" y="134.6777">revoke Bob's write permission</text><polygon fill="#A80036" points="716,165.7305,726,169.7305,716,173.7305,720,169.7305" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="302.5" x2="722" y1="169.7305" y2="169.7305"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="26" x="309.5" y="164.9883">Op4</text><rect fill="#FBFB77" filter="url(#fqci3a09sym2u)" height="23" style="stroke:#A80036;stroke-width:1.0;" width="123" x="174" y="151.4199"/><text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="48" x="178" y="167.6646">INSERT</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="0" x="230" y="167.9883"/><text fill="#000000" font-family="sans-serif" font-size="13" font-style="italic" lengthAdjust="spacing" textLength="63" x="230" y="167.9883">[anything]</text><polygon fill="#A80036" points="601,197.041,591,201.041,601,205.041,597,201.041" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="595" x2="727" y1="201.041" y2="201.041"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="26" x="607" y="196.2988">Op4</text><polygon fill="#A80036" points="386,226.3516,376,230.3516,386,234.3516,382,230.3516" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="380" x2="584" y1="230.3516" y2="230.3516"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="92" x="392" y="225.6094">Op4 ≪update≫</text><path d="M290,243.3516 L290,268.3516 L446,268.3516 L446,253.3516 L436,243.3516 L290,243.3516 " fill="#FBFB77" filter="url(#fqci3a09sym2u)" style="stroke:#A80036;stroke-width:1.0;"/><path d="M436,243.3516 L436,253.3516 L446,253.3516 L436,243.3516 " fill="#FBFB77" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="135" x="296" y="260.9199">app-triggered update</text><polygon fill="#A80036" points="568,294.9727,578,298.9727,568,302.9727,572,298.9727" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="370" x2="574" y1="298.9727" y2="298.9727"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="120" x="377" y="294.2305">Op5 ≪transaction≫</text><polygon fill="#A80036" points="716,324.2832,726,328.2832,716,332.2832,720,328.2832" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="585" x2="722" y1="328.2832" y2="328.2832"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="26" x="592" y="323.541">Op5</text><polygon fill="#A80036" points="601,358.5938,591,362.5938,601,366.5938,597,362.5938" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="595" x2="727" y1="362.5938" y2="362.5938"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="26" x="607" y="357.8516">Op3</text><path d="M315,341.2832 L315,366.2832 L571,366.2832 L571,351.2832 L561,341.2832 L315,341.2832 " fill="#FBFB77" filter="url(#fqci3a09sym2u)" style="stroke:#A80036;stroke-width:1.0;"/><path d="M561,341.2832 L561,351.2832 L571,351.2832 L561,341.2832 " fill="#FBFB77" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="235" x="321" y="358.8516">Op3 agreement pre-dates Op4 &amp; Op5</text><polygon fill="#A80036" points="386,392.9043,376,396.9043,386,400.9043,382,396.9043" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="380" x2="579" y1="396.9043" y2="396.9043"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="99" x="392" y="392.1621">Fork or Revoke?</text><path d="M232,409.9043 L232,434.9043 L504,434.9043 L504,419.9043 L494,409.9043 L232,409.9043 " fill="#FBFB77" filter="url(#fqci3a09sym2u)" style="stroke:#A80036;stroke-width:1.0;"/><path d="M494,409.9043 L494,419.9043 L504,419.9043 L494,409.9043 " fill="#FBFB77" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="251" x="238" y="427.4727">App instances can collaborate to decide</text><polygon fill="#A80036" points="568,461.5254,578,465.5254,568,469.5254,572,465.5254" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="370" x2="574" y1="465.5254" y2="465.5254"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="45" x="377" y="460.7832">Revoke</text><line style="stroke:#A80036;stroke-width:1.0;" x1="590" x2="632" y1="494.8359" y2="494.8359"/><line style="stroke:#A80036;stroke-width:1.0;" x1="632" x2="632" y1="494.8359" y2="507.8359"/><line style="stroke:#A80036;stroke-width:1.0;" x1="591" x2="632" y1="507.8359" y2="507.8359"/><polygon fill="#A80036" points="601,503.8359,591,507.8359,601,511.8359,597,507.8359" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="119" x="597" y="490.0938">Revoke Op4 + Op5</text><path d="M453,520.8359 L453,545.8359 L713,545.8359 L713,530.8359 L703,520.8359 L453,520.8359 " fill="#FBFB77" filter="url(#fqci3a09sym2u)" style="stroke:#A80036;stroke-width:1.0;"/><path d="M703,520.8359 L703,530.8359 L713,530.8359 L703,520.8359 " fill="#FBFB77" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="239" x="459" y="538.4043">Op4 &amp; Op5 also removed from Journal</text><line style="stroke:#A80036;stroke-width:1.0;" x1="590" x2="632" y1="576.457" y2="576.457"/><line style="stroke:#A80036;stroke-width:1.0;" x1="632" x2="632" y1="576.457" y2="589.457"/><line style="stroke:#A80036;stroke-width:1.0;" x1="591" x2="632" y1="589.457" y2="589.457"/><polygon fill="#A80036" points="601,585.457,591,589.457,601,593.457,597,589.457" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="66" x="597" y="571.7148">Apply Op3</text><polygon fill="#A80036" points="381,614.7676,371,618.7676,381,622.7676,377,618.7676" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="375" x2="584" y1="618.7676" y2="618.7676"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="186" x="387" y="614.0254">Op3 - (Op4 + Op5) ≪update≫</text><!--MD5=[bf3343cca57383d5edd2f1e22ad7dea6]
+@startuml
+'https://plantuml.com/sequence-diagram
+hide footbox
+
+database "Alice's clone" as genesis
+database "Bob's clone" as clone2
+box Claire's device\n(closer to Bob)
+control "app" as proc4
+database "clone" as clone4
+end box
+
+genesis -> messaging: Op3 ≪agree≫
+rnote left: revoke Bob's write permission
+
+clone2 -> messaging: Op4
+rnote left: ""INSERT"" //[anything]//
+
+messaging -> clone4 ++: Op4
+clone4 -> proc4 - -++: Op4 ≪update≫
+note over proc4: app-triggered update
+
+proc4 -> clone4 - -++: Op5 ≪transaction≫
+clone4 -> messaging - -: Op5
+
+messaging -> clone4 ++: Op3
+note left: Op3 agreement pre-dates Op4 & Op5
+clone4 -> proc4 ++: Fork or Revoke?
+note over proc4: App instances can collaborate to decide
+proc4 - -> clone4 - -: Revoke
+clone4 -> clone4: Revoke Op4 + Op5
+note over clone4: Op4 & Op5 also removed from Journal
+clone4 -> clone4: Apply Op3
+clone4 -> proc4 - -: Op3 - (Op4 + Op5) ≪update≫
+
+@enduml
+
+@startuml
+hide footbox
+
+database "Alice's clone" as genesis
+database "Bob's clone" as clone2
+box Claire's device\n(closer to Bob)
+control "app" as proc4
+database "clone" as clone4
+end box
+
+genesis -> messaging: Op3 ≪agree≫
+rnote left: revoke Bob's write permission
+
+clone2 -> messaging: Op4
+rnote left: ""INSERT"" //[anything]//
+
+messaging -> clone4 ++: Op4
+clone4 -> proc4 - -++: Op4 ≪update≫
+note over proc4: app-triggered update
+
+proc4 -> clone4 - -++: Op5 ≪transaction≫
+clone4 -> messaging - -: Op5
+
+messaging -> clone4 ++: Op3
+note left: Op3 agreement pre-dates Op4 & Op5
+clone4 -> proc4 ++: Fork or Revoke?
+note over proc4: App instances can collaborate to decide
+proc4 - -> clone4 - -: Revoke
+clone4 -> clone4: Revoke Op4 + Op5
+note over clone4: Op4 & Op5 also removed from Journal
+clone4 -> clone4: Apply Op3
+clone4 -> proc4 - -: Op3 - (Op4 + Op5) ≪update≫
+
+@enduml
+
+PlantUML version 1.2021.10(Mon Aug 30 14:43:48 BST 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: GB
+--></g></svg>

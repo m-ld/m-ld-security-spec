@@ -1,6 +1,5 @@
 @startuml
 'https://plantuml.com/sequence-diagram
-
 hide footbox
 
 box Alice's device
@@ -23,7 +22,6 @@ INSERT
 end note
 
 rnote over genesis
-≪agree≫
 <code>
 Alice a mld:GenesisPrincipal .
 domain.ex.org mld:access mld:Permission .

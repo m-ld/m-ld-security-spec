@@ -180,6 +180,7 @@
 </node>
 </node>
 <node TEXT="permissions" ID="ID_103134275" CREATED="1627393153631" MODIFIED="1627393295402">
+<node TEXT="clone permissions = user permissions" ID="ID_1124721937" CREATED="1627909987364" MODIFIED="1627910005524"/>
 <node TEXT="" ID="ID_1159491420" CREATED="1627393249555" MODIFIED="1627393249555">
 <hook NAME="FirstGroupNode"/>
 </node>
@@ -245,7 +246,6 @@
 </node>
 </node>
 <node TEXT="fundamentally, what is allowed at&#xa;one clone may not be at another" ID="ID_1740597659" CREATED="1627664725595" MODIFIED="1627908762521">
-<node TEXT="clone permissions = user permissions" ID="ID_1124721937" CREATED="1627909987364" MODIFIED="1627910005524"/>
 <node TEXT="anyone disagreeing can undo" ID="ID_1699067211" CREATED="1627908444458" MODIFIED="1629113566570">
 <icon BUILTIN="idea"/>
 <icon BUILTIN="button_cancel"/>
@@ -425,6 +425,7 @@
 </node>
 <node TEXT="Federated (Istanbul BFT)" ID="ID_898766765" CREATED="1628178387472" MODIFIED="1628179552826" LINK="https://github.com/ethereum/EIPs/issues/650"/>
 </node>
+<node TEXT="external" ID="ID_1390206136" CREATED="1631529813053" MODIFIED="1631529815274"/>
 </node>
 <node TEXT="concurrent &quot;agreement&quot;" ID="ID_1626443289" CREATED="1628183024002" MODIFIED="1628667786066">
 <node TEXT="can arise" ID="ID_1435143021" CREATED="1628232491374" MODIFIED="1628232493469">

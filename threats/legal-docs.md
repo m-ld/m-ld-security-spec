@@ -186,7 +186,7 @@ For the purposes of a manageable scope and applicability to **m-ld**, in the app
 
 The users of p2pl-doc interact with the system and each other via an app, available on mobile or desktop devices. For convenience, a web app should also be available. In all cases, the app will use local storage to persist document state between sessions, allowing an offline session to be interrupted without data loss.
 
-![p2pl-docs deployment](./legal-docs-deployment.svg)
+![p2pl-docs deployment](img/legal-docs-deployment.svg)
 
 <sup>Icons made by [xnimrodx](https://www.flaticon.com/authors/xnimrodx) and [Vitaly Gorbachev](https://www.flaticon.com/authors/vitaly-gorbachev) from [www.flaticon.com](https://www.flaticon.com/)</sup>
 
@@ -240,7 +240,7 @@ Further, since so little legal content is machine-readable, one possible benefit
 
 The data flow diagram shows the processes, data stores, actors, data flows and trust boundaries which are subject to threats. Note that compared to the [deployment](#deployment) diagram above, only one user is shown, to avoid duplication for other equivalent users.
 
-| ![legal document](legal-docs.threat-dragon.png) | key<br />![key](../threat-dragon-key.png) |
+| ![legal document](img/legal-docs.threat-dragon.png) | key<br />![key](../threat-dragon-key.png) |
 | ----------------------------------------------- | ----------------------------------------- |
 
 ### user

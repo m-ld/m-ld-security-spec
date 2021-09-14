@@ -1,6 +1,5 @@
 @startuml
 'https://plantuml.com/object-diagram
-
 hide circle
 
 skinparam object {

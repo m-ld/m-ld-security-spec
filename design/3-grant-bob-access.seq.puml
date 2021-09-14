@@ -1,6 +1,5 @@
 @startuml
 'https://plantuml.com/sequence-diagram
-
 hide footbox
 
 database "Alice's clone" as genesis
@@ -21,7 +20,7 @@ end note
 
 messaging -> clone2 ++: Op3
 clone2 -> clone2: ACL constraint apply
-rnote over clone2: ≪agree≫ ""Bob mld:hasAccess { "@id": "?" } .""
+rnote over clone2: ""Bob mld:hasAccess { "@id": "?" } .""
 clone2 -> proc2 --: Op3 ≪update≫
 
 proc2 -> clone2 ++: Op4 ≪transaction≫

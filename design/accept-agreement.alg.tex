@@ -1,0 +1,31 @@
+\documentclass[preview]{standalone}
+
+\usepackage[utf8]{inputenc}
+\usepackage{algpseudocode}
+
+\algnewcommand\Const{\textsc}
+
+\begin{document}
+  %! suppress = MissingImport
+  \begin{algorithmic}
+    \Procedure{AcceptMessage}{$m$}
+      \If{$m$ is an agreement and $m.time.anyLt(journal.tail.time)$}
+        \State $choice\gets$ ask the application what to do
+        \If{$choice$ is $\Const{revoke}$}
+          \State $revocation\gets \Const{noop}$
+          \Repeat
+            \State $revocation\gets revocation - journal.tail.operation$
+            \State remove journal tail
+          \Until{$m.time.anyLt(journal.tail.time)$ is \Const{false}}
+          \State apply $m.operation$ to the graph
+          \State notify $(revocation + m.operation)$ to the app
+        \ElsIf{$choice$ is $\Const{fork}$}
+          \State leave the domain
+        \EndIf
+      \Else
+        \State apply $m$ to the graph
+        \State notify $m.operation$ to the app
+      \EndIf
+    \EndProcedure
+  \end{algorithmic}
+\end{document}

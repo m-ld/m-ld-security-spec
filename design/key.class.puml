@@ -1,6 +1,5 @@
 @startuml
 'https://plantuml.com/class-diagram
-
 hide circle
 
 skinparam object {
@@ -13,7 +12,11 @@ class "[rdfs:Class]" as class {
 object "[subject]" as subject {
 [property] = [object]
 }
-subject --> class : rdf:type
+subject --> class : [property]
+note on link
+links to Class,
+not instance
+end note
 class o--> "[rdfs:range | Class]" : [rdfs:Property]
 class --|> "[Superclass]" : rdfs:SubClassOf
 

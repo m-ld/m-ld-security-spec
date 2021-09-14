@@ -28,7 +28,7 @@ A standard for the procurement _process_, also conforming to EN 16931, is [Peppo
 
 However, Peppol's primary function is to provide a _technical_ standard for document exchange. It therefore mandates certain infrastructure and security controls at an implementation level, in the [eDelivery Network](https://peppol.eu/what-is-peppol/peppol-transport-infrastructure/) standards, which are based on [CEF eDelivery](https://ec.europa.eu/cefdigital/wiki/display/CEFDIGITAL/eDelivery). In particular, this mandates a 'four corner model' for all message-passing, in which "information exchanged between the original sender in corner one and final recipient in corner four go via access points, corners two and three respectively" [@CEFEDeliveryBuilding2016]:
 
-![CEF eDelivery four-corner model](./CEF%20eDelivery%20four-corner%20model.png)
+![CEF eDelivery four-corner model](img/CEF%20eDelivery%20four-corner%20model.png)
 
 Since the CIC process is subtantially different to the document-exchange model of Peppol, we choose to reverse-engineer its threat model basis based on its process model, technical infrastructure and security controls. The following table summarises the immediately inferrable threats. The following sections will also make reference to Peppol sources, as appropriate.
 
@@ -178,7 +178,7 @@ This section describes a hypothetical CIC application, using decentralised shari
 
 The users of CIC interact with the system and each other via an app, available on mobile or desktop devices. For convenience, a web app should also be available. In all cases, the app will use local storage to persist order state between sessions, allowing an offline session to be interrupted without data loss.
 
-<img src="./e-invoicing-deployment.svg" alt="e-invoicing deployment" style="background: white;">
+<img src="img/e-invoicing-deployment.svg" alt="e-invoicing deployment" style="background: white;">
 
 <sub>Icons made by <a href="https://www.flaticon.com/authors/xnimrodx" title="xnimrodx">xnimrodx</a> and <a href="https://www.flaticon.com/authors/vitaly-gorbachev" title="Vitaly Gorbachev">Vitaly Gorbachev</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></sub>
 
@@ -209,7 +209,7 @@ Examples:
 
 An initial analysis of order data can be found in the [Federated Bookkeeping research project](https://github.com/federatedbookkeeping/research/issues/4). In addition to access control rules, an order is subject to state changes. Note that the referenced ticket proposes some fine-grained state transitions related to a negotiation e.g. 'seller proposes'. In this analysis we propose a free-form negotiation which more closely aligns with a human interaction, in between the required _contract points_ introduced in §[integrity](#intergrity).
 
-[![order states](./e-invoice-states.svg)](https://dreampuf.github.io/GraphvizOnline/#digraph%20G%20%7B%0A%20%20rankdir%3D%22LR%22%3B%0A%20%20draft%20-%3E%20agreed%3B%0A%20%20agreed%20-%3E%20shipped%3B%0A%20%20agreed%20-%3E%20paid%3B%0A%20%20shipped%20-%3E%20received%3B%0A%20%20received%20-%3E%20concluded%3B%0A%20%20received%20-%3E%20disputed%3B%0A%20%20paid%20-%3E%20concluded%3B%0A%7D)
+[![order states](img/e-invoice-states.svg)](https://dreampuf.github.io/GraphvizOnline/#digraph%20G%20%7B%0A%20%20rankdir%3D%22LR%22%3B%0A%20%20draft%20-%3E%20agreed%3B%0A%20%20agreed%20-%3E%20shipped%3B%0A%20%20agreed%20-%3E%20paid%3B%0A%20%20shipped%20-%3E%20received%3B%0A%20%20received%20-%3E%20concluded%3B%0A%20%20received%20-%3E%20disputed%3B%0A%20%20paid%20-%3E%20concluded%3B%0A%7D)
 
 Note:
 
@@ -246,7 +246,7 @@ Noting that, in parallel with the order state, the journal also appears in multi
 
 The data flow diagram shows the processes, data stores, actors, data flows and trust boundaries which are subject to threats. Note that compared to the [deployment](#deployment) diagram above, only one user is shown, to avoid duplication for other equivalent users.
 
-| ![e-invoicing](e-invoicing.threat-dragon.png) | key<br />![key](../threat-dragon-key.png) |
+| ![e-invoicing](img/e-invoicing.threat-dragon.png) | key<br />![key](../threat-dragon-key.png) |
 | --------------------------------------------- | ----------------------------------------- |
 
 ### user

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="360px" preserveAspectRatio="none" style="width:279px;height:360px;background:#FFFFFF;" version="1.1" viewBox="0 0 279 360" width="279px" zoomAndPan="magnify"><defs><filter height="300%" id="f11qzac9le9lr7" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[c4c892d05414254cdeba8adc63897f88]
+class class--><rect codeLine="8" fill="#FEFECE" filter="url(#f11qzac9le9lr7)" height="53.0879" id="class" style="stroke:#A80036;stroke-width:1.5;" width="204" x="28" y="176"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="65" x="97.5" y="192.6016">[rdfs:Class]</text><line style="stroke:#A80036;stroke-width:1.5;" x1="29" x2="231" y1="200.1328" y2="200.1328"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="192" x="34" y="214.7676">[rdfs:Property] : [rdfs:range | literal]</text><line style="stroke:#A80036;stroke-width:1.5;" x1="29" x2="231" y1="221.0879" y2="221.0879"/><rect fill="#FFC0CB" filter="url(#f11qzac9le9lr7)" height="37.9102" style="stroke:#A80036;stroke-width:1.5;" width="109" x="75.5" y="7"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="50" x="105" y="20.6016">[subject]</text><line style="stroke:#A80036;stroke-width:1.5;" x1="76.5" x2="183.5" y1="25.1328" y2="25.1328"/><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="97" x="81.5" y="38.8008">[property] = [object]</text><!--MD5=[4c11944498f06ff8832d3b21b9ed3bba]
+class rdfs:range | Class--><rect fill="#FEFECE" filter="url(#f11qzac9le9lr7)" height="40.1328" id="rdfs:range | Class" style="stroke:#A80036;stroke-width:1.5;" width="116" x="7" y="306"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="110" x="10" y="322.6016">[rdfs:range | Class]</text><line style="stroke:#A80036;stroke-width:1.5;" x1="8" x2="122" y1="330.1328" y2="330.1328"/><line style="stroke:#A80036;stroke-width:1.5;" x1="8" x2="122" y1="338.1328" y2="338.1328"/><!--MD5=[3b351232e19b6d0fea2e3bc220bd7b64]
+class Superclass--><rect fill="#FEFECE" filter="url(#f11qzac9le9lr7)" height="40.1328" id="Superclass" style="stroke:#A80036;stroke-width:1.5;" width="75" x="158.5" y="306"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="69" x="161.5" y="322.6016">[Superclass]</text><line style="stroke:#A80036;stroke-width:1.5;" x1="159.5" x2="232.5" y1="330.1328" y2="330.1328"/><line style="stroke:#A80036;stroke-width:1.5;" x1="159.5" x2="232.5" y1="338.1328" y2="338.1328"/><!--MD5=[4af7d608e34c3ba91dbd0e53f3443a45]
+link subject to class--><path codeLine="14" d="M130,45.02 C130,74.65 130,134.01 130,170.5 " fill="none" id="subject-to-class" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="130,175.71,134,166.71,130,170.71,126,166.71,130,175.71" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="61" x="162" y="88.5684">[property]</text><path d="M135,97.3105 L135,137.3105 L246,137.3105 L246,107.3105 L236,97.3105 L135,97.3105 " fill="#FBFB77" filter="url(#f11qzac9le9lr7)" style="stroke:#A80036;stroke-width:1.0;"/><path d="M236,97.3105 L236,107.3105 L246,107.3105 L236,97.3105 " fill="#FBFB77" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="90" x="141" y="114.8789">links to Class,</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="78" x="141" y="130.1895">not instance</text><!--MD5=[f0cf68e6b7005b52219d1bf2c1434509]
+link class to rdfs:range | Class--><path codeLine="19" d="M78.0845,237.1272 C78.0845,237.1272 65.64,251.32 62,259 C57.07,269.39 56.46,281.76 57.54,292.97 " fill="none" id="class-rdfs:range | Class" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="59.53,305.86,62.1094,296.3549,58.7668,300.9186,54.2032,297.576,59.53,305.86" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="58.7668" x2="57.55" y1="300.9186" y2="293.005"/><polygon fill="#FFFFFF" points="86.95,229.04,79.8215,230.1284,78.0845,237.1272,85.213,236.0388,86.95,229.04" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="89" x="63" y="272.5684">[rdfs:Property]</text><!--MD5=[590aa289eb66665cc364c8b2624ef3b8]
+link class to Superclass--><path codeLine="20" d="M144,229.27 C153.26,246.31 165.55,268.94 175.85,287.91 " fill="none" id="class-to-Superclass" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="none" points="182.09,284.73,185.49,305.65,169.79,291.41,182.09,284.73" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="101" x="170" y="272.5684">rdfs:SubClassOf</text><!--MD5=[cbaf2a37a9dffc28fb12030707a7939c]
+@startuml
+'https://plantuml.com/class-diagram
+hide circle
+
+skinparam object {
+  BackgroundColor Pink
+}
+
+class "[rdfs:Class]" as class {
+[rdfs:Property] : [rdfs:range | literal]
+}
+object "[subject]" as subject {
+[property] = [object]
+}
+subject - -> class : [property]
+note on link
+links to Class,
+not instance
+end note
+class o- -> "[rdfs:range | Class]" : [rdfs:Property]
+class - -|> "[Superclass]" : rdfs:SubClassOf
+
+@enduml
+
+@startuml
+hide circle
+
+skinparam object {
+  BackgroundColor Pink
+}
+
+class "[rdfs:Class]" as class {
+[rdfs:Property] : [rdfs:range | literal]
+}
+object "[subject]" as subject {
+[property] = [object]
+}
+subject - -> class : [property]
+note on link
+links to Class,
+not instance
+end note
+class o- -> "[rdfs:range | Class]" : [rdfs:Property]
+class - -|> "[Superclass]" : rdfs:SubClassOf
+
+@enduml
+
+PlantUML version 1.2021.10(Mon Aug 30 14:43:48 BST 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: GB
+--></g></svg>

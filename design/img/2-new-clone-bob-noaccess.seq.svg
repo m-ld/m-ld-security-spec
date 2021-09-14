@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="397px" preserveAspectRatio="none" style="width:716px;height:397px;background:#FFFFFF;" version="1.1" viewBox="0 0 716 397" width="716px" zoomAndPan="magnify"><defs><filter height="300%" id="f1hl1a5aubj6hu" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><rect fill="#DDDDDD" height="378.9277" style="stroke:#A80036;stroke-width:1.0;" width="248" x="341" y="6"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="83" x="423.5" y="18.5684">Bob's device</text><rect fill="#FFFFFF" filter="url(#f1hl1a5aubj6hu)" height="73.6211" style="stroke:#A80036;stroke-width:1.0;" width="10" x="558.5" y="299.3066"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="290" x2="290" y1="87.7988" y2="390.9277"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="361" x2="361" y1="87.7988" y2="390.9277"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="563" x2="563" y1="186.3535" y2="390.9277"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="84" x="245" y="84.8457">Alice's clone</text><path d="M272,35.3105 C272,25.3105 290,25.3105 290,25.3105 C290,25.3105 308,25.3105 308,35.3105 L308,61.3105 C308,71.3105 290,71.3105 290,71.3105 C290,71.3105 272,71.3105 272,61.3105 L272,35.3105 " fill="#FEFECE" filter="url(#f1hl1a5aubj6hu)" style="stroke:#000000;stroke-width:1.5;"/><path d="M272,35.3105 C272,45.3105 290,45.3105 290,45.3105 C290,45.3105 308,45.3105 308,35.3105 " fill="none" style="stroke:#000000;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="26" x="345" y="84.8457">app</text><ellipse cx="361" cy="55.3105" fill="#FEFECE" filter="url(#f1hl1a5aubj6hu)" rx="12" ry="12" style="stroke:#A80036;stroke-width:2.0;"/><polygon fill="#A80036" points="357,43.3105,363,38.3105,361,43.3105,363,48.3105,357,43.3105" style="stroke:#A80036;stroke-width:1.0;"/><rect fill="#FFFFFF" filter="url(#f1hl1a5aubj6hu)" height="73.6211" style="stroke:#A80036;stroke-width:1.0;" width="10" x="558.5" y="299.3066"/><line style="stroke:#A80036;stroke-width:1.0;" x1="361" x2="403" y1="119.1094" y2="119.1094"/><line style="stroke:#A80036;stroke-width:1.0;" x1="403" x2="403" y1="119.1094" y2="132.1094"/><line style="stroke:#A80036;stroke-width:1.0;" x1="362" x2="403" y1="132.1094" y2="132.1094"/><polygon fill="#A80036" points="372,128.1094,362,132.1094,372,136.1094,368,132.1094" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="107" x="368" y="114.3672">Authenticate Bob</text><polygon fill="#A80036" points="530,157.4199,540,161.4199,530,165.4199,534,161.4199" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="361" x2="536" y1="161.4199" y2="161.4199"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="49" x="368" y="156.6777">start on</text><text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="104" x="421" y="156.354">domain.ex.org</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="37" x="542" y="199.6445">clone</text><path d="M545.5,150.1094 C545.5,140.1094 563.5,140.1094 563.5,140.1094 C563.5,140.1094 581.5,140.1094 581.5,150.1094 L581.5,176.1094 C581.5,186.1094 563.5,186.1094 563.5,186.1094 C563.5,186.1094 545.5,186.1094 545.5,176.1094 L545.5,150.1094 " fill="#FEFECE" filter="url(#f1hl1a5aubj6hu)" style="stroke:#000000;stroke-width:1.5;"/><path d="M545.5,150.1094 C545.5,160.1094 563.5,160.1094 563.5,160.1094 C563.5,160.1094 581.5,160.1094 581.5,150.1094 " fill="none" style="stroke:#000000;stroke-width:1.5;"/><polygon fill="#A80036" points="301,246.9521,291,250.9521,301,254.9521,297,250.9521" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="551.5,246.9521,561.5,250.9521,551.5,254.9521,555.5,250.9521" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="295" x2="557.5" y1="250.9521" y2="250.9521"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="58" x="307" y="246.21">snapshot</text><rect fill="#FBFB77" filter="url(#f1hl1a5aubj6hu)" height="53" style="stroke:#A80036;stroke-width:1.0;" width="280" x="5" y="217.5977"/><text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="224" x="9" y="233.6646">Alice mld:publicKey token1 .</text><text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="240" x="9" y="248.7974">Alice a mld:GenesisPrincipal .</text><text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="272" x="9" y="263.9302">domain.ex.org mld:access mld:ACL .</text><polygon fill="#A80036" points="546.5,295.3066,556.5,299.3066,546.5,303.3066,550.5,299.3066" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="361" x2="552.5" y1="299.3066" y2="299.3066"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="120" x="368" y="294.5645">Op1 ≪transaction≫</text><rect fill="#FBFB77" filter="url(#f1hl1a5aubj6hu)" height="23" style="stroke:#A80036;stroke-width:1.0;" width="123" x="233" y="280.9961"/><text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="48" x="237" y="297.2407">INSERT</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="0" x="289" y="297.5645"/><text fill="#000000" font-family="sans-serif" font-size="13" font-style="italic" lengthAdjust="spacing" textLength="63" x="289" y="297.5645">[anything]</text><line style="stroke:#A80036;stroke-width:1.0;" x1="568.5" x2="610.5" y1="330.6172" y2="330.6172"/><line style="stroke:#A80036;stroke-width:1.0;" x1="610.5" x2="610.5" y1="330.6172" y2="343.6172"/><line style="stroke:#A80036;stroke-width:1.0;" x1="569.5" x2="610.5" y1="343.6172" y2="343.6172"/><polygon fill="#A80036" points="579.5,339.6172,569.5,343.6172,579.5,347.6172,575.5,343.6172" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="134" x="575.5" y="325.875">ACL constraint check</text><polygon fill="#A80036" points="372,368.9277,362,372.9277,372,376.9277,368,372.9277" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="366" x2="562.5" y1="372.9277" y2="372.9277"/><text fill="#000000" font-family="sans-serif" font-size="13" font-style="italic" lengthAdjust="spacing" textLength="126" x="378" y="368.1855">reject: unauthorised</text><!--MD5=[96524bdef68d5a8cf7681b8b1d54a418]
+@startuml
+'https://plantuml.com/sequence-diagram
+hide footbox
+
+database "Alice's clone" as genesis
+box Bob's device
+control "app" as proc2
+database "clone" as clone2
+end box
+
+proc2 -> proc2: Authenticate Bob
+proc2 -> clone2 **: start on ""domain.ex.org""
+
+clone2 <-> genesis: snapshot
+rnote left
+<code>
+Alice mld:publicKey token1 .
+Alice a mld:GenesisPrincipal .
+domain.ex.org mld:access mld:ACL .
+end note
+
+proc2 -> clone2 ++: Op1 ≪transaction≫
+rnote left: ""INSERT"" //[anything]//
+
+clone2 -> clone2: ACL constraint check
+
+clone2 - -> proc2 - -: //reject: unauthorised//
+
+@enduml
+
+@startuml
+hide footbox
+
+database "Alice's clone" as genesis
+box Bob's device
+control "app" as proc2
+database "clone" as clone2
+end box
+
+proc2 -> proc2: Authenticate Bob
+proc2 -> clone2 **: start on ""domain.ex.org""
+
+clone2 <-> genesis: snapshot
+rnote left
+<code>
+Alice mld:publicKey token1 .
+Alice a mld:GenesisPrincipal .
+domain.ex.org mld:access mld:ACL .
+end note
+
+proc2 -> clone2 ++: Op1 ≪transaction≫
+rnote left: ""INSERT"" //[anything]//
+
+clone2 -> clone2: ACL constraint check
+
+clone2 - -> proc2 - -: //reject: unauthorised//
+
+@enduml
+
+PlantUML version 1.2021.10(Mon Aug 30 14:43:48 BST 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: GB
+--></g></svg>
