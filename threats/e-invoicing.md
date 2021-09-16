@@ -77,9 +77,9 @@ Also confidential is the _history_ of the order (see also §[auditing](#auditing
 - the history of components to which they have access, and
 - historical operations during the period of their read access.
 
-| losses                      | category    | indicative severity (depends on) |
-| --------------------------- | ----------- | -------------------------------- |
-| Disclosure of trade secrets | Competitive | Low (scope of disclosure)        |
+| losses                                                       | category    | indicative severity (depends on) |
+| ------------------------------------------------------------ | ----------- | -------------------------------- |
+| <a href="#loss-disclosure">⇲</a> Disclosure of trade secrets | Competitive | Low (scope of disclosure)        |
 
 ### integrity
 
@@ -92,20 +92,20 @@ The relevant security properties of a _contract point_ are:
 - It is non-repudiable by either party
 - Its information is recoverable (e.g. by taking a snapshot and storing it separately)
 
-| losses                   | category     | indicative severity (depends on)         |
-| ------------------------ | ------------ | ---------------------------------------- |
-| Payment without delivery | Replacement  | Medium (invoice value)                   |
-| Incorrect payment        | Replacement  | Medium (invoice value)                   |
-| Theft of goods           | Replacement  | Medium (invoice value)                   |
-| Destruction of order     | Productivity | Low (procurement bureaucracy & progress) |
+| losses                                                     | category     | indicative severity (depends on)         |
+| ---------------------------------------------------------- | ------------ | ---------------------------------------- |
+| <a href="#loss-no-delivery">⇲</a> Payment without delivery | Replacement  | Medium (invoice value)                   |
+| <a href="#loss-incorrect-payment">⇲</a> Incorrect payment  | Replacement  | Medium (invoice value)                   |
+| <a href="#loss-goods-theft">⇲</a> Theft of goods           | Replacement  | Medium (invoice value)                   |
+| <a href="#loss-order-loss">⇲</a> Destruction of order      | Productivity | Low (procurement bureaucracy & progress) |
 
 ### availability
 
 The CIC system must be sufficiently available so that it is never a bottleneck in the procurement process. In order to provide the advertised benefits over a centralised system it must also be available to an offline party – with the proviso that they will not see the activities of other parties; and that modifications made in this state may need to be negotiated once back online, prior to a _contract point_ (see §[integrity](#integrity)).
 
-| losses       | category     | indicative severity (depends on) |
-| ------------ | ------------ | -------------------------------- |
-| Order delays | Productivity | Medium (attacker capability)     |
+| losses                                         | category     | indicative severity (depends on) |
+| ---------------------------------------------- | ------------ | -------------------------------- |
+| <a href="#loss-order-delay">⇲</a> Order delays | Productivity | Medium (attacker capability)     |
 
 ### auditing
 
@@ -119,9 +119,9 @@ For the protection of personal information, an operation actor assignment is not
 
 The ordering of visible operations can theoretically vary between parties, for example due to concurrent or offline operations. While this may be accounted for in the data structure, such that the order _converges_ to the same state for all parties, the auditable history must preserve _causation_. This requires that if an operation _B_ follows an operation _A_ in the history of the party that enacted _B_, it follows _A_ for all parties.
 
-| losses     | category                       | indicative severity (depends on) |
-| ---------- | ------------------------------ | -------------------------------- |
-| Litigation | Fines & Judgements, Reputation | Medium (legal fees & fines)      |
+| losses                                      | category                       | indicative severity (depends on) |
+| ------------------------------------------- | ------------------------------ | -------------------------------- |
+| <a href="#loss-litigation">⇲</a> Litigation | Fines & Judgements, Reputation | Medium (legal fees & fines)      |
 
 ### authentication
 
@@ -190,12 +190,12 @@ For persistence of the order between sessions, and for parties to be able to acc
 
 To support the objectives, users of the CIC system are modeled as follows. A user assigned one or more _user-roles_ in the scope of an order, and belong to a _party_, which itself has a _party-role_. (This is derived from the Peppol/CEF four-corner model, with an access point representing a party, which has its own associated users.)
 
-| class      | instances                                            | scope            |
-| ---------- | ---------------------------------------------------- | ---------------- |
-| user       | _identified actors_ (human and machine)              | directory system |
-| user-role  | writer, reader, signer, auditor, shipping calculator | order            |
-| party      | _organisation or user_                               | directory system |
-| party-role | buyer, seller, shipping agent, notary, lender        | order            |
+| class                                        | instances                                            | scope            |
+| -------------------------------------------- | ---------------------------------------------------- | ---------------- |
+| <a href="#class-user">⇲</a> user             | _identified actors_ (human and machine)              | directory system |
+| <a href="#class-user-role">⇲</a> user-role   | writer, reader, signer, auditor, shipping calculator | order            |
+| <a href="#class-party">⇲</a> party           | _organisation or user_                               | directory system |
+| <a href="#class-party-role">⇲</a> party-role | buyer, seller, shipping agent, notary, lender        | order            |
 
 Examples:
 
@@ -207,7 +207,7 @@ Examples:
 
 ### data
 
-An initial analysis of order data can be found in the [Federated Bookkeeping research project](https://github.com/federatedbookkeeping/research/issues/4). In addition to access control rules, an order is subject to state changes. Note that the referenced ticket proposes some fine-grained state transitions related to a negotiation e.g. 'seller proposes'. In this analysis we propose a free-form negotiation which more closely aligns with a human interaction, in between the required _contract points_ introduced in §[integrity](#intergrity).
+An initial analysis of order data can be found in the [Federated Bookkeeping research project](https://github.com/federatedbookkeeping/research/issues/4). In addition to access control rules, an order is subject to state changes. Note that the referenced ticket proposes some fine-grained state transitions related to a negotiation e.g. 'seller proposes'. In this analysis we propose a free-form negotiation which more closely aligns with a human interaction, in between the required _contract points_ introduced in §[integrity](#integrity).
 
 [![order states](img/e-invoice-states.svg)](https://dreampuf.github.io/GraphvizOnline/#digraph%20G%20%7B%0A%20%20rankdir%3D%22LR%22%3B%0A%20%20draft%20-%3E%20agreed%3B%0A%20%20agreed%20-%3E%20shipped%3B%0A%20%20agreed%20-%3E%20paid%3B%0A%20%20shipped%20-%3E%20received%3B%0A%20%20received%20-%3E%20concluded%3B%0A%20%20received%20-%3E%20disputed%3B%0A%20%20paid%20-%3E%20concluded%3B%0A%7D)
 
@@ -283,12 +283,12 @@ The order service serves three primary functions:
 
 ### agents
 
-| agent                | motivation                                                   | capability                                            |
-| -------------------- | ------------------------------------------------------------ | ----------------------------------------------------- |
-| Legitimate user      | Financial advantage<br />Grievance<br />Whistleblowing<br />Corruption | Disclosure via side-channel<br />Incorrect data entry |
-| Competitor           | Business Intelligence<br />Sabotage<br />Anti-competitive    | Social engineering<br />Hacker engagement             |
-| System administrator | _as legitimate user_                                         | Direct access to components                           |
-| Hacker               | Direct financial gain<br />Whistleblowing<br />Bribery, ransom<br />Blackmail | Miscellaneous attacks via network                     |
+| agent                                               | motivation                                                   | capability                                            |
+| --------------------------------------------------- | ------------------------------------------------------------ | ----------------------------------------------------- |
+| <a id="agent-legitimate-user">⇲</a> Legitimate user | Financial advantage<br />Grievance<br />Whistleblowing<br />Corruption | Disclosure via side-channel<br />Incorrect data entry |
+| <a id="agent-competitor">⇲</a> Competitor           | Business Intelligence<br />Sabotage<br />Anti-competitive    | Social engineering<br />Hacker engagement             |
+| <a id="agent-sysadmin">⇲</a> System administrator   | _as legitimate user_                                         | Direct access to components                           |
+| <a id="agent-hacker">⇲</a> Hacker                   | Direct financial gain<br />Whistleblowing<br />Bribery, ransom<br />Blackmail | Miscellaneous attacks via network                     |
 
 ### attacks
 
@@ -304,17 +304,17 @@ The order service serves three primary functions:
 
 ### vectors
 
-| attack                             | components                                  | comment                                                      |
-| ---------------------------------- | ------------------------------------------- | ------------------------------------------------------------ |
-| Identity theft                     | Authentication                              | _Out of scope_                                               |
-| Message forgery                    | _All data flows_<br />Messaging             | Can occur in the network or at process boundaries            |
-| Direct tampering of storage        | Local storage<br />Server storage           | Requires direct access to components                         |
-| Signature forgery                  | Local app<br />Messaging<br />Order service | Requires direct access to components<br />e.g. injection of dynamically-loaded components |
-| Communication interception         | _All data flows_<br />Messaging             |                                                              |
-| Denial-of-service by data volume   | Messaging<br />Order service                |                                                              |
-| Denial-of-service by data velocity | Messaging<br />Order service                |                                                              |
-| Injection                          | Local app                                   |                                                              |
-| Social engineering                 | User                                        |                                                              |
+| attack                                                       | components                                  | comment                                                      |
+| ------------------------------------------------------------ | ------------------------------------------- | ------------------------------------------------------------ |
+| <a href="#attack-identity-theft">⇲</a> Identity theft        | Authentication                              | _Out of scope_                                               |
+| <a href="#attack-message-forgery">⇲</a> Message forgery      | _All data flows_<br />Messaging             | Can occur in the network or at process boundaries            |
+| <a href="#attack-storage-tampering">⇲</a> Direct tampering of storage | Local storage<br />Server storage           | Requires direct access to components                         |
+| <a href="#attack-signature-forgery">⇲</a> Signature forgery  | Local app<br />Messaging<br />Order service | Requires direct access to components<br />e.g. injection of dynamically-loaded components |
+| <a href="#attack-comms-intercept">⇲</a> Communication interception | _All data flows_<br />Messaging             |                                                              |
+| <a href="#attack-dos-volume">⇲</a> Denial-of-service by data volume | Messaging<br />Order service                |                                                              |
+| <a href="#attack-dos-velocity">⇲</a> Denial-of-service by data velocity | Messaging<br />Order service                |                                                              |
+| <a href="#attack-injection">⇲</a> Injection                  | Local app                                   |                                                              |
+| <a href="#attack-social-engineering">⇲</a> Social engineering | User                                        |                                                              |
 
 ## 4. summary
 

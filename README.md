@@ -15,84 +15,39 @@
 
 # Securing Shared Decentralised Live Information with **m-ld**
 
-**m-ld** is a software technology for live information sharing. It enables
-software engineers to add real-time collaboration features to new and existing
-software architectures. It is fundamentally decentralised and able to function
-with information only visible to client components, for example on user devices.
-In this mode of operation, authority over information content and correctness is
-not tied to a central architectural component, like a database. This is a
-benefit to flexibility and arguably privacy, but requires well-defined and
-technically enforceable new models for authority.
+**m-ld** is a software technology for live information sharing. It enables software engineers to add real-time collaboration features to new and existing software architectures. It is fundamentally decentralised and able to function with information only visible to client components, for example on user devices. In this mode of operation, authority over information content and correctness is not tied to a central architectural component, like a database. This is a benefit to flexibility and arguably privacy, but requires well-defined and technically enforceable new models for authority.
 
-The existing baseline authority model for **m-ld** affords all participants
-equal privilege and so depends on external security controls provided by the app
-architecture. This project will research and prototype modifications to the
-primitives of the
-**m-ld** core protocol to natively support strong assurance of data integrity
-and traceability, with authority assignable to identified actors (e.g. users or
-groups). Specifically, in priority order:
+The existing baseline authority model for **m-ld** affords all participants equal privilege and so depends on external security controls provided by the app architecture. This project will research and prototype modifications to the
+primitives of the **m-ld** core protocol to natively support strong assurance of data integrity and traceability, with authority assignable to identified actors (e.g. users or groups). Specifically, in priority order:
 
-1. Fine-grained access control, for example to 'schema' metadata (the
-   definitions of correctness for a domain)
+1. Fine-grained access control, for example to 'schema' metadata (the definitions of correctness for a domain)
 1. Cryptographic data attribution to identified actors
 1. A model for delegation to other authority protocols, e.g. consensus
 
 ## goals
 
-With this project, we will contribute a new take on decentralised authority for
-live information sharing, not just for **m-ld** but also logically applicable to
-other technologies.
+With this project, we will contribute a new take on decentralised authority for live information sharing, not just for **m-ld** but also logically applicable to other technologies.
 
-**m-ld**'s approach to knowledge, in common with RDF, is to handle assertions
-('ABox' or instance statements) and terminology ('TBox' or ontology statements)
-using a common representation. In practical usage, the terminology not only
-classifies, but is used to constrain allowable assertions. The particular
-demands of the write concurrency model supported by **m-ld** mean that this
-includes definition of how conflicts are resolved.
+**m-ld**'s approach to knowledge, in common with RDF, is to handle assertions ('ABox' or instance statements) and terminology ('TBox' or ontology statements) using a common representation. In practical usage, the terminology not only
+classifies, but is used to constrain allowable assertions. The particular demands of the write concurrency model supported by **m-ld** mean that this includes definition of how conflicts are resolved.
 
-This approach is unique among shared data structure libraries, which typically
-define classes purely as behavioural code. The advantages of the **m-ld** model
-are common with linked data in general: the terminology is itself
-machine-processable, so it can be used to infer new knowledge.
+This approach is unique among shared data structure libraries, which typically define classes purely as behavioural code. The advantages of the **m-ld** model are common with linked data in general: the terminology is itself machine-processable, so it can be used to infer new knowledge.
 
-From one point of view, this model particularly exposes a concern over
-information 'authority', because an attacker who has successfully become a live
-participant (perhaps legitimately, if they are an 'insider') can not only alter
-the information, but also the very definition of its integrity.
+From one point of view, this model particularly exposes a concern over information 'authority', because an attacker who has successfully become a live participant (perhaps legitimately, if they are an 'insider') can not only alter the information, but also the very definition of its integrity.
 
-When using a common representation, this apparent problem reduces to one of
-authorisation: controls over who is able to change information, and under what
-circumstances. Addressing the problem for terminology will have the useful
-side-effect of also solving it for other authorisation uses only affecting the
-assertions domain, such as for personal information.
+When using a common representation, this apparent problem reduces to one of authorisation: controls over who is able to change information, and under what circumstances. Addressing the problem for terminology will have the useful side-effect of also solving it for other authorisation uses only affecting the assertions domain, such as for personal information.
 
-The expectation is that the solution will involve strong (cryptographic) binding
-of access control (however implemented) to user identities. This relates closely
-to a parallel requirement for traceability and non-repudiation in information
-(frequently mandated in regulated systems), which is typically well addressed in
-blockchain-based systems but not directly in real-time collaborative data
-structures.
+The expectation is that the solution will involve strong (cryptographic) binding of access control (however implemented) to user identities. This relates closely to a parallel requirement for traceability and non-repudiation in information (frequently mandated in regulated systems), which is typically well addressed in blockchain-based systems but not directly in real-time collaborative data structures.
 
-We would like to encompass other 'authority' models in this analysis, so that it
-is possible to describe and enforce consensus models e.g. quorum and
-permissionless protocols.
+We would like to encompass other 'authority' models in this analysis, so that it is possible to describe and enforce consensus models e.g. quorum and permissionless protocols.
 
-The end result will be an authority and traceability model for live,
-decentralised shared information, with a prototype reference implementation in
-**m-ld**, that is informative to knowledge management in general.
+The end result will be an authority and traceability model for live, decentralised shared information, with a prototype reference implementation in **m-ld**, that is informative to knowledge management in general.
 
 ## challenges
 
-**m-ld**'s foundational replicated graph data type deliberately makes no
-assumptions about the structure of the information contained in the graph,
-including any primitive notion of 'users' or 'groups' or their identities, or
-any special way to refer to collections of information to be secured.
+**m-ld**'s foundational replicated graph data type deliberately makes no assumptions about the structure of the information contained in the graph, including any primitive notion of 'users' or 'groups' or their identities, or any special way to refer to collections of information to be secured.
 
-The primitives to be proposed in this project to allow strong enforcement of
-authorisation and traceability should follow this principle as far as possible,
-to prevent the accidental exclusion of some future access control model. This
-does not preclude the creation of one or more 'upper' ontologies as examples of
-how to leverage the primitives.
+The primitives to be proposed in this project to allow strong enforcement of authorisation and traceability should follow this principle as far as possible, to prevent the accidental exclusion of some future access control model. This does not preclude the creation of one or more 'upper' ontologies as examples of how to leverage the primitives.
 
 ## references
 

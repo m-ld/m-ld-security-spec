@@ -88,9 +88,9 @@ When using e-documents this has led to the common practice of printing out and r
 
 When using p2pl-doc, such sharing should also break the link to the original document, so that no new updates are provided.
 
-| losses                          | category                                 | indicative severity (depends on) |
-| ------------------------------- | ---------------------------------------- | -------------------------------- |
-| Disclosure of legal information | Response, Fines & Judgements, Reputation | High (scope of disclosure)       |
+| losses                                                       | category                                 | indicative severity (depends on) |
+| ------------------------------------------------------------ | ---------------------------------------- | -------------------------------- |
+| <a id="loss-confidentiality-disclosure">⇲</a> Disclosure of legal information | Response, Fines & Judgements, Reputation | High (scope of disclosure)       |
 
 ### integrity
 
@@ -100,18 +100,18 @@ However, in cases where specific headings or wordings are required, such as for 
 
 In addition, future directions for ontology- or code-driven formalisation of content (hereafter 'content form') for a much wider range of documents should be supported. This would allow conformance to an expected document structure to be machine-checkable, saving time and money.
 
-| losses                                        | category     | indicative severity (depends on)      |
-| --------------------------------------------- | ------------ | ------------------------------------- |
-| Non-conformity to required document structure | Productivity | Medium (procedure complexity & stage) |
+| losses                                                       | category     | indicative severity (depends on)      |
+| ------------------------------------------------------------ | ------------ | ------------------------------------- |
+| <a id="loss-integrity-structure">⇲</a> Non-conformity to required document structure | Productivity | Medium (procedure complexity & stage) |
 
 ### availability
 
 The p2pl-doc system must be sufficiently available so that it is never a bottleneck in client interactions or legal proceedings. It should preferably be available to an offline party – with the proviso that they will not see the activities of other parties. (UK courts [have Wifi available](https://www.gov.uk/government/news/improving-wifi-in-our-criminal-courts) for use by legal professionals; but anecdotally it is not always reliable.)
 
-| losses                    | category                 | indicative severity (depends on)   |
-| ------------------------- | ------------------------ | ---------------------------------- |
-| Client interaction delays | Productivity, Reputation | Medium (attacker capability)       |
-| Legal proceedings delays  | Productivity, Reputation | High (attacker capability & stage) |
+| losses                                                       | category                 | indicative severity (depends on)   |
+| ------------------------------------------------------------ | ------------------------ | ---------------------------------- |
+| <a id="loss-availability-client">⇲</a> Client interaction delays | Productivity, Reputation | Medium (attacker capability)       |
+| <a id="loss-availability-proceedings">⇲</a> Legal proceedings delays | Productivity, Reputation | High (attacker capability & stage) |
 
 ### auditing
 
@@ -119,9 +119,9 @@ Auditing of the p2pl-doc system should support GDPR compliance and general busin
 
 There is otherwise no regulatory requirement for fine-grained attribution of individual edits to specific users, although some version history capability is generally expected in document management systems.
 
-| losses                 | category                       | indicative severity (depends on) |
-| ---------------------- | ------------------------------ | -------------------------------- |
-| Litigation (e.g. GDPR) | Fines & Judgements, Reputation | Medium (legal fees & fines)      |
+| losses                                                       | category                       | indicative severity (depends on) |
+| ------------------------------------------------------------ | ------------------------------ | -------------------------------- |
+| <a id="loss-auditing-litigation">⇲</a> Litigation (e.g. GDPR) | Fines & Judgements, Reputation | Medium (legal fees & fines)      |
 
 ### authentication
 
@@ -146,11 +146,11 @@ In addition to read permission, named users (see [§confidentiality](#confidenti
 
 | scope                                                        | typical edit rights   |
 | ------------------------------------------------------------ | --------------------- |
-| Document metadata (e.g. identity, version, date)             | not directly editable |
-| Document information (e.g. title, tags)                      | authors               |
-| Paragraph structure & text                                   | authors               |
-| Content form (if applicable, see [§integrity](#integrity); may constrain the above) | creator               |
-| Annotations & suggestions (redline)                          | authors & reviewers   |
+| <a id="authorisation-scope-metadata">⇲</a> Document metadata (e.g. identity, version, date) | not directly editable |
+| <a id="authorisation-scope-doc-info">⇲</a> Document information (e.g. title, tags) | authors               |
+| <a id="authorisation-scope-paragraphs">⇲</a> Paragraph structure & text | authors               |
+| <a id="authorisation-scope-form">⇲</a> Content form (if applicable, see [§integrity](#integrity); may constrain the above) | creator               |
+| <a id="authorisation-scope-annotations">⇲</a> Annotations & suggestions (redline) | authors & reviewers   |
 
 | losses                                                   |
 | -------------------------------------------------------- |
@@ -281,13 +281,13 @@ The search service maintains an index of available legal documents (see [§deplo
 
 | agent                                                        | motivation                                                   | capability                                                   |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| Legitimate user                                              | Grievance<br/>Whistleblowing<br/>Corruption<br />Biasing the case<br />Accidental | Disclosure via side-channel<br/>Incorrect content entry<br />Device loss<br />Setting up incorrect permissions on documents |
-| Opposing counsel (note: very unlikely to mount a direct, deliberate attack) | Accidental                                                   | Access to shared case documents e.g. witness statements      |
-| Opposing party (e.g. plaintiff/defendant)                    | Strengthening their argument<br />Biasing the case           | As public; but may engage hackers                            |
-| Cloud provider                                               | Analytics<br />User profiling                                | Direct access to storage<br />Cookies                        |
-| Government                                                   | National security                                            | Requests for data under surveillance acts                    |
-| Hacker / hacktivist                                          | Direct financial gain<br/>Whistleblowing<br/>Bribery, ransom<br/>Blackmail | Miscellaneous attacks via network<br />Malware<br />Phishing |
-| System Administrator                                         | *as legitimate user*                                         | Direct access to components<br />Incorrect security configuration |
+| <a id="agent-legitimate-user">⇲</a> Legitimate user          | Grievance<br/>Whistleblowing<br/>Corruption<br />Biasing the case<br />Accidental | Disclosure via side-channel<br/>Incorrect content entry<br />Device loss<br />Setting up incorrect permissions on documents |
+| <a id="agent-opposing-counsel">⇲</a> Opposing counsel (note: very unlikely to mount a direct, deliberate attack) | Accidental                                                   | Access to shared case documents e.g. witness statements      |
+| <a id="agent-opposing-party">⇲</a> Opposing party (e.g. plaintiff/defendant) | Strengthening their argument<br />Biasing the case           | As public; but may engage hackers                            |
+| <a id="agent-cloud-provider">⇲</a> Cloud provider            | Analytics<br />User profiling                                | Direct access to storage<br />Cookies                        |
+| <a id="agent-government">⇲</a> Government                    | National security                                            | Requests for data under surveillance acts                    |
+| <a id="agent-hacker">⇲</a> Hacker / hacktivist               | Direct financial gain<br/>Whistleblowing<br/>Bribery, ransom<br/>Blackmail | Miscellaneous attacks via network<br />Malware<br />Phishing |
+| <a id="agent-sysadmin">⇲</a> System Administrator            | *as legitimate user*                                         | Direct access to components<br />Incorrect security configuration |
 
 ### attacks
 
@@ -304,17 +304,17 @@ The search service maintains an index of available legal documents (see [§deplo
 
 ### vectors
 
-| attack                      | components                                    | comment                                                      |
-| --------------------------- | --------------------------------------------- | ------------------------------------------------------------ |
-| Identity theft              | Authentication                                | *Out of scope*                                               |
-| Message forgery             | *all data flows*<br />Messaging               | Can occur in the network or at process boundaries            |
-| Direct tampering of storage | Local storage<br />Server storage             | Requires direct access to components                         |
-| Signature forgery           | Local app<br />Messaging<br />Storage service | Requires direct access to components e.g. injection of dynamically-loaded components |
-| Communication interception  | *all data flows*<br />Messaging               |                                                              |
-| Denial-of-service           | Messaging<br />Search service                 |                                                              |
-| Injection                   | Local app<br />Search service                 |                                                              |
-| Social engineering          | User                                          |                                                              |
-| Incorrect security setup    | Local app                                     | e.g. Difficulties setting up the right access controls on a document, and verifying that the access controls are working as intended |
+| attack                                                       | components                                    | comment                                                      |
+| ------------------------------------------------------------ | --------------------------------------------- | ------------------------------------------------------------ |
+| <a href="#attack-identity-theft">⇲</a> Identity theft        | Authentication                                | *Out of scope*                                               |
+| <a href="#attack-message-forgery">⇲</a> Message forgery      | *all data flows*<br />Messaging               | Can occur in the network or at process boundaries            |
+| <a href="#attack-storage-tampering">⇲</a> Direct tampering of storage | Local storage<br />Server storage             | Requires direct access to components                         |
+| <a href="#attack-signature-forgery">⇲</a> Signature forgery  | Local app<br />Messaging<br />Storage service | Involves duping a user into signing something they did not intend to sign.<br />Requires direct access to components e.g. injection of dynamically-loaded components. |
+| <a href="#attack-comms-intercept">⇲</a> Communication interception | *all data flows*<br />Messaging               |                                                              |
+| <a href="#attack-dos">⇲</a> Denial-of-service                | Messaging<br />Search service                 |                                                              |
+| <a href="#attack-injection">⇲</a> Injection                  | Local app<br />Search service                 |                                                              |
+| <a href="#attack-social-engineering">⇲</a> Social engineering | User                                          |                                                              |
+| <a href="#attack-incorrect-security">⇲</a> Incorrect security setup | Local app                                     | e.g. Difficulties setting up the right access controls on a document, and verifying that the access controls are working as intended |
 
 ## 4. summary
 
