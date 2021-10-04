@@ -17,6 +17,10 @@ The success criterion of the design is technically whether it is sufficient for 
 
 The approach of this phase is software engineering design and specification, producing documentation with semi-formal components as required for clarity.
 
+## documentation
+
+A summary of threat to security control mappings is found in the [controls](./controls.md) document.
+
 ## tooling notes
 
 ### PlantUML

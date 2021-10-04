@@ -44,6 +44,19 @@
   abstract = {The purpose of this document is to provide interested organisations with a deeper understanding of the PEPPOL Transport Infrastructure, its key features, components and governance}
 }
 
+@article{costaAccessControlWeakly2016,
+  title = {Access {{Control}} in {{Weakly Consistent Systems}}},
+  author = {da Costa, Tiago Miguel Ferreira},
+  year = {2016},
+  month = dec,
+  url = {https://run.unl.pt/handle/10362/30066},
+  urldate = {2021-09-27},
+  abstract = {Eventually consistent models have become popular in the last years in data storage  systems for cloud environments, allowing to give users better availability and lower  latency. In this model, it is possible for replicas to be temporarily inconsistent, having  been proposed various solutions to deal with this inconsistency and ensure the final  convergence of data. However, defining and enforcing access control policies under this model is still an open challenge.  The implementation of access control policies for these systems raises it's own challenges, given the information about the permissions is itself kept in a weakly consistent form. In this dissertation, a solution for this problem is proposed, that allows to prevent the non authorized access and modification of data.  The proposed solution allows concurrent modifications on the security policies, ensuring their convergence when they are used to verify and enforce access control the associated data. In this dissertation we present an evaluation of the proposed model, showing the solution respects the correct functioning over possible challenging situations, also discussing its application on scenarios that feature peer-to-peer communication between clients and additional replicas on the clients, with the goal of providing a lower latency and reduce the load on centralized components.},
+  copyright = {openAccess},
+  language = {eng},
+  annotation = {Accepted: 2018-02-08T11:46:42Z}
+}
+
 @misc{CyberThreatUK2018,
   title = {The Cyber Threat to {{UK}} Legal Sector},
   year = {2018},
@@ -263,6 +276,18 @@
   copyright = {This item is likely protected under Title 17 of the U.S. Copyright Law. Unless on a Creative Commons license, for uses protected by Copyright Law, contact the copyright holder or the author.},
   language = {en\_US},
   annotation = {Accepted: 2018-10-31T17:48:05Z}
+}
+
+@misc{teixeiraDecentralisedAccessControl2018,
+  title = {Decentralised {{Access Control}} in {{CRDTs}} {$\cdot$} {{Issue}} \#8 {$\cdot$} Protocol/Research},
+  author = {Teixeira, Pedro},
+  year = {2018},
+  month = may,
+  journal = {GitHub},
+  url = {https://github.com/protocol/research/issues/8},
+  urldate = {2021-09-27},
+  abstract = {Using a CRDT, users can collaborate in real-time editing of a shared document over a loosely connected P2P network. Each user will have a replica of the shared document and they will send each other messages signifying updates to the state (either in the form of operations, whole states or deltas). While CRDTs already make this possible, certain useful capabilities do not exist yet. For example, the owner of a document might want to collaborate with other uses, but still be able to maintain control of who can read or write to this document. Not only does the user want to protect their local replica but, in order to maintain consistency across peers, they also want to inform the other replicas of which users are allowed to do what. Besides having the power to adding permissions to users in all of the replicas, they might want to be able to remove these permissions and be able to also propagate this to the other replicas. Besides read and write access, this user may also want to delegate this power to other users, so that they also can become administrators of permissions for this given replica. Any of these permissions should also be revocable in the future. The initial owner will create a message describing this permission and propagate it to all the other users. When knowing this information, replica of user B will start making local changes, and those changes will be propagated to other replicas. If, while user B is propagating the replica, user A revokes this permission, how can this be accomplished in a way that is secure and that still guarantees SEC?},
+  language = {en}
 }
 
 @article{yaacoubRoboticsCyberSecurity2021,
