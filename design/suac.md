@@ -20,12 +20,12 @@ Besides SEC, practical CRDTs seek to preserve, as far as possible, the _intentio
 
 ### agreements
 
-As argued in [controls](./controls.md), some state changes in the systems analysed seem to require the _agreement_ of system participants. We now notice that the requirement for agreement is associated with the potential for intention not to be preserved, because one user's changes may have to be completely voided:
+As argued in [controls](./controls.md), some state changes in the systems analysed seem to require the _agreement_ of system participants. We now notice that the requirement for agreement is associated with the potential for intention not to be preserved, because one user's changes may have to be completely voided. For example:
 
-- State changes concurrent with a data schema change
-- State changes concurrent with access control changes
+- State changes concurrent with a data schema change – the state may no longer be compatible with the schema
+- State changes concurrent with access control changes – the concurrent change might not be allowed
 
-For now, we informally specify that an "agreement" is a coordinated change of state, as distinct from an inherently uncoordinated conflict-free change. An agreement is binding on all participants, but its coordination may involve any subset, such as a majority consensus, or even just one participant who has the "authority" to unilaterally agree.
+For now, we informally specify that an "agreement" is a coordinated change of state, as distinct from an inherently uncoordinated conflict-free change. An agreement is binding on all participants, but its coordination may involve any subset of them, such as a majority consensus, or even just one participant who has the "authority" to unilaterally agree.
 
 Existing inherently coordinated data types may also expose unagreed state, thus offering the option for a user to proceed at risk of their transactions being voided at some future time.
 
@@ -64,19 +64,19 @@ To simplify the analysis we will consider a tractable but useful common case, wh
 The consequence of a subject being a statute (i.e. it is _statutory_) is that if it changes, _any_ concurrent change is eventually voided. While this intuitively suggests a bottleneck and a risk of frequent voiding, we note that:
 
 - This is the normal behaviour of ledgers, and even some high-throughput databases like [MongoDB](https://docs.mongodb.com/manual/faq/concurrency/).
-- Subjects of agreements (including all our examples) change infrequently, while data that is not subject to agreement can still freely change, concurrently or offline.
+- Subjects of agreements (including all our examples) change infrequently, while data that is not subject to agreement can freely change, concurrently or offline.
 
-Further, we can minimise or remove the risk of voided transactions by means of a two-phase agreement, as follows (a fuller specification for locking will be found below). First, a _lock record_ is added to the dataset by agreement. The lock record identifies a user, and the data that it is locking. A lock record is itself an agreement definition. Any change to the identified data then requires the agreement of the lock, which is to say the change has been made by the identified user; the user may also choose to release the lock. With this method it is straightforward for a participant to check whether they currently own the lock, and so whether or not a transaction they make will be voided.
+Further, we can minimise or remove the risk of voided transactions by means of a two-phase agreement, as follows (a fuller specification for locking will be found below). First, a _lock record_ is added to the dataset by agreement. The lock record identifies a user, and the data that it is locking. A lock record is itself an agreement definition. Any change to the identified data then requires the agreement of the lock, which is to say the change has been made by the identified user; the user may also choose to release the lock. With this method it is straightforward for a participant to check whether they currently own the lock, and if they do, their transaction will never be voided.
 
 ### authority
 
-We have already informally introduced the concept of authority, as the ability to unilaterally agree a change – a _lock_ is a temporary authority. It is one of a number of possible _conditions_ for an agreement; another might be consensus. Authority particularly begs the question: how can a participant trust another participant's claimed authority?
+We have already informally introduced the concept of authority, as the ability to unilaterally agree a change – for example, a _lock_ is a temporary authority. Authority is one of a number of possible _conditions_ for an agreement; another might be consensus. Authority particularly begs the question: how can a participant trust another participant's claimed authority?
 
-In a decentralised system, every compute node has the same inherent authority – it is the participating security principal (e.g. user) to which differential authority is assigned. Intuitively, this assignment should preferably be part of the logically decentralised dataset – in fact, this _must_ be the case, because any _reference_ to another dataset is itself a datum.
+In a decentralised system, every compute node has the same inherent authority – differential authority is assigned to the participating security principal (e.g. the user). Intuitively, this assignment should preferably be part of the logically decentralised dataset – in fact, this _must_ be the case, because any _reference_ to another dataset is itself a datum.
 
 So in order to trust authority, a participant must trust the data. A natural step might be to digitally _sign_ data, so that it is practically impossible to forge. However, this is subject to recursion: why trust the signer's authority? (Note this is a separate concern to _authentication_; trust in the signer's identity is not the same as trust in their authority.)
 
-All trust models are based on chains of trust. These chains are not just spatially arranged (we trust the safety of our home because it has locks; we trust locks because of their design; and so forth), but also temporally (we trust our friends because they have previously been trustworthy). We can trust current state of the data if we can trust every prior state, and every operation that led to a new state (assuming operations are the only source of change, and they are correctly applied; see the [controls](./controls.md) document for a security context overview).
+All trust models are based on chains of trust. These chains are not just spatially arranged (we trust the safety of our home because it has locks; we trust locks because of their design; and so forth), but also temporally (we trust our friends because they have previously been trustworthy). We can trust the current state of the data if we can trust every prior state, and every operation that led to a new state (assuming operations are the only source of change, and they are correctly applied; see the [controls](./controls.md) document for a security context overview).
 
 The terminal _state_ of this chain is an empty dataset (called _genesis_ in **m-ld**), in which there is nothing to trust. Let us assume that the first operation in the dataset establishes an authority statute, such as "Alice owns this dataset". Assuming a safe replication mechanism (we will return to this), any replica of this dataset is now able to check whether a received operation is permitted. Did Alice make the change? – then it's permitted; otherwise it isn't. An allowed operation can then be an agreement to change the authority, for example to allow Bob to also make changes; and so forth.
 
