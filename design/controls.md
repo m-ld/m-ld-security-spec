@@ -91,19 +91,18 @@ Attacks that target human users, and which by definition appear legitimate to th
 
 ## summary
 
-| controls                                                     | components<br />✱ = affects m-ld                             | attacks                                     |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------- |
-| [SUAC](./suac.md)                                            | local app ✱                                                  | message forgery, storage tampering          |
-| token validity time limits                                   | authentication service (token issuer)<br />token consumers (e.g. local app, storage service) | identity theft                              |
-| transport layer security (TLS)                               | network                                                      | message forgery, communication interception |
-| message authentication codes (MAC)<br />one-time codes<br />idempotency | message originators (e.g. local app ✱)<br />                 | message forgery                             |
-| anti-malware<br />verified installs                          | all installed software                                       | message forgery, signature forgery          |
-| staff monitoring                                             | users                                                        | message forgery                             |
-| *controls for [message forgery](#message-forgery)*           |                                                              | storage tampering                           |
-| operating system user accounts                               | all install locations including user devices                 | storage tampering                           |
-| strong crytography                                           |                                                              | signature forgery                           |
-| digital signatures                                           |                                                              | signature forgery                           |
-| rate limiting<br />network traffic analysis<br />application monitoring | messaging<br />services<br />perimeter                       | denial of service                           |
-| input validation<br />escaping/parameterisation              | local app, services                                          | injection                                   |
-| security training                                            | users                                                        | social engineering, incorrect setup         |
+| controls                                                     | components<br />✱ = affects m-ld                             | attacks                                               |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ----------------------------------------------------- |
+| [SUAC](./suac.md)                                            | local app ✱                                                  | message forgery, storage tampering                    |
+| token validity time limits                                   | authentication service (token issuer)<br />token consumers (e.g. local app, storage service) | identity theft                                        |
+| transport layer security (TLS)                               | network                                                      | message forgery, communication interception           |
+| message authentication codes (MAC)<br />one-time codes<br />idempotency | message originators (e.g. local app ✱)<br />                 | message forgery                                       |
+| anti-malware<br />verified installs                          | all installed software                                       | message forgery, signature forgery, storage tampering |
+| staff monitoring                                             | users                                                        | message forgery, storage tampering                    |
+| operating system user accounts                               | all install locations including user devices                 | storage tampering                                     |
+| strong crytography                                           |                                                              | signature forgery                                     |
+| digital signatures                                           |                                                              | signature forgery                                     |
+| rate limiting<br />network traffic analysis<br />application monitoring | messaging<br />services<br />perimeter                       | denial of service                                     |
+| input validation<br />escaping/parameterisation              | local app, services                                          | injection                                             |
+| security training                                            | users                                                        | social engineering, incorrect setup                   |
 

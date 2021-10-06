@@ -4,9 +4,11 @@
 
 ## analysis
 
+In moving from a _static-by-default_ (centralised, serialised) data paradigm to a _live-by-default_ (decentralised, eventually consistent) one, it becomes necessary to allow coordinated agreements between participants, for scenarios where fully conflict-free intention preservation is not possible. In this section make a narrative argument for a general model of agreements to support significant changes of state, which also leads to a pattern for fully decentralised access control.
+
 ### conflict freedom
 
-In principle, data in **m-ld** is both **decentralised** (not requiring central coordination) and **strongly eventually consistent** (SEC). The latter property entails that every local user operation is committed immediately, without coordination via the network, and it is preserved in the final history.
+In principle, data in **m-ld** is both **decentralised** (not requiring central coordination) and **strongly eventually consistent** (SEC) [@shapiroConflictFreeReplicatedData2011]. The latter property entails that every local user operation is committed immediately, without coordination via the network, and it is preserved in the final history.
 
 These properties have been shown to be achievable for a selection of common data types, for which there exist Conflict-free Replicated Data Types (CRDTs). A **m-ld** [domain](https://m-ld.org/doc/) is a Resource Description Framework (RDF) graph, and a CRDT. In addition, **m-ld** provides a means to extend the RDF graph CRDT with embedded data types, such as a List [@svarovskyMldRealtimeInformation2021a].
 
@@ -14,7 +16,7 @@ Non-trivial CRDTs operate by taking advantage of underspecification in a basic d
 
 From this, we can intuit that some data types may be so specified that a corresponding CRDT is impossible. In such a case, the specification of the data type is incompatible with SEC, and coordination becomes essential to consistency. Trivially, any data type that already uses coordination, such as a database or a ledger, is an example. But why are these data types specified with inherent coordination in the first place?
 
-A financial ledger might be conceived as a CRDT. Each transaction on the ledger affects an account balance. Two transactions might both withdraw from the account, such that after each individually, the balance is still positive; but the final state after both is negative. Assuming that this is not permissible, we could say that one of the balances 'wins' and the other is declared _void_ – that is, entirely revoked – leaving a deterministic final state.
+A financial ledger might be re-conceived as a CRDT. Each transaction on the ledger affects an account balance. Two transactions might both withdraw from the account, such that after each individually, the balance is still positive; but the final state after both is negative. Assuming that this is not permissible, we could say that one of the balances 'wins' and the other is declared _void_ – that is, entirely revoked – leaving a deterministic final state.
 
 Besides SEC, practical CRDTs seek to preserve, as far as possible, the _intention_ of all operations, so that users are not surprised by the outcome of concurrent edits. Besides upholding the [law of least astonishment](http://www.canonical.org/~kragen/tao-of-programming.html#book4), intention preservation is important because data systems are not _closed_. A visible state of the system, for example after a local edit, can have consequences which are not under the control of the system – our users might have already spent the money that they withdrew.
 
