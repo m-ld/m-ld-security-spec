@@ -9,24 +9,51 @@ end box
 
 proc1 -> proc1: Authenticate Alice
 proc1 -> genesis **: init ""domain.ex.org""
+note left
+Configuration includes domain secret "abcd"
+end note
+genesis -> messaging : connect
+genesis -> messaging : init domain channel
+
+proc1 --> genesis: install statutes &\nagreements ontology
 
 proc1 -> genesis ++: Op0 ≪transaction≫
 rnote left
 <code>
-INSERT
-  Alice mld:publicKey 1234 .
-  Alice a mld:GenesisPrincipal .
-  domain.ex.org mld:access mld:Permission .
+[{
+  "@id": "domain.ex.org",
+  "mld:access": "mld:Permission",
+  "mld:secret": "abcd"
+}, {
+  "@id": "Alice",
+  "@type": "mld:Principal",
+  "mld:publicKey": "1234",
+  "mld:hasPermission": [{
+    "@type": "mld:Authority",
+    "mld:appliesToPattern": { "@id": "?" }
+  }, {
+    "@id": "mld:readPermission"
+  }]
+}, {
+  "@id": "Bob",
+  "@type": "mld:Principal",
+  "mld:publicKey": "5678",
+  "mld:hasPermission": {
+    "@id": "mld:readPermission"
+  }
+}, {
+  "@id": "mld:accessControlStatute",
+  "mld:sufficientCondition": {
+    "@id": "mld:hasAuthority"
+  }
+}]
 </code>
 (declares access control is by whitelist ACL)
 end note
 
 rnote over genesis
-<code>
-Alice a mld:GenesisPrincipal .
-domain.ex.org mld:access mld:Permission .
-</code>
-(unilaterally allowed because genesis)
+Op0 allowed because no
+access control is in place
 end note
 
 genesis -> messaging: Op0 ≪agree≫

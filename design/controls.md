@@ -43,6 +43,12 @@ It may also target authorisation tokens used by interacting clients and services
 - Controls for [communication interception](#communication-interception)
 - Suitable **token validity time limits**
 
+### unauthorised access
+
+This attack targets components which fail to correctly check the user's authorisation. For example, without authorisation controls it would be possible to join a document collaboration and so acquire the document content as part of the normal clone recovery process.
+
+This class of attack is controlled by SUAC for **m-ld** domains, and **access control lists** (ACL) for other services e.g. the search service. Note that since SUAC supports the storage of ACLs in the domain data, the other components should replicate the relevant ACL information (possibly just using the **m-ld** domain to do so).
+
 ### message forgery
 
 This attack may target message delivery, by substitution or injection of messages (man-in-the-middle, MITM), or the compute, by malware taking the place of legitimate installed components.
@@ -70,6 +76,8 @@ In another mode to this attack, the user is deceived by the installed software t
 ### communication interception
 
 Data intercepted from the network could give an attacker access to confidential information. This can be controlled by the use of **transport layer security** (TLS).
+
+It is also necessary for legitimate users to be prevented from intercepting messages containing data to which they are not authorised. Under SUAC, the ACL is found in the **m-ld** domain, possibly replicated to other locations.
 
 ### denial of service
 

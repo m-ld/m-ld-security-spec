@@ -6,48 +6,64 @@ skinparam object {
   BackgroundColor Pink
 }
 
-object principalIsGenesis
-note right
-  Default condition that allows the
-  genesis principal to agree anything.
-end note
+package mld {
 
-class AgreementCondition <<statutory>>
-AgreementCondition <-- principalIsGenesis : rdf:type
+class AgreementCondition <<statutory>> <<extension point>>
 
 class Principal {
   publicKey : String
 }
 
-class GenesisPrincipal <<statutory>>
-GenesisPrincipal --|> Principal
-
-principalIsGenesis ..> GenesisPrincipal : <<requires>>
-
 class Authority
-note top
-Authority is permission to unilaterally agree.
-A "lock" is just temporary authority over some data
-(which may not be statutory).
+note left
+Authority is permission
+to unilaterally agree.
+---
+A "lock" is just
+temporary authority.
 end note
-Authority --|> AgreementCondition
+object hasAuthority
+hasAuthority --> AgreementCondition : rdf:type
+hasAuthority ..> Authority : <<require>>
 Permission "*" <--o Principal : hasPermission
 
-class Permission {
-  appliesToPattern : json-rql
-}
-Authority --|> Permission
+abstract class Permission
 Permission --|> AccessControl
 
-abstract class Consensus
-Consensus --|> AgreementCondition
+class WritePermission {
+  appliesToPattern : json-rql
+}
+Authority --|> WritePermission
+WritePermission --|> Permission
+
+object readPermission
+note left
+gives access
+to the domain
+end note
+readPermission --> Permission : rdf:type
+
+class RaftConsensus {
+  mtbf : float
+  electionTimeout : float
+  broadcastTime : float
+}
+RaftConsensus --|> AgreementCondition
 
 abstract class External
 External --|> AgreementCondition
 
-object "[domain]" as domain
+object "[domain]" as domain {
+  secret = "abcd"
+}
 
-class AccessControl <<statutory>>
-domain --> "*" AccessControl : access
+abstract class AccessControl <<statutory>> <<extension point>>
+domain ..> AccessControl : <<statutory>>\naccess
+note on link
+added by the app
+to specify use of
+e.g. Permissions
+end note
 
+}
 @enduml

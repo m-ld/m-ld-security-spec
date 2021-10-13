@@ -11,20 +11,24 @@ end box
 genesis -> messaging: Op3 ≪agree≫
 rnote left
 <code>
-INSERT
-  Bob mld:publicKey 5678 .
-  Bob mld:hasAccess { "@id": "?" } .
+{
+  "@id": "Bob",
+  "mld:hasPermission": {
+    "@type": "mld:WritePermission",
+    "mld:appliesToPattern": { "@id": "?" }
+  }
+}
 </code>
-(gives Bob write permission to anything)
+(gives Bob write permission over anything)
 end note
 
 messaging -> clone2 ++: Op3
 clone2 -> clone2: ACL constraint apply
-rnote over clone2: ""Bob mld:hasAccess { "@id": "?" } .""
+rnote over clone2: Op3 OK
 clone2 -> proc2 --: Op3 ≪update≫
 
 proc2 -> clone2 ++: Op4 ≪transaction≫
-rnote left: ""INSERT"" //[anything]//
+rnote left: ""INSERT"" //[anything not a statute]//
 
 clone2 -> clone2: ACL constraint check
 

@@ -6,18 +6,39 @@ skinparam object {
   BackgroundColor Pink
 }
 
+package "[package prefix]" {
+
 class "[rdfs:Class]" as class {
-[rdfs:Property] : [rdfs:range | literal]
+[rdfs:Property] : [rdfs:range : literal]
 }
+note right of class::[rdfs:Property]
+Literal properties
+are defined inline
+end note
 object "[subject]" as subject {
 [property] = [object]
 }
-subject --> class : [property]
+subject --> subject : [property]
 note on link
-links to Class,
-not instance
+Properties are
+defined inline,
+or with a link to
+another subject
 end note
-class o--> "[rdfs:range | Class]" : [rdfs:Property]
+subject --> class : rdf:type
+class o--> "[rdfs:range : Class]" : [rdfs:Property]
+note on link
+A UML aggregation
+is used to define
+the ID and range
+of a link property
+end note
 class --|> "[Superclass]" : rdfs:SubClassOf
+note on link
+A superclass link
+has this form but
+will not be labelled
+end note
 
+}
 @enduml

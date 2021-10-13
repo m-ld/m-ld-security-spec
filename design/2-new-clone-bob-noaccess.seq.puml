@@ -11,16 +11,19 @@ end box
 proc2 -> proc2: Authenticate Bob
 proc2 -> clone2 **: start on ""domain.ex.org""
 
-clone2 <-> genesis: snapshot
-rnote left
-<code>
-Alice mld:publicKey token1 .
-Alice a mld:GenesisPrincipal .
-domain.ex.org mld:access mld:ACL .
+clone2 -> messaging : connect
+clone2 -> genesis ++: snapshot request
+note left
+signed with Bob's private key
 end note
+rnote over genesis
+check Bob read access → OK
+end note
+genesis -> clone2 --: snapshot
+clone2 -> messaging : connect domain channel
 
+rnote over proc2: ""INSERT"" //[anything]//
 proc2 -> clone2 ++: Op1 ≪transaction≫
-rnote left: ""INSERT"" //[anything]//
 
 clone2 -> clone2: ACL constraint check
 

@@ -292,21 +292,22 @@ The order service serves three primary functions:
 
 ### attacks
 
-| category               | goals                                                        | attacks                                                      | agents                                                    |
-| ---------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | --------------------------------------------------------- |
-| Spoofing               | Obtain payment without intent to deliver                     | Identity theft (of seller)                                   | Hacker                                                    |
-| Tampering              | Force an illegitimate contract (e.g. incorrect pricing)<br />Theft of goods (e.g. incorrect delivery address) | Message forgery<br />Identity theft<br />Direct tampering of storage | Legitimate user<br />System administrator<br />Hacker     |
-| Repudiation            | Repudiate contract obligations<br />Deny responsibility      | Signature forgery<br />Identity theft<br />Direct tampering of storage | Legitimate user                                           |
-| Disclosure             | Discover semi-secret (e.g. discount) pricing<br />Discover semi-secret product lines | Normal flow, but with illegitimate party identity, possibly at scale | Competitor<br />Hacker                                    |
-|                        | Discover orders in progress<br />Discover personally-identifiable information (PII), e.g. addresses<br />Blackmail | Communication interception<br />Identity theft<br />Direct access to storage | Competitor<br />Hacker<br />System administrator          |
-| Denial-of-Service      | Prevent orders (e.g. anti-competitive)                       | Data volume (e.g. large documents)<br />Data velocity (e.g. generated messages) | Competitor<br />Hacker<br />System administrator          |
-| Elevation of Privilege | Terminate competitive orders<br />_other attacks_            | Injection<br />Identity theft<br />Social engineering        | Legitimate user<br />System administrator<br />Competitor |
+| category               | goals                                                        | attacks                                                      | agents                                                       |
+| ---------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Spoofing               | Obtain payment without intent to deliver                     | Identity theft (of seller)                                   | Hacker                                                       |
+| Tampering              | Force an illegitimate contract (e.g. incorrect pricing)<br />Theft of goods (e.g. incorrect delivery address) | Message forgery<br />Identity theft<br />Direct tampering of storage | Legitimate user<br />System administrator<br />Hacker        |
+| Repudiation            | Repudiate contract obligations<br />Deny responsibility      | Signature forgery<br />Identity theft<br />Direct tampering of storage | Legitimate user                                              |
+| Disclosure             | Discover semi-secret (e.g. discount) pricing<br />Discover semi-secret product lines | Normal flow, but with illegitimate party identity, possibly at scale | Competitor<br />Hacker                                       |
+|                        | Discover orders in progress<br />Discover personally-identifiable information (PII), e.g. addresses<br />Blackmail | Communication interception<br />Identity theft<br />Direct access to storage<br />Unauthorised access | Competitor<br />Hacker<br />System administrator<br />Legitimate user |
+| Denial-of-Service      | Prevent orders (e.g. anti-competitive)                       | Data volume (e.g. large documents)<br />Data velocity (e.g. generated messages) | Competitor<br />Hacker<br />System administrator             |
+| Elevation of Privilege | Terminate competitive orders<br />_other attacks_            | Injection<br />Identity theft<br />Social engineering        | Legitimate user<br />System administrator<br />Competitor    |
 
 ### vectors
 
 | attack                                                       | components                                  | comment                                                      |
 | ------------------------------------------------------------ | ------------------------------------------- | ------------------------------------------------------------ |
 | <a href="#attack-identity-theft">⇲</a> Identity theft        | Authentication                              | _Out of scope_                                               |
+| <a href="#attack-unauthorised">⇲</a> Unauthorised access     | Local app<br />Messaging<br />Order service | Requires failure of components to apply authorisation controls |
 | <a href="#attack-message-forgery">⇲</a> Message forgery      | _All data flows_<br />Messaging             | Can occur in the network or at process boundaries            |
 | <a href="#attack-storage-tampering">⇲</a> Direct tampering of storage | Local storage<br />Server storage           | Requires direct access to components                         |
 | <a href="#attack-signature-forgery">⇲</a> Signature forgery  | Local app<br />Messaging<br />Order service | Requires direct access to components<br />e.g. injection of dynamically-loaded components |

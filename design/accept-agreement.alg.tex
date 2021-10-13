@@ -2,18 +2,23 @@
 
 \usepackage[utf8]{inputenc}
 \usepackage{algpseudocode}
+\usepackage{xcolor}
+\usepackage{amssymb}
 
 \algnewcommand\Const{\textsc}
+\algnewcommand{\LineComment}[1]{\State \textcolor{blue}{\(\triangleright\) #1}}
 
 \begin{document}
+  \pagecolor{white}
   %! suppress = MissingImport
-  \begin{algorithmic}
+  \begin{algorithmic}[1]
     \Procedure{AcceptMessage}{$m$}
       \If{$m$ is an agreement and $m.time.anyLt(journal.tail.time)$}
         \State $choice\gets$ ask the application what to do
-        \If{$choice$ is $\Const{revoke}$}
+        \If{$choice$ is $\Const{void}$}
           \State $revocation\gets \Const{noop}$
           \Repeat
+            \LineComment{$op_1 - op_2$ means ``append the negation of $op_2$ to $op_1$"}
             \State $revocation\gets revocation - journal.tail.operation$
             \State remove journal tail
           \Until{$m.time.anyLt(journal.tail.time)$ is \Const{false}}

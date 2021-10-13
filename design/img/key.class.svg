@@ -1,10 +1,13 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="360px" preserveAspectRatio="none" style="width:279px;height:360px;background:#FFFFFF;" version="1.1" viewBox="0 0 279 360" width="279px" zoomAndPan="magnify"><defs><filter height="300%" id="f11qzac9le9lr7" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[c4c892d05414254cdeba8adc63897f88]
-class class--><rect codeLine="8" fill="#FEFECE" filter="url(#f11qzac9le9lr7)" height="53.0879" id="class" style="stroke:#A80036;stroke-width:1.5;" width="204" x="28" y="176"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="65" x="97.5" y="192.6016">[rdfs:Class]</text><line style="stroke:#A80036;stroke-width:1.5;" x1="29" x2="231" y1="200.1328" y2="200.1328"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="192" x="34" y="214.7676">[rdfs:Property] : [rdfs:range | literal]</text><line style="stroke:#A80036;stroke-width:1.5;" x1="29" x2="231" y1="221.0879" y2="221.0879"/><rect fill="#FFC0CB" filter="url(#f11qzac9le9lr7)" height="37.9102" style="stroke:#A80036;stroke-width:1.5;" width="109" x="75.5" y="7"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="50" x="105" y="20.6016">[subject]</text><line style="stroke:#A80036;stroke-width:1.5;" x1="76.5" x2="183.5" y1="25.1328" y2="25.1328"/><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="97" x="81.5" y="38.8008">[property] = [object]</text><!--MD5=[4c11944498f06ff8832d3b21b9ed3bba]
-class rdfs:range | Class--><rect fill="#FEFECE" filter="url(#f11qzac9le9lr7)" height="40.1328" id="rdfs:range | Class" style="stroke:#A80036;stroke-width:1.5;" width="116" x="7" y="306"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="110" x="10" y="322.6016">[rdfs:range | Class]</text><line style="stroke:#A80036;stroke-width:1.5;" x1="8" x2="122" y1="330.1328" y2="330.1328"/><line style="stroke:#A80036;stroke-width:1.5;" x1="8" x2="122" y1="338.1328" y2="338.1328"/><!--MD5=[3b351232e19b6d0fea2e3bc220bd7b64]
-class Superclass--><rect fill="#FEFECE" filter="url(#f11qzac9le9lr7)" height="40.1328" id="Superclass" style="stroke:#A80036;stroke-width:1.5;" width="75" x="158.5" y="306"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="69" x="161.5" y="322.6016">[Superclass]</text><line style="stroke:#A80036;stroke-width:1.5;" x1="159.5" x2="232.5" y1="330.1328" y2="330.1328"/><line style="stroke:#A80036;stroke-width:1.5;" x1="159.5" x2="232.5" y1="338.1328" y2="338.1328"/><!--MD5=[4af7d608e34c3ba91dbd0e53f3443a45]
-link subject to class--><path codeLine="14" d="M130,45.02 C130,74.65 130,134.01 130,170.5 " fill="none" id="subject-to-class" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="130,175.71,134,166.71,130,170.71,126,166.71,130,175.71" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="61" x="162" y="88.5684">[property]</text><path d="M135,97.3105 L135,137.3105 L246,137.3105 L246,107.3105 L236,97.3105 L135,97.3105 " fill="#FBFB77" filter="url(#f11qzac9le9lr7)" style="stroke:#A80036;stroke-width:1.0;"/><path d="M236,97.3105 L236,107.3105 L246,107.3105 L236,97.3105 " fill="#FBFB77" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="90" x="141" y="114.8789">links to Class,</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="78" x="141" y="130.1895">not instance</text><!--MD5=[f0cf68e6b7005b52219d1bf2c1434509]
-link class to rdfs:range | Class--><path codeLine="19" d="M78.0845,237.1272 C78.0845,237.1272 65.64,251.32 62,259 C57.07,269.39 56.46,281.76 57.54,292.97 " fill="none" id="class-rdfs:range | Class" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="59.53,305.86,62.1094,296.3549,58.7668,300.9186,54.2032,297.576,59.53,305.86" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="58.7668" x2="57.55" y1="300.9186" y2="293.005"/><polygon fill="#FFFFFF" points="86.95,229.04,79.8215,230.1284,78.0845,237.1272,85.213,236.0388,86.95,229.04" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="89" x="63" y="272.5684">[rdfs:Property]</text><!--MD5=[590aa289eb66665cc364c8b2624ef3b8]
-link class to Superclass--><path codeLine="20" d="M144,229.27 C153.26,246.31 165.55,268.94 175.85,287.91 " fill="none" id="class-to-Superclass" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="none" points="182.09,284.73,185.49,305.65,169.79,291.41,182.09,284.73" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="101" x="170" y="272.5684">rdfs:SubClassOf</text><!--MD5=[cbaf2a37a9dffc28fb12030707a7939c]
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="508px" preserveAspectRatio="none" style="width:448px;height:508px;background:#FFFFFF;" version="1.1" viewBox="0 0 448 508" width="448px" zoomAndPan="magnify"><defs><filter height="300%" id="fo7rmy7jscm6g" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[71a12f7cf2adfa00ea5ea2ad469dcdc7]
+cluster [package prefix]--><polygon fill="#FFFFFF" filter="url(#fo7rmy7jscm6g)" points="16,6,137,6,144,28.4883,431,28.4883,431,501,16,501,16,6" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:1.5;" x1="16" x2="144" y1="28.4883" y2="28.4883"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="115" x="20" y="21.5352">[package prefix]</text><!--MD5=[c4c892d05414254cdeba8adc63897f88]
+class class--><rect codeLine="10" fill="#FEFECE" filter="url(#fo7rmy7jscm6g)" height="53.0879" id="class" style="stroke:#A80036;stroke-width:1.5;" width="203" x="39.5" y="230"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="65" x="108.5" y="246.6016">[rdfs:Class]</text><line style="stroke:#A80036;stroke-width:1.5;" x1="40.5" x2="241.5" y1="254.1328" y2="254.1328"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="191" x="45.5" y="268.7676">[rdfs:Property] : [rdfs:range : literal]</text><line style="stroke:#A80036;stroke-width:1.5;" x1="40.5" x2="241.5" y1="275.0879" y2="275.0879"/><path d="M278,231 L278,247.3105 L236.5,264.6104 L278,255.3105 L278,271.6211 A0,0 0 0 0 278,271.6211 L408,271.6211 A0,0 0 0 0 408,271.6211 L408,241 L398,231 L278,231 A0,0 0 0 0 278,231 " fill="#FBFB77" filter="url(#fo7rmy7jscm6g)" style="stroke:#A80036;stroke-width:1.0;"/><path d="M398,231 L398,241 L408,241 L398,231 " fill="#FBFB77" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="107" x="284" y="248.5684">Literal properties</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="109" x="284" y="263.8789">are defined inline</text><rect fill="#FFC0CB" filter="url(#fo7rmy7jscm6g)" height="37.9102" style="stroke:#A80036;stroke-width:1.5;" width="109" x="86.5" y="78"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="50" x="116" y="91.6016">[subject]</text><line style="stroke:#A80036;stroke-width:1.5;" x1="87.5" x2="194.5" y1="96.1328" y2="96.1328"/><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="97" x="92.5" y="109.8008">[property] = [object]</text><!--MD5=[22227dfd334611c4f97ddc970c9b5253]
+class rdfs:range : Class--><rect fill="#FEFECE" filter="url(#fo7rmy7jscm6g)" height="40.1328" id="rdfs:range : Class" style="stroke:#A80036;stroke-width:1.5;" width="116" x="32" y="445"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="110" x="35" y="461.6016">[rdfs:range : Class]</text><line style="stroke:#A80036;stroke-width:1.5;" x1="33" x2="147" y1="469.1328" y2="469.1328"/><line style="stroke:#A80036;stroke-width:1.5;" x1="33" x2="147" y1="477.1328" y2="477.1328"/><!--MD5=[3b351232e19b6d0fea2e3bc220bd7b64]
+class Superclass--><rect fill="#FEFECE" filter="url(#fo7rmy7jscm6g)" height="40.1328" id="Superclass" style="stroke:#A80036;stroke-width:1.5;" width="75" x="223.5" y="445"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="69" x="226.5" y="461.6016">[Superclass]</text><line style="stroke:#A80036;stroke-width:1.5;" x1="224.5" x2="297.5" y1="469.1328" y2="469.1328"/><line style="stroke:#A80036;stroke-width:1.5;" x1="224.5" x2="297.5" y1="477.1328" y2="477.1328"/><!--MD5=[1ef01738eab82e33ee40b6e0f234a629]
+link class to class$$$RIGHT--><!--MD5=[05875f3a0937c69422f928ef9cf1c6d3]
+link subject to subject--><path codeLine="20" d="M195.62,79.38 C214.88,79.1 230.5,84.97 230.5,97 C230.5,107.9 217.67,113.74 200.93,114.53 " fill="none" id="subject-to-subject" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="195.62,114.62,204.6872,118.4651,200.6193,114.5343,204.5501,110.4663,195.62,114.62" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="61" x="267.5" y="59.5684">[property]</text><path d="M235.5,73.3105 L235.5,144.3105 L356.5,144.3105 L356.5,83.3105 L346.5,73.3105 L235.5,73.3105 " fill="#FBFB77" filter="url(#fo7rmy7jscm6g)" style="stroke:#A80036;stroke-width:1.0;"/><path d="M346.5,73.3105 L346.5,83.3105 L356.5,83.3105 L346.5,73.3105 " fill="#FBFB77" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="86" x="241.5" y="90.8789">Properties are</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="90" x="241.5" y="106.1895">defined inline,</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="100" x="241.5" y="121.5">or with a link to</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="98" x="241.5" y="136.8105">another subject</text><!--MD5=[4af7d608e34c3ba91dbd0e53f3443a45]
+link subject to class--><path codeLine="27" d="M141,116.07 C141,142.6 141,192.47 141,224.82 " fill="none" id="subject-to-class" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="141,229.85,145,220.85,141,224.85,137,220.85,141,229.85" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="49" x="142" y="196.5684">rdf:type</text><!--MD5=[48cfda6505ba6033779695ba919decd8]
+link class to rdfs:range : Class--><path codeLine="28" d="M81.5481,290.8683 C81.5481,290.8683 68.09,305.02 64,313 C43.34,353.35 53.05,371.01 64,415 C65.51,421.05 67.91,427.18 70.67,432.95 " fill="none" id="class-rdfs:range : Class" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="77.05,444.87,76.332,435.0473,74.6916,440.4611,69.2779,438.8207,77.05,444.87" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="74.6916" x2="70.91" y1="440.4611" y2="433.405"/><polygon fill="#FFFFFF" points="90.77,283.19,83.5996,283.9552,81.5481,290.8683,88.7185,290.1031,90.77,283.19" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="89" x="96.5" y="326.5684">[rdfs:Property]</text><path d="M69,335.3105 L69,406.3105 L209,406.3105 L209,345.3105 L199,335.3105 L69,335.3105 " fill="#FBFB77" filter="url(#fo7rmy7jscm6g)" style="stroke:#A80036;stroke-width:1.0;"/><path d="M199,335.3105 L199,345.3105 L209,345.3105 L199,335.3105 " fill="#FBFB77" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="119" x="75" y="352.8789">A UML aggregation</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="105" x="75" y="368.1895">is used to define</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="104" x="75" y="383.5">the ID and range</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="109" x="75" y="398.8105">of a link property</text><!--MD5=[590aa289eb66665cc364c8b2624ef3b8]
+link class to Superclass--><path codeLine="35" d="M190.43,283.12 C202.23,291.27 213.78,301.27 222,313 C245.24,346.14 254.63,392.07 258.43,424.55 " fill="none" id="class-to-Superclass" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="none" points="265.41,424.01,260.27,444.57,251.47,425.29,265.41,424.01" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="101" x="282.5" y="334.0684">rdfs:SubClassOf</text><path d="M261,342.8105 L261,397.8105 L401,397.8105 L401,352.8105 L391,342.8105 L261,342.8105 " fill="#FBFB77" filter="url(#fo7rmy7jscm6g)" style="stroke:#A80036;stroke-width:1.0;"/><path d="M391,342.8105 L391,352.8105 L401,352.8105 L391,342.8105 " fill="#FBFB77" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="108" x="267" y="360.3789">A superclass link</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="109" x="267" y="375.6895">has this form but</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="119" x="267" y="391">will not be labelled</text><!--MD5=[c23062855088143f88c221738840e7c6]
 @startuml
 'https://plantuml.com/class-diagram
 hide circle
@@ -13,20 +16,41 @@ skinparam object {
   BackgroundColor Pink
 }
 
+package "[package prefix]" {
+
 class "[rdfs:Class]" as class {
-[rdfs:Property] : [rdfs:range | literal]
+[rdfs:Property] : [rdfs:range : literal]
 }
+note right of class::[rdfs:Property]
+Literal properties
+are defined inline
+end note
 object "[subject]" as subject {
 [property] = [object]
 }
-subject - -> class : [property]
+subject - -> subject : [property]
 note on link
-links to Class,
-not instance
+Properties are
+defined inline,
+or with a link to
+another subject
 end note
-class o- -> "[rdfs:range | Class]" : [rdfs:Property]
+subject - -> class : rdf:type
+class o- -> "[rdfs:range : Class]" : [rdfs:Property]
+note on link
+A UML aggregation
+is used to define
+the ID and range
+of a link property
+end note
 class - -|> "[Superclass]" : rdfs:SubClassOf
+note on link
+A superclass link
+has this form but
+will not be labelled
+end note
 
+}
 @enduml
 
 @startuml
@@ -36,20 +60,41 @@ skinparam object {
   BackgroundColor Pink
 }
 
+package "[package prefix]" {
+
 class "[rdfs:Class]" as class {
-[rdfs:Property] : [rdfs:range | literal]
+[rdfs:Property] : [rdfs:range : literal]
 }
+note right of class::[rdfs:Property]
+Literal properties
+are defined inline
+end note
 object "[subject]" as subject {
 [property] = [object]
 }
-subject - -> class : [property]
+subject - -> subject : [property]
 note on link
-links to Class,
-not instance
+Properties are
+defined inline,
+or with a link to
+another subject
 end note
-class o- -> "[rdfs:range | Class]" : [rdfs:Property]
+subject - -> class : rdf:type
+class o- -> "[rdfs:range : Class]" : [rdfs:Property]
+note on link
+A UML aggregation
+is used to define
+the ID and range
+of a link property
+end note
 class - -|> "[Superclass]" : rdfs:SubClassOf
+note on link
+A superclass link
+has this form but
+will not be labelled
+end note
 
+}
 @enduml
 
 PlantUML version 1.2021.10(Mon Aug 30 14:43:48 BST 2021)

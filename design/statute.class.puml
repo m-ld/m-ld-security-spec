@@ -7,57 +7,59 @@ skinparam object {
   BackgroundColor Pink
 }
 
-abstract class Statute
-note left
-  Defines a scope of data
-  requiring agreement
+package mld {
+
+class Statute <<extension point>> {
+  statutoryClass : rdfs:Class [0..*]
+  statutoryProperty : rdf:Property [0..*]
+}
+note bottom
+Defines a scope of data requiring agreement.
+In other diagrams we'll use the <<statutory>>
+stereotype for statutory classes and properties.
+end note
+note right of Statute::statutoryClass
+A class is statutory if a
+statutoryClass exists for it.
+end note
+note right of Statute::statutoryProperty
+A property is statutory if
+a statutoryProperty exists.
 end note
 
 Statute o--> "*" AgreementCondition : sufficientCondition
-AgreementCondition --|> Statutory
 
-class PropertyStatute {
-  statutoryProperty : Term
+object statuteStatute
+note top
+Statutes and agreement
+conditions are themselves
+statutory.
+end note
+statuteStatute --> Statute : statutoryClass
+statuteStatute --> Statute : rdf:type
+statuteStatute --> AgreementCondition : statutoryClass
+
+object rdfsStatute {
+  statutoryClass = rdfs:Class
+  statutoryClass = rdf:Property
+  statutoryProperty = rdf:type
 }
-note left of PropertyStatute
-Applies to changes to a property.
-Does not apply if the Subject
-is new or removed entirely.
+note top
+  Classes, property definitions
+  and the type of every subject
+  is statutory.
 end note
+rdfsStatute --> Statute : rdf:type
 
-abstract class Statutory
-note right
-Can be mixed-in to any Subject.
-In other diagrams we'll use the
-<<statutory>> stereotype.
-end note
-Statutory o--> "1" Statute : statute
-PropertyStatute --|> Statute
-
-Statute --|> Statutory
-note on link
-A statute is
-itself statutory
-end note
-
-object accessPropertyStatute {
+object accessControlStatute {
+  statutoryClass : AccessControl
   statutoryProperty : access
 }
 note top
   Choice of access control
-  mechanism is statutory
+  mechanism is statutory.
 end note
-accessPropertyStatute --> PropertyStatute : rdf:type
+accessControlStatute --> Statute : rdf:type
 
-object typePropertyStatute {
-  statutoryProperty = rdf:type
 }
-note top
-  The type of every subject is statutory
-end note
-typePropertyStatute --> PropertyStatute : rdf:type
-
-"rdfs:Class" --|> Statutory
-"rdf:Property" --|> Statutory
-
 @enduml

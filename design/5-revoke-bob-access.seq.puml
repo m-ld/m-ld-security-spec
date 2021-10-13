@@ -1,6 +1,7 @@
 @startuml
 'https://plantuml.com/sequence-diagram
 hide footbox
+autonumber
 
 database "Alice's clone" as genesis
 box Bob's device
@@ -11,10 +12,19 @@ end box
 genesis -> messaging: Op3 ≪agree≫
 rnote left
 <code>
-DELETE
-  Bob mld:hasAccess { "@id": "?" } .
-</code>
-(revokes Bob's write permission)
+{
+  "@delete": {
+    "@id": "Bob",
+    "mld:hasPermission": {
+      "mld:appliesToPattern": { "@id": "?" }
+    }
+  }
+}
+(deletes Bob's write permission)
+end note
+
+note over messaging
+Op3 is delayed
 end note
 
 proc2 -> clone2 ++: Op4 ≪transaction≫
@@ -28,9 +38,9 @@ clone2 -> proc2 --: Op4 ≪update≫
 
 messaging -> clone2 ++: Op3
 note left: Op3 agreement pre-dates Op4
-clone2 -> proc2 ++: Fork or Revoke?
-proc2 --> clone2 --: Revoke
-clone2 -> clone2: Revoke Op4
+clone2 -> proc2 ++: Fork or Void?
+proc2 --> clone2 --: Void
+clone2 -> clone2: Void Op4
 note over clone2: Op4 also removed from Journal
 clone2 -> clone2: Apply Op3
 clone2 -> proc2 --: Op3 - Op4 ≪update≫
