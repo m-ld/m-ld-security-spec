@@ -12,7 +12,7 @@ In CIC, access control is complicated by the significant state transitions (draf
 
 A similar need is found in p2pl-doc, if it were to provide the suggested live editing feature for legal document schemas. Intuitively, changes to the schema in a live document would be best enacted only by agreement – to ensure collaborators are aware and to prevent them from making incompatible changes while the schema is being modified. Note that an agreement characteristically implies coordination, but also some _imperative_ downstream effect on data integrity – in this case, that subsequent edits conform to the new agreed data schema.
 
-In fact, we notice that an access control list (ACL) for discretionary access control has a similarly imperative nature. A change to the ACL (e.g. removal of a user) must "win" over any affected concurrent edit (e.g. a data change from that user). In this case the change may not be by _agreement_ but rather by _authority_ – that is, someone with the authority to change the ACL may do so unilaterally (agreement of the affected user being typically moot). Note also the circularity: a change to permissions (the ACL) can only be enacted by someone with permission to do so.
+In fact, we notice that an access control list (ACL) for discretionary access control has a similarly imperative nature. A change to the ACL (e.g. removal of a user) must "win" over any affected concurrent edit (e.g. a data change from that user). In this case the change may not be by _agreement_ but rather by _authority_ – that is, someone with the authority to change the ACL may do so unilaterally (agreement of the affected user usually being moot). Note also the circularity: a change to permissions (the ACL) can only be enacted by someone with permission to do so.
 
 To address these significant state transitions, including schema and ACL, we will propose a model, [**symmetric unilateral access control** (SUAC)](./suac.md), which generalises to handle any 'imperative' state change, such as a lock, in a system based on strong eventual consistency.
 
@@ -53,7 +53,7 @@ This class of attack is controlled by SUAC for **m-ld** domains, and **access co
 
 This attack may target message delivery, by substitution or injection of messages (man-in-the-middle, MITM), or the compute, by malware taking the place of legitimate installed components.
 
-MITM attacks may target the network itself or the messaging service. Network attacks can be controlled by the use of **transport layer security** (TLS). Noting that the messaging service does not have a user interface, message forgery at this location can be controlled by requiring **message authentication codes** (MACs). This can include a **one-time** component to prevent replay of stored messages; an alternative is to ensure that the messages are **idempotent** (note that data operations in **m-ld**'s protocol are already inherently so).
+MITM attacks may target the network itself or the message service. Network attacks can be controlled by the use of **transport layer security** (TLS). Noting that the message service does not have a user interface, message forgery at this location can be controlled by requiring **message authentication codes** (MACs). This can include a **one-time** component to prevent replay of stored messages; an alternative is to ensure that the messages are **idempotent** (note that data operations in **m-ld**'s protocol are already inherently so).
 
 Message forgery by malware must be controlled both at the sending location, to ensure the local user is not deceived, and at the receiving location, to account for the sending user themselves being an attacker (an insider). Local malware can be controlled by **anti-malware** and by the use of **verified installs**, such as from an app store.
 
@@ -63,7 +63,7 @@ Detection of forged messages at the receiver depends on the type of attack. An i
 
 This attack requires that the attacker has direct access to device storage. In a decentralised application this can be a significant vulnerability, because data may be stored in poorly-controlled locations such as user-owned devices.
 
-Storage tampering must be controlled at the storage location (particularly if the device is shared) and also at any potential recipients of the tampered data, because the storage location owner may themselves be the attacker. Local tampering can be controlled by the use of **operating system user accounts**, which can be mandated by policy for apps on modern platforms.
+Storage tampering must be controlled at the storage location (particularly if the device is shared) and also at any potential recipients of the tampered data, because the storage location owner may themselves be the attacker. Local tampering can be controlled by the use of operating system **user accounts**, which can be mandated by policy for apps on modern platforms.
 
 Detection of tampering when receiving data from a remote location is essentially the same problem as [message forgery](#message-forgery), and is controlled in the same way using e.g. message authentication and SUAC. Note in passing that it particularly applies when a clone is recovering from a period offline, and so is in receipt of operations or state from one peer, in which it is therefore placing unusual trust. This is considered in detail in SUAC.
 
@@ -77,17 +77,19 @@ In another mode to this attack, the user is deceived by the installed software t
 
 Data intercepted from the network could give an attacker access to confidential information. This can be controlled by the use of **transport layer security** (TLS).
 
-It is also necessary for legitimate users to be prevented from intercepting messages containing data to which they are not authorised. Under SUAC, the ACL is found in the **m-ld** domain, possibly replicated to other locations.
+Users without a known **user account** should be prevented from making connections to the message service, e.g. using [MQTT authentication](https://www.hivemq.com/blog/mqtt-security-fundamentals-authentication-username-password/). While fine-grained access controls should apply to the message "channels" for individual documents (see below), this high-level access control mitigates against attackers using information that has been guessed or obtained by social engineering, without leaving a trace.
+
+Authenticated users should be prevented from intercepting messages containing data to which they are not authorised. Under SUAC, the **m-ld** domain holds the ACL and enforces read permissions. To prevent message interception, the message service must be able to apply access control to the operations for a specific domain; using e.g. [MQTT topic permissions](https://www.hivemq.com/blog/mqtt-security-fundamentals-authorization/#authorization-in-mqtt) (see [SUAC](./suac.md#ontology) for more details).
 
 ### denial of service
 
 Attacks against the availability of the system could include flooding the network or compute with garbage, which consumes resources and so slows or even prevents normal function. The outermost layer of defence for this in centralised systems usually comprises **rate limiting** in a reverse proxy, or more sophisticated **network traffic analysis** which can detect and suppress abnormal patterns of network requests.
 
-A decentralised system lacks a central component that can be targetted in this way, but the message service may be a target, and if it forwards all messages then even the distributed components can be flooded. To identify an attacker in order to suppress their activity, the messaging service can require user **authentication**.
+A decentralised system lacks a central component that can be targetted in this way, but the message service may be a target, and if it forwards all messages then even the distributed components can be flooded. To identify an attacker in order to suppress their activity, the message service can require authentication with a **user account**.
 
-In general, the messaging service should not be doing computation-intensive or custom tasks like traffic analysis. This is an application of the single-responsibility principle, and means the service's resources can be optimised for its normal responsibility, and it can be readily replaced with a different component. Instead, an **application monitoring** service should be deployed and configured to monitor both message service system logs and the messages it is forwarding.
+In general, the message service should not be doing computation-intensive or custom tasks like traffic analysis. This is an application of the single-responsibility principle, and means the service's resources can be optimised for its normal responsibility, and it can be readily replaced with a different component. Instead, an **application monitoring** service should be deployed and configured to monitor both message service system logs and the messages it is forwarding.
 
-Once an attacker has been identified, then the pattern of behaviour can be used to apply a control. If the messages are legitimate (imagine a user holding down a key), then the first step may be to notify them. In any case, the attack can be eventually suppressed by revoking the user's access to the messaging service.
+Once an attacker has been identified, then the pattern of behaviour can be used to apply a control. If the messages are legitimate (imagine a user holding down a key), then the first step may be to notify them. In any case, the attack can be eventually suppressed by revoking the user's access to the message service.
 
 ### injection
 
@@ -107,10 +109,10 @@ Attacks that target human users, and which by definition appear legitimate to th
 | message authentication codes (MAC)<br />one-time codes<br />idempotency | message originators (e.g. local app ✱)<br />                 | message forgery                                       |
 | anti-malware<br />verified installs                          | all installed software                                       | message forgery, signature forgery, storage tampering |
 | staff monitoring                                             | users                                                        | message forgery, storage tampering                    |
-| operating system user accounts                               | all install locations including user devices                 | storage tampering                                     |
+| user accounts                                                | all install operating systems including user devices<br />message service | storage tampering<br />communication interception     |
 | strong crytography                                           |                                                              | signature forgery                                     |
 | digital signatures                                           |                                                              | signature forgery                                     |
-| rate limiting<br />network traffic analysis<br />application monitoring | messaging<br />services<br />perimeter                       | denial of service                                     |
+| rate limiting<br />network traffic analysis<br />application monitoring | message service<br />services<br />perimeter                 | denial of service                                     |
 | input validation<br />escaping/parameterisation              | local app, services                                          | injection                                             |
 | security training                                            | users                                                        | social engineering, incorrect setup                   |
 
