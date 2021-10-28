@@ -12,7 +12,7 @@ In moving from a _static-by-default_ (centralised, serialised) data paradigm to 
 
 In principle, data in **m-ld** is both **decentralised** (not requiring central coordination) and **strongly eventually consistent** (SEC) [@shapiroConflictFreeReplicatedData2011]. The latter property entails that every local user operation is committed immediately, without coordination via the network, and it is preserved in the final history.
 
-These properties have been shown to be achievable for a selection of common data types, for which there exist Conflict-free Replicated Data Types (CRDTs). A **m-ld** [domain](https://m-ld.org/doc/) is a Resource Description Framework (RDF) graph, and a CRDT. In addition, **m-ld** provides a means to extend the RDF graph CRDT with embedded data types, such as a List [@svarovskyMldRealtimeInformation2021a].
+These properties have been shown to be achievable for a selection of common data types, for which there exist Conflict-free Replicated Data Types (CRDTs). A **m-ld** [domain](https://spec.m-ld.org/#terminology) is a Resource Description Framework (RDF) graph, and a CRDT. In addition, **m-ld** provides a means to extend the RDF graph CRDT with embedded data types, such as a List [@svarovskyMldRealtimeInformation2021a].
 
 Non-trivial CRDTs operate by taking advantage of underspecification in a basic data type's behaviour, particularly with regard to how concurrent operations give rise to a final state (e.g. a 'merge'). Different CRDTs for the same basic data type may have different expressed concurrent behaviours, but all with the property that one and only one final state is possible for any Set of concurrent operations.
 
@@ -63,7 +63,7 @@ For example:
 
 In the access control example, we can further observe that an access control list is itself access-controlled; so subjects and objects can intersect. In the most general case, intuitively, agreements may therefore interact via their subjects and objects in complex ways.
 
-To simplify the analysis we will consider a tractable but useful common case, which is a set of data that requires agreement to change, and affects everything. In other words, it is the subject of an agreement definition, for which the object is the whole dataset. By analogy with legal systems, we will call such subjects _statutes_.
+To simplify the analysis we will consider a tractable but useful common case, which is a set of data that requires agreement to change, and affects everything. In other words, it is the subject of an agreement definition, for which the object is the whole domain. By analogy with legal systems, we will call such subjects _statutes_.
 
 The consequence of a subject being a statute (i.e. it is _statutory_) is that if it changes, _any_ concurrent change is eventually voided. While this intuitively suggests a bottleneck and a risk of frequent voiding, we note that:
 
@@ -72,7 +72,7 @@ The consequence of a subject being a statute (i.e. it is _statutory_) is that if
 
 Further, we can minimise or remove the risk of voided transactions by means of a two-phase agreement. This corresponds to a pessimistic lock:
 
-1. A _lock record_ is added to the dataset by agreement. The lock record identifies a user, and the data that it is locking. A lock record is itself an agreement definition.
+1. A _lock record_ is added to the domain by agreement. The lock record identifies a user, and the data that it is locking. A lock record is itself an agreement definition.
 2. Any change to the identified data then requires the agreement of the lock, which is to say the change has been made by the identified user; the user may also choose to release the lock.
 
 With this method it is straightforward for a participant to check whether they currently own the lock, and if they do, their transaction will never be voided.
@@ -81,19 +81,19 @@ With this method it is straightforward for a participant to check whether they c
 
 We have already informally introduced the concept of authority, as the ability to unilaterally agree a change – for example, a _lock_ is a temporary authority. Authority is one of a number of possible _conditions_ for an agreement; another might be consensus. Authority particularly begs the question: how can a participant trust another participant's claimed authority?
 
-In a decentralised system, every compute node has the same inherent authority – differential authority is assigned to the participating security principal (e.g. the user). Intuitively, this assignment should preferably be part of the logically decentralised dataset – in fact, this _must_ be the case, because any _reference_ to another dataset is itself a datum.
+In a decentralised system, every compute node has the same inherent authority – differential authority is assigned to the participating security principal (e.g. the user). Intuitively, this assignment should preferably be part of the logically decentralised domain – in fact, this _must_ be the case, because any _reference_ to another dataset is itself a datum.
 
 So in order to trust authority, a participant must trust the data. A natural step might be to digitally _sign_ data, so that it is practically impossible to forge. However, this is subject to recursion: why trust the signer's authority? (Note this is a separate concern to _authentication_; trust in the signer's identity is not the same as trust in their authority.)
 
 All trust models are based on chains of trust. These chains can be arrived at by mathematical induction. We can trust the current state of the data if we can trust the prior state and the last operation (assuming operations are the only source of change, and they are correctly applied; see the [controls](./controls.md) document for a security context overview).
 
-The base case of this induction is an empty dataset (called _genesis_ in **m-ld**), in which there is nothing to trust. Let us assume that the first operation in the dataset establishes an authority statute, such as "Alice owns this dataset". Assuming a safe replication mechanism (we will return to this), any replica of this dataset is now able to check whether a received operation is permitted. Did Alice make the change? – then it's permitted; otherwise it isn't. An allowed operation can then be an agreement to change the authority, for example to allow Bob to also make changes; and so forth.
+The base case of this induction is an empty domain (called _genesis_ in **m-ld**), in which there is nothing to trust. Let us assume that the first operation in the domain establishes an authority statute, such as "Alice owns this domain". Assuming a safe replication mechanism (we will return to this), any replica of this domain's data is now able to check whether a received operation is permitted. Did Alice make the change? – then it's permitted; otherwise it isn't. An allowed operation can then be an agreement to change the authority, for example to allow Bob to also make changes; and so forth.
 
 We call this model **symmetric unilateral access control** (SUAC). Every peer independently and symmetrically applies the access control, embodied in authority statutes in the data it already has, without reference to any other system. We will analyse the properties of this model in the next section, in the prototype, and formally in a future phase.
 
 ## realisation
 
-Applying this model of agreements to **m-ld** will involve two main exercises: first, to define an ontology for agreements, statutes, authority and locks, which can be used in a dataset to drive behaviour; and second, to specify any changes required to **m-ld**'s protocol to support such behaviours. In both cases we will stop short of specifying code changes, as these are better suited to exploration in the prototype.
+Applying this model of agreements to **m-ld** will involve two main exercises: first, to define an ontology for agreements, statutes, authority and locks, which can be used in a domain to drive behaviour; and second, to specify any changes required to **m-ld**'s protocol to support such behaviours. In both cases we will stop short of specifying code changes, as these are better suited to exploration in the prototype.
 
 ### ontology
 
@@ -129,7 +129,7 @@ Note the two operation data checks involved – checking for a statute (meaning 
 
 Verifying authority is the same as for any other permission, as follows. For an operation it is necessary to identify:
 
-- The security principal who enacted it. Here we suggest the use of public key cryptography, which can be used to sign operation messages (see below). A permission is assigned to a `Principal` in the data, having a public key property. (We will explore identity and authentication further when considering traceability.)
+- The security principal who enacted it. Here we give the example of using Public Key Infrastructure (PKI), in which a user has a certificate that can be used to sign operation messages (see below). A permission is assigned to a `Principal` in the data, having a certificate property. (We explore identity and authentication further in the [traceability](./traceability.md) design.)
 - Whether the principal had a permission which _applies to_ the changed data. Here we choose to support application of permissions to any **json-rql** [Pattern](https://json-rql.org/interfaces/pattern.html). This supports any data selector e.g. (informally) "all data belonging to this group". (We note that in this scheme, permission checking could become an unbounded query optimisation problem – we intend to explore this in the prototype.)
 
 Since access control by "whitelist" permissions may not suit all use-cases, the choice of approach is made through the `access` property of the domain itself. (Note that this requires the domain to be represented as a subject in the data; this is an open [topic of discussion](https://github.com/m-ld/m-ld-spec/discussions/75).)
@@ -167,9 +167,9 @@ Next, we consider the steps required for Bob to join the domain with his device.
 
 ![2-new-clone-bob-noaccess.seq](./img/2-new-clone-bob-noaccess.seq.svg)
 
-Again, Bob must authenticate to the app, and then the clone may initialise and connect to the message service (but not yet to the domain channel, which is further protected by the domain secret). As a new but non-genesis clone, it must receive the domain data using a snapshot request from any available clone (Alice's clone being the only one; note that this may be technically routed through the message service, but it is characteristically a request/response). This request is signed using Bob's private key.
+Again, Bob must authenticate to the app, and then the clone may initialise and connect to the message service (but not yet to the domain channel, which is further protected by the domain secret). As a new but non-genesis clone, it must receive the domain data using a snapshot request from any available clone (Alice's clone being the only one; note that this may be technically routed through the message service, but it is characteristically a request/response). This request is signed (by Bob's private key, if PKI certificates are in use).
 
-On receipt of the snapshot request, Alice's clone is able to inspect the signature and determine if a security principal exists in the data having `readPermission` and the corresponding public key. In this case, this is so, and therefore Alice's clone responds successfully to the snapshot request.
+On receipt of the snapshot request, Alice's clone is able to inspect the signature and determine if a security principal exists in the data having `readPermission` and the corresponding identity. In this case, this is so, and therefore Alice's clone responds successfully to the snapshot request.
 
 Having the data, Bob's clone is now able to read the domain secret, and so connect to the domain channel on the message service.
 
@@ -181,9 +181,9 @@ To authorise Bob to make write operations, Alice needs to issue an ACL change ag
 
 The operation comprises the addition of a `WritePermission` to Bob's set of permissions (noting that **json-rql** updates are _overlays_, so Bob's `Principal` now has both read and write permissions).
 
-As this operation itself requires authorisation, it will already have been checked in Alice's clone. Upon arrival at Bob's clone it is symmetrically checked again. In principle, this is because Bob's clone has no knowledge of the trustworthiness of Alice's clone or its dataset – although this stance might seem undeserved because Bob has ony just receved Alice's snapshot. (In practice, it may be desirable to bypass authorisation checks for operations originating in a 'trusted' clone; but this would be an optimisation. See also [§trust](#trust).)
+As this operation itself requires authorisation, it will already have been checked in Alice's clone. Upon arrival at Bob's clone it is symmetrically checked again. In principle, this is because Bob's clone has no knowledge of the trustworthiness of Alice's clone or its domain – although this stance might seem undeserved because Bob has ony just receved Alice's snapshot. (In practice, it may be desirable to bypass authorisation checks for operations originating in a 'trusted' clone; but this would be an optimisation. See also [§trust](#trust).)
 
-The authorisation check requires that the operation was signed with Alice's private key. Bob's clone is therefore able to confirm that permissions exist for Alice to make the changes.
+The authorisation check requires that the operation was signed by Alice (using her private key, if PKI certificates are in use). Bob's clone is therefore able to confirm that permissions exist for Alice to make the changes.
 
 Now having write permission for any data in the domain, Bob is able to enact a transaction, and have it succeed and be notified to Alice (unless he attempts to modify a statute – in which case he is unable to satisfy the Authority agreement condition).
 
@@ -232,8 +232,8 @@ In a peer-to-peer system, we could choose to assume that a majority of peers are
 
 1. This does not necessarily include the peer from which we received the snapshot.
 2. Some peers may be offline – in the worst case, every online peer may be malicious.
-3. Majority consensus does not prevent Sybil attacks, which are easier when replica count is low.
-4. At any moment, peers can have different data content, due to concurrent transactions and messages in-flight.
+3. At any moment, peers can have different data content, due to concurrent transactions and messages in-flight.
+4. Majority consensus does not prevent Sybil attacks, which are easier when replica count is low (the attacker adds multiple malicious peers to attain a majority).
 
 We could generalise this problem to any circumstance in which a clone is trusting a peer – which therefore includes any recieved operation. The operation may validate for both access control and signature identity, but may still be forged (e.g. by malware on the user's device). Ideally, we would like a way to verify, at any time – but particularly after snapshot recovery – that the current state of domain data in a clone is "correct" with respect to the rest of the domain (the definition of correctness is that the clone _would_ reach consistency with the domain if all operations were to cease).
 
@@ -241,8 +241,12 @@ In common with the general realisation of SUAC, we choose to provide this by mea
 
 For completeness, we conclude this section with a candidate model for fully peer-to-peer snapshot trust, as follows.
 
-With reference to point 4 above we notice that in practice, clones will frequently converge on data content. Exactly how frequently will depend on the pattern of operations in the domain; informally, we can say that frequent convergence is the root expectation in most use-cases – for example, collaborative document editing by humans would not be viable if everyone were typing furiously at all times. In addition, agreements, the building block of SUAC, provide a _guarantee_ of convergence for "significant" data changes.
+With reference to point 3 above we notice that in practice, clones will frequently converge on data content. Exactly how frequently will depend on the pattern of operations in the domain; informally, we can say that frequent convergence is the root expectation in most use-cases – for example, collaborative document editing by humans would not be viable if everyone were typing furiously at all times. In addition, agreements, the building block of SUAC, provide a _guarantee_ of convergence for "significant" data changes.
 
-Therefore, it is possible to envisage a scheme in which clones periodically publish the current hash of their data content. This hash can be computed for a snapshot as it arrives, and incrementally during online operation (a merkle tree may be suitable). Upon receipt of such a hash, a clone will check the value against their own hash; or even against a tunable history of prior hashes. A mismatch will alert the clone to a divergence. While temporary divergence is normal, chronic divergence (for example, extending over multiples of the networtk timeout) will eventually become suggestive of a fault or a breach of trust. The confidence assigned to this can be adjusted for the number of clones online, and whether they have been trustworthy in the past.
+Therefore, it is possible to envisage a scheme in which clones periodically publish the current hash of their data content. This hash can be computed for a snapshot as it arrives, and incrementally during online operation (a merkle tree may be suitable). Upon receipt of such a hash, a clone will check the value against their own hash; or even against a tunable history of prior hashes. A mismatch will alert the clone to a divergence. While temporary divergence is normal, chronic divergence (for example, extending over multiples of the networtk timeout) will eventually become suggestive of a fault or a breach of trust. The confidence assigned to this can be adjusted for the number of clones online, and whether they have been trustworthy in the past. A clone that concludes it has diverged from the domain then has the choice of recovering from another snapshot, and repeating the process.
 
-A clone that concludes it has diverged from the domain then has the choice of recovering from another snapshot, and repeating the process.
+This scheme is probabilistic (trust is non-binary) and eventual (detection is not necessarily immediate). It is likely to require tuning for different use-case architectures. In these characteristics, it has some similarity to schemes in other decentralised architectures like [peer witnessing in Holochain](https://developer.holochain.org/concepts/1_the_basics/#how-holochain-does-things-differently) and [node age in SAFE Network](https://primer.safenetwork.org/#ch12). However, these technologies are _platforms_, which intend on having large numbers of nodes. A **m-ld** domain representing a shared document, in contrast, may only be shared to a handful of locations. This means a breach of trust at any location could have proportionally higher impact, but also such locations will more often be of known or controllable trust (such as on corporate devices).
+
+---
+
+_For bibliographic references, see the [project references file](../references.bib)._

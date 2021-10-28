@@ -10,9 +10,11 @@ package mld {
 
 class AgreementCondition <<statutory>> <<extension point>>
 
-class Principal {
-  publicKey : String
+abstract class Principal <<extension point>>
+class PkiPrincipal {
+  certificate : String
 }
+PkiPrincipal --|> Principal
 
 class Authority
 note left
@@ -37,7 +39,7 @@ Authority --|> WritePermission
 WritePermission --|> Permission
 
 object readPermission
-note left
+note right
 gives access
 to the domain
 end note

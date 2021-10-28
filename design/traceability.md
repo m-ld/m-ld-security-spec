@@ -1,0 +1,138 @@
+# Traceability
+
+*This document is a design story with enough reasoning to justify a prototype implementation. A formal write-up of the design, its properties and its verification will follow.*
+
+## abstract
+
+Traceability and non-repudiation of information is mandated in our example systems, CIC and p2pl-doc, with specific requirements on the former and general document management expectations on the latter. Here we consider how to reliably record data operations in an audit log, with optional strong (cryptographic) binding to user identities, for the real-time information in these systems being managed using **m-ld**. First, we analyse requirements for the system, including how user identity can be made available to **m-ld**. Then, we consider three candidate technical approaches to the recording of the audit log, and select one for prototyping.
+
+## analysis
+
+_Note [CIC auditing objectives](../threats/e-invoicing.md#auditing) and  [p2pl-doc auditing objectives](../threats/legal-docs.md#auditing)._
+
+In order to reliably trace information changes, both the affected information and the affecting security principals must be strongly identified. By 'strong' we mean that the identifier is stable for the lifetime of the audit log, and that applicable information for the identity can be retrieved using it.
+
+### principals
+
+Security [principals](https://en.wikipedia.org/wiki/Principal_(computer_security)) include human users, and machines (hardware plus software). A required security property for principals with respect to the audit log is [_non-repudiation_](https://en.wikipedia.org/wiki/Non-repudiation).
+
+In information systems, machines necessarily act on behalf of users – who obviously do not have physical access to storage or networking. The general expectation for audit logging is that the user who initiated an action is strongly associated with the record of the action. It is not usually expected that the 'machine' used is equally associated with the action. Partly this is due to the deep complexity of guaranteeing that certain code – and no other code – was actually executed. Conventionally, this is mitigated with:
+
+1. Verified installs – users install signed code from trusted sources e.g. app stores, and are expected to use that installed code.
+2. Dynamically loaded apps – such as browser Javascript, which is downloaded from the same domain as the data being operated on.
+3. Server-side processing – three-tier apps execute critical business logic in centralised, controlled environments.
+4. Regulations – governing systems, and often requiring user verification of key actions e.g. 'electronic signatures' in [21CFR Part 11](https://www.fda.gov/regulatory-information/search-fda-guidance-documents/part-11-electronic-records-electronic-signatures-scope-and-application).
+
+Decentralised systems cannot in principle apply these mitigations, because they all require some form of centralised authority – an app store, a domain or app server, or a regulatory body. This has led to the development of consensus-based solutions such as [smart contracts](https://en.wikipedia.org/wiki/Smart_contract), with ongoing research into protections against [Sybil attacks](https://en.wikipedia.org/wiki/Sybil_attack) and  [Byzantine fault](https://en.wikipedia.org/wiki/Byzantine_fault) tolerance. As also noted in the [SUAC trust model](./suac.md#trust), these approaches generally (and rather ironically<sup>1</sup>) require the 'platform' itself to be pervasive, with (sometimes elaborate) sufficiency criteria for the proportion or distribution of benign nodes and agents.
+
+Since **m-ld** is a component, not a platform, it is neither possible not desireable to _require_ the application of any of the above strategies – instead, our approach is to provide suitable support, such as extension points, and guidance.
+
+For the purpose of machine identity, we will categorise code as follows:
+
+- **Platform** code is the local system in which the app and **m-ld** are running, e.g. a browser and operating system.
+- **App** code is the local application, excluding the embedded **m-ld** engine. This category includes app code running on a server, and **m-ld** extensions loaded by the choice of the app or its data.
+- **Operational** code is triggered by the local user and its actions are expected to be attributed to the user (as above).
+- **Autonomous** code is not triggered by the local user.
+
+With **m-ld**, autonomous code may be triggered by the arrival of actions from another user, or in the background:
+
+- The core data structure of **m-ld** requires local processing of remote operations, to converge state.
+- App code is notified of remote data operations and may autonomously make consequential changes. This most often occurs in extensions such as [constraints](https://spec.m-ld.org/#constraints).
+- The clone engine may perform administrative actions at any time, while the local user is quiescent. This includes compression of high-frequency entries in the journal (e.g. while another user is typing furiously).
+- User operations may be _voided_ (revoked from the domain) as a result of [conflict with an agreement](./suac.md#agreements).
+
+However, these autonomous activities may be under the general oversight of the user by virtue of executing in a user session, a user-installed app, or in the user's operating system account (or all three). Therefore in some trust models, it would be legitimate to trace the results to the user's identity (e.g. to find the origin of suspicious activity). In our design we will allow for both user identity and machine identity to be attached to audit log entries.
+
+Attachment of a security principal's identity to data can be by weak association (e.g. in the same audit log entry) or strongly by means of a digital signature, depending on the use-case requirements. Note that the SUAC model already requires that operation messages can be verified to originate from an identified user principal, with Public Key Infrastructure (PKI) signatures given as an example technical approach. Here, we note further requirements for:
+
+- machine identity
+- verifiable signatures on audit entries
+- offline signatures (to support offline working; this precludes e.g. a server round-trip to sign data)
+
+The table presents a review of some possible technical identity models available in different environments. We will choose one of these models for prototyping, with extensibility to support others.
+
+| identity model                                               | principal types | environments                                                 | digital signatures (inc. offline)                            | prototype |
+| ------------------------------------------------------------ | --------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | --------- |
+| [WebID](https://www.w3.org/wiki/WebID)                       | user            | with a [protocol implementation](https://www.w3.org/2005/Incubator/webid/wiki/Implementations) | Yes. User owns an asymmetric private key.                    | ✔︎         |
+| [Decentralized Identifiers](https://w3c.github.io/did-core/) | user            | with implementation for [method](https://www.w3.org/TR/did-spec-registries/#did-methods) in use | Yes, if the user owns an asymmetric private key (not always required). | ✗         |
+| [PKI](https://en.wikipedia.org/wiki/Public_key_infrastructure) | user, machine   | most environments                                            | Yes. User/machine owns an asymmetric private key.            | ✗         |
+| Identity service, using browser cookies                      | user            | browsers                                                     | Not natively. Data may contain a key<sup>†</sup>.            | ✗         |
+| Identity service, using [JSON Web Tokens](https://jwt.io/)   | user            | most environments; an issuing service is required            | Not natively. Data may contain a key<sup>†</sup>.            | ✗         |
+| operating system account                                     | user, machine   | desktop & mobile native apps                                 | Typically yes, with a provider account, e.g. [AppleID](https://developer.apple.com/documentation/authenticationservices/implementing_user_authentication_with_sign_in_with_apple), Windows365, Google | ✗         |
+
+<sup>†</sup> Token-based authentication systems do not provide local security principals with a key for signing data, as they are primarily used in hosted architectures where digital signing is done on the server. However, the token could _contain_ a suitable key, which has the same validity period as the token. Since signature validation generally happens online – because a message with a signature has just been received – the validation of the signature key may require a server call.
+
+### audited data
+
+Document identities are required in p2pl-doc for traceability to other systems such as court case management systems and printed (possibly redacted) paper documents. In **m-ld**, all Subjects are strongly identified with IRIs – by default, a combination of the "domain" (shared dataset) identity, provided by the app, and the [Subject](https://spec.m-ld.org/#subjects) `@id` property. For the purposes of p2pl-doc, then, the app architecture just needs to ensure that the domain identity is sufficiently unique for traceability.
+
+In addition to identifying a document, some use-cases may require the document content at some moment in history, e.g. the version that was exported. This is a common feature of document management systems. With **m-ld** there could be two primary ways to offer this:
+
+- The current state of a clone could be "rewound" to a specific transaction, identified by the transaction ID or clone [tick](https://spec.m-ld.org/#events), by reversing the operations that have happened since (note that reversing an operation is also required for SUAC). This would be a new engine feature.
+- A separate system could be used to store version snapshots at suitable junctures or intervals.
+
+As a versioning feature would require substantial effort to implement, and is only tangentially related to the goals of this security project, we will not consider it further.
+
+## realisation
+
+We have considered the following three technical approaches for implementing audit logging in **m-ld**.
+
+### 1. journal
+
+The clone journal is a log of operations retained by a clone, primarily for collaboration with other clones that are recovering from a period offline, and in SUAC for reversal of operations that are found to be in conflict with an agreement. The journal is internal but there are use-cases, such as auditing, which may benefit from exposing it to the application with an API (see [enhancement ticket](https://github.com/m-ld/m-ld-spec/issues/70)).
+
+The advantage of using the journal for auditing is that it is already, conceptually, a log of operations; and it is just as highly available as the domain information content. Further, the journal is already able to compress sequential entries, which is currently done to save on storage utilisation (done in the Javascript engine while the user is quiescent).
+
+Despite the apparent conceptual and requirements match, there are a number of potential problems with using the journal directly for auditing. These primarily relate to additional complexity incurred by overloading the journal's original purpose.
+
+1. Each clone maintains its own journal. Due to the possibility of concurrent operations, clone journals are not identically ordered. Conceptually this could complicate auditing since switching from one clone to another during the audit (for example overnight) could show duplicate or missed operations. In practice this may not be a serious issue.
+2. A clone is at liberty to drop journal entries which are unlikely to be needed again, to save on storage utilisation. This depends on the application architecture, but in extreme cases a clone may choose to drop the entire journal. This could be worked-around, e.g. by marking some clones as 'audit masters' and using configuration to prevent them from truncating their journals.
+3. The operations stored in the journal are not necessarily the same as the operations received at (or originating in) the clone. There are a number of reasons for this:
+   1. Compression of sequential entries.
+   2. During clone recovery, compressed operations received from a collaborator's journal may be adjusted ("cut") to allow for overlapping entries the recovering clone has previously received.
+   3. Voided operations under SUAC may be entirely removed from the journal.
+4. The journal does not record its own administrative activities (compression, cutting, and voiding; see point 3).
+5. The heuristic used by an engine to decide whether and when to compress entries balances resource utilisation (storage and compute), within the constraints imposed by the low-level cloning protocol. The additional requirements of auditing will complicate these decisions, and the result could be detrimental to both use-cases.
+6. The journal's raw data content would need to be augmented for auditing purposes.
+   1. Timestamps from a reliable time source. A local operating system clock on a user device may not be accurate. This augmentation must happen at the time of message receipt, and the timestamp may be stored with the journal.
+   2. If user identities are pseudonymised in the data, then reversing the pseudonymisation for the auditor. The de-pseudonymised identity must not be stored with the journal.
+
+> ✗ This option will not be protoyped, unless the selected option proves unworkable.
+
+### 2. updates
+
+In the core of **m-ld**, "updates" are operations notified to the app as events via the [clone API](https://spec.m-ld.org/#events). They are composed and ordered to strictly represent the updates being made to the clone's information content, so that the app itself can maintain any other local representations such as a user interface (UI). It would be possible and natural for an app to take these events in turn, augment them as necessary, and push them to some other system, such as a dedicated auditing system.
+
+Using updates therefore avoids the general 'overloading' problem identified for the journal option above.
+
+- The app can make its own decisions about log retention and compression, and to augment entries as required.
+- Updates will normally include operations that are subsequently voided, and the reverse operation when the voiding happens, which better represents the actual changes made by the users.
+- No new API is required.
+
+However some problems remain:
+
+1. Updates still have the same ordering as the journal, and will differ between clones. Care must be taken that only one clone streams to the auditing system at a time, and if this clone disappears (e.g. the node crashes), it must be restarted. This will not miss entries, because the clone can recover from another running peer. If the clone were running as a service, this would be a natural function of a scheduling system such as Kubernetes; and so this approach would be natural for hybrid systems like CIC and p2pl-doc, but more complex in fully decentralised apps.
+2. The operations emitted as updates are still not necessarily the same as the operations received at (or originating in) the clone. While the clone is running normally they do match closely, but during clone recovery they can still be compressed, cut, or absent due to voiding (see item 3 in the journal analysis above).
+3. 🆕 The auditing system must allow offline append (e.g. with a local outbox), so that the app can operate offline. Since the offline cache is (largely) redundant with the journal, this puts additional load on local storage.
+
+>  ✗ This option will not be protoyped, unless the selected option proves unworkable.
+
+### 3. operations
+
+Above, we have used the term "operation" to generally refer to any change to information content. In the core of **m-ld**, this term is more specifically used to refer to changes that are propagated from clones, through the message service, to other clones (note we use "message service" loosely to mean the technology in use for publishing operations; it may be fully decentralised). Journal entries and updates (above) are derived from operations, but as already noted, they may be modified by the engine in order to fulfill the purposes of storage optimisation and clone recovery.
+
+Like updates, operations are not stored by **m-ld**, and so using them would require a dedicated auditing system. Unlike updates though, there is no direct API giving an app access to operations, primarily because no individual clone is guaranteed to receive all unmodified operations. However, an extension point does exist for the _remotes_ object which is responsible for publishing operations to the message service. Therefore, there are two ways to intercept operations in order to push them to the auditing system:
+
+- Provide a remotes implementation that passes updates to the auditing system. To guarantee that all updates are passed, each clone would pass only the operations that it creates. Note that this approach requires the auditing system to allow offline append (cf. §updates, problem 3).
+- Have the auditing system _subscribe_ to the message service and so receive all operations (possibly via another service, so that the auditing system itself does not need to be augmented). _⚠️ This would not work, because offline operations are sent from the journal and therefore exhibit the same problems as using the journal for auditing._
+
+This approach will correctly capture all operations, including operations generated autonomously by constraints. However it will not capture the voiding of an operation under SUAC, because such voiding happens unilaterally at every clone. An  API must be provided in the clone engine for these events to be propagated to the audit system – this will be explored in the prototype.
+
+>  ✔︎ This option will be protoyped.
+
+---
+
+_For bibliographic references, see the [project references file](../references.bib)._
+
+1. "If only everyone would agree to do things my way, then everyone could be autonomous."
+

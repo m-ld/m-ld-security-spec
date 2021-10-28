@@ -116,3 +116,6 @@ Attacks that target human users, and which by definition appear legitimate to th
 | input validation<br />escaping/parameterisation              | local app, services                                          | injection                                             |
 | security training                                            | users                                                        | social engineering, incorrect setup                   |
 
+---
+
+_For bibliographic references, see the [project references file](../references.bib)._
