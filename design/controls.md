@@ -20,7 +20,9 @@ To address these significant state transitions, including schema and ACL, we wil
 
 Fine-grained traceability of operations was found to be important in CIC, and expected in p2pl-doc to the same extent as a typical document management system.
 
->  Auditing controls will be analysed further in the next phase of the project.
+The primary approach to auditability in an IT system is to record an audit trail or log. Most enterprise- or cloud-grade system components such as databases and services offer logging as a feature. However component-level system logs may be oriented to debugging rather than business audit. Therefore app services are often built to emit audit logs in additional to system logs. This may also make use of a dedicated audit service to provide features like trusted timestamps, configurable log retention or access controls.
+
+Server-based components and centralised services are protected by their data centre's trust boundary. Entries in centralised audit logs are usually acceptably non-repudiable because they are created by these trusted components. If this is not sufficient, or some components are outside the data centre, then it may be necessary to apply digital signatures to audit entries on creation. In the [traceability](./traceability.md) document we propose an audit logging design for **m-ld** to support its use in CIC and p2pl-doc.
 
 ### confidentiality
 

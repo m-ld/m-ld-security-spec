@@ -43,13 +43,15 @@ With **m-ld**, autonomous code may be triggered by the arrival of actions from a
 
 However, these autonomous activities may be under the general oversight of the user by virtue of executing in a user session, a user-installed app, or in the user's operating system account (or all three). Therefore in some trust models, it would be legitimate to trace the results to the user's identity (e.g. to find the origin of suspicious activity). In our design we will allow for both user identity and machine identity to be attached to audit log entries.
 
-Attachment of a security principal's identity to data can be by weak association (e.g. in the same audit log entry) or strongly by means of a digital signature, depending on the use-case requirements. Note that the SUAC model already requires that operation messages can be verified to originate from an identified user principal, with Public Key Infrastructure (PKI) signatures given as an example technical approach. Here, we note further requirements for:
+Attachment of a security principal's identity to data can be by association (e.g. in the same audit log entry) or strongly by means of a digital signature, depending on the use-case requirements. In **m-ld**, audit events arise in user-local apps, which are outside any data centre's trust boundary. Therefore we propose that digital signatures are a requirement for CIC and p2pl-doc traceability.
+
+Note that the SUAC model already requires that operation messages can be verified to originate from an identified user principal, with Public Key Infrastructure (PKI) signatures given as an example technical approach. Here, we note further requirements for:
 
 - machine identity
 - verifiable signatures on audit entries
 - offline signatures (to support offline working; this precludes e.g. a server round-trip to sign data)
 
-The table presents a review of some possible technical identity models available in different environments. We will choose one of these models for prototyping, with extensibility to support others.
+The table presents a review of some possible technical identity models available in different environments, and their amenability to the use of cryptographic digital signatures. We will choose one of these models for prototyping, with extensibility to support others.
 
 | identity model                                               | principal types | environments                                                 | digital signatures (inc. offline)                            | prototype |
 | ------------------------------------------------------------ | --------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | --------- |

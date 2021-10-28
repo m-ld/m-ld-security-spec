@@ -21,6 +21,7 @@ The approach of this phase is software engineering design and specification, pro
 
 - A summary of threat to security control mappings is found in the [controls](./controls.md) document (start here).
 - A description of a novel control, **symmetric unilateral access control**, is found in the [SUAC](./suac.md) document.
+- A design for traceability via audit logging is found in the [traceability](./traceability.md) document.
 
 ## tooling notes
 
