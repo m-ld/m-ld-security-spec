@@ -14,7 +14,7 @@ In order to reliably trace information changes, both the affected information an
 
 ### principals
 
-Security [principals](https://en.wikipedia.org/wiki/Principal_(computer_security)) include human users, and machines (hardware plus software). A required security property for principals with respect to the audit log is [_non-repudiation_](https://en.wikipedia.org/wiki/Non-repudiation).
+Security [principals](https://en.wikipedia.org/wiki/Principal_(computer_security)) include human users, and machines (hardware plus software). A required security property for principals with respect to the audit log is [non-repudiation](https://en.wikipedia.org/wiki/Non-repudiation).
 
 In information systems, machines necessarily act on behalf of users – who obviously do not have physical access to storage or networking. The general expectation for audit logging is that the user who initiated an action is strongly associated with the record of the action. It is not usually expected that the 'machine' used is equally associated with the action. Partly this is due to the deep complexity of guaranteeing that certain code – and no other code – was actually executed. Conventionally, this is mitigated with:
 
@@ -25,7 +25,7 @@ In information systems, machines necessarily act on behalf of users – who obvi
 
 Decentralised systems cannot in principle apply these mitigations, because they all require some form of centralised authority – an app store, a domain or app server, or a regulatory body. This has led to the development of consensus-based solutions such as [smart contracts](https://en.wikipedia.org/wiki/Smart_contract), with ongoing research into protections against [Sybil attacks](https://en.wikipedia.org/wiki/Sybil_attack) and  [Byzantine fault](https://en.wikipedia.org/wiki/Byzantine_fault) tolerance. As also noted in the [SUAC trust model](./suac.md#trust), these approaches generally (and rather ironically<sup>1</sup>) require the 'platform' itself to be pervasive, with (sometimes elaborate) sufficiency criteria for the proportion or distribution of benign nodes and agents.
 
-Since **m-ld** is a component, not a platform, it is neither possible not desireable to _require_ the application of any of the above strategies – instead, our approach is to provide suitable support, such as extension points, and guidance.
+Since **m-ld** is a component, not a platform, it is neither possible not desireable to _require_ the application of any of the above strategies (centralised or decentralised) – instead, our approach is to provide suitable support, such as extension points, and guidance.
 
 For the purpose of machine identity, we will categorise code as follows:
 
@@ -34,12 +34,12 @@ For the purpose of machine identity, we will categorise code as follows:
 - **Operational** code is triggered by the local user and its actions are expected to be attributed to the user (as above).
 - **Autonomous** code is not triggered by the local user.
 
-With **m-ld**, autonomous code may be triggered by the arrival of actions from another user, or in the background:
+With **m-ld**, autonomous code may be triggered by the arrival of actions from another user, or in the background. These should be either well-known algorithms (i.e. they are published as specifications, of **m-ld** or of an extension) or application code.
 
-- The core data structure of **m-ld** requires local processing of remote operations, to converge state.
-- App code is notified of remote data operations and may autonomously make consequential changes. This most often occurs in extensions such as [constraints](https://spec.m-ld.org/#constraints).
-- The clone engine may perform administrative actions at any time, while the local user is quiescent. This includes compression of high-frequency entries in the journal (e.g. while another user is typing furiously).
-- User operations may be _voided_ (revoked from the domain) as a result of [conflict with an agreement](./suac.md#agreements).
+1. The core data structure of **m-ld** requires local processing of remote operations, to converge state.
+2. App code is notified of remote data operations and may autonomously make consequential changes. This most often occurs in extensions such as [constraints](https://spec.m-ld.org/#constraints).
+3. The clone engine may perform administrative actions at any time, while the local user is quiescent. This includes compression of high-frequency entries in the journal (e.g. while another user is typing furiously).
+4. User operations may be _voided_ (revoked from the domain) as a result of [conflict with an agreement](./suac.md#agreements).
 
 However, these autonomous activities may be under the general oversight of the user by virtue of executing in a user session, a user-installed app, or in the user's operating system account (or all three). Therefore in some trust models, it would be legitimate to trace the results to the user's identity (e.g. to find the origin of suspicious activity). In our design we will allow for both user identity and machine identity to be attached to audit log entries.
 
@@ -81,7 +81,7 @@ We have considered the following three technical approaches for implementing aud
 
 ### 1. journal
 
-The clone journal is a log of operations retained by a clone, primarily for collaboration with other clones that are recovering from a period offline, and in SUAC for reversal of operations that are found to be in conflict with an agreement. The journal is internal but there are use-cases, such as auditing, which may benefit from exposing it to the application with an API (see [enhancement ticket](https://github.com/m-ld/m-ld-spec/issues/70)).
+The clone journal is a log of operations retained by a clone, primarily for collaboration with other clones that are recovering from a period offline, and in SUAC for reversal of operations that are found to be in conflict with an agreement. The journal is internal but there are use-cases, such as auditing, which may benefit from exposing it to the application with an API (see the [enhancement ticket](https://github.com/m-ld/m-ld-spec/issues/70)).
 
 The advantage of using the journal for auditing is that it is already, conceptually, a log of operations; and it is just as highly available as the domain information content. Further, the journal is already able to compress sequential entries, which is currently done to save on storage utilisation (done in the Javascript engine while the user is quiescent).
 

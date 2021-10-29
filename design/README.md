@@ -43,5 +43,5 @@ SVG files are generated and placed in the /img directory.
 
 ```
 pdflatex -output-format=dvi -output-directory="$FileDir$/gen" $FilePath$
-dvisvgm $FilePath$ -b min -o "../img/$FileNameWithoutExtension$.svg"
+dvisvgm $FilePath$ -b min --no-fonts -o "../img/$FileNameWithoutExtension$.svg"
 ```
