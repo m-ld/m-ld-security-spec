@@ -38,7 +38,7 @@ With **m-ld**, autonomous code may be triggered by the arrival of actions from a
 
 1. The core data structure of **m-ld** requires local processing of remote operations, to converge state.
 2. App code is notified of remote data operations and may autonomously make consequential changes. This most often occurs in extensions such as [constraints](https://spec.m-ld.org/#constraints).
-3. The clone engine may perform administrative actions at any time, while the local user is quiescent. This includes compression of high-frequency entries in the journal (e.g. while another user is typing furiously).
+3. The clone engine may perform administrative actions at any time, while the local user is quiescent. This includes fusion of high-frequency entries in the journal (e.g. while another user is typing furiously), which compresses the entries into one entry with the same overall effect.
 4. User operations may be _voided_ (revoked from the domain) as a result of [conflict with an agreement](./suac.md#agreements).
 
 However, these autonomous activities may be under the general oversight of the user by virtue of executing in a user session, a user-installed app, or in the user's operating system account (or all three). Therefore in some trust models, it would be legitimate to trace the results to the user's identity (e.g. to find the origin of suspicious activity). In our design we will allow for both user identity and machine identity to be attached to audit log entries.
@@ -50,6 +50,7 @@ Note that the SUAC model already requires that operation messages can be verifie
 - machine identity
 - verifiable signatures on audit entries
 - offline signatures (to support offline working; this precludes e.g. a server round-trip to sign data)
+- reliable timestamps on audit entry signatures (use of an RFC 3161 timestamp authority may be mandated)
 
 The table presents a review of some possible technical identity models available in different environments, and their amenability to the use of cryptographic digital signatures. We will choose one of these models for prototyping, with extensibility to support others.
 
@@ -83,52 +84,91 @@ We have considered the following three technical approaches for implementing aud
 
 The clone journal is a log of operations retained by a clone, primarily for collaboration with other clones that are recovering from a period offline, and in SUAC for reversal of operations that are found to be in conflict with an agreement. The journal is internal but there are use-cases, such as auditing, which may benefit from exposing it to the application with an API (see the [enhancement ticket](https://github.com/m-ld/m-ld-spec/issues/70)).
 
-The advantage of using the journal for auditing is that it is already, conceptually, a log of operations; and it is just as highly available as the domain information content. Further, the journal is already able to compress sequential entries, which is currently done to save on storage utilisation (done in the Javascript engine while the user is quiescent).
+The advantage of using the journal for auditing is that it is already, conceptually, a log of operations; and it is just as highly available as the domain information content. Further, the journal is already able to fuse sequential entries, which is currently done to save on storage utilisation (done in the Javascript engine while the user is quiescent).
 
 Despite the apparent conceptual and requirements match, there are a number of potential problems with using the journal directly for auditing. These primarily relate to additional complexity incurred by overloading the journal's original purpose.
 
 1. Each clone maintains its own journal. Due to the possibility of concurrent operations, clone journals are not identically ordered. Conceptually this could complicate auditing since switching from one clone to another during the audit (for example overnight) could show duplicate or missed operations. In practice this may not be a serious issue.
 2. A clone is at liberty to drop journal entries which are unlikely to be needed again, to save on storage utilisation. This depends on the application architecture, but in extreme cases a clone may choose to drop the entire journal. This could be worked-around, e.g. by marking some clones as 'audit masters' and using configuration to prevent them from truncating their journals.
 3. The operations stored in the journal are not necessarily the same as the operations received at (or originating in) the clone. There are a number of reasons for this:
-   1. Compression of sequential entries.
-   2. During clone recovery, compressed operations received from a collaborator's journal may be adjusted ("cut") to allow for overlapping entries the recovering clone has previously received.
+   1. Fusion of sequential entries.
+   2. During clone recovery, fused operations received from a collaborator's journal may be adjusted ("cut") to allow for overlapping entries the recovering clone has previously received.
    3. Voided operations under SUAC may be entirely removed from the journal.
-4. The journal does not record its own administrative activities (compression, cutting, and voiding; see point 3).
-5. The heuristic used by an engine to decide whether and when to compress entries balances resource utilisation (storage and compute), within the constraints imposed by the low-level cloning protocol. The additional requirements of auditing will complicate these decisions, and the result could be detrimental to both use-cases.
-6. The journal's raw data content would need to be augmented for auditing purposes.
-   1. Timestamps from a reliable time source. A local operating system clock on a user device may not be accurate. This augmentation must happen at the time of message receipt, and the timestamp may be stored with the journal.
-   2. If user identities are pseudonymised in the data, then reversing the pseudonymisation for the auditor. The de-pseudonymised identity must not be stored with the journal.
+4. The journal does not record its own administrative activities (fusion, cutting, and voiding; see point 3).
+5. The heuristic used by an engine to decide whether and when to fuse entries balances resource utilisation (storage and compute), within the constraints imposed by the low-level cloning protocol. The additional requirements of auditing will complicate these decisions, and the result could be detrimental to both use-cases.
+6. The journal's raw data content would need to be augmented with timestamps from a reliable time source. This augmentation must happen at the time of operation creation. If an RFC 3161 timestamp authority is in use this would incur a network round-trip, which will not work offline, and is likely to cause a bottleneck during high-frequency updates – and so contravene the [realtime data principle](https://m-ld.org/doc/#realtime) of **m-ld**.
+7. If user identities are pseudonymised in the data, then reversing the pseudonymisation for the auditor is required. The de-pseudonymised identity must not be stored with the journal, since it is then at risk of being read directly from the user device storage. Therefore this augmentation would have to be performed during auditing, or on transfer of events to another system.
 
 > ✗ This option will not be protoyped, unless the selected option proves unworkable.
 
-### 2. updates
+### 2. operations
 
-In the core of **m-ld**, "updates" are operations notified to the app as events via the [clone API](https://spec.m-ld.org/#events). They are composed and ordered to strictly represent the updates being made to the clone's information content, so that the app itself can maintain any other local representations such as a user interface (UI). It would be possible and natural for an app to take these events in turn, augment them as necessary, and push them to some other system, such as a dedicated auditing system.
+Above, we have used the term "operation" to generally refer to any change to domain content. In the core of **m-ld**, this term is more specifically used to refer to changes that are propagated from clones, through the message service, to other clones (note we use "message service" loosely to mean the technology in use for publishing operations; it may be fully decentralised). Journal entries are derived from operations, but as already noted, they may be modified by the engine in order to fulfill the purposes of storage optimisation and clone recovery.
 
-Using updates therefore avoids the general 'overloading' problem identified for the journal option above.
+Operations are not stored by **m-ld**, and so using them would require a dedicated auditing system. However, this avoids the general 'overloading' problem identified for the journal option above. The auditing architecture can make its own decisions about log retention and compression, and to augment entries as required. In particular, trusted timestamps can be obtained asynchronously, instead of holding up an operation commit. The scheme used for compression and time stamping can be tuned to the demands of auditing, e.g.:
 
-- The app can make its own decisions about log retention and compression, and to augment entries as required.
-- Updates will normally include operations that are subsequently voided, and the reverse operation when the voiding happens, which better represents the actual changes made by the users.
-- No new API is required.
+- Debounce sequential user operations for some time period e.g. 5 seconds; unless the operation is an agreement, or some other significant singular event according to the application semantics.
+- Compress these operations to auditable events and send them to the auditing system.
+- Obtain and associate trusted timestamps to events, on receipt, in the auditing system itself.
 
-However some problems remain:
+There is no direct API in **m-ld** giving an app access to operations – because no individual clone is guaranteed to receive all unmodified operations. We therefore have to consider where to intercept _published_ operations.
 
-1. Updates still have the same ordering as the journal, and will differ between clones. Care must be taken that only one clone streams to the auditing system at a time, and if this clone disappears (e.g. the node crashes), it must be restarted. This will not miss entries, because the clone can recover from another running peer. If the clone were running as a service, this would be a natural function of a scheduling system such as Kubernetes; and so this approach would be natural for hybrid systems like CIC and p2pl-doc, but more complex in fully decentralised apps.
-2. The operations emitted as updates are still not necessarily the same as the operations received at (or originating in) the clone. While the clone is running normally they do match closely, but during clone recovery they can still be compressed, cut, or absent due to voiding (see item 3 in the journal analysis above).
-3. 🆕 The auditing system must allow offline append (e.g. with a local outbox), so that the app can operate offline. Since the offline cache is (largely) redundant with the journal, this puts additional load on local storage.
+#### at every clone
+
+An extension point does exist for the "remotes" object which is responsible for publishing operations to the message service. A remotes could be provided that passes updates to the auditing system. To guarantee that all updates are passed, each clone would pass only the operations that it creates. However:
+
+1. In case the clone is partitioned from the auditing system, the connection must allow offline append (e.g. with an 'outbox' queue). Since this offline cache is (largely) redundant with the journal, this puts additional load on local storage.
+2. This approach is susceptible to malware – an 'insider' can cover their tracks by using a clone engine that sends incorrect entries.
+
+#### at the message service
+
+The auditing system itself could _subscribe_ to the message service and so receive all operations. This approach protects against malware by ensuring that audit entries correspond to actual operations published (strictly, the trust level applicable to the audit events is matched to the trust level of the information published by the clone, see [SUAC §trust](./suac.md#trust)). However:
+
+1. When a clone recovers from a period offline, it publishes its offline operations from the journal – these may be fused.
+2. In a real system, the auditing system may be temporarily partitioned from the message service, resulting in missed operations.
+
+In general, intercepting operations also fails to capture the voiding of an operation under SUAC, because such voiding happens unilaterally at every clone.
 
 >  ✗ This option will not be protoyped, unless the selected option proves unworkable.
 
-### 3. operations
+### 3. updates
 
-Above, we have used the term "operation" to generally refer to any change to information content. In the core of **m-ld**, this term is more specifically used to refer to changes that are propagated from clones, through the message service, to other clones (note we use "message service" loosely to mean the technology in use for publishing operations; it may be fully decentralised). Journal entries and updates (above) are derived from operations, but as already noted, they may be modified by the engine in order to fulfill the purposes of storage optimisation and clone recovery.
+In the core of **m-ld**, "updates" are operations notified to the app as events via the [clone API](https://spec.m-ld.org/#events). They are composed and ordered to strictly represent the updates being made to the clone's information content, so that the app itself can maintain any other local representations such as a user interface (UI). Updates will normally include operations that are subsequently voided, and the reverse operation when the voiding happens.
 
-Like updates, operations are not stored by **m-ld**, and so using them would require a dedicated auditing system. Unlike updates though, there is no direct API giving an app access to operations, primarily because no individual clone is guaranteed to receive all unmodified operations. However, an extension point does exist for the _remotes_ object which is responsible for publishing operations to the message service. Therefore, there are two ways to intercept operations in order to push them to the auditing system:
+Taking these updates in turn, augmenting them as necessary and pushing them to a dedicated auditing system, has similar properties to the interception of operations; and no new API is required. However:
 
-- Provide a remotes implementation that passes updates to the auditing system. To guarantee that all updates are passed, each clone would pass only the operations that it creates. Note that this approach requires the auditing system to allow offline append (cf. §updates, problem 3).
-- Have the auditing system _subscribe_ to the message service and so receive all operations (possibly via another service, so that the auditing system itself does not need to be augmented). _⚠️ This would not work, because offline operations are sent from the journal and therefore exhibit the same problems as using the journal for auditing._
+1. Updates have the same ordering as the journal, and will differ between clones. Care must be taken that only one clone streams to the auditing system at a time, and if this 'auditing clone' disappears (e.g. the node crashes), it must be restarted. This will not miss entries, because the clone can recover from another running peer. If the clone were running as a service, this would be a natural function of a scheduling system such as Kubernetes; and so this approach would be natural for hybrid systems like CIC and p2pl-doc. In fully decentralised apps the auditing clone would have to be selected by a leadership election scheme.
+2. In case the auditing clone is partitioned from the auditing system, the connection must allow offline append (e.g. with an 'outbox' queue). Since this offline cache is (largely) redundant with the journal, this puts additional load on local storage. Again, this problem is mitigated by the use of a server-based auditing clone with enough storage to cover any brief periods of partitioning.
+3. The operations emitted as updates are still not necessarily the same as the operations received at (or originating in) the clone. Due to use of the journal during clone recoveries, they may be fused, cut, or absent due to voiding (see §journal, problem 3).
 
-This approach will correctly capture all operations, including operations generated autonomously by constraints. However it will not capture the voiding of an operation under SUAC, because such voiding happens unilaterally at every clone. An  API must be provided in the clone engine for these events to be propagated to the audit system – this will be explored in the prototype.
+To overcome this remaining problem, we need autonomous operation modifications made by clones to be reliably traceable to the operations that triggered them. We have already established that clones must have a machine identity (sometimes the current user's identity), and are therefore able to sign the results of their autonomous actions. We now add the requirement that the signed data includes, for each "triggering" operation:
+
+- The identity of the triggering operation's originating agent.
+- The identity of the triggering operation (not its data, as this would negate the purpose of fusion, in particular).
+
+This approach does allow for the theoretical possibility that a user's action is not logged with its original content:
+
+1. When a clone on a user device recovers from a period offline, the operations that it emits may include fusions of the user's individual actions.
+2. If the auditing clone suffers a failure and recovers, rev-up operations fetched from a peer may:
+   1. Include fusions of some user's individual actions.
+   2. Exclude operations that were voided by the collaborator.
+
+In all cases, fusions contain entries for only one user's actions, made sequentially. Therefore the logging of fusions seems uncontroversial for auditing purposes – especially if the auditing clone's app is also applying fusions of its own. However:
+
+- The audit clone must trust that the fusion was constructed legitimately (i.e. not by malware) – see the [SUAC trust model](./suac.md#trust).
+- Reliable timestamps will be applied at the time the fused operation is received by the auditing system, not necessarily the time the edits were actually made. (It would not be possible to use a timestamp authority offline anyway.)
+
+The omission of a voided operation may seem to be more serious; however, note that this only occurs if the audit clone itself is offline (crashed or partitioned from the network). The purpose of logging voided operations is also somewhat obtuse, since by definition they do not contribute to the data. For now, we will accept this as a limitation of our approach.
+
+The following diagram elaborates data structures to be used to describe updates (provisionally; this will be explored further in the prototype), with traceability to "triggering" operations.
+
+![update.class](./img/update.class.svg)
+
+An `Operation` is a raw mutation of information in **m-ld**; comprising a deleted graph and an inserted graph (either of which may be empty). A `PublishedOperation` is a subclass which has an identity, primarily comprising a clock `time`, plus a `from` tick (which may extend the time into the past when the operation spans multiple clock ticks i.e. a fused operation). (These are shallow abstractions of existing concepts in the **m-ld** protocol, see e.g. the [Javascript engine](https://github.com/m-ld/m-ld-js/blob/master/src/engine/index.ts).)
+
+We introduce an `OperationSignature` which binds an agent identifier (see [§principals](#principals)) to a hash of some data and optionally, the operation identity. In this model an operation has a signature, in which the hashed data is the operation content. In order to reliably refer to a triggering operation without including its data, we also introduce an `OperationReference` which captures an operation identity and its signature, but no content.
+
+Finally, we introduce three `Update` types, which are presented through the normal clone update API. Each is itself an operation, and includes some combination of triggering operation references.
 
 >  ✔︎ This option will be protoyped.
 

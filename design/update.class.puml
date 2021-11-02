@@ -1,0 +1,57 @@
+@startuml
+'https://plantuml.com/class-diagram
+hide circle
+
+class Operation {
+  deletes : Graph
+  inserts : Graph
+}
+
+class OperationSignature {
+  agentId: IRI
+  dataHash: string
+  idHash: string | undefined
+}
+
+Operation *-- OperationSignature
+
+class OperationId {
+  from : number
+  time : Clock
+}
+
+class PublishedOperation extends Operation
+PublishedOperation *-- OperationId
+
+class OperationReference
+OperationReference *-- OperationSignature
+OperationReference *-- OperationId
+
+class ConstraintResolutionUpdate extends Operation
+note left of ConstraintResolutionUpdate
+An update that includes
+an operation which violated
+a constraint, with its
+resolution.
+end note
+ConstraintResolutionUpdate *-- "1" OperationReference : <<trigger>>\nresolves
+ConstraintResolutionUpdate *-- "1" OperationReference : <<trigger>>\nresolution
+
+class AgreementUpdate extends Operation
+note top of AgreementUpdate
+An update that comprises
+an agreement and any ops
+that were voided.
+end note
+AgreementUpdate *-- OperationReference : <<trigger>>\nagreed
+AgreementUpdate *-- "*" OperationReference : <<trigger>>\nvoided
+
+class FusedOperationUpdate extends Operation
+note bottom of FusedOperationUpdate
+An update that compresses
+multiple operations from
+a single clone & user.
+end note
+FusedOperationUpdate *-- "*" OperationReference : <<trigger>>\nfuses
+
+@enduml
