@@ -12,6 +12,7 @@ package mld {
 class Statute <<extension point>> {
   statutoryClass : rdfs:Class [0..*]
   statutoryProperty : rdf:Property [0..*]
+  statutoryUpdateVerb: 'DELETE' | 'INSERT' [1..2]
 }
 note bottom
 Defines a scope of data requiring agreement.
@@ -25,6 +26,10 @@ end note
 note right of Statute::statutoryProperty
 A property is statutory if
 a statutoryProperty exists.
+end note
+note right of Statute::statutoryUpdateVerb
+Is agreement required on
+delete, insert or both?
 end note
 
 Statute o--> "*" AgreementCondition : sufficientCondition
@@ -52,8 +57,8 @@ end note
 rdfsStatute --> Statute : rdf:type
 
 object accessControlStatute {
-  statutoryClass : AccessControl
-  statutoryProperty : access
+  statutoryClass = AccessControl
+  statutoryProperty = access
 }
 note top
   Choice of access control

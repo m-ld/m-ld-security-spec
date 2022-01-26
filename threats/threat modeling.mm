@@ -77,7 +77,7 @@
 <node TEXT="Not the mechanism" ID="ID_1105947227" CREATED="1623656785449" MODIFIED="1623656795249"/>
 </node>
 </node>
-<node TEXT="DBMS cPP: Security Problem Definition" FOLDED="true" ID="ID_1963909863" CREATED="1623418032168" MODIFIED="1623835951935" LINK="https://www.commoncriteriaportal.org/files/ppfiles/cPP_DBMS_V1.0.pdf">
+<node TEXT="DBMS cPP: Security Problem Definition" ID="ID_1963909863" CREATED="1623418032168" MODIFIED="1623835951935" LINK="https://www.commoncriteriaportal.org/files/ppfiles/cPP_DBMS_V1.0.pdf">
 <node TEXT="Glossary" ID="ID_169485909" CREATED="1623418530775" MODIFIED="1623418533994">
 <node TEXT="TOE: Target of Evaluation" ID="ID_661885966" CREATED="1623418534826" MODIFIED="1623418551129"/>
 <node TEXT="TSF: TOE Security Functions" ID="ID_1430334403" CREATED="1623418551567" MODIFIED="1623418561390"/>
@@ -183,7 +183,7 @@
 <node TEXT="CRSF" ID="ID_1065882409" CREATED="1623666752984" MODIFIED="1623666756698"/>
 </node>
 </node>
-<node TEXT="Tampering" FOLDED="true" ID="ID_1312768347" CREATED="1623661586856" MODIFIED="1623661596667">
+<node TEXT="Tampering" ID="ID_1312768347" CREATED="1623661586856" MODIFIED="1623661596667">
 <node TEXT="vectors" ID="ID_766175063" CREATED="1623661655056" MODIFIED="1623666777758">
 <node TEXT="file" ID="ID_201144072" CREATED="1623661647946" MODIFIED="1623661650793"/>
 <node TEXT="memory" ID="ID_309837293" CREATED="1623661652693" MODIFIED="1623661653819"/>
@@ -194,12 +194,12 @@
 <node TEXT="injection" ID="ID_1515874" CREATED="1623666787692" MODIFIED="1623666790584"/>
 </node>
 </node>
-<node TEXT="Repudiation" FOLDED="true" ID="ID_715167715" CREATED="1623661598635" MODIFIED="1623661601313">
+<node TEXT="Repudiation" ID="ID_715167715" CREATED="1623661598635" MODIFIED="1623661601313">
 <node TEXT="attacking the log" ID="ID_1557421118" CREATED="1623661659218" MODIFIED="1623661668456"/>
 <node TEXT="repudiating an action" ID="ID_1979192228" CREATED="1623661670829" MODIFIED="1623661682012"/>
 <node TEXT="insecure backup" ID="ID_358640874" CREATED="1623666803150" MODIFIED="1623666806470"/>
 </node>
-<node TEXT="Information Disclosure" FOLDED="true" ID="ID_1023867952" CREATED="1623661603472" MODIFIED="1623667993789">
+<node TEXT="Information Disclosure" ID="ID_1023867952" CREATED="1623661603472" MODIFIED="1623667993789">
 <node TEXT="vectors" ID="ID_1172053694" CREATED="1623666812848" MODIFIED="1623666814671">
 <node TEXT="from a process" ID="ID_301879540" CREATED="1623661684926" MODIFIED="1623661688673"/>
 <node TEXT="from a data store" ID="ID_1583517948" CREATED="1623661689077" MODIFIED="1623661693319"/>
@@ -210,16 +210,16 @@
 <node TEXT="verbose exception" ID="ID_944287660" CREATED="1623666830916" MODIFIED="1623666835699"/>
 </node>
 </node>
-<node TEXT="Denial-of-Service" FOLDED="true" ID="ID_1699321480" CREATED="1623661610740" MODIFIED="1624975062866">
+<node TEXT="Denial-of-Service" ID="ID_1699321480" CREATED="1623661610740" MODIFIED="1624975062866">
 <node TEXT="defacement" ID="ID_862733923" CREATED="1623666838353" MODIFIED="1624975062865"/>
 </node>
-<node TEXT="Elevation of Privilege" FOLDED="true" ID="ID_765789131" CREATED="1623661617952" MODIFIED="1623661623342">
+<node TEXT="Elevation of Privilege" ID="ID_765789131" CREATED="1623661617952" MODIFIED="1623661623342">
 <node TEXT="process corruption" ID="ID_933762925" CREATED="1623661704052" MODIFIED="1623661712187"/>
 <node TEXT="authorisation failure" ID="ID_1463190876" CREATED="1623661715775" MODIFIED="1623661719668"/>
 <node TEXT="logic flow attack" ID="ID_98202880" CREATED="1623666846801" MODIFIED="1623666850673"/>
 </node>
 </node>
-<node TEXT="DREAD" FOLDED="true" ID="ID_1443971648" CREATED="1623663632629" MODIFIED="1623667448332">
+<node TEXT="DREAD" ID="ID_1443971648" CREATED="1623663632629" MODIFIED="1623667448332">
 <icon BUILTIN="button_cancel"/>
 <node TEXT="Damage Potential" ID="ID_171296544" CREATED="1623663641787" MODIFIED="1623663645793"/>
 <node TEXT="Reproducibility" ID="ID_552264230" CREATED="1623663649234" MODIFIED="1623663653792"/>
@@ -347,7 +347,7 @@
 </node>
 <node TEXT="Domain Threat Model" POSITION="right" ID="ID_980539324" CREATED="1623662464459" MODIFIED="1623669300111">
 <edge COLOR="#ff0000"/>
-<node TEXT="Template/Include" FOLDED="true" ID="ID_634387539" CREATED="1624901109255" MODIFIED="1624901153729">
+<node TEXT="Template/Include" ID="ID_634387539" CREATED="1624901109255" MODIFIED="1624901153729">
 <node TEXT="Intentions" ID="ID_326278339" CREATED="1623663778007" MODIFIED="1623663780202">
 <node TEXT="Augment system threat modeling" ID="ID_548842039" CREATED="1623663780673" MODIFIED="1624972591055">
 <icon BUILTIN="button_ok"/>
@@ -390,11 +390,11 @@
 <node TEXT="3. threats" ID="ID_1068193644" CREATED="1624949752831" MODIFIED="1624949762158" LINK="#ID_1995364736"/>
 </node>
 </node>
-<node TEXT="e-Invoicing" FOLDED="true" ID="ID_1007244327" CREATED="1623836841575" MODIFIED="1623836847011">
-<node TEXT="0. objectives" FOLDED="true" ID="ID_921387855" CREATED="1624901877822" MODIFIED="1625586831273">
+<node TEXT="e-Invoicing" ID="ID_1007244327" CREATED="1623836841575" MODIFIED="1623836847011">
+<node TEXT="0. objectives" ID="ID_921387855" CREATED="1624901877822" MODIFIED="1625586831273">
 <node TEXT="Define e-Invoicing, meaning of collaborative, e.g. contract points" ID="ID_1506738107" CREATED="1624902093370" MODIFIED="1624902097400"/>
 <node TEXT="Standards" ID="ID_875760278" CREATED="1624354501096" MODIFIED="1624902144460">
-<node TEXT="Directive 2014/55/EU" FOLDED="true" ID="ID_299773487" CREATED="1624360186729" MODIFIED="1625501435914" LINK="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32014L0055">
+<node TEXT="Directive 2014/55/EU" ID="ID_299773487" CREATED="1624360186729" MODIFIED="1625501435914" LINK="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32014L0055">
 <icon BUILTIN="button_ok"/>
 <node TEXT="requires &quot;a European standard for the semantic data model of the core elements of an electronic invoice (the ‘European standard on electronic invoicing’)&quot;" ID="ID_807274693" CREATED="1624360227005" MODIFIED="1624360235265"/>
 <node TEXT="core elements of an e-Invoice" ID="ID_1449623295" CREATED="1624360277226" MODIFIED="1625501435912">
@@ -414,7 +414,7 @@
 </node>
 <node TEXT="nothing about security (except as an exception for special measures)" ID="ID_1999505630" CREATED="1624360412681" MODIFIED="1624360457733"/>
 </node>
-<node TEXT="EN 16931" FOLDED="true" ID="ID_986642236" CREATED="1624360658513" MODIFIED="1625231611683" LINK="https://standards.cen.eu/dyn/www/f?p=204:110:0::::FSP_PROJECT,FSP_ORG_ID:60602,1883209&amp;cs=104E4C4FA3744A8DEA8E98A7B500306FD">
+<node TEXT="EN 16931" ID="ID_986642236" CREATED="1624360658513" MODIFIED="1625231611683" LINK="https://standards.cen.eu/dyn/www/f?p=204:110:0::::FSP_PROJECT,FSP_ORG_ID:60602,1883209&amp;cs=104E4C4FA3744A8DEA8E98A7B500306FD">
 <icon BUILTIN="button_ok"/>
 <node TEXT="a semantic data model of the core elements of an electronic invoice" ID="ID_876843484" CREATED="1624360679708" MODIFIED="1624360681488"/>
 <node TEXT="nothing about security" ID="ID_1494617296" CREATED="1624360681958" MODIFIED="1624360686427"/>
@@ -440,7 +440,7 @@
 <icon BUILTIN="button_ok"/>
 </node>
 </node>
-<node TEXT="CEF eDelivery Building Block&#xa;Security Controls" FOLDED="true" ID="ID_271934788" CREATED="1624361083911" MODIFIED="1625231623137" LINK="https://ec.europa.eu/cefdigital/wiki/display/CEFDIGITAL/Security+Controls+guidance?preview=/82773295/82802571/(CEFeDelivery).(SecurityControls).(v1.00).pdf">
+<node TEXT="CEF eDelivery Building Block&#xa;Security Controls" ID="ID_271934788" CREATED="1624361083911" MODIFIED="1625231623137" LINK="https://ec.europa.eu/cefdigital/wiki/display/CEFDIGITAL/Security+Controls+guidance?preview=/82773295/82802571/(CEFeDelivery).(SecurityControls).(v1.00).pdf">
 <icon BUILTIN="button_ok"/>
 <node TEXT="four-cornermodel" ID="ID_1363858602" CREATED="1624361131951" MODIFIED="1624361134124">
 <node TEXT="why?" ID="ID_1396085802" CREATED="1624361136507" MODIFIED="1624461468383">
@@ -474,7 +474,7 @@
 </node>
 </node>
 </node>
-<node TEXT="Commercial" FOLDED="true" ID="ID_1068764690" CREATED="1624358754704" MODIFIED="1624358763841">
+<node TEXT="Commercial" ID="ID_1068764690" CREATED="1624358754704" MODIFIED="1624358763841">
 <node TEXT="Tradeshift" ID="ID_1882361649" CREATED="1624357436724" MODIFIED="1625241784528">
 <icon BUILTIN="button_ok"/>
 <node TEXT="Information Security Policy" ID="ID_1655256953" CREATED="1624357450517" MODIFIED="1625241446952" LINK="https://tradeshift.com/agreements/information-security-policy/">
@@ -512,7 +512,7 @@
 </node>
 </node>
 <node TEXT="Using XML as input AND output" ID="ID_990131282" CREATED="1624904420049" MODIFIED="1624904429387"/>
-<node TEXT="confidentiality" FOLDED="true" ID="ID_551137414" CREATED="1624904438319" MODIFIED="1625586831273">
+<node TEXT="confidentiality" ID="ID_551137414" CREATED="1624904438319" MODIFIED="1625586831273">
 <font BOLD="true"/>
 <node TEXT="invoice and operations confidential to third parties" ID="ID_974532003" CREATED="1624904444890" MODIFIED="1625501605898">
 <icon BUILTIN="button_ok"/>
@@ -524,7 +524,7 @@
 <icon BUILTIN="button_cancel"/>
 </node>
 </node>
-<node TEXT="integrity" FOLDED="true" ID="ID_394699690" CREATED="1624904484164" MODIFIED="1624904489913">
+<node TEXT="integrity" ID="ID_394699690" CREATED="1624904484164" MODIFIED="1624904489913">
 <font BOLD="true"/>
 <node TEXT="Adhere to data model / disallow invalid" ID="ID_1596863314" CREATED="1624904490330" MODIFIED="1625501617868">
 <icon BUILTIN="button_ok"/>
@@ -546,7 +546,7 @@
 <node TEXT="Contracts (double agreement) require exchange of something" ID="ID_864831703" CREATED="1624904606039" MODIFIED="1624904619856"/>
 <node TEXT="&quot;Common knowledge&quot; requires read receipts" ID="ID_1784425125" CREATED="1624904620384" MODIFIED="1624904630758"/>
 </node>
-<node TEXT="auditing" FOLDED="true" ID="ID_777469640" CREATED="1624904654248" MODIFIED="1624904661538">
+<node TEXT="auditing" ID="ID_777469640" CREATED="1624904654248" MODIFIED="1624904661538">
 <font BOLD="true"/>
 <node TEXT="All visible operations are timestamped (signed?) and attributable to user identity" ID="ID_1201461025" CREATED="1624904662291" MODIFIED="1625569186052">
 <icon BUILTIN="button_ok"/>
@@ -561,7 +561,7 @@
 <icon BUILTIN="button_cancel"/>
 </node>
 </node>
-<node TEXT="authentication" FOLDED="true" ID="ID_1714106959" CREATED="1624904739322" MODIFIED="1625584199431">
+<node TEXT="authentication" ID="ID_1714106959" CREATED="1624904739322" MODIFIED="1625584199431">
 <font BOLD="true"/>
 <node TEXT="Users strongly identified" ID="ID_1211764726" CREATED="1624904745139" MODIFIED="1625584193790">
 <icon BUILTIN="button_ok"/>
@@ -573,7 +573,7 @@
 <node TEXT="Most calculations are simple enough, results don&apos;t need to be in the signed data" ID="ID_1331857141" CREATED="1624904796013" MODIFIED="1624904815118"/>
 </node>
 </node>
-<node TEXT="authorisation" FOLDED="true" ID="ID_1018905801" CREATED="1624904824893" MODIFIED="1624904829202">
+<node TEXT="authorisation" ID="ID_1018905801" CREATED="1624904824893" MODIFIED="1624904829202">
 <font BOLD="true"/>
 <node TEXT="Roles (see users)" ID="ID_69593780" CREATED="1624904829629" MODIFIED="1624904839575"/>
 <node TEXT="seller/buyer algorithms" ID="ID_818364226" CREATED="1624904843096" MODIFIED="1624904850590">
@@ -581,13 +581,13 @@
 </node>
 <node TEXT="Apply data type access rules" ID="ID_1413158013" CREATED="1624904861580" MODIFIED="1624904875532"/>
 </node>
-<node TEXT="management" FOLDED="true" ID="ID_677083476" CREATED="1624904879862" MODIFIED="1624904882731">
+<node TEXT="management" ID="ID_677083476" CREATED="1624904879862" MODIFIED="1624904882731">
 <font BOLD="true"/>
 <node TEXT="Two sysadmins in four-corner model" ID="ID_189905945" CREATED="1624904883046" MODIFIED="1624904893679"/>
 <node TEXT="Central registry sysadmin" ID="ID_746987840" CREATED="1624904895703" MODIFIED="1624904902296"/>
 </node>
 </node>
-<node TEXT="1. application profile" FOLDED="true" ID="ID_40203371" CREATED="1624862571031" MODIFIED="1625219099318">
+<node TEXT="1. application profile" ID="ID_40203371" CREATED="1624862571031" MODIFIED="1625219099318">
 <node TEXT="deployment" ID="ID_36068305" CREATED="1624904995763" MODIFIED="1625678359627">
 <arrowlink SHAPE="CUBIC_CURVE" COLOR="#000000" WIDTH="2" TRANSPARENCY="200" FONT_SIZE="9" FONT_FAMILY="SansSerif" DESTINATION="ID_1766568619" STARTINCLINATION="422;0;" ENDINCLINATION="484;0;" STARTARROW="NONE" ENDARROW="DEFAULT"/>
 <font BOLD="true"/>
@@ -754,7 +754,7 @@
 </node>
 <node TEXT="0. objectives" ID="ID_1378124546" CREATED="1625138319733" MODIFIED="1625138326155">
 <font BOLD="true"/>
-<node TEXT="policies" FOLDED="true" ID="ID_562319343" CREATED="1623776036830" MODIFIED="1626460812289">
+<node TEXT="policies" ID="ID_562319343" CREATED="1623776036830" MODIFIED="1626460812289">
 <font BOLD="true"/>
 <node TEXT="ad-hoc" ID="ID_619515830" CREATED="1625138220760" MODIFIED="1626792430513">
 <icon BUILTIN="button_ok"/>
@@ -849,7 +849,7 @@
 <node TEXT="Data locality &amp; sovereignty" ID="ID_327446200" CREATED="1625138501983" MODIFIED="1625138503627"/>
 <node TEXT="Sometimes: no cloud" ID="ID_990523312" CREATED="1625138505145" MODIFIED="1625138511773"/>
 <node TEXT="approved services" ID="ID_786764128" CREATED="1623776088391" MODIFIED="1623776091823"/>
-<node TEXT="CASB (traffic inspection)" FOLDED="true" ID="ID_805752613" CREATED="1623776474078" MODIFIED="1623776547983">
+<node TEXT="CASB (traffic inspection)" ID="ID_805752613" CREATED="1623776474078" MODIFIED="1623776547983">
 <node TEXT="Identify and evaluate all the cloud apps in use (Shadow IT)&#xa;Enforce cloud application management policies in existing web proxies or firewalls&#xa;Create and enforce granular policies to govern handling of sensitive information, including compliance-related content&#xa;Encrypt or tokenize sensitive content to enforce privacy&#xa;Detect and block unusual account behavior indicative of malicious activity&#xa;Integrate cloud visibility and controls with your existing security solutions" ID="ID_209213833" CREATED="1626790857139" MODIFIED="1626790860123"/>
 </node>
 </node>

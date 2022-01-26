@@ -134,7 +134,7 @@ Verifying authority is the same as for any other permission, as follows. For an 
 
 Since access control by "whitelist" permissions may not suit all use-cases, the choice of approach is made through the `access` property of the domain itself. (Note that this requires the domain to be represented as a subject in the data; this is an open [topic of discussion](https://github.com/m-ld/m-ld-spec/discussions/75).)
 
-Document-level _read_ permission (see [condifentiality controls](./controls.md#confidentiality)) is assigned to a principal with a single permission subject which is affirmed to exist during clone recovery. See [§protocol](#protocol) for details, including the purpose and use of the domain `secret`.
+Document-level _read_ permission (see [confidentiality controls](./controls.md#confidentiality)) is assigned to a principal with a single permission subject which is affirmed to exist during clone recovery. See [§protocol](#protocol) for details, including the purpose and use of the domain `secret`.
 
 ### protocol
 

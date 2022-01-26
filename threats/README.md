@@ -53,6 +53,12 @@ This section will comprise a data flow diagram composed with the [OWASP Threat D
 
 Prioritising the analysed threat vectors and relating them to the next phase of security design.
 
+## mindmap
+
+(Source: `./threat modeling.mm`)
+
+![threat modeling](./img/threat%20modeling.svg)
+
 ---
 
 _For bibliographic references, see the [project references file](../references.bib)._

@@ -23,6 +23,12 @@ The approach of this phase is software engineering design and specification, pro
 - A description of a novel control, **symmetric unilateral access control**, is found in the [SUAC](./suac.md) document.
 - A design for traceability via audit logging is found in the [traceability](./traceability.md) document.
 
+## mindmap
+
+(Source: `./security design.mm`)
+
+![security design](./img/security%20design.svg)
+
 ## tooling notes
 
 ### PlantUML
