@@ -2,7 +2,7 @@
 <!--To view this file, download free mind mapping software Freeplane from http://freeplane.sourceforge.net -->
 <node TEXT="security prototype" FOLDED="false" ID="ID_940534060" CREATED="1639327705689" MODIFIED="1639327725470" STYLE="oval">
 <font SIZE="18"/>
-<hook NAME="MapStyle" background="#cccccc">
+<hook NAME="MapStyle" background="#ffffff">
     <properties edgeColorConfiguration="#808080ff,#ff0000ff,#0000ffff,#00ff00ff,#ff00ffff,#00ffffff,#7c0000ff,#00007cff,#007c00ff,#7c007cff,#007c7cff,#7c7c00ff" show_note_icons="true" fit_to_viewport="false"/>
 
 <map_styles>
@@ -261,10 +261,14 @@
 <node TEXT="≪agree≫ MeldOperation" ID="ID_588356156" CREATED="1642614246264" MODIFIED="1642614423713"/>
 <node TEXT="Constraints can upgrade to agreement" ID="ID_539406319" CREATED="1642614150591" MODIFIED="1642936409299"/>
 <node TEXT="process before constraints" ID="ID_1175581090" CREATED="1642773312551" MODIFIED="1642936775580" LINK="#ID_1890482937"/>
-<node TEXT="Fork/Void MeldApp cb" ID="ID_1051377186" CREATED="1642614609973" MODIFIED="1642761100215">
+<node TEXT="Fork/Void MeldApp cb" ID="ID_1051377186" CREATED="1642614609973" MODIFIED="1644419529942">
+<icon BUILTIN="button_cancel"/>
 <node TEXT="okToVoid(state, agreement, updatesToVoid)" ID="ID_457493812" CREATED="1642760963492" MODIFIED="1642761114536"/>
 <node TEXT="resolve, reject" ID="ID_1195698861" CREATED="1642761114929" MODIFIED="1642761117786"/>
 <node TEXT="app can export or whatever" ID="ID_409864176" CREATED="1642760989705" MODIFIED="1642761075341"/>
+<node TEXT="not fundamental to prototype" ID="ID_1135587515" CREATED="1644419535500" MODIFIED="1644419548258">
+<icon BUILTIN="negative"/>
+</node>
 </node>
 </node>
 <node TEXT="ACL Constraint" ID="ID_1599749441" CREATED="1642613572982" MODIFIED="1642936221099">

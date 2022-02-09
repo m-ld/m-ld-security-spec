@@ -32,6 +32,8 @@ Is agreement required on
 delete, insert or both?
 end note
 
+class AgreementCondition <<extension point>>
+
 Statute o--> "*" AgreementCondition : sufficientCondition
 
 object statuteStatute
