@@ -59,8 +59,9 @@ end note
 rdfsStatute --> Statute : rdf:type
 
 object accessControlStatute {
-  statutoryClass = AccessControl
   statutoryProperty = access
+  statutoryClass = AccessControl
+  statutoryClass = Permission
 }
 note top
   Choice of access control

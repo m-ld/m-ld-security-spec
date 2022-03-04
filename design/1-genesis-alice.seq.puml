@@ -30,17 +30,15 @@ rnote left
   "mld:certificate": "1234",
   "mld:hasPermission": [{
     "@type": "mld:Authority",
-    "mld:appliesToPattern": { "@id": "?" }
-  }, {
-    "@id": "mld:readPermission"
+    "mld:controlledShape": {
+      "@id": "AllSubjects",
+      "@type": "sh:NodeShape"
+    }
   }]
 }, {
   "@id": "Bob",
   "@type": "mld:Principal",
-  "mld:certificate": "5678",
-  "mld:hasPermission": {
-    "@id": "mld:readPermission"
-  }
+  "mld:certificate": "5678"
 }, {
   "@id": "mld:accessControlStatute",
   "mld:sufficientCondition": {

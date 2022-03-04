@@ -11,6 +11,10 @@ package mld {
 class AgreementCondition <<statutory>> <<extension point>>
 
 abstract class Principal <<extension point>>
+note right
+gives access
+to the domain
+end note
 class PkiPrincipal {
   certificate : String
 }
@@ -21,29 +25,22 @@ note left
 Authority is permission
 to unilaterally agree.
 ---
-A "lock" is just
-temporary authority.
+A "lock" is just temporary
+exclusive authority.
 end note
 object hasAuthority
 hasAuthority --> AgreementCondition : rdf:type
 hasAuthority ..> Authority : <<require>>
 Permission "*" <--o Principal : hasPermission
 
-abstract class Permission
+abstract class Permission <<statutory>>
 Permission --|> AccessControl
 
 class WritePermission {
-  appliesToPattern : json-rql
+  controlledShape : sh:NodeShape
 }
 Authority --|> WritePermission
 WritePermission --|> Permission
-
-object readPermission
-note right
-gives access
-to the domain
-end note
-readPermission --> Permission : rdf:type
 
 class RaftConsensus {
   mtbf : float

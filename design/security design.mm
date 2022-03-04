@@ -348,8 +348,13 @@
 </node>
 </node>
 </node>
-<node TEXT="statute" ID="ID_814843818" CREATED="1628610898447" MODIFIED="1628613529710">
+<node TEXT="statute" ID="ID_814843818" CREATED="1628610898447" MODIFIED="1645985190370">
+<icon BUILTIN="button_ok"/>
 <node TEXT="&quot;data that can be changed only by agreement&quot;" ID="ID_1727815114" CREATED="1628610943923" MODIFIED="1628611369224" LINK="#ID_662284253"/>
+<node TEXT="but automatic changes e.g. constraint apply may affect data to which the principal does not have access" ID="ID_898787297" CREATED="1646035611264" MODIFIED="1646035678353">
+<icon BUILTIN="messagebox_warning"/>
+<icon BUILTIN="pencil"/>
+</node>
 </node>
 </node>
 </node>
@@ -397,6 +402,40 @@
 </node>
 </node>
 </node>
+</node>
+<node TEXT="recovery cannot offer&#xa;verifiable signatures" ID="ID_608392858" CREATED="1646127467680" MODIFIED="1646154633975">
+<icon BUILTIN="messagebox_warning"/>
+<icon BUILTIN="pencil"/>
+<node TEXT="revup: if remote operations&#xa;have been fused" ID="ID_382608581" CREATED="1646154602785" MODIFIED="1646154626609">
+<node TEXT="attack: &quot;Ivan says Bob, who has permission, did this&quot;" ID="ID_1320827447" CREATED="1646128092181" MODIFIED="1646135391230"/>
+<node TEXT="" ID="ID_1913387191" CREATED="1646217353430" MODIFIED="1646217353431">
+<hook NAME="FirstGroupNode"/>
+</node>
+<node TEXT="fuser signs fusion" ID="ID_1947731094" CREATED="1646217162634" MODIFIED="1646217171409">
+<icon BUILTIN="idea"/>
+<node TEXT="include original principal" ID="ID_278860605" CREATED="1646217172668" MODIFIED="1646217257908"/>
+<node TEXT="also journal attribution" ID="ID_1743969393" CREATED="1646217314251" MODIFIED="1646217321121"/>
+</node>
+<node TEXT="fuser signs fusion + op-chain hash" ID="ID_1132969590" CREATED="1646136012386" MODIFIED="1646217448521">
+<icon BUILTIN="button_cancel"/>
+<node TEXT="hash chain of contributing ops" ID="ID_315019551" CREATED="1646136203030" MODIFIED="1646138314722"/>
+<node TEXT="requires arbitrary associativity of hashing" ID="ID_116453984" CREATED="1646136803861" MODIFIED="1646138235108">
+<font STRIKETHROUGH="true"/>
+</node>
+<node TEXT="op-chain hash is cumulative from genesis" ID="ID_1972472179" CREATED="1646138236407" MODIFIED="1646138641887"/>
+<node TEXT="≡ Holochain local blockchain" ID="ID_347369330" CREATED="1646139075519" MODIFIED="1646139108362"/>
+<node TEXT="how does this help?" ID="ID_818316521" CREATED="1646217428214" MODIFIED="1646217435369">
+<icon BUILTIN="negative"/>
+</node>
+</node>
+<node TEXT="" ID="ID_755834211" CREATED="1646217353413" MODIFIED="1646217353430">
+<hook NAME="SummaryNode"/>
+<hook NAME="AlwaysUnfoldedNode"/>
+<node TEXT="verifiable by asking someone else" ID="ID_1982171373" CREATED="1646217353431" MODIFIED="1646217361696"/>
+<node TEXT="is this a correct fusion of this time range?" ID="ID_883015905" CREATED="1646138893492" MODIFIED="1646138909236"/>
+</node>
+</node>
+<node TEXT="snapshot" ID="ID_816506247" CREATED="1646154672188" MODIFIED="1646154681337"/>
 </node>
 </node>
 <node TEXT="conflict-free constraints" ID="ID_1175901092" CREATED="1632751608347" MODIFIED="1633339694830">
@@ -474,7 +513,7 @@
 <node TEXT="DELETE" ID="ID_252209159" CREATED="1631290549419" MODIFIED="1631290550692"/>
 </node>
 </node>
-<node TEXT="condition" ID="ID_1812855791" CREATED="1628177870727" MODIFIED="1631291201597">
+<node TEXT="conditions" ID="ID_1812855791" CREATED="1628177870727" MODIFIED="1645706158868">
 <node TEXT="genesis" ID="ID_337270379" CREATED="1628516388681" MODIFIED="1628516390595"/>
 <node TEXT="authority" ID="ID_183323527" CREATED="1628177965466" MODIFIED="1628516193251">
 <node TEXT="existing statute" ID="ID_749514541" CREATED="1628616924884" MODIFIED="1631278126665"/>
@@ -538,6 +577,28 @@
 <node TEXT="≡ blockchain fork" ID="ID_1435108873" CREATED="1628258304911" MODIFIED="1628258319527"/>
 <node TEXT="disallow further txns" ID="ID_588664144" CREATED="1628258428591" MODIFIED="1628258436502">
 <node TEXT="like git conflict" ID="ID_607476360" CREATED="1628258437243" MODIFIED="1628258445582"/>
+<node TEXT="susceptible to impersonation attack" ID="ID_899961967" CREATED="1645610195380" MODIFIED="1645610367622">
+<icon BUILTIN="messagebox_warning"/>
+<richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      attacker joins domain validly with a user identity
+    </p>
+    <p>
+      sends messages impersonating another clone clock
+    </p>
+    <p>
+      
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
 </node>
 <node TEXT="notify app" ID="ID_1203849579" CREATED="1628160559246" MODIFIED="1628160578531">
 <node TEXT="similar to snapshot notification" ID="ID_1735063822" CREATED="1628161543949" MODIFIED="1643121981661"/>
@@ -559,8 +620,14 @@
 <node TEXT="don&apos;t know if a deleted triple-TID existed" ID="ID_1850622678" CREATED="1643207996255" MODIFIED="1643208026779">
 <icon BUILTIN="negative"/>
 </node>
-<node TEXT="include did-exist flag against deleted triples" ID="ID_1381400289" CREATED="1643211313913" MODIFIED="1643705680576">
+<node TEXT="include deleted-TIDs for deleted triples" ID="ID_1381400289" CREATED="1643211313913" MODIFIED="1645713309121">
 <node TEXT="keyed to &quot;rid&quot; blank node" ID="ID_1377769139" CREATED="1643211856025" MODIFIED="1643211872971"/>
+</node>
+<node TEXT="may not have permission" ID="ID_428794416" CREATED="1645706201694" MODIFIED="1645706222417">
+<icon BUILTIN="messagebox_warning"/>
+<node TEXT="data was inserted by a remote" ID="ID_1990225192" CREATED="1645706236291" MODIFIED="1645706252875"/>
+<node TEXT="this is not a real violation" ID="ID_195237075" CREATED="1645706293631" MODIFIED="1645706303760"/>
+<node TEXT="all permission checking is local anyway" ID="ID_1839565487" CREATED="1645706269229" MODIFIED="1645706282441"/>
 </node>
 </node>
 <node TEXT="breaks local integrity" ID="ID_1138881818" CREATED="1628160136114" MODIFIED="1643211722199">
@@ -582,37 +649,40 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 </node>
 <node TEXT="Local prev set to last-seen by agreement" ID="ID_555384716" CREATED="1643705590166" MODIFIED="1643706649599"/>
 </node>
-<node TEXT="if in fusion" ID="ID_658199945" CREATED="1643121545769" MODIFIED="1643121610393">
-<node TEXT="may need to void tail of a fusion" ID="ID_526329788" CREATED="1643121794051" MODIFIED="1643130274916"/>
-<node TEXT="don&apos;t know where in a fusion a triple was deleted" ID="ID_228367875" CREATED="1643121611977" MODIFIED="1643478161774">
+<node TEXT="if in fusion" FOLDED="true" ID="ID_658199945" CREATED="1643121545769" MODIFIED="1645985389148">
 <icon BUILTIN="messagebox_warning"/>
+<node TEXT="may need to void the tail of a fusion" ID="ID_526329788" CREATED="1643121794051" MODIFIED="1645709603284"/>
+<node TEXT="don&apos;t know where in a fusion a triple was deleted" ID="ID_228367875" CREATED="1643121611977" MODIFIED="1645713205312">
+<icon BUILTIN="messagebox_warning"/>
+<font STRIKETHROUGH="true"/>
+<node TEXT="we do now" ID="ID_196047306" CREATED="1645713207279" MODIFIED="1645713244045" LINK="#ID_1381400289"/>
 </node>
 <node TEXT="inserted triple may have been deleted" ID="ID_327797814" CREATED="1643206213086" MODIFIED="1643478165223">
 <icon BUILTIN="messagebox_warning"/>
+<node TEXT="main target of compression" ID="ID_352483783" CREATED="1645713456563" MODIFIED="1645713460729"/>
 </node>
-<node TEXT="send proximate causes" ID="ID_1036402871" CREATED="1643122424796" MODIFIED="1643487206604">
+<node TEXT="proximate causes" ID="ID_1036402871" CREATED="1643122424796" MODIFIED="1645712767646">
 <icon BUILTIN="idea"/>
 <node TEXT="like snapshot" ID="ID_72973612" CREATED="1643186246525" MODIFIED="1643186252536"/>
 <node TEXT="def&apos;n" ID="ID_1073464423" CREATED="1643537653795" MODIFIED="1643537658379">
-<node TEXT="GWT-referenced operations" ID="ID_1225155932" CREATED="1643538777279" MODIFIED="1643538786395"/>
-<node TEXT="since last agreement" ID="ID_1128563304" CREATED="1643286048875" MODIFIED="1643286079322"/>
+<node TEXT="GWT-referenced back-fused operations" ID="ID_1225155932" CREATED="1643538777279" MODIFIED="1645714578173">
+<node TEXT="always available" ID="ID_1260750637" CREATED="1645712433340" MODIFIED="1645712791480"/>
+</node>
+<node TEXT="only since last agreement" ID="ID_1128563304" CREATED="1643286048875" MODIFIED="1645703834002"/>
 <node TEXT="all causes must have been received" ID="ID_1641368105" CREATED="1643537532644" MODIFIED="1643539106416"/>
 <node TEXT="" ID="ID_1210591994" CREATED="1643539147715" MODIFIED="1643539147717">
 <hook NAME="FirstGroupNode"/>
 </node>
-<node TEXT="local fusion is always broken by an&#xa;operation from another process ID" ID="ID_750660480" CREATED="1643537374863" MODIFIED="1643537404713"/>
-<node TEXT="so, &quot;proximate causes&quot; need not include&#xa;any cause-of-proximate-cause" ID="ID_1652246173" CREATED="1643537439100" MODIFIED="1643537627144">
-<icon BUILTIN="pencil"/>
-</node>
+<node TEXT="fusion in journal is broken by an&#xa;operation from another process ID" ID="ID_750660480" CREATED="1643537374863" MODIFIED="1645710088601"/>
+<node TEXT="so, &quot;proximate causes&quot; need not include&#xa;any cause-of-a-proximate-cause" ID="ID_1652246173" CREATED="1643537439100" MODIFIED="1646035895314"/>
 <node TEXT="" ID="ID_200429948" CREATED="1643539147697" MODIFIED="1643539147714">
 <hook NAME="SummaryNode"/>
 <hook NAME="AlwaysUnfoldedNode"/>
-<node TEXT="local journal fusion&#xa;not specified" ID="ID_508478338" CREATED="1643539147718" MODIFIED="1643539176269">
+<node TEXT="local journal fusion not&#xa;part of m-ld protocol" ID="ID_508478338" CREATED="1643539147718" MODIFIED="1645704895340">
 <icon BUILTIN="negative"/>
 </node>
 </node>
@@ -626,7 +696,9 @@
 </node>
 <node TEXT="rolled-up" ID="ID_721245882" CREATED="1643206773346" MODIFIED="1643538905720">
 <icon BUILTIN="button_cancel"/>
-<node TEXT="U(...proximate causes, agree)" ID="ID_1800930345" CREATED="1643207182598" MODIFIED="1643207633660"/>
+<node TEXT="∑(...proximate causes, agree)" ID="ID_1800930345" CREATED="1643207182598" MODIFIED="1645703673356">
+<node TEXT="by normal patch append" ID="ID_1702227916" CREATED="1645703593951" MODIFIED="1645703601032"/>
+</node>
 <node TEXT="complicates proof" ID="ID_1293453352" CREATED="1643537702969" MODIFIED="1643537787410" LINK="#ID_451565105">
 <icon BUILTIN="negative"/>
 </node>
@@ -638,37 +710,100 @@
 <icon BUILTIN="negative"/>
 </node>
 </node>
-<node TEXT="on request" ID="ID_1783821801" CREATED="1643186007922" MODIFIED="1643538912954">
+<node TEXT="two-phase: back&#xa;-out, then request" ID="ID_1783821801" CREATED="1643186007922" MODIFIED="1645716911520">
 <icon BUILTIN="idea"/>
 <node TEXT="may be offline" ID="ID_445937214" CREATED="1643186272571" MODIFIED="1643206483677">
 <icon BUILTIN="negative"/>
 <node TEXT="treat as disordered" ID="ID_7161305" CREATED="1643539271076" MODIFIED="1643539276896"/>
 </node>
-<node TEXT="weird user experience" ID="ID_10252465" CREATED="1644333752243" MODIFIED="1644333814581">
+<node TEXT="weird API behaviour" ID="ID_10252465" CREATED="1644333752243" MODIFIED="1645709705875">
 <icon BUILTIN="negative"/>
 <node TEXT="1. some stuff is backed-out" ID="ID_911211982" CREATED="1644333767814" MODIFIED="1644333823393"/>
 <node TEXT="sometime later, 2. it partly reappears" ID="ID_1528638735" CREATED="1644333796952" MODIFIED="1644333924916"/>
 </node>
 <node TEXT="&quot;revup to&quot;" ID="ID_487675115" CREATED="1643130151846" MODIFIED="1643539305366">
-<node TEXT="&quot;from&quot; allows lte (as now)" ID="ID_360089410" CREATED="1643130313703" MODIFIED="1643130339626"/>
+<node TEXT="&quot;from&quot; is lte (as now)" ID="ID_360089410" CREATED="1643130313703" MODIFIED="1645716140104"/>
 <node TEXT="&quot;to&quot; is agreement" ID="ID_1262885568" CREATED="1643130340468" MODIFIED="1643717140472">
 <node TEXT="no extra in fusion" ID="ID_496452149" CREATED="1643131580773" MODIFIED="1643131601262"/>
 </node>
 <node TEXT="agreement source always has" ID="ID_304455671" CREATED="1643130199210" MODIFIED="1644333390585"/>
 </node>
-<node TEXT="normal rev-up" ID="ID_248892908" CREATED="1644334486042" MODIFIED="1644334491963">
+<node TEXT="normal rev-up" ID="ID_248892908" CREATED="1644334486042" MODIFIED="1645717713315">
+<icon BUILTIN="button_ok"/>
 <node TEXT="risk of receiving the incompatible fusion again" ID="ID_1369098468" CREATED="1644334492207" MODIFIED="1644334648268">
 <icon BUILTIN="negative"/>
 </node>
 <node TEXT="not if everyone backs-out at at the same time" ID="ID_750120062" CREATED="1644334547411" MODIFIED="1644334609718"/>
+<node TEXT="risk of escalating chaos in network" ID="ID_578230747" CREATED="1646035981125" MODIFIED="1646036084029">
+<icon BUILTIN="negative"/>
 </node>
 </node>
+<node TEXT="checking conditions&#xa;before request" ID="ID_719375364" CREATED="1645703956119" MODIFIED="1645717141861" LINK="#ID_340195892">
+<node TEXT="susceptible to DOS" ID="ID_396083917" CREATED="1645704008073" MODIFIED="1645704020970"/>
+<node TEXT="or even data loss" ID="ID_1381334519" CREATED="1645704026208" MODIFIED="1645706364016"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      send spurious agreement which forces everyone to back out a current fusion
+    </p>
+    <p>
+      then disappear
+    </p>
+  </body>
+</html>
+</richcontent>
 </node>
-<node TEXT="may be forged" ID="ID_1245080471" CREATED="1643458081053" MODIFIED="1643478445447">
-<icon BUILTIN="messagebox_warning"/>
-<node TEXT="hash-chain proof" ID="ID_451565105" CREATED="1643478451038" MODIFIED="1643706689682">
+<node TEXT="constraints applied" ID="ID_1870172471" CREATED="1645706662617" MODIFIED="1645717292431" LINK="#ID_1970659449">
+<node TEXT="but will not publish" ID="ID_1266107061" CREATED="1645706669614" MODIFIED="1645717245600"/>
+<node TEXT="so condition is-a constraint?" ID="ID_1259417263" CREATED="1645717830025" MODIFIED="1645717852272"/>
+</node>
+<node TEXT="post-void check" ID="ID_1489828267" CREATED="1645706566990" MODIFIED="1645716867153">
+<icon BUILTIN="button_cancel"/>
+<node TEXT="incompatible ops voided" ID="ID_259871509" CREATED="1645706599424" MODIFIED="1645706633550"/>
+<node TEXT="fusions voided in full" ID="ID_766054906" CREATED="1645706633805" MODIFIED="1645717664174">
+<arrowlink SHAPE="CUBIC_CURVE" COLOR="#000000" WIDTH="2" TRANSPARENCY="200" FONT_SIZE="9" FONT_FAMILY="SansSerif" DESTINATION="ID_221249475" STARTINCLINATION="40;0;" ENDINCLINATION="40;0;" STARTARROW="NONE" ENDARROW="DEFAULT"/>
+</node>
+<node TEXT="causes incomplete" ID="ID_221249475" CREATED="1645706713749" MODIFIED="1645709183807">
+<icon BUILTIN="very_negative"/>
+<node TEXT="state + update&#xa;not a &apos;real&apos; state" ID="ID_1803571971" CREATED="1645709184557" MODIFIED="1645710776918">
+<arrowlink SHAPE="CUBIC_CURVE" COLOR="#000000" WIDTH="2" TRANSPARENCY="200" FONT_SIZE="9" FONT_FAMILY="SansSerif" DESTINATION="ID_286216263" STARTINCLINATION="40;0;" ENDINCLINATION="40;0;" STARTARROW="NONE" ENDARROW="DEFAULT"/>
+</node>
+</node>
+<node TEXT="constraints could produce garbage" ID="ID_286216263" CREATED="1645710759976" MODIFIED="1645717323733"/>
+</node>
+<node TEXT="pre-void check" ID="ID_745803345" CREATED="1645716870628" MODIFIED="1645717715520">
+<icon BUILTIN="button_ok"/>
+<node TEXT="state in future, will be abandoned" ID="ID_1607317713" CREATED="1645716942863" MODIFIED="1645717417346"/>
+<node TEXT="generally valid according to CRDT" ID="ID_890772028" CREATED="1645719145587" MODIFIED="1645719164469"/>
+<node TEXT="cannot include any future agreement" ID="ID_173631401" CREATED="1645717002680" MODIFIED="1645719208664"/>
+<node TEXT="ideally, scope constraints to statutes" ID="ID_625240874" CREATED="1645726512615" MODIFIED="1645865451429">
 <icon BUILTIN="pencil"/>
-<richcontent TYPE="NOTE">
+</node>
+</node>
+</node>
+</node>
+<node TEXT="in-line request" ID="ID_305176190" CREATED="1645714509486" MODIFIED="1645717211271">
+<icon BUILTIN="button_cancel"/>
+<node TEXT="send me exactly this proximate cause" ID="ID_279947732" CREATED="1645714517968" MODIFIED="1645714552736"/>
+<node TEXT="response may be longer than local fusion" ID="ID_951889237" CREATED="1645714764687" MODIFIED="1645714773410">
+<node TEXT="cut response from local" ID="ID_412278613" CREATED="1645714776151" MODIFIED="1645715020522"/>
+</node>
+<node TEXT="network access during txn" ID="ID_648252723" CREATED="1645714843180" MODIFIED="1645719127204">
+<icon BUILTIN="very_negative"/>
+</node>
+<node TEXT="on failure" ID="ID_842448095" CREATED="1645714622123" MODIFIED="1645714640544">
+<node TEXT="disordered" ID="ID_1987951029" CREATED="1645714640844" MODIFIED="1645714645866"/>
+</node>
+</node>
+</node>
+<node TEXT="may be forged" ID="ID_1245080471" CREATED="1643458081053" MODIFIED="1646035911595">
+<icon BUILTIN="messagebox_warning"/>
+<icon BUILTIN="pencil"/>
+<node TEXT="hash-chain proof" ID="ID_451565105" CREATED="1643478451038" MODIFIED="1646035909513"><richcontent TYPE="NOTE">
 
 <html>
   <head>
@@ -680,19 +815,28 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 </node>
-<node TEXT="applies to rev-up cuts too" ID="ID_1513847602" CREATED="1643487139600" MODIFIED="1643487145445"/>
+<node TEXT="applies to rev-up cuts too" ID="ID_1513847602" CREATED="1643487139600" MODIFIED="1643487145445">
+<node TEXT="if using normal rev-up,&#xa;it&apos;s the same problem!" ID="ID_251180155" CREATED="1645709331721" MODIFIED="1645709366732" LINK="#ID_248892908"/>
 </node>
 </node>
-<node TEXT="void whole fusion" ID="ID_1065209859" CREATED="1643185384279" MODIFIED="1643187330855">
-<icon BUILTIN="idea"/>
+</node>
+<node TEXT="always void whole fusion" ID="ID_1065209859" CREATED="1643185384279" MODIFIED="1645706072687">
+<icon BUILTIN="button_cancel"/>
 <node TEXT="local causal history in conflict with agreement" ID="ID_1319366439" CREATED="1643185469558" MODIFIED="1643185513415"/>
 <node TEXT="agreement destroys its own proximal causes" ID="ID_1378474143" CREATED="1643185796028" MODIFIED="1643186546934">
 <icon BUILTIN="very_negative"/>
 </node>
 </node>
+<node TEXT="don&apos;t fuse until agreement" ID="ID_192695711" CREATED="1645714923428" MODIFIED="1645714935364">
+<icon BUILTIN="button_cancel"/>
+<node TEXT="could be never" ID="ID_919186670" CREATED="1645714939831" MODIFIED="1645714942669"/>
+</node>
+</node>
+<node TEXT="pre-dates snapshot" ID="ID_1937874808" CREATED="1645715201040" MODIFIED="1645985406892">
+<icon BUILTIN="messagebox_warning"/>
+<icon BUILTIN="pencil"/>
 </node>
 <node TEXT="+ replay" ID="ID_1497986005" CREATED="1643186849675" MODIFIED="1643186854232">
 <icon BUILTIN="help"/>
@@ -703,10 +847,10 @@
 </node>
 </node>
 </node>
-<node TEXT="can&apos;t tell if agreement was &quot;authorised&quot;&#xa;until incompatible ops have been voided" ID="ID_340195892" CREATED="1643450475110" MODIFIED="1643725165590">
+<node TEXT="can&apos;t check agreement conditions until&#xa;incompatible ops have been voided" ID="ID_340195892" CREATED="1643450475110" MODIFIED="1645703542432">
 <icon BUILTIN="help"/>
 <node TEXT="ACL is statutory - cannot have changed" ID="ID_1940177276" CREATED="1643450709903" MODIFIED="1643459890114"/>
-<node TEXT="still have the voided ops" ID="ID_1345808535" CREATED="1643450560209" MODIFIED="1643451582212">
+<node TEXT="retain voided ops" ID="ID_1345808535" CREATED="1643450560209" MODIFIED="1645703377642">
 <node TEXT="can replay" ID="ID_1427676404" CREATED="1643450641314" MODIFIED="1643450648563"/>
 <node TEXT="not atomic" ID="ID_193781341" CREATED="1643450599496" MODIFIED="1643450601772">
 <node TEXT="can recover if interrupted" ID="ID_161997920" CREATED="1643451540799" MODIFIED="1643451566836"/>
@@ -728,11 +872,13 @@
 <node TEXT="authority is statutory" ID="ID_66434211" CREATED="1643458309772" MODIFIED="1643459257513">
 <node TEXT="based on prior agreement" ID="ID_167899030" CREATED="1643458350734" MODIFIED="1643458361100"/>
 <node TEXT="still have statutes from last agreement" ID="ID_235279575" CREATED="1643458514461" MODIFIED="1643459595545"/>
-<node TEXT="so, can check agreement condition on current data" ID="ID_1462831590" CREATED="1643459552070" MODIFIED="1643459568364"/>
+<node TEXT="so, can check agreement condition on current state" ID="ID_1462831590" CREATED="1643459552070" MODIFIED="1645705775560"/>
 <node TEXT="agreement condition is not a constraint" ID="ID_1140925202" CREATED="1643460134884" MODIFIED="1643460145707">
 <icon BUILTIN="idea"/>
+<node TEXT="condition impl may depend on a constraint" ID="ID_1970659449" CREATED="1645705943736" MODIFIED="1645705986806"/>
+<node TEXT="e.g. List processing" ID="ID_48786166" CREATED="1645705975530" MODIFIED="1645705981249"/>
 </node>
-<node TEXT="authority is write permission over a statute" ID="ID_679129782" CREATED="1643460797035" MODIFIED="1643460817683"/>
+<node TEXT="authority requires write permission over a statute" ID="ID_679129782" CREATED="1643460797035" MODIFIED="1645705830034"/>
 <node TEXT="cannot have authority over&#xa;something non-statutory" ID="ID_30415032" CREATED="1643460842779" MODIFIED="1643461286876">
 <icon BUILTIN="button_ok"/>
 <node TEXT="it might have changed" ID="ID_682794007" CREATED="1643460874752" MODIFIED="1643461283245"/>
@@ -743,8 +889,11 @@
 </node>
 </node>
 </node>
+<node TEXT="" ID="ID_769346109" CREATED="1646127284953" MODIFIED="1646127284953"/>
 </node>
-<node TEXT="concurrent agreement" ID="ID_1626443289" CREATED="1628183024002" MODIFIED="1643109798717">
+<node TEXT="concurrent agreement" ID="ID_1626443289" CREATED="1628183024002" MODIFIED="1646035920483">
+<icon BUILTIN="pencil"/>
+<icon BUILTIN="messagebox_warning"/>
 <node TEXT="can arise" ID="ID_1435143021" CREATED="1628232491374" MODIFIED="1628232493469">
 <node TEXT="Proof-of-X" ID="ID_1384611185" CREATED="1628232493658" MODIFIED="1628232508072">
 <node TEXT="in blockchain ≡ longest chain rule" ID="ID_1310491279" CREATED="1628516040841" MODIFIED="1628610225091"/>
@@ -768,7 +917,9 @@
 <node TEXT="requires consensus" ID="ID_1582932072" CREATED="1628617242100" MODIFIED="1643109975935">
 <icon BUILTIN="negative"/>
 </node>
-<node TEXT="means is configured" ID="ID_1803090924" CREATED="1628617246915" MODIFIED="1643131133600"/>
+<node TEXT="means is configured" ID="ID_1803090924" CREATED="1628617246915" MODIFIED="1646035930946">
+<icon BUILTIN="help"/>
+</node>
 </node>
 </node>
 <node TEXT="earliest wins" ID="ID_447782970" CREATED="1643131399498" MODIFIED="1643131410827">
@@ -799,7 +950,7 @@
 </node>
 </node>
 </node>
-<node TEXT="traceability" POSITION="right" ID="ID_1887865037" CREATED="1634548439289" MODIFIED="1634548442296">
+<node TEXT="traceability" FOLDED="true" POSITION="right" ID="ID_1887865037" CREATED="1634548439289" MODIFIED="1634548442296">
 <edge COLOR="#ff0000"/>
 <node TEXT="principals" ID="ID_268466364" CREATED="1634821320851" MODIFIED="1634821323722">
 <node TEXT="non-repudiable" ID="ID_728158108" CREATED="1634821343205" MODIFIED="1634822124751">

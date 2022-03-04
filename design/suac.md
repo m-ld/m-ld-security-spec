@@ -130,7 +130,7 @@ Note the two operation data checks involved – checking for a statute (meaning 
 Verifying authority is the same as for any other permission, as follows. For an operation it is necessary to identify:
 
 - The security principal who enacted it. Here we give the example of using Public Key Infrastructure (PKI), in which a user has a certificate that can be used to sign operation messages (see below). A permission is assigned to a `Principal` in the data, having a certificate property. (We explore identity and authentication further in the [traceability](./traceability.md) design.)
-- Whether the principal had a permission which _applies to_ the changed data. Here we choose to support application of permissions to any **json-rql** [Pattern](https://json-rql.org/interfaces/pattern.html). This supports any data selector e.g. (informally) "all data belonging to this group". (We note that in this scheme, permission checking could become an unbounded query optimisation problem – we intend to explore this in the prototype.)
+- Whether the principal had a permission which _controls_ the changed data. Here we choose to support application of permissions to [SHACL node shapes](https://www.w3.org/TR/shacl/#node-shapes). This supports a data selector e.g. (informally) "all subjects having this Class", or "all data belonging to this group". Note that in the prototype, the available SHACL features will be the minimal necessary for demonstration of the principle.<sup>1</sup>
 
 Since access control by "whitelist" permissions may not suit all use-cases, the choice of approach is made through the `access` property of the domain itself. (Note that this requires the domain to be represented as a subject in the data; this is an open [topic of discussion](https://github.com/m-ld/m-ld-spec/discussions/75).)
 
@@ -169,7 +169,7 @@ Next, we consider the steps required for Bob to join the domain with his device.
 
 Again, Bob must authenticate to the app, and then the clone may initialise and connect to the message service (but not yet to the domain channel, which is further protected by the domain secret). As a new but non-genesis clone, it must receive the domain data using a snapshot request from any available clone (Alice's clone being the only one; note that this may be technically routed through the message service, but it is characteristically a request/response). This request is signed (by Bob's private key, if PKI certificates are in use).
 
-On receipt of the snapshot request, Alice's clone is able to inspect the signature and determine if a security principal exists in the data having `readPermission` and the corresponding identity. In this case, this is so, and therefore Alice's clone responds successfully to the snapshot request.
+On receipt of the snapshot request, Alice's clone is able to inspect the signature and determine if a security principal exists in the data having the corresponding identity. In this case, this is so, and therefore Alice's clone responds successfully to the snapshot request.
 
 Having the data, Bob's clone is now able to read the domain secret, and so connect to the domain channel on the message service.
 
@@ -191,7 +191,7 @@ Let us consider the case in which an engine is actually malware, and permits una
 
 ![4-ivan-malware-clone-reject.seq](./img/4-ivan-malware-clone-reject.seq.svg)
 
-(Note that this case assumes Ivan has `readPermission`; we have omitted the setup for brevity.)
+(Note that this case assumes Ivan is a Principal; we have omitted the setup for brevity.)
 
 The clone on Ivan's device does not correctly apply access control: in this case, it has allowed a transaction for which Ivan does not have a `WritePermission`. When this operation arrives at Alice's clone, the (normally symmetrical) application of access control will reject it. Alice's clone thereby retains its data integrity; but also, it knows that it has diverged ("forked") irretrievably from Ivan's clone. It must therefore ignore any further operations from Ivan's clone.
 
@@ -250,3 +250,5 @@ This scheme is probabilistic (trust is non-binary) and eventual (detection is no
 ---
 
 _For bibliographic references, see the [project references file](../references.bib)._
+
+1. In a previous version we suggested that write permissions could apply to an arbitrary **json-rql** pattern. In this scheme, permission checking could become an unbounded query optimisation problem. Use of a SHACL shape offers similar ultimate flexibility (informally, SHACL was [influenced by SPIN](https://spinrdf.org/spin-shacl.html), which represents "SPARQL rules and constraints"; **json-rql** being a serialisation of SPARQL), but is more straightforward to author, and to restrict to features suitable for the prototype.
