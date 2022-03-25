@@ -16,7 +16,7 @@ gives access
 to the domain
 end note
 class PkiPrincipal {
-  certificate : String
+  publicKey : binary
 }
 PkiPrincipal --|> Principal
 
@@ -37,7 +37,7 @@ abstract class Permission <<statutory>>
 Permission --|> AccessControl
 
 class WritePermission {
-  controlledShape : sh:NodeShape
+  controlledShape : sh:Shape
 }
 Authority --|> WritePermission
 WritePermission --|> Permission
@@ -52,7 +52,7 @@ RaftConsensus --|> AgreementCondition
 abstract class External
 External --|> AgreementCondition
 
-object "[domain]" as domain {
+object "<domain>" as domain {
   secret = "abcd"
 }
 

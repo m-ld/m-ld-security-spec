@@ -27,7 +27,7 @@ rnote left
 }, {
   "@id": "Alice",
   "@type": "mld:Principal",
-  "mld:certificate": "1234",
+  "mld:publicKey": "1234",
   "mld:hasPermission": [{
     "@type": "mld:Authority",
     "mld:controlledShape": {
@@ -38,7 +38,7 @@ rnote left
 }, {
   "@id": "Bob",
   "@type": "mld:Principal",
-  "mld:certificate": "5678"
+  "mld:publicKey": "5678"
 }, {
   "@id": "mld:accessControlStatute",
   "mld:sufficientCondition": {

@@ -129,7 +129,7 @@ Note the two operation data checks involved – checking for a statute (meaning 
 
 Verifying authority is the same as for any other permission, as follows. For an operation it is necessary to identify:
 
-- The security principal who enacted it. Here we give the example of using Public Key Infrastructure (PKI), in which a user has a certificate that can be used to sign operation messages (see below). A permission is assigned to a `Principal` in the data, having a certificate property. (We explore identity and authentication further in the [traceability](./traceability.md) design.)
+- The security principal who enacted it. Here we give the example of using Public Key Infrastructure (PKI), in which a user has a public key that can be used to sign operation messages (see below). A permission is assigned to a `Principal` in the data, having a `publicKey` property. (We explore identity and authentication further in the [traceability](./traceability.md) design.)
 - Whether the principal had a permission which _controls_ the changed data. Here we choose to support application of permissions to [SHACL node shapes](https://www.w3.org/TR/shacl/#node-shapes). This supports a data selector e.g. (informally) "all subjects having this Class", or "all data belonging to this group". Note that in the prototype, the available SHACL features will be the minimal necessary for demonstration of the principle.<sup>1</sup>
 
 Since access control by "whitelist" permissions may not suit all use-cases, the choice of approach is made through the `access` property of the domain itself. (Note that this requires the domain to be represented as a subject in the data; this is an open [topic of discussion](https://github.com/m-ld/m-ld-spec/discussions/75).)

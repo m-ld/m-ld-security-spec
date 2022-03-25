@@ -406,7 +406,11 @@
 <node TEXT="recovery cannot offer&#xa;verifiable signatures" ID="ID_608392858" CREATED="1646127467680" MODIFIED="1646154633975">
 <icon BUILTIN="messagebox_warning"/>
 <icon BUILTIN="pencil"/>
-<node TEXT="revup: if remote operations&#xa;have been fused" ID="ID_382608581" CREATED="1646154602785" MODIFIED="1646154626609">
+<node TEXT="on responses" ID="ID_1908807166" CREATED="1647865265241" MODIFIED="1647865272022">
+<font ITALIC="true"/>
+</node>
+<node TEXT="revup" ID="ID_50345835" CREATED="1647865226022" MODIFIED="1647865228366">
+<node TEXT="if remote operations&#xa;have been fused" ID="ID_382608581" CREATED="1646154602785" MODIFIED="1647865242633">
 <node TEXT="attack: &quot;Ivan says Bob, who has permission, did this&quot;" ID="ID_1320827447" CREATED="1646128092181" MODIFIED="1646135391230"/>
 <node TEXT="" ID="ID_1913387191" CREATED="1646217353430" MODIFIED="1646217353431">
 <hook NAME="FirstGroupNode"/>
@@ -435,7 +439,14 @@
 <node TEXT="is this a correct fusion of this time range?" ID="ID_883015905" CREATED="1646138893492" MODIFIED="1646138909236"/>
 </node>
 </node>
-<node TEXT="snapshot" ID="ID_816506247" CREATED="1646154672188" MODIFIED="1646154681337"/>
+<node TEXT="if don&apos;t have principal yet" ID="ID_1246080071" CREATED="1647865027327" MODIFIED="1647865239032">
+<node TEXT="keep response signature for later validation" ID="ID_681164369" CREATED="1647883899476" MODIFIED="1647884071870">
+<icon BUILTIN="idea"/>
+<icon BUILTIN="pencil"/>
+</node>
+</node>
+</node>
+<node TEXT="snapshot: don&apos;t have principal yet" ID="ID_816506247" CREATED="1646154672188" MODIFIED="1647865024371"/>
 </node>
 </node>
 <node TEXT="conflict-free constraints" ID="ID_1175901092" CREATED="1632751608347" MODIFIED="1633339694830">
@@ -514,6 +525,7 @@
 </node>
 </node>
 <node TEXT="conditions" ID="ID_1812855791" CREATED="1628177870727" MODIFIED="1645706158868">
+<node TEXT="types" ID="ID_1386960749" CREATED="1646812987513" MODIFIED="1646813002929">
 <node TEXT="genesis" ID="ID_337270379" CREATED="1628516388681" MODIFIED="1628516390595"/>
 <node TEXT="authority" ID="ID_183323527" CREATED="1628177965466" MODIFIED="1628516193251">
 <node TEXT="existing statute" ID="ID_749514541" CREATED="1628616924884" MODIFIED="1631278126665"/>
@@ -556,6 +568,29 @@
 <node TEXT="Federated (Istanbul BFT)" ID="ID_898766765" CREATED="1628178387472" MODIFIED="1628179552826" LINK="https://github.com/ethereum/EIPs/issues/650"/>
 </node>
 <node TEXT="external" ID="ID_1390206136" CREATED="1631529813053" MODIFIED="1631529815274"/>
+</node>
+<node TEXT="checking" ID="ID_863659873" CREATED="1646813008372" MODIFIED="1646813013797">
+<node TEXT="on transact" ID="ID_1334952361" CREATED="1646813068641" MODIFIED="1646813078984">
+<node TEXT="explicit" ID="ID_890382481" CREATED="1646813239291" MODIFIED="1646813246957">
+<node TEXT="app provides proof with txn" ID="ID_1074874372" CREATED="1646813247099" MODIFIED="1646813253830"/>
+</node>
+<node TEXT="constraint" ID="ID_598364972" CREATED="1646813257202" MODIFIED="1646813277715">
+<node TEXT="based on registered condition" ID="ID_811150435" CREATED="1646813313579" MODIFIED="1646813329131"/>
+<node TEXT="blocks txn awaiting proof" ID="ID_535022499" CREATED="1646813295466" MODIFIED="1646813345736">
+<icon BUILTIN="messagebox_warning"/>
+<node TEXT="callback to app" ID="ID_1595812938" CREATED="1646813357952" MODIFIED="1646813378271">
+<icon BUILTIN="help"/>
+</node>
+<node TEXT="it should block!" ID="ID_722400063" CREATED="1646910212993" MODIFIED="1646910220987">
+<node TEXT="otherwise need rebase" ID="ID_654121413" CREATED="1646910280278" MODIFIED="1646910296145"/>
+</node>
+</node>
+</node>
+</node>
+<node TEXT="on apply" ID="ID_1184264270" CREATED="1646813015955" MODIFIED="1646813067463">
+<node TEXT="is this data subject to a condition?" ID="ID_1775067494" CREATED="1646816346314" MODIFIED="1646816357837"/>
+</node>
+</node>
 </node>
 <node TEXT="after agreement, no message can&#xa;be accepted which is not caused by it" ID="ID_317373433" CREATED="1628086333506" MODIFIED="1628667782196">
 <icon BUILTIN="idea"/>
@@ -653,7 +688,7 @@
 </node>
 <node TEXT="Local prev set to last-seen by agreement" ID="ID_555384716" CREATED="1643705590166" MODIFIED="1643706649599"/>
 </node>
-<node TEXT="if in fusion" FOLDED="true" ID="ID_658199945" CREATED="1643121545769" MODIFIED="1645985389148">
+<node TEXT="if in fusion" ID="ID_658199945" CREATED="1643121545769" MODIFIED="1645985389148">
 <icon BUILTIN="messagebox_warning"/>
 <node TEXT="may need to void the tail of a fusion" ID="ID_526329788" CREATED="1643121794051" MODIFIED="1645709603284"/>
 <node TEXT="don&apos;t know where in a fusion a triple was deleted" ID="ID_228367875" CREATED="1643121611977" MODIFIED="1645713205312">
@@ -847,8 +882,8 @@
 </node>
 </node>
 </node>
-<node TEXT="can&apos;t check agreement conditions until&#xa;incompatible ops have been voided" ID="ID_340195892" CREATED="1643450475110" MODIFIED="1645703542432">
-<icon BUILTIN="help"/>
+<node TEXT="can&apos;t check agreement conditions until&#xa;incompatible ops have been voided" ID="ID_340195892" CREATED="1643450475110" MODIFIED="1646812826427">
+<icon BUILTIN="messagebox_warning"/>
 <node TEXT="ACL is statutory - cannot have changed" ID="ID_1940177276" CREATED="1643450709903" MODIFIED="1643459890114"/>
 <node TEXT="retain voided ops" ID="ID_1345808535" CREATED="1643450560209" MODIFIED="1645703377642">
 <node TEXT="can replay" ID="ID_1427676404" CREATED="1643450641314" MODIFIED="1643450648563"/>
@@ -889,7 +924,6 @@
 </node>
 </node>
 </node>
-<node TEXT="" ID="ID_769346109" CREATED="1646127284953" MODIFIED="1646127284953"/>
 </node>
 <node TEXT="concurrent agreement" ID="ID_1626443289" CREATED="1628183024002" MODIFIED="1646035920483">
 <icon BUILTIN="pencil"/>
@@ -950,7 +984,7 @@
 </node>
 </node>
 </node>
-<node TEXT="traceability" FOLDED="true" POSITION="right" ID="ID_1887865037" CREATED="1634548439289" MODIFIED="1634548442296">
+<node TEXT="traceability" POSITION="right" ID="ID_1887865037" CREATED="1634548439289" MODIFIED="1634548442296">
 <edge COLOR="#ff0000"/>
 <node TEXT="principals" ID="ID_268466364" CREATED="1634821320851" MODIFIED="1634821323722">
 <node TEXT="non-repudiable" ID="ID_728158108" CREATED="1634821343205" MODIFIED="1634822124751">
