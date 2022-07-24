@@ -1,137 +1,164 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="514px" preserveAspectRatio="none" style="width:999px;height:514px;background:#FFFFFF;" version="1.1" viewBox="0 0 999 514" width="999px" zoomAndPan="magnify"><defs><filter height="300%" id="f8wv1m61vzgva" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[cca5d97aaf46870920fae66c9bd85cdd]
-class Operation--><rect codeLine="4" fill="#FEFECE" filter="url(#f8wv1m61vzgva)" height="66.043" id="Operation" style="stroke:#A80036;stroke-width:1.5;" width="92" x="528.54" y="7"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="57" x="546.04" y="23.6016">Operation</text><line style="stroke:#A80036;stroke-width:1.5;" x1="529.54" x2="619.54" y1="31.1328" y2="31.1328"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="80" x="534.54" y="45.7676">deletes : Graph</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="79" x="534.54" y="58.7227">inserts : Graph</text><line style="stroke:#A80036;stroke-width:1.5;" x1="529.54" x2="619.54" y1="65.043" y2="65.043"/><!--MD5=[b46d054eb62dcf823e36cba73476e811]
-class OperationSignature--><rect codeLine="9" fill="#FEFECE" filter="url(#f8wv1m61vzgva)" height="78.998" id="OperationSignature" style="stroke:#A80036;stroke-width:1.5;" width="151" x="198.04" y="422"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="110" x="218.54" y="438.6016">OperationSignature</text><line style="stroke:#A80036;stroke-width:1.5;" x1="199.04" x2="348.04" y1="446.1328" y2="446.1328"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="59" x="204.04" y="460.7676">agentId: IRI</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="88" x="204.04" y="473.7227">dataHash: string</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="139" x="204.04" y="486.6777">idHash: string | undefined</text><line style="stroke:#A80036;stroke-width:1.5;" x1="199.04" x2="348.04" y1="492.998" y2="492.998"/><!--MD5=[ac5e83ec7f21c430bf4e066542bf6122]
-class OperationId--><rect codeLine="17" fill="#FEFECE" filter="url(#f8wv1m61vzgva)" height="66.043" id="OperationId" style="stroke:#A80036;stroke-width:1.5;" width="89" x="618.04" y="428.5"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="68" x="628.54" y="445.1016">OperationId</text><line style="stroke:#A80036;stroke-width:1.5;" x1="619.04" x2="706.04" y1="452.6328" y2="452.6328"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="77" x="624.04" y="467.2676">from : number</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="62" x="624.04" y="480.2227">time : Clock</text><line style="stroke:#A80036;stroke-width:1.5;" x1="619.04" x2="706.04" y1="486.543" y2="486.543"/><!--MD5=[8833345fc160488d8a581196440a93a7]
-class PublishedOperation--><rect codeLine="22" fill="#FEFECE" filter="url(#f8wv1m61vzgva)" height="40.1328" id="PublishedOperation" style="stroke:#A80036;stroke-width:1.5;" width="119" x="811.04" y="235"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="113" x="814.04" y="251.6016">PublishedOperation</text><line style="stroke:#A80036;stroke-width:1.5;" x1="812.04" x2="929.04" y1="259.1328" y2="259.1328"/><line style="stroke:#A80036;stroke-width:1.5;" x1="812.04" x2="929.04" y1="267.1328" y2="267.1328"/><!--MD5=[b09460e7004d11604b8924d85a291459]
-class OperationReference--><rect codeLine="25" fill="#FEFECE" filter="url(#f8wv1m61vzgva)" height="40.1328" id="OperationReference" style="stroke:#A80036;stroke-width:1.5;" width="121" x="483.04" y="313"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="115" x="486.04" y="329.6016">OperationReference</text><line style="stroke:#A80036;stroke-width:1.5;" x1="484.04" x2="603.04" y1="337.1328" y2="337.1328"/><line style="stroke:#A80036;stroke-width:1.5;" x1="484.04" x2="603.04" y1="345.1328" y2="345.1328"/><!--MD5=[171fc05333ed8cf342148b31755c8a3f]
-class ConstraintResolutionUpdate--><rect codeLine="29" fill="#FEFECE" filter="url(#f8wv1m61vzgva)" height="40.1328" id="ConstraintResolutionUpdate" style="stroke:#A80036;stroke-width:1.5;" width="165" x="492.04" y="149.5"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="159" x="495.04" y="166.1016">ConstraintResolutionUpdate</text><line style="stroke:#A80036;stroke-width:1.5;" x1="493.04" x2="656.04" y1="173.6328" y2="173.6328"/><line style="stroke:#A80036;stroke-width:1.5;" x1="493.04" x2="656.04" y1="181.6328" y2="181.6328"/><path d="M262.04,134 L262.04,205.2422 A0,0 0 0 0 262.04,205.2422 L457.04,205.2422 A0,0 0 0 0 457.04,205.2422 L457.04,173.5 L491.71,169.5 L457.04,165.5 L457.04,144 L447.04,134 L262.04,134 A0,0 0 0 0 262.04,134 " fill="#FBFB77" filter="url(#f8wv1m61vzgva)" style="stroke:#A80036;stroke-width:1.0;"/><path d="M447.04,134 L447.04,144 L457.04,144 L447.04,134 " fill="#FBFB77" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="150" x="268.04" y="151.5684">An update that includes</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="174" x="268.04" y="166.8789">an operation which violated</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="130" x="268.04" y="182.1895">a constraint, with its</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="68" x="268.04" y="197.5">resolution.</text><!--MD5=[1184c00b27fb80800e62ba680a3fd1e1]
-class AgreementUpdate--><rect codeLine="39" fill="#FEFECE" filter="url(#f8wv1m61vzgva)" height="40.1328" id="AgreementUpdate" style="stroke:#A80036;stroke-width:1.5;" width="111" x="692.04" y="149.5"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="105" x="695.04" y="166.1016">AgreementUpdate</text><line style="stroke:#A80036;stroke-width:1.5;" x1="693.04" x2="802.04" y1="173.6328" y2="173.6328"/><line style="stroke:#A80036;stroke-width:1.5;" x1="693.04" x2="802.04" y1="181.6328" y2="181.6328"/><path d="M804.54,12 L804.54,67.9316 A0,0 0 0 0 804.54,67.9316 L861.73,67.9316 L770.05,149.37 L869.73,67.9316 L990.54,67.9316 A0,0 0 0 0 990.54,67.9316 L990.54,22 L980.54,12 L804.54,12 A0,0 0 0 0 804.54,12 " fill="#FBFB77" filter="url(#f8wv1m61vzgva)" style="stroke:#A80036;stroke-width:1.0;"/><path d="M980.54,12 L980.54,22 L990.54,22 L980.54,12 " fill="#FBFB77" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="162" x="810.54" y="29.5684">An update that comprises</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="165" x="810.54" y="44.8789">an agreement and any ops</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="108" x="810.54" y="60.1895">that were voided.</text><!--MD5=[689de5982d8e824e86be4fe708c5ec56]
-class FusedOperationUpdate--><rect codeLine="48" fill="#FEFECE" filter="url(#f8wv1m61vzgva)" height="40.1328" id="FusedOperationUpdate" style="stroke:#A80036;stroke-width:1.5;" width="139" x="88.04" y="149.5"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="133" x="91.04" y="166.1016">FusedOperationUpdate</text><line style="stroke:#A80036;stroke-width:1.5;" x1="89.04" x2="226.04" y1="173.6328" y2="173.6328"/><line style="stroke:#A80036;stroke-width:1.5;" x1="89.04" x2="226.04" y1="181.6328" y2="181.6328"/><path d="M88.04,305 L88.04,360.9316 A0,0 0 0 0 88.04,360.9316 L281.04,360.9316 A0,0 0 0 0 281.04,360.9316 L281.04,315 L271.04,305 L183.99,305 L160.74,189.66 L175.99,305 L88.04,305 A0,0 0 0 0 88.04,305 " fill="#FBFB77" filter="url(#f8wv1m61vzgva)" style="stroke:#A80036;stroke-width:1.0;"/><path d="M271.04,305 L271.04,315 L281.04,315 L271.04,305 " fill="#FBFB77" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="172" x="94.04" y="322.5684">An update that compresses</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="157" x="94.04" y="337.8789">multiple operations from</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="135" x="94.04" y="353.1895">a single clone &amp; user.</text><!--MD5=[2d044ed81f02af60ceb873497a07bccb]
-reverse link Operation to OperationSignature--><path codeLine="15" d="M514.9,42.83 C393.94,47.94 126.51,66.75 70.54,134 C6,211.54 17.16,275.39 70.54,361 C98.31,405.55 152.48,430.7 197.88,444.58 " fill="none" id="Operation-backto-OperationSignature" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="528.21,42.3,522.0564,38.5406,516.2194,42.7749,522.373,46.5343,528.21,42.3" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[5c3d63fc13ffe6171b8f3d18e6b3274a]
-reverse link Operation to PublishedOperation--><path d="M640.5,51.07 C695.01,62.55 771.21,86.29 820.54,134 C849.25,161.77 862.16,208.51 867.4,234.7 " fill="none" id="Operation-backto-PublishedOperation" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="none" points="639.07,57.93,620.76,47.25,641.73,44.18,639.07,57.93" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[59a5fd9fbeb36bbbf8e6c1497dbda797]
-reverse link PublishedOperation to OperationId--><path codeLine="23" d="M841.41,284.64 C803.01,322.39 735.64,388.63 695.44,428.15 " fill="none" id="PublishedOperation-backto-OperationId" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="850.97,275.24,843.8871,276.5937,842.4125,283.6525,849.4954,282.2987,850.97,275.24" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[054289526dbba5162fcd2128ce601c57]
-reverse link OperationReference to OperationSignature--><path codeLine="26" d="M490.84,358.69 C450.49,377.6 394.27,403.93 349.13,425.08 " fill="none" id="OperationReference-backto-OperationSignature" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="502.83,353.08,495.6998,352.003,491.9632,358.1705,499.0934,359.2475,502.83,353.08" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[cc3bd67f645e0ea325f3f08834c2ffb6]
-reverse link OperationReference to OperationId--><path codeLine="27" d="M570.61,362.78 C588.96,382.29 613.24,408.1 632.24,428.29 " fill="none" id="OperationReference-backto-OperationId" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="561.61,353.21,562.8147,360.3198,569.841,361.9422,568.6362,354.8324,561.61,353.21" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[7ab945c2bd7c73c1401b1ec683f1f583]
-reverse link Operation to ConstraintResolutionUpdate--><path d="M574.54,93.35 C574.54,113.19 574.54,134.56 574.54,149.42 " fill="none" id="Operation-backto-ConstraintResolutionUpdate" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="none" points="567.54,93.17,574.54,73.17,581.54,93.17,567.54,93.17" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[ae4c87283c5c0f7d5f1aa64b0eb95e0b]
-reverse link ConstraintResolutionUpdate to OperationReference--><path codeLine="36" d="M509.45,194.68 C480.31,206.96 450.67,221.98 442.54,235 C433.12,250.08 433.58,259.65 442.54,275 C452.39,291.87 469.27,304.13 486.45,312.87 " fill="none" id="ConstraintResolutionUpdate-backto-OperationReference" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="521.84,189.6,514.7714,188.1735,510.736,194.1498,517.8046,195.5762,521.84,189.6" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="56" x="443.54" y="252.5684">«trigger»</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="52" x="445.54" y="267.8789">resolves</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="467.1865" y="305.3605">1</text><!--MD5=[ae4c87283c5c0f7d5f1aa64b0eb95e0b]
-reverse link ConstraintResolutionUpdate to OperationReference--><path codeLine="37" d="M554.65,200.9 C548.92,211.29 543.45,223.25 540.54,235 C534.02,261.33 536.89,292.91 539.92,312.72 " fill="none" id="ConstraintResolutionUpdate-backto-OperationReference-1" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="561.34,189.54,554.8477,192.6785,555.2477,199.8785,561.74,196.74,561.34,189.54" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="56" x="545.54" y="252.5684">«trigger»</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="64" x="541.54" y="267.8789">resolution</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="529.6816" y="302.1541">1</text><!--MD5=[6f34ecb9d008a5069f4eef0708337029]
-reverse link Operation to AgreementUpdate--><path d="M634.6,85.26 C664.35,107.19 698.72,132.52 721.65,149.42 " fill="none" id="Operation-backto-AgreementUpdate" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="none" points="630.14,90.67,618.19,73.17,638.45,79.4,630.14,90.67" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[e7395c3631e118f37a9a0bc8aecb1d7e]
-reverse link AgreementUpdate to OperationReference--><path codeLine="45" d="M742.96,202.65 C738.11,225.63 728.26,255.76 708.54,275 C680.56,302.3 638.88,316.56 604.41,323.99 " fill="none" id="AgreementUpdate-backto-OperationReference" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="745.33,189.76,740.3141,194.9408,743.1671,201.5635,748.1831,196.3827,745.33,189.76" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="56" x="733.54" y="252.5684">«trigger»</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="42" x="740.54" y="267.8789">agreed</text><!--MD5=[e7395c3631e118f37a9a0bc8aecb1d7e]
-reverse link AgreementUpdate to OperationReference--><path codeLine="46" d="M698.01,196.18 C679.61,206.9 659.19,220.29 642.54,235 C625.48,250.07 626.39,258.66 610.54,275 C597.46,288.48 581.48,302.17 568.41,312.75 " fill="none" id="AgreementUpdate-backto-OperationReference-1" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="709.44,189.7,702.2482,189.1725,698.9952,195.6082,706.187,196.1357,709.44,189.7" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="56" x="643.54" y="252.5684">«trigger»</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="42" x="650.54" y="267.8789">voided</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="6" x="568.8343" y="302.1929">*</text><!--MD5=[1c354eb5ba1cfd52c0b7af548541c441]
-reverse link Operation to FusedOperationUpdate--><path d="M508.98,57.35 C441.95,74.56 335.11,103.37 244.54,134 C230.99,138.58 216.48,144.09 203.27,149.35 " fill="none" id="Operation-backto-FusedOperationUpdate" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="none" points="507.33,50.55,528.44,52.39,510.79,64.11,507.33,50.55" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[5b7af95a4e71b20a89824e9c1aa5464a]
-reverse link FusedOperationUpdate to OperationReference--><path codeLine="54" d="M204.08,195.82 C246.46,218.3 311.14,251.18 369.54,275 C406.48,290.07 449.02,304.06 482.79,314.41 " fill="none" id="FusedOperationUpdate-backto-OperationReference" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="192.47,189.63,195.8834,195.9821,203.0597,195.2743,199.6463,188.9223,192.47,189.63" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="56" x="370.54" y="252.5684">«trigger»</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="34" x="381.54" y="267.8789">fuses</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="6" x="469.0205" y="325.6376">*</text><!--MD5=[dc24f2d0a629ec2c67e3725f4cc5895d]
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="669px" preserveAspectRatio="none" style="width:721px;height:669px;background:#FFFFFF;" version="1.1" viewBox="0 0 721 669" width="721px" zoomAndPan="magnify"><defs><filter height="300%" id="f18cornsgz6i9n" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[975d7fda8cf98ff1a26ca528bf10cecf]
+cluster App--><polygon fill="#FFFFFF" filter="url(#f18cornsgz6i9n)" points="16,6,50,6,57,28.4883,597,28.4883,597,277,16,277,16,6" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:1.5;" x1="16" x2="57" y1="28.4883" y2="28.4883"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="28" x="20" y="21.5352">App</text><!--MD5=[01f992b2fa8adb612cc7da5577f74dfd]
+cluster Protocol--><polygon fill="#FFFFFF" filter="url(#f18cornsgz6i9n)" points="123,326,189,326,196,348.4883,704,348.4883,704,662,123,662,123,326" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:1.5;" x1="123" x2="196" y1="348.4883" y2="348.4883"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="60" x="127" y="341.5352">Protocol</text><!--MD5=[244b99f808e70c511859df938ee1dac9]
+class MeldUpdate--><rect codeLine="5" fill="#FEFECE" filter="url(#f18cornsgz6i9n)" height="117.8633" id="MeldUpdate" style="stroke:#A80036;stroke-width:1.5;" width="300" x="281" y="143"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="70" x="396" y="159.6016">MeldUpdate</text><line style="stroke:#A80036;stroke-width:1.5;" x1="282" x2="580" y1="167.1328" y2="167.1328"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="138" x="287" y="181.7676">@delete : GraphSubject [*]</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="137" x="287" y="194.7227">@insert : GraphSubject [*]</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="75" x="287" y="207.6777">@tick : integer</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="118" x="287" y="220.6328">@principal : Reference</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="39" x="287" y="233.5879">@agree</text><line style="stroke:#A80036;stroke-width:1.5;" x1="282" x2="580" y1="239.9082" y2="239.9082"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="288" x="287" y="254.543">getOperation(rel): (EncodedOperation, Attribution) [*]</text><path d="M291.5,41 L291.5,81.6211 A0,0 0 0 0 291.5,81.6211 L427,81.6211 L431,142.93 L435,81.6211 L570.5,81.6211 A0,0 0 0 0 570.5,81.6211 L570.5,51 L560.5,41 L291.5,41 A0,0 0 0 0 291.5,41 " fill="#FBFB77" filter="url(#f18cornsgz6i9n)" style="stroke:#A80036;stroke-width:1.0;"/><path d="M560.5,41 L560.5,51 L570.5,51 L560.5,41 " fill="#FBFB77" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="258" x="297.5" y="58.5684">App-visible update. Algorithmically built</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="240" x="297.5" y="73.8789">from operations by local m-ld engine.</text><path d="M32,143.5 L32,184.1211 A0,0 0 0 0 32,184.1211 L225,184.1211 A0,0 0 0 0 225,184.1211 L225,167.8105 L285,216.4756 L225,159.8105 L225,153.5 L215,143.5 L32,143.5 A0,0 0 0 0 32,143.5 " fill="#FBFB77" filter="url(#f18cornsgz6i9n)" style="stroke:#A80036;stroke-width:1.0;"/><path d="M215,143.5 L215,153.5 L225,153.5 L215,143.5 " fill="#FBFB77" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="159" x="38" y="161.0684">The principal responsible</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="172" x="38" y="176.3789">for the triggering operation</text><path d="M32,194.1211 L32,250.0527 A0,0 0 0 0 32,250.0527 L246,250.0527 A0,0 0 0 0 246,250.0527 L246,226.0869 L285,250.3857 L246,218.0869 L246,204.1211 L236,194.1211 L32,194.1211 A0,0 0 0 0 32,194.1211 " fill="#FBFB77" filter="url(#f18cornsgz6i9n)" style="stroke:#A80036;stroke-width:1.0;"/><path d="M236,194.1211 L236,204.1211 L246,204.1211 L236,194.1211 " fill="#FBFB77" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="193" x="38" y="211.6895">Accesses protocol information</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="155" x="38" y="227">given a relationship type</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="137" x="38" y="242.3105">(see links to Protocol)</text><!--MD5=[e597c17acbae36479f49c4cca0e8a176]
+class EncodedOperation--><rect codeLine="29" fill="#FEFECE" filter="url(#f18cornsgz6i9n)" height="91.9531" id="EncodedOperation" style="stroke:#A80036;stroke-width:1.5;" width="113" x="374.5" y="361"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="107" x="377.5" y="377.6016">EncodedOperation</text><line style="stroke:#A80036;stroke-width:1.5;" x1="375.5" x2="486.5" y1="385.1328" y2="385.1328"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="73" x="380.5" y="399.7676">from : integer</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="62" x="380.5" y="412.7227">time : Clock</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="36" x="380.5" y="425.6777">pid: IRI</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="9" x="380.5" y="438.6328">...</text><line style="stroke:#A80036;stroke-width:1.5;" x1="375.5" x2="486.5" y1="444.9531" y2="444.9531"/><path d="M139,374 L139,429.9316 A0,0 0 0 0 139,429.9316 L339,429.9316 A0,0 0 0 0 339,429.9316 L339,405.9658 L378.5,408.5654 L339,397.9658 L339,384 L329,374 L139,374 A0,0 0 0 0 139,374 " fill="#FBFB77" filter="url(#f18cornsgz6i9n)" style="stroke:#A80036;stroke-width:1.0;"/><path d="M329,374 L329,384 L339,384 L329,374 " fill="#FBFB77" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="149" x="145" y="391.5684">operation time refers to</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="179" x="145" y="406.8789">the originating clone. Unlike</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="175" x="145" y="422.1895">@tick which is always local.</text><!--MD5=[7047f3041f36be45285233f4844281c3]
+class Attribution--><rect codeLine="42" fill="#FEFECE" filter="url(#f18cornsgz6i9n)" height="66.043" id="Attribution" style="stroke:#A80036;stroke-width:1.5;" width="71" x="395.5" y="547"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="60" x="401" y="563.6016">Attribution</text><line style="stroke:#A80036;stroke-width:1.5;" x1="396.5" x2="465.5" y1="571.1328" y2="571.1328"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="36" x="401.5" y="585.7676">pid: IRI</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="59" x="401.5" y="598.7227">sig?: Buffer</text><line style="stroke:#A80036;stroke-width:1.5;" x1="396.5" x2="465.5" y1="605.043" y2="605.043"/><path d="M184,514 L184,569.9316 A0,0 0 0 0 184,569.9316 L340,569.9316 A0,0 0 0 0 340,569.9316 L340,545.9658 L399.5,581.6104 L340,537.9658 L340,524 L330,514 L184,514 A0,0 0 0 0 184,514 " fill="#FBFB77" filter="url(#f18cornsgz6i9n)" style="stroke:#A80036;stroke-width:1.0;"/><path d="M330,514 L330,524 L340,524 L330,514 " fill="#FBFB77" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="135" x="190" y="531.5684">Not necessarily equal</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="101" x="190" y="546.8789">to the operation</text><text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="24" x="295" y="546.5552">pid</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="91" x="190" y="562.1895">e.g. if a fusion</text><path d="M184,579.9316 L184,635.8633 A0,0 0 0 0 184,635.8633 L360,635.8633 A0,0 0 0 0 360,635.8633 L360,611.8975 L399.5,594.5654 L360,603.8975 L360,589.9316 L350,579.9316 L184,579.9316 A0,0 0 0 0 184,579.9316 " fill="#FBFB77" filter="url(#f18cornsgz6i9n)" style="stroke:#A80036;stroke-width:1.0;"/><path d="M350,579.9316 L350,589.9316 L360,589.9316 L350,579.9316 " fill="#FBFB77" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="155" x="190" y="597.5">signature format is app-</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="140" x="190" y="612.8105">or extension-specific,</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="137" x="190" y="628.1211">and verifiable as such</text><!--MD5=[21f98b2d203d0dcf772bbd87dcd830dd]
+link MeldUpdate$$$LEFT to MeldUpdate--><!--MD5=[c8c4d1410d3ee90b8693a56fd5941ca6]
+link EncodedOperation$$$LEFT to EncodedOperation--><!--MD5=[5450c5bc5562565a21b6969f1a8fb4d6]
+link EncodedOperation to Attribution--><path codeLine="40" d="M431,453.38 C431,482.86 431,520.58 431,546.96 " fill="none" id="EncodedOperation-Attribution" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[09de0582901cba398bc6a08f377a4757]
+link Attribution$$$LEFT to Attribution--><!--MD5=[c7ba057f25b7cbb49d30dfaf9d180994]
+reverse link EncodedOperation to EncodedOperation--><path codeLine="57" d="M500.91,393.55 C513.6,395.26 522.5,399.74 522.5,407 C522.5,416.57 507.01,421.32 487.74,421.25 " fill="none" id="EncodedOperation-backto-EncodedOperation" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#FFFFFF" points="487.74,392.75,493.4875,397.1051,499.7181,393.4747,493.9706,389.1197,487.74,392.75" style="stroke:#A80036;stroke-width:1.0;"/><path d="M527.5,377.5 L527.5,432.5 L695.5,432.5 L695.5,387.5 L685.5,377.5 L527.5,377.5 " fill="#FBFB77" filter="url(#f18cornsgz6i9n)" style="stroke:#A80036;stroke-width:1.0;"/><path d="M685.5,377.5 L685.5,387.5 L695.5,387.5 L685.5,377.5 " fill="#FBFB77" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="9" x="533.5" y="395.0684">if</text><text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="32" x="546.5" y="394.7446">from</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="10" x="582.5" y="395.0684">&lt;</text><text fill="#000000" font-family="monospace" font-size="13" lengthAdjust="spacing" textLength="80" x="596.5" y="394.7446">time.ticks</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="4" x="676.5" y="395.0684">,</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="140" x="533.5" y="410.3789">fused operations from</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="135" x="533.5" y="425.6895">a single clone &amp; user.</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="6" x="495.3942" y="419.7061">*</text><!--MD5=[27323eaaf4a51c0a910ee92fc703a146]
+reverse link MeldUpdate to EncodedOperation--><path codeLine="65" d="M289.25,270.72 C280.09,282.91 278.77,296.17 291,310 C300.64,320.9 343.18,311.1 356,318 C374.56,327.99 390.51,344.59 402.87,360.69 " fill="none" id="MeldUpdate-backto-EncodedOperation" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#FFFFFF" points="298.17,261.19,291.1514,262.8452,289.9798,269.9605,296.9984,268.3053,298.17,261.19" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="42" x="292" y="306.5684">trigger</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="390.1509" y="350.3813">1</text><!--MD5=[27323eaaf4a51c0a910ee92fc703a146]
+reverse link MeldUpdate to EncodedOperation--><path codeLine="67" d="M382.54,272.95 C379.52,279.52 376.93,286.25 375,293 C368.32,316.37 377.96,340.72 391.03,360.8 " fill="none" id="MeldUpdate-backto-EncodedOperation-1" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#FFFFFF" points="388.39,261.32,382.1202,264.8823,382.9971,272.0399,389.2668,268.4776,388.39,261.32" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="64" x="376" y="306.5684">applicable</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="376.2971" y="350.1729">1</text><!--MD5=[27323eaaf4a51c0a910ee92fc703a146]
+reverse link MeldUpdate to EncodedOperation--><path codeLine="69" d="M443.18,274.81 C443.92,280.95 444.54,287.08 445,293 C446.73,315.37 444.17,340.12 440.79,360.73 " fill="none" id="MeldUpdate-backto-EncodedOperation-2" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#FFFFFF" points="441.43,261.43,438.2491,267.9016,442.9995,273.3269,446.1804,266.8553,441.43,261.43" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="64" x="446" y="306.5684">resolution</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="24" x="416.4516" y="350.0922">0..1</text><!--MD5=[27323eaaf4a51c0a910ee92fc703a146]
+reverse link MeldUpdate to EncodedOperation--><path codeLine="71" d="M516.53,272.6 C522.3,284.34 524.07,296.97 519,310 C511.71,328.75 498.85,346.07 485.17,360.68 " fill="none" id="MeldUpdate-backto-EncodedOperation-3" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#FFFFFF" points="509.54,261.18,509.2608,268.3857,515.8049,271.4148,516.084,264.2091,509.54,261.18" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="34" x="522" y="306.5684">voids</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="6" x="486.6856" y="350.3698">*</text><!--MD5=[3443eb759280c1d62461ec012fb305af]
 @startuml
 'https://plantuml.com/class-diagram
 hide circle
 
-class Operation {
-  deletes : Graph
-  inserts : Graph
+package App {
+  class MeldUpdate {
+    @delete : GraphSubject [*]
+    @insert : GraphSubject [*]
+    @tick : integer
+    @principal : Reference
+    @agree
+    getOperation(rel): (EncodedOperation, Attribution) [*]
+  }
+  note top of MeldUpdate
+    App-visible update. Algorithmically built
+    from operations by local m-ld engine.
+  end note
+  note left of MeldUpdate::principal
+    The principal responsible
+    for the triggering operation
+  end note
+  note left of MeldUpdate::getOperation
+    Accesses protocol information
+    given a relationship type
+    (see links to Protocol)
+  end note
 }
 
-class OperationSignature {
-  agentId: IRI
-  dataHash: string
-  idHash: string | undefined
+package Protocol {
+  class EncodedOperation {
+    from : integer
+    time : Clock
+    pid: IRI
+    ...
+  }
+  note left of EncodedOperation::time
+    operation time refers to
+    the originating clone. Unlike
+    @tick which is always local.
+  end note
+  EncodedOperation - - Attribution
+
+  class Attribution {
+    pid: IRI
+    sig?: Buffer
+  }
+  note left of Attribution::pid
+    Not necessarily equal
+    to the operation ""pid""
+    e.g. if a fusion
+  end note
+  note left of Attribution::sig
+    signature format is app-
+    or extension-specific,
+    and verifiable as such
+  end note
+
+  EncodedOperation o- - "*" EncodedOperation
+  note on link
+    if ""from"" < ""time.ticks"",
+    fused operations from
+    a single clone & user.
+  end note
 }
 
-Operation *- - OperationSignature
+MeldUpdate o- - "1" EncodedOperation : trigger
 
-class OperationId {
-  from : number
-  time : Clock
-}
+MeldUpdate o- - "1" EncodedOperation : applicable
 
-class PublishedOperation extends Operation
-PublishedOperation *- - OperationId
+MeldUpdate o- - "0..1" EncodedOperation : resolution
 
-class OperationReference
-OperationReference *- - OperationSignature
-OperationReference *- - OperationId
-
-class ConstraintResolutionUpdate extends Operation
-note left of ConstraintResolutionUpdate
-An update that includes
-an operation which violated
-a constraint, with its
-resolution.
-end note
-ConstraintResolutionUpdate *- - "1" OperationReference : <<trigger>>\nresolves
-ConstraintResolutionUpdate *- - "1" OperationReference : <<trigger>>\nresolution
-
-class AgreementUpdate extends Operation
-note top of AgreementUpdate
-An update that comprises
-an agreement and any ops
-that were voided.
-end note
-AgreementUpdate *- - OperationReference : <<trigger>>\nagreed
-AgreementUpdate *- - "*" OperationReference : <<trigger>>\nvoided
-
-class FusedOperationUpdate extends Operation
-note bottom of FusedOperationUpdate
-An update that compresses
-multiple operations from
-a single clone & user.
-end note
-FusedOperationUpdate *- - "*" OperationReference : <<trigger>>\nfuses
+MeldUpdate o- - "*" EncodedOperation : voids
 
 @enduml
 
 @startuml
 hide circle
 
-class Operation {
-  deletes : Graph
-  inserts : Graph
+package App {
+  class MeldUpdate {
+    @delete : GraphSubject [*]
+    @insert : GraphSubject [*]
+    @tick : integer
+    @principal : Reference
+    @agree
+    getOperation(rel): (EncodedOperation, Attribution) [*]
+  }
+  note top of MeldUpdate
+    App-visible update. Algorithmically built
+    from operations by local m-ld engine.
+  end note
+  note left of MeldUpdate::principal
+    The principal responsible
+    for the triggering operation
+  end note
+  note left of MeldUpdate::getOperation
+    Accesses protocol information
+    given a relationship type
+    (see links to Protocol)
+  end note
 }
 
-class OperationSignature {
-  agentId: IRI
-  dataHash: string
-  idHash: string | undefined
+package Protocol {
+  class EncodedOperation {
+    from : integer
+    time : Clock
+    pid: IRI
+    ...
+  }
+  note left of EncodedOperation::time
+    operation time refers to
+    the originating clone. Unlike
+    @tick which is always local.
+  end note
+  EncodedOperation - - Attribution
+
+  class Attribution {
+    pid: IRI
+    sig?: Buffer
+  }
+  note left of Attribution::pid
+    Not necessarily equal
+    to the operation ""pid""
+    e.g. if a fusion
+  end note
+  note left of Attribution::sig
+    signature format is app-
+    or extension-specific,
+    and verifiable as such
+  end note
+
+  EncodedOperation o- - "*" EncodedOperation
+  note on link
+    if ""from"" < ""time.ticks"",
+    fused operations from
+    a single clone & user.
+  end note
 }
 
-Operation *- - OperationSignature
+MeldUpdate o- - "1" EncodedOperation : trigger
 
-class OperationId {
-  from : number
-  time : Clock
-}
+MeldUpdate o- - "1" EncodedOperation : applicable
 
-class PublishedOperation extends Operation
-PublishedOperation *- - OperationId
+MeldUpdate o- - "0..1" EncodedOperation : resolution
 
-class OperationReference
-OperationReference *- - OperationSignature
-OperationReference *- - OperationId
-
-class ConstraintResolutionUpdate extends Operation
-note left of ConstraintResolutionUpdate
-An update that includes
-an operation which violated
-a constraint, with its
-resolution.
-end note
-ConstraintResolutionUpdate *- - "1" OperationReference : <<trigger>>\nresolves
-ConstraintResolutionUpdate *- - "1" OperationReference : <<trigger>>\nresolution
-
-class AgreementUpdate extends Operation
-note top of AgreementUpdate
-An update that comprises
-an agreement and any ops
-that were voided.
-end note
-AgreementUpdate *- - OperationReference : <<trigger>>\nagreed
-AgreementUpdate *- - "*" OperationReference : <<trigger>>\nvoided
-
-class FusedOperationUpdate extends Operation
-note bottom of FusedOperationUpdate
-An update that compresses
-multiple operations from
-a single clone & user.
-end note
-FusedOperationUpdate *- - "*" OperationReference : <<trigger>>\nfuses
+MeldUpdate o- - "*" EncodedOperation : voids
 
 @enduml
 

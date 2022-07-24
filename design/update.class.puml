@@ -2,56 +2,73 @@
 'https://plantuml.com/class-diagram
 hide circle
 
-class Operation {
-  deletes : Graph
-  inserts : Graph
+package App {
+  class MeldUpdate {
+    @delete : GraphSubject [*]
+    @insert : GraphSubject [*]
+    @tick : integer
+    @principal : Reference
+    @agree
+    getOperation(rel): (EncodedOperation, Attribution) [*]
+  }
+  note top of MeldUpdate
+    App-visible update. Algorithmically built
+    from operations by local m-ld engine.
+  end note
+  note left of MeldUpdate::principal
+    The principal responsible
+    for the triggering operation
+  end note
+  note left of MeldUpdate::getOperation
+    Accesses protocol information
+    given a relationship type
+    (see links to Protocol)
+  end note
 }
 
-class OperationSignature {
-  agentId: IRI
-  dataHash: string
-  idHash: string | undefined
+package Protocol {
+  class EncodedOperation {
+    from : integer
+    time : Clock
+    pid: IRI
+    ...
+  }
+  note left of EncodedOperation::time
+    operation time refers to
+    the originating clone. Unlike
+    @tick which is always local.
+  end note
+  EncodedOperation -- Attribution
+
+  class Attribution {
+    pid: IRI
+    sig?: Buffer
+  }
+  note left of Attribution::pid
+    Not necessarily equal
+    to the operation ""pid""
+    e.g. if a fusion
+  end note
+  note left of Attribution::sig
+    signature format is app-
+    or extension-specific,
+    and verifiable as such
+  end note
+
+  EncodedOperation o-- "*" EncodedOperation
+  note on link
+    if ""from"" < ""time.ticks"",
+    fused operations from
+    a single clone & user.
+  end note
 }
 
-Operation *-- OperationSignature
+MeldUpdate o-- "1" EncodedOperation : trigger
 
-class OperationId {
-  from : number
-  time : Clock
-}
+MeldUpdate o-- "1" EncodedOperation : applicable
 
-class PublishedOperation extends Operation
-PublishedOperation *-- OperationId
+MeldUpdate o-- "0..1" EncodedOperation : resolution
 
-class OperationReference
-OperationReference *-- OperationSignature
-OperationReference *-- OperationId
-
-class ConstraintResolutionUpdate extends Operation
-note left of ConstraintResolutionUpdate
-An update that includes
-an operation which violated
-a constraint, with its
-resolution.
-end note
-ConstraintResolutionUpdate *-- "1" OperationReference : <<trigger>>\nresolves
-ConstraintResolutionUpdate *-- "1" OperationReference : <<trigger>>\nresolution
-
-class AgreementUpdate extends Operation
-note top of AgreementUpdate
-An update that comprises
-an agreement and any ops
-that were voided.
-end note
-AgreementUpdate *-- OperationReference : <<trigger>>\nagreed
-AgreementUpdate *-- "*" OperationReference : <<trigger>>\nvoided
-
-class FusedOperationUpdate extends Operation
-note bottom of FusedOperationUpdate
-An update that compresses
-multiple operations from
-a single clone & user.
-end note
-FusedOperationUpdate *-- "*" OperationReference : <<trigger>>\nfuses
+MeldUpdate o-- "*" EncodedOperation : voids
 
 @enduml
