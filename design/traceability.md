@@ -164,7 +164,7 @@ The following diagram elaborates the API to be used to describe updates in the p
 
 ![update.class](./img/update.class.svg)
 
-This API bridges the App and Protocol API. The already-existing `MeldUpdate` type in the App API will be augmented with a function `getOperation` to trace through to the underlying Protocol information that gave rise to the update.
+This API bridges the App and Protocol API. The already-existing `MeldUpdate` type in the App API will be augmented with a function `trace` to recover underlying Protocol information that gave rise to the update.
 
 There are a number of possible relationships among updates and operations, described below, each of which is well-defined in the **m-ld** protocol. This means that a sufficiently sophisticated auditing system would be able to re-create, and therefore verify, the trace provided.
 
@@ -172,7 +172,7 @@ There are a number of possible relationships among updates and operations, descr
 2. `applicable`: this is the triggering operation, adjusted to remove any parts of it that have already been applied. This is relevant if the trigger is a fusion. This operation is always recorded in the clone journal.
 3. `resolution`: if the applicable operation violated a constraint, then the update will combine it with a resolution. This relationship gives access to the raw resolution, which is also recorded in the journal.
 4. `voids`: if the applicable operation is an agreement, it may have caused some operations to have been voided. This relationship gives access to precisely which operations were removed, in reverse order (as if each was undone). These operations will have already been removed from the journal.
-5. Fused: if the applicable operation is (still) a fusion, it implicitly merges some original operations. These are never available locally, so are not accessible by `getOperation`. However, an auditing system could seek to discover the original operations from other clones. As noted above, this will only happen if the auditing clone is itself offline for a period.
+5. Fused: if the applicable operation is (still) a fusion, it implicitly merges some original operations. These are never available locally, so are not accessible by `trace`. However, an auditing system could seek to discover the original operations from other clones. As noted above, this will only happen if the auditing clone is itself offline for a period.
 6. Causes: all operations (except the very first) are causally predicated on the operations that happened before them in the clone where they originated. This is implicit in the ordering of updates visible to the local app (and therefore the auditing system). Note once again, however, that different clones may see different orderings.
 
 Operations in the **m-ld** protocol are encoded as a 'tuple', a heterogeneous JSON array (see the [type definition](https://github.com/m-ld/m-ld-js/blob/73b00e83e4afc75e7c3e1d66273ae1eb58da220c/src/engine/index.ts#L159) in the Javascript engine), which has a well-defined serialisation with [MessagePack](https://msgpack.org/). This is used by 'transport security' extensions to generate signatures, which are represented in the protocol in 'Attribution' objects. The signatures are therefore verifiable during audit. However, note that all signatures are verified locally by the clone engine; so, if the clone is trusted not to be malware, for example an audit clone running in a trusted environment, then it is redundant for another part of the auditing system to re-verify.

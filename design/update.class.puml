@@ -9,16 +9,18 @@ package App {
     @tick : integer
     @principal : Reference
     @agree
-    getOperation(rel): (EncodedOperation, Attribution) [*]
+    trace(rel): (EncodedOperation, Attribution) [*]
   }
   note top of MeldUpdate
     App-visible update. Algorithmically built
     from operations by local m-ld engine.
   end note
+
   note left of MeldUpdate::principal
     The principal responsible
     for the triggering operation
   end note
+
   note left of MeldUpdate::getOperation
     Accesses protocol information
     given a relationship type
@@ -49,6 +51,7 @@ package Protocol {
     to the operation ""pid""
     e.g. if a fusion
   end note
+
   note left of Attribution::sig
     signature format is app-
     or extension-specific,
