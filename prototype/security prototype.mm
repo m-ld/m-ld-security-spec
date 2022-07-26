@@ -66,7 +66,7 @@
 <hook NAME="AutomaticEdgeColor" COUNTER="6" RULE="ON_BRANCH_CREATION"/>
 <node TEXT="integrity" POSITION="right" ID="ID_1102482177" CREATED="1648460925434" MODIFIED="1648460929801">
 <edge COLOR="#00ffff"/>
-<node TEXT="whole domain authorisation" FOLDED="true" ID="ID_123651814" CREATED="1639327726869" MODIFIED="1648460938420">
+<node TEXT="whole domain authorisation" ID="ID_123651814" CREATED="1639327726869" MODIFIED="1648460938420">
 <node TEXT="analysis" ID="ID_501643259" CREATED="1639561951723" MODIFIED="1658388600648">
 <icon BUILTIN="xmag"/>
 <node TEXT="identity models&#xa;(with sigs)" ID="ID_1892271990" CREATED="1639327744364" MODIFIED="1639328033736">
@@ -168,7 +168,7 @@
 </node>
 </node>
 </node>
-<node TEXT="data-driven authorisation" FOLDED="true" ID="ID_453525894" CREATED="1642612535643" MODIFIED="1648460938440">
+<node TEXT="data-driven authorisation" ID="ID_453525894" CREATED="1642612535643" MODIFIED="1648460938440">
 <node TEXT="analysis" ID="ID_274482809" CREATED="1642760630547" MODIFIED="1658388573006">
 <icon BUILTIN="xmag"/>
 <node TEXT="requirements" ID="ID_1292934316" CREATED="1642612561515" MODIFIED="1648460990845">
@@ -428,9 +428,9 @@
 <node TEXT="&quot;account detail&quot; key-values" ID="ID_1324644153" CREATED="1648711558932" MODIFIED="1648713442293"/>
 </node>
 </node>
-<node TEXT="" FOLDED="true" ID="ID_967209800" CREATED="1648718870652" MODIFIED="1648718877076">
+<node TEXT="" ID="ID_967209800" CREATED="1648718870652" MODIFIED="1648718877076">
 <icon BUILTIN="button_cancel"/>
-<node TEXT="HyperLedger Fabric" FOLDED="true" ID="ID_1871506046" CREATED="1648471356817" MODIFIED="1648471364313" LINK="https://hyperledger-fabric.readthedocs.io/en/release-2.2/">
+<node TEXT="HyperLedger Fabric" ID="ID_1871506046" CREATED="1648471356817" MODIFIED="1648471364313" LINK="https://hyperledger-fabric.readthedocs.io/en/release-2.2/">
 <node TEXT="Linux Foundation" ID="ID_204994940" CREATED="1648544155316" MODIFIED="1648544165002">
 <icon BUILTIN="positive"/>
 </node>
@@ -444,7 +444,7 @@
 <icon BUILTIN="negative"/>
 </node>
 </node>
-<node TEXT="Yobichain" FOLDED="true" ID="ID_164318673" CREATED="1648472196909" MODIFIED="1648472213753" LINK="https://github.com/srips1990/yobichain">
+<node TEXT="Yobichain" ID="ID_164318673" CREATED="1648472196909" MODIFIED="1648472213753" LINK="https://github.com/srips1990/yobichain">
 <node TEXT="toy blockchain on Multichain" ID="ID_1671023315" CREATED="1648486418055" MODIFIED="1648486484682"/>
 <node TEXT="not really maintained" ID="ID_489035643" CREATED="1648544183923" MODIFIED="1648544190910">
 <icon BUILTIN="negative"/>
@@ -455,7 +455,7 @@
 <icon BUILTIN="negative"/>
 </node>
 </node>
-<node TEXT="Sawtooth" FOLDED="true" ID="ID_1560917196" CREATED="1648484791296" MODIFIED="1648484797361" LINK="https://sawtooth.hyperledger.org/">
+<node TEXT="Sawtooth" ID="ID_1560917196" CREATED="1648484791296" MODIFIED="1648484797361" LINK="https://sawtooth.hyperledger.org/">
 <node TEXT="Linux Foundation" ID="ID_1948977203" CREATED="1648544202890" MODIFIED="1648544219000">
 <icon BUILTIN="positive"/>
 </node>
@@ -465,7 +465,7 @@
 <node TEXT="not needed for m-ld" ID="ID_992094409" CREATED="1648544249846" MODIFIED="1648544254124"/>
 </node>
 </node>
-<node TEXT="Tendermint Core" FOLDED="true" ID="ID_947020779" CREATED="1648486401112" MODIFIED="1648486497057" LINK="https://tendermint.com/core/">
+<node TEXT="Tendermint Core" ID="ID_947020779" CREATED="1648486401112" MODIFIED="1648486497057" LINK="https://tendermint.com/core/">
 <node TEXT="BFT engine" ID="ID_1044615057" CREATED="1648486498203" MODIFIED="1648486499296"/>
 <node TEXT="recently re-branded" ID="ID_1224548811" CREATED="1648544286160" MODIFIED="1648544293385"/>
 <node TEXT="oriented to replicating app logic" ID="ID_458933443" CREATED="1648544434846" MODIFIED="1648545486824">
@@ -475,7 +475,7 @@
 <icon BUILTIN="negative"/>
 </node>
 </node>
-<node TEXT="DIVA" FOLDED="true" ID="ID_1951484734" CREATED="1648560335740" MODIFIED="1648711606254" LINK="https://codeberg.org/diva.exchange/divachain.git">
+<node TEXT="DIVA" ID="ID_1951484734" CREATED="1648560335740" MODIFIED="1648711606254" LINK="https://codeberg.org/diva.exchange/divachain.git">
 <node TEXT="public blockchain" ID="ID_462003839" CREATED="1648560355663" MODIFIED="1648560367444"/>
 <node TEXT="uses Iroha" ID="ID_280878057" CREATED="1648711607354" MODIFIED="1648711616479" LINK="#ID_209770955"/>
 </node>
@@ -494,7 +494,7 @@
 <node TEXT="adds a block" ID="ID_632740362" CREATED="1648897917571" MODIFIED="1648897931000">
 <node TEXT="setAccountDetails" ID="ID_53230070" CREATED="1648897931569" MODIFIED="1648897937546"/>
 <node TEXT="key" ID="ID_526726603" CREATED="1648897959516" MODIFIED="1648897971072">
-<node TEXT="hash of value" FOLDED="true" ID="ID_1825052753" CREATED="1648897971441" MODIFIED="1648899404112">
+<node TEXT="hash of value" ID="ID_1825052753" CREATED="1648897971441" MODIFIED="1648899404112">
 <icon BUILTIN="button_cancel"/>
 <node TEXT="canonicalised" ID="ID_1959081278" CREATED="1648898042916" MODIFIED="1648898053182" LINK="https://www.npmjs.com/package/canonicalize"/>
 <node TEXT="principalId" ID="ID_841582410" CREATED="1648898138804" MODIFIED="1648898142024"/>
@@ -568,7 +568,7 @@
 </node>
 </node>
 </node>
-<node TEXT="agreement prover extension point" FOLDED="true" ID="ID_16065408" CREATED="1648718822501" MODIFIED="1648718830333">
+<node TEXT="agreement prover extension point" ID="ID_16065408" CREATED="1648718822501" MODIFIED="1648718830333">
 <node TEXT="ORM subject with declared class" ID="ID_1954545620" CREATED="1648720667463" MODIFIED="1648720702900">
 <icon BUILTIN="idea"/>
 </node>
