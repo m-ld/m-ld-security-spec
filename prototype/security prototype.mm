@@ -3,7 +3,7 @@
 <node TEXT="security prototype" FOLDED="false" ID="ID_940534060" CREATED="1639327705689" MODIFIED="1639327725470" STYLE="oval">
 <font SIZE="18"/>
 <hook NAME="MapStyle" background="#ffffff">
-    <properties edgeColorConfiguration="#808080ff,#ff0000ff,#0000ffff,#00ff00ff,#ff00ffff,#00ffffff,#7c0000ff,#00007cff,#007c00ff,#7c007cff,#007c7cff,#7c7c00ff" show_note_icons="true" fit_to_viewport="false"/>
+    <properties edgeColorConfiguration="#808080ff,#ff0000ff,#0000ffff,#00ff00ff,#ff00ffff,#00ffffff,#7c0000ff,#00007cff,#007c00ff,#7c007cff,#007c7cff,#7c7c00ff" show_note_icons="true" fit_to_viewport="false" show_icon_for_attributes="true"/>
 
 <map_styles>
 <stylenode LOCALIZED_TEXT="styles.root_node" STYLE="oval" UNIFORM_SHAPE="true" VGAP_QUANTITY="24.0 pt">
@@ -582,18 +582,21 @@
 <edge COLOR="#7c0000"/>
 <node TEXT="analysis" ID="ID_1740365411" CREATED="1658388471106" MODIFIED="1658388564036">
 <icon BUILTIN="xmag"/>
-<node TEXT="audit clone" ID="ID_475361358" CREATED="1658388390437" MODIFIED="1658409871559">
-<icon BUILTIN="button_cancel"/>
+<node TEXT="audit clone" ID="ID_475361358" CREATED="1658388390437" MODIFIED="1659771902585">
 <node TEXT="not required in prototype milestone" ID="ID_626888120" CREATED="1658409849958" MODIFIED="1658409904997">
 <font ITALIC="true"/>
 </node>
 <node TEXT="restart-only" ID="ID_226533495" CREATED="1658388411476" MODIFIED="1658388429885">
 <node TEXT="scheduling" ID="ID_365548487" CREATED="1658388655967" MODIFIED="1658409845953">
-<node TEXT="known quantity" ID="ID_255165975" CREATED="1658392797948" MODIFIED="1658392803406"/>
+<node TEXT="known quantity" ID="ID_255165975" CREATED="1658392797948" MODIFIED="1659259563506">
+<icon BUILTIN="closed"/>
+</node>
 </node>
 </node>
 <node TEXT="leadership election" ID="ID_1254109993" CREATED="1658388674407" MODIFIED="1658409844389">
-<node TEXT="known quantity" ID="ID_1162902374" CREATED="1658388704683" MODIFIED="1658388707666"/>
+<node TEXT="known quantity" ID="ID_1162902374" CREATED="1658388704683" MODIFIED="1659259561875">
+<icon BUILTIN="closed"/>
+</node>
 </node>
 <node TEXT="partition from audit" ID="ID_438933391" CREATED="1658388732799" MODIFIED="1658388761974">
 <node TEXT="outbox" ID="ID_976994274" CREATED="1658392805554" MODIFIED="1658409841025" LINK="https://microservices.io/patterns/data/transactional-outbox.html">
@@ -618,23 +621,131 @@
 </node>
 <node TEXT="signed entries" ID="ID_1190867199" CREATED="1658411202988" MODIFIED="1658411219831">
 <icon BUILTIN="full-2"/>
-<node TEXT="timestamp authority" ID="ID_153170568" CREATED="1658396710278" MODIFIED="1658396713947">
-<node TEXT="RFC3161" ID="ID_617600039" CREATED="1658416066394" MODIFIED="1658416070862">
-<node TEXT="No nodejs-native" ID="ID_1774827103" CREATED="1658416073358" MODIFIED="1658416117899">
+<node TEXT="audited app" ID="ID_52921066" CREATED="1659093720086" MODIFIED="1659093723372">
+<node TEXT="unit test" ID="ID_300924308" CREATED="1659259604627" MODIFIED="1659259655660">
+<icon BUILTIN="button_cancel"/>
+<node TEXT="timestamping is not core" ID="ID_1688552321" CREATED="1659259625778" MODIFIED="1659259963838">
 <icon BUILTIN="negative"/>
-<node TEXT="Use OpenSSL in tests" ID="ID_624624840" CREATED="1658416088974" MODIFIED="1658416107932" LINK="https://www.npmjs.com/package/openssl-nodejs-promise"/>
+</node>
+</node>
+<node TEXT="timeld" ID="ID_1696308690" CREATED="1658839722669" MODIFIED="1659093732034">
+<icon BUILTIN="button_ok"/>
+<node TEXT="edge branch" ID="ID_810698398" CREATED="1658839879986" MODIFIED="1658993716641">
+<node TEXT="timeld-edge.fly.dev" ID="ID_157050702" CREATED="1658840157583" MODIFIED="1658993704192"/>
+</node>
+<node TEXT="key pair for signing" ID="ID_1455994040" CREATED="1658993730770" MODIFIED="1659958102739">
+<node TEXT="by user on device" ID="ID_642497786" CREATED="1659087199775" MODIFIED="1659087220062"/>
+<node TEXT="by gateway on import" ID="ID_1403376464" CREATED="1659087220398" MODIFIED="1659087226373">
+<node TEXT="should be API caller" ID="ID_822387417" CREATED="1659603784727" MODIFIED="1659625261509">
+<icon BUILTIN="pencil"/>
+</node>
+<node TEXT="but no impersonation in m-ld write" ID="ID_1231280953" CREATED="1659606525373" MODIFIED="1659625267765"/>
+<node TEXT="(though private key is available)" ID="ID_326843618" CREATED="1659606498844" MODIFIED="1659606514432" LINK="#ID_1141568135"/>
+</node>
+<node TEXT="private key for user,&#xa;encrypted in gw domain" ID="ID_1141568135" CREATED="1659002884136" MODIFIED="1659604241676"/>
+</node>
+<node TEXT="accounts in timesheet&#xa;domains for sig verify" ID="ID_1417257984" CREATED="1659005889853" MODIFIED="1659604304953">
+<node TEXT="update the timesheet domains&#xa;at the same time as ably channels" ID="ID_1182998438" CREATED="1659012854484" MODIFIED="1659012877872"/>
+<node TEXT="i.e. on access" ID="ID_743949952" CREATED="1659085451258" MODIFIED="1659085454011"/>
+<node TEXT="only the gateway can write" ID="ID_1235247243" CREATED="1659606227835" MODIFIED="1659606482047">
+<icon BUILTIN="pencil"/>
+</node>
+<node TEXT="revocation" ID="ID_1155381542" CREATED="1659625218339" MODIFIED="1659625229522">
+<icon BUILTIN="pencil"/>
+</node>
+</node>
+<node TEXT="audit scope" ID="ID_286856656" CREATED="1659104717117" MODIFIED="1659104728144">
+<node TEXT="gateway (accounts &amp; projects)" ID="ID_103187251" CREATED="1659104728795" MODIFIED="1659104751735">
+<icon BUILTIN="button_cancel"/>
+</node>
+<node TEXT="timesheets" ID="ID_173552273" CREATED="1659104743477" MODIFIED="1659104754109">
+<icon BUILTIN="button_ok"/>
+</node>
+</node>
+<node TEXT="UI" ID="ID_482213332" CREATED="1659172108399" MODIFIED="1659172127970">
+<node TEXT="admin log" ID="ID_1446387726" CREATED="1659172128775" MODIFIED="1659172160098"/>
+<node TEXT="query" ID="ID_1203910595" CREATED="1659172176306" MODIFIED="1659173592894">
+<node TEXT="start datetime" ID="ID_890709511" CREATED="1659173577502" MODIFIED="1659173585998"/>
+<node TEXT="read security" ID="ID_1301887566" CREATED="1659771964948" MODIFIED="1659771977359"/>
+</node>
+</node>
+</node>
+</node>
+<node TEXT="audit system" ID="ID_833295277" CREATED="1659085986816" MODIFIED="1659085990879">
+<node TEXT="Logz.io" ID="ID_244270020" CREATED="1659093521882" MODIFIED="1659093702681">
+<icon BUILTIN="button_ok"/>
+<node TEXT="runnable locally (ELK)" ID="ID_1467853183" CREATED="1659093532098" MODIFIED="1659695038393"/>
+<node TEXT="online service" ID="ID_40789939" CREATED="1659261760753" MODIFIED="1659261765208">
+<icon BUILTIN="positive"/>
+<node TEXT="already have account" ID="ID_1017543521" CREATED="1659261768043" MODIFIED="1659261783368"/>
+</node>
+<node TEXT="simple logging API" ID="ID_301704334" CREATED="1659093579227" MODIFIED="1659094137726">
+<icon BUILTIN="positive"/>
+</node>
+<node TEXT="query API" ID="ID_1193847800" CREATED="1659094138410" MODIFIED="1659258816815">
+<node TEXT="not available in community plan" ID="ID_210667173" CREATED="1659805163250" MODIFIED="1659805173764"/>
+</node>
+<node TEXT="auto retry" ID="ID_1744797183" CREATED="1659258817365" MODIFIED="1659258827154">
+<node TEXT="no persistent outbox" ID="ID_555208204" CREATED="1659258829178" MODIFIED="1659771457412">
+<icon BUILTIN="negative"/>
+</node>
+<node TEXT="known quantity" ID="ID_482406853" CREATED="1659259160763" MODIFIED="1659259569863">
+<icon BUILTIN="closed"/>
+</node>
+</node>
+</node>
+<node TEXT="Iroha" ID="ID_723830516" CREATED="1659093525528" MODIFIED="1659606415318">
+<icon BUILTIN="button_cancel"/>
+<node TEXT="runnable locally (Docker)" ID="ID_145420181" CREATED="1659093550572" MODIFIED="1659695041340"/>
+<node TEXT="complex API" ID="ID_909585718" CREATED="1659093564016" MODIFIED="1659093574592">
+<icon BUILTIN="negative"/>
+</node>
+<node TEXT="no online service" ID="ID_574070790" CREATED="1659261750628" MODIFIED="1659261755657">
+<icon BUILTIN="negative"/>
+</node>
+</node>
+</node>
+<node TEXT="trusted timestamp" ID="ID_153170568" CREATED="1658396710278" MODIFIED="1659697289345" LINK="https://en.wikipedia.org/wiki/Trusted_timestamping">
+<node TEXT="RFC3161" ID="ID_617600039" CREATED="1658416066394" MODIFIED="1659770542389">
+<icon BUILTIN="button_cancel"/>
+<node TEXT="No nodejs-native" ID="ID_1774827103" CREATED="1658416073358" MODIFIED="1659697603867">
+<node TEXT="Use OpenSSL" ID="ID_624624840" CREATED="1658416088974" MODIFIED="1658839697548" LINK="https://www.digistamp.com/technical/software-alternatives/using-openssl-to-request-timestamps"/>
+<node TEXT="npm library" ID="ID_1145335891" CREATED="1658416088974" MODIFIED="1658838513529" LINK="https://www.npmjs.com/package/openssl-nodejs-promise"/>
 </node>
 <node TEXT="online authorities" ID="ID_1029476410" CREATED="1658397924479" MODIFIED="1658415900930" LINK="https://gist.github.com/Manouchehri/fd754e402d98430243455713efada710?permalink_comment_id=3810141#gistcomment-3810141">
 <node TEXT="live use no good for CI" ID="ID_1040272817" CREATED="1658411260378" MODIFIED="1658416122365">
 <icon BUILTIN="negative"/>
 </node>
-<node TEXT="use fixed responses in tests" ID="ID_1190082698" CREATED="1658415905936" MODIFIED="1658415928189"/>
+<node TEXT="use fixed responses in tests" ID="ID_1190082698" CREATED="1658415905936" MODIFIED="1659085962199">
+<icon BUILTIN="button_ok"/>
+</node>
+</node>
+<node TEXT="known quantity" ID="ID_1992167059" CREATED="1659771364377" MODIFIED="1659771378688">
+<icon BUILTIN="closed"/>
 </node>
 </node>
 <node TEXT="Trusted time" ID="ID_1971167872" CREATED="1658413730317" MODIFIED="1658415944819" LINK="https://blog.cyborch.com/trusted-time/">
 <icon BUILTIN="button_cancel"/>
 <node TEXT="easily mockable" ID="ID_501426620" CREATED="1658413739531" MODIFIED="1658413742435"/>
-<node TEXT="not adopted" ID="ID_1530959031" CREATED="1658413750072" MODIFIED="1658413753201"/>
+<node TEXT="not adopted" ID="ID_1530959031" CREATED="1658413750072" MODIFIED="1659697585529">
+<icon BUILTIN="negative"/>
+</node>
+</node>
+<node TEXT="Linked Timestamp" ID="ID_339126003" CREATED="1659697291954" MODIFIED="1659697478986">
+<icon BUILTIN="button_cancel"/>
+<node TEXT="no need for PKI" ID="ID_525487032" CREATED="1659697483824" MODIFIED="1659697492545"/>
+<node TEXT="no implementations" ID="ID_85922359" CREATED="1659697492903" MODIFIED="1659697501825">
+<icon BUILTIN="negative"/>
+</node>
+</node>
+<node TEXT="Blockchain" ID="ID_1423398954" CREATED="1659697503760" MODIFIED="1659697512558">
+<icon BUILTIN="button_cancel"/>
+<node TEXT="no need for cumulative hash" ID="ID_1098502799" CREATED="1659697527937" MODIFIED="1659958638627">
+<icon BUILTIN="negative"/>
+</node>
+</node>
+<node TEXT="by audit system" ID="ID_673804093" CREATED="1659770545427" MODIFIED="1659770581632" LINK="#ID_833295277">
+<icon BUILTIN="button_ok"/>
 </node>
 </node>
 </node>

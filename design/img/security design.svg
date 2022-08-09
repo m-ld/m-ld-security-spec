@@ -1301,7 +1301,7 @@
         /><stop stop-color="rgb(251,189,10)" offset="100%"
       /></linearGradient
       ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath1"
-      ><path d="M0 0 L5508 0 L5508 8325 L0 8325 L0 0 Z"
+      ><path d="M0 0 L5616 0 L5616 8475 L0 8475 L0 0 Z"
       /></clipPath
       ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath2"
       ><path d="M0 0 L0 5747 L3092 5747 L3092 0 Z"
@@ -6872,23 +6872,23 @@
         /><glyph unicode="y" horiz-adv-x="58.0" d="M9.228515625 -19.287109375 L21.38671875 0 L1.513671875 53.61328125 L17.041015625 53.61328125 L30.322265625 17.7734375 L46.09375 53.61328125 L57.080078125 53.61328125 L23.974609375 -19.287109375 Z"
       /></font
     ></defs
-    ><g font-size="14px" transform="translate(-1175,-1289)" fill="white" text-rendering="geometricPrecision" font-family="'Lucida Grande'" shape-rendering="crispEdges" stroke="white"
-    ><rect x="0" width="5508" height="8325" y="0" clip-path="url(#clipPath1)" stroke="none"
+    ><g font-size="14px" transform="translate(-1229,-1364)" fill="white" text-rendering="geometricPrecision" font-family="'Lucida Grande'" shape-rendering="crispEdges" stroke="white"
+    ><rect x="0" width="5616" height="8475" y="0" clip-path="url(#clipPath1)" stroke="none"
     /></g
-    ><g stroke-linecap="butt" font-size="14px" transform="translate(-1175,-1289)" fill-opacity="0.784313738346" fill="rgb(0,0,0)" text-rendering="geometricPrecision" font-family="'Lucida Grande'" stroke-linejoin="round" stroke="rgb(0,0,0)" stroke-width="2" stroke-opacity="0.784313738346" stroke-miterlimit="1"
-    ><path fill="none" d="M1444 4064 C1245 4064 1062 4144 1261 4144" clip-path="url(#clipPath1)"
-      /><polygon points=" 1261 4144 1251 4149 1251 4139 1261 4144" clip-path="url(#clipPath1)" stroke="none"
-      /><polygon fill="none" points=" 1261 4144 1251 4149 1251 4139 1261 4144" clip-path="url(#clipPath1)"
+    ><g stroke-linecap="butt" font-size="14px" transform="translate(-1229,-1364)" fill-opacity="0.784313738346" fill="rgb(0,0,0)" text-rendering="geometricPrecision" font-family="'Lucida Grande'" stroke-linejoin="round" stroke="rgb(0,0,0)" stroke-width="2" stroke-opacity="0.784313738346" stroke-miterlimit="1"
+    ><path fill="none" d="M1498 4139 C1299 4139 1116 4219 1315 4219" clip-path="url(#clipPath1)"
+      /><polygon points=" 1315 4219 1305 4224 1305 4214 1315 4219" clip-path="url(#clipPath1)" stroke="none"
+      /><polygon fill="none" points=" 1315 4219 1305 4224 1305 4214 1315 4219" clip-path="url(#clipPath1)"
     /></g
-    ><g stroke-linecap="butt" font-size="14px" transform="translate(-1175,-1289)" fill-opacity="0.784313738346" fill="rgb(0,0,0)" text-rendering="geometricPrecision" font-family="'Lucida Grande'" stroke-linejoin="round" stroke="rgb(0,0,0)" stroke-width="2" stroke-opacity="0.784313738346" stroke-miterlimit="1"
-    ><path fill="none" d="M4124 4307 C4164 4307 4167 4337 4127 4337" clip-path="url(#clipPath1)"
-      /><polygon points=" 4127 4337 4137 4332 4137 4342 4127 4337" clip-path="url(#clipPath1)" stroke="none"
-      /><polygon fill="none" points=" 4127 4337 4137 4332 4137 4342 4127 4337" clip-path="url(#clipPath1)"
+    ><g stroke-linecap="butt" font-size="14px" transform="translate(-1229,-1364)" fill-opacity="0.784313738346" fill="rgb(0,0,0)" text-rendering="geometricPrecision" font-family="'Lucida Grande'" stroke-linejoin="round" stroke="rgb(0,0,0)" stroke-width="2" stroke-opacity="0.784313738346" stroke-miterlimit="1"
+    ><path fill="none" d="M4178 4382 C4218 4382 4221 4412 4181 4412" clip-path="url(#clipPath1)"
+      /><polygon points=" 4181 4412 4191 4407 4191 4417 4181 4412" clip-path="url(#clipPath1)" stroke="none"
+      /><polygon fill="none" points=" 4181 4412 4191 4407 4191 4417 4181 4412" clip-path="url(#clipPath1)"
     /></g
-    ><g stroke-linecap="butt" font-size="14px" transform="translate(-1175,-1289)" fill-opacity="0.784313738346" fill="rgb(0,0,0)" text-rendering="geometricPrecision" font-family="'Lucida Grande'" stroke-linejoin="round" stroke="rgb(0,0,0)" stroke-width="2" stroke-opacity="0.784313738346" stroke-miterlimit="1"
-    ><path fill="none" d="M4250 4335 C4290 4335 4249 4363 4209 4363" clip-path="url(#clipPath1)"
-      /><polygon points=" 4209 4363 4219 4358 4219 4368 4209 4363" clip-path="url(#clipPath1)" stroke="none"
-      /><polygon fill="none" points=" 4209 4363 4219 4358 4219 4368 4209 4363" clip-path="url(#clipPath1)"
+    ><g stroke-linecap="butt" font-size="14px" transform="translate(-1229,-1364)" fill-opacity="0.784313738346" fill="rgb(0,0,0)" text-rendering="geometricPrecision" font-family="'Lucida Grande'" stroke-linejoin="round" stroke="rgb(0,0,0)" stroke-width="2" stroke-opacity="0.784313738346" stroke-miterlimit="1"
+    ><path fill="none" d="M4304 4410 C4344 4410 4303 4438 4263 4438" clip-path="url(#clipPath1)"
+      /><polygon points=" 4263 4438 4273 4433 4273 4443 4263 4438" clip-path="url(#clipPath1)" stroke="none"
+      /><polygon fill="none" points=" 4263 4438 4273 4433 4273 4443 4263 4438" clip-path="url(#clipPath1)"
     /></g
     ><g fill="blue" text-rendering="geometricPrecision" font-size="14px" font-family="'Lucida Grande'" transform="translate(33,0)" stroke="blue"
     ><path fill="none" d="M1017 2907 C1005 2907 939 2536 919 2536" clip-path="url(#clipPath2)"
