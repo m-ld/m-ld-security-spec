@@ -1,14 +1,14 @@
-<!--suppress HtmlDeprecatedAttribute -->
 <pre></pre>
+<!--suppress HtmlDeprecatedAttribute -->
 <p align="center">
   <a href="https://m-ld.org/">
-    <img alt="m-ld" src="https://m-ld.org/m-ld.svg" width="300em" />
-  </a>
-</p>
-<pre></pre>
-<p align="center">
-  <a href="https://nlnet.nl/project/m-ld/">
-    <img alt="m-ld" src="https://m-ld.org/media/logo_nlnet.svg" />
+    <picture>
+      <!--suppress HtmlUnknownTarget -->
+      <source media="(prefers-color-scheme: light)" srcset="https://m-ld.org/m-ld.svg"/>
+      <!--suppress HtmlUnknownTarget -->
+      <source media="(prefers-color-scheme: dark)" srcset="https://m-ld.org/m-ld.inverse.svg"/>
+      <img alt="m-ld" src="https://m-ld.org/m-ld.svg" width="300em" />
+    </picture>
   </a>
 </p>
 <pre></pre>
