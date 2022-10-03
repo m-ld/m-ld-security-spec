@@ -12,6 +12,12 @@
   </a>
 </p>
 <pre></pre>
+<p align="center">
+  <a href="https://nlnet.nl/project/m-ld/">
+    <img alt="m-ld" src="https://m-ld.org/media/logo_nlnet.svg" />
+  </a>
+</p>
+<pre></pre>
 
 # Securing Shared Decentralised Live Information with **m-ld**
 
