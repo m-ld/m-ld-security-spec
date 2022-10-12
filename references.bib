@@ -1,4 +1,12 @@
 
+@article{boerProofTheoryAsynchronously2001,
+  title = {A {{Proof Theory}} of {{Asynchronously Communicating Sequential Processes}}},
+  author = {Boer, Es and Francez, Nissim and Hutst, Van and Stomp, Fa},
+  year = {2001},
+  month = sep,
+  abstract = {We present compositional Hoare logics for distributed systems in which communication is asynchronous via FIFO channels. The logics are proved sound and relative complete.}
+}
+
 @book{brazhukSecurityPatternsBased2020,
   title = {Security Patterns Based Approach to Automatically Select Mitigations in Ontology-Driven Threat Modelling},
   author = {Brazhuk, Andrei},
@@ -177,6 +185,21 @@
   keywords = {ACT,acute cloud types,Data structures,eventual consistency,fault-tolerance,mixed consistency,Protocols,Reactive power,Scalability,Semantics,Servers,Synchronization}
 }
 
+@article{lamportTemporalLogicActions1994,
+  title = {The Temporal Logic of Actions},
+  author = {Lamport, Leslie},
+  year = {1994},
+  month = may,
+  journal = {ACM Transactions on Programming Languages and Systems},
+  volume = {16},
+  number = {3},
+  pages = {872--923},
+  issn = {0164-0925},
+  doi = {10.1145/177492.177726},
+  abstract = {The temporal logic of actions (TLA) is a logic for specifying and reasoning about concurrent systems. Systems and their properties are represented in the same logic, so the assertion that a system meets its specification and the assertion that one system implements another are both expressed by logical implication. TLA is very simple; its syntax and complete formal semantics are summarized in about a page. Yet, TLA is not just a logician's toy; it is extremely powerful, both in principle and in practice. This report introduces TLA and describes how it is used to specify and verify concurrent algorithms. The use of TLA to specify and reason about open systems will be described elsewhere.},
+  keywords = {concurrent programming,liveness properties,safety properties}
+}
+
 @article{Ma2020Writing,
   title = {Writing in Sign: {{Code}} as the next Contract Language? \ding{45}️ ⏭ 💻},
   author = {Ma, Megan},
@@ -255,6 +278,18 @@
   abstract = {Currently Information and Communication Technologies (ICT) support most of the industrial manufacturing processes. The IT revolution has brought an important transformation in organizations with high impacts, which are comparable to the mechanization and electricity brought in the first and second industrial revolution. This evolvement has promoted the emergence of cloud-based systems, the Internet of Things (IoT), Big Data, Industry 4.0, BYOD (Bring Your Own Device) and CYOD (Choose Your Own Device) trends. However, new technological solutions always carry security vulnerabilities, which most of time reveal unexpected risks. In fact, with increasing reliance on technology to gain competitive advantage, security issues have been one of the most critical and challenging requirements for conducting successful business. In this paper, it is highlighted some reflections regarding the challenges of Industry 4.0 emphasizing the security issues, towards raising awareness for security good practices within Industry 4.0.},
   langid = {english},
   keywords = {Communication Technologies (ICT),Industry 4.0,Information,Security Challenges,Security Incidents}
+}
+
+@misc{presslerTLAPracticeTheoryPart2017,
+  title = {{{TLA}}+ in {{Practice}} and {{Theory}}{$<$}br/{$>$}{{Part}} 3: {{The}} ({{Temporal}}) {{Logic}} of {{Actions}}},
+  shorttitle = {{{TLA}}+ in {{Practice}} and {{Theory Part}} 3},
+  author = {Pressler, Ron},
+  year = {2017},
+  month = jun,
+  journal = {Ron Pressler},
+  url = {https://pron.github.io/posts/tlaplus_part3},
+  urldate = {2022-10-04},
+  abstract = {TLA, the Temporal Logic of Actions is the core of TLA+. It is a temporal logic that minimizes the use of temporal reasoning in favor of more ordinary mathematics. It is a general mathematical framework for describing and reasoning about algorithms and systems.}
 }
 
 @misc{ProofMarkSystemTechnical2007,
@@ -384,6 +419,13 @@
   langid = {english}
 }
 
+@misc{wardScalabilityMonitoringDebugging,
+  title = {On the {{Scalability}} of {{Monitoring}} and {{Debugging Distributed Computations}}: {{Vector-Clock Size}}},
+  shorttitle = {On the {{Scalability}} of {{Monitoring}} and {{Debugging Distributed Computations}}},
+  author = {Ward, Paul A. S.},
+  abstract = {The vector-clock size necessary to characterize causality in an arbitrary distributed computation is equal to the number of processes in that computation. However, in practice the vector-clock size necessary may be much smaller. The vector-clock size is not strictly bounded by the number of processes, but rather by the dimension of the partial order induced by the computation. While the dimension theoretically can be as large as the number of processes, in practice we have found it to be much smaller. In this paper we quantify exactly how small the dimension, and hence the vector-clock size required, is over a range of typical distributed computations. We have found that typical distributed computations, with as many as 300 processes, have dimension less than 10. In order to achieve this quantification we developed several novel theorems and algorithms which we also describe.}
+}
+
 @article{yaacoubRoboticsCyberSecurity2021,
   title = {Robotics Cyber Security: Vulnerabilities, Attacks, Countermeasures, and Recommendations},
   shorttitle = {Robotics Cyber Security},
@@ -395,6 +437,23 @@
   doi = {10.1007/s10207-021-00545-8},
   abstract = {The recent digital revolution led robots to become integrated more than ever into different domains such as agricultural, medical, industrial, military, police (law enforcement), and logistics. Robots are devoted to serve, facilitate, and enhance the human life. However, many incidents have been occurring, leading to serious injuries and devastating impacts such as the unnecessary loss of human lives. Unintended accidents will always take place, but the ones caused by malicious attacks represent a very challenging issue. This includes maliciously hijacking and controlling robots and causing serious economic and financial losses. This paper reviews the main security vulnerabilities, threats, risks, and their impacts, and the main security attacks within the robotics domain. In this context, different approaches and recommendations are presented in order to enhance and improve the security level of robotic systems such as multi-factor device/user authentication schemes, in addition to multi-factor cryptographic algorithms. We also review the recently presented security solutions for robotic systems.},
   langid = {english}
+}
+
+@misc{zhangMETModelCheckingDriven2022,
+  title = {{{MET}}: {{Model Checking-Driven Explorative Testing}} of {{CRDT Designs}} and {{Implementations}}},
+  shorttitle = {{{MET}}},
+  author = {Zhang, Yuqi and Huang, Yu and Wei, Hengfeng and Ma, Xiaoxing},
+  year = {2022},
+  month = apr,
+  number = {arXiv:2204.14129},
+  eprint = {2204.14129},
+  eprinttype = {arxiv},
+  primaryclass = {cs},
+  publisher = {{arXiv}},
+  doi = {10.48550/arXiv.2204.14129},
+  abstract = {Internet-scale distributed systems often replicate data at multiple geographic locations to provide low latency and high availability. The Conflict-free Replicated Data Type (CRDT) is a framework that provides a principled approach to maintaining eventual consistency among data replicas. CRDTs have been notoriously difficult to design and implement correctly. Subtle deep bugs lie in the complex and tedious handling of all possible cases of conflicting data updates. We argue that the CRDT design should be formally specified and model-checked to uncover deep bugs. The implementation further needs to be systematically tested. On the one hand, the testing needs to inherit the exhaustive nature of the model checking and ensures the coverage of testing. On the other hand, the testing is expected to find coding errors which cannot be detected by design level verification. Towards the challenges above, we propose the Model Checking-driven Explorative Testing (MET) framework. At the design level, MET uses TLA+ to specify and model check CRDT designs. At the implementation level, MET conducts model checking-driven explorative testing, in the sense that the test cases are automatically generated from the model checking traces. The system execution is controlled to proceed deterministically, following the model checking trace. The explorative testing systematically controls and permutes all nondeterministic message reorderings. We apply MET in our practical development of CRDTs. The bugs in both designs and implementations of CRDTs are found. As for bugs which can be found by traditional testing techniques, MET greatly reduces the cost of fixing the bugs. Moreover, MET can find subtle deep bugs which cannot be found by existing techniques at a reasonable cost. We further discuss how MET provides us with sufficient confidence in the correctness of our CRDT designs and implementations.},
+  archiveprefix = {arXiv},
+  keywords = {Computer Science - Distributed; Parallel; and Cluster Computing,Computer Science - Software Engineering}
 }
 
 @misc{zimmermannWhyWrotePGP1999,

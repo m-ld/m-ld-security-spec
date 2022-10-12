@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="683px" preserveAspectRatio="none" style="width:671px;height:683px;background:#FFFFFF;" version="1.1" viewBox="0 0 671 683" width="671px" zoomAndPan="magnify"><defs/><g><!--MD5=[edce2951918c75c764a5e24b25f0bedf]
+entity Clone--><g id="elem_Clone"><rect fill="#FFFFE0" height="85.9531" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="133" x="158.96" y="7"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="111" x="168.96" y="30.5352">Clone(this) = let</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="105" x="176.96" y="47.0234">State(data) = ...</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="42" x="168.96" y="63.5117">within</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="86" x="176.96" y="80">State(empty)</text></g><!--MD5=[6e9599dab6efd62b849a7cebfee5e64b]
+entity Clone1--><g id="elem_Clone1"><rect fill="#FFFFE0" height="36.4883" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="79" x="326.96" y="32"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="59" x="336.96" y="55.5352">Clone(1)</text></g><!--MD5=[afe972fccefa9c8f3624516cdb0fbc04]
+entity Clone2--><g id="elem_Clone2"><rect fill="#FFFFE0" height="36.4883" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="79" x="75.96" y="302"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="59" x="85.96" y="325.5352">Clone(2)</text></g><!--MD5=[ccff0ff22642779be45fa2061a2aacb2]
+entity Clone3--><g id="elem_Clone3"><rect fill="#FFFFE0" height="36.4883" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="79" x="293.96" y="528"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="59" x="303.96" y="551.5352">Clone(3)</text></g><!--MD5=[220db3a9ee9191bf176706c48e59b48c]
+entity RemoteTransmit(1,2)--><g id="elem_RemoteTransmit(1,2)"><rect fill="#F1F1F1" height="36.4883" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="165" x="71.96" y="170"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="145" x="81.96" y="193.5352">RemoteTransmit(1,2)</text></g><!--MD5=[00df1113b3ab548b586b592bb34afa1a]
+entity RemoteTransmit(1,3)--><g id="elem_RemoteTransmit(1,3)"><rect fill="#F1F1F1" height="36.4883" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="165" x="393.96" y="236"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="145" x="403.96" y="259.5352">RemoteTransmit(1,3)</text></g><!--MD5=[c282547b1e4adc1e949fa9663191ce9f]
+entity RemoteTransmit(2,1)--><g id="elem_RemoteTransmit(2,1)"><rect fill="#F1F1F1" height="36.4883" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="165" x="229.96" y="415"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="145" x="239.96" y="438.5352">RemoteTransmit(2,1)</text></g><!--MD5=[29afd54e045b9d8cd68e51b75920e4f6]
+entity RemoteTransmit(2,3)--><g id="elem_RemoteTransmit(2,3)"><rect fill="#F1F1F1" height="36.4883" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="165" x="29.96" y="415"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="145" x="39.96" y="438.5352">RemoteTransmit(2,3)</text></g><!--MD5=[de277dd9caac21d309afc603506e082e]
+entity RemoteTransmit(3,1)--><g id="elem_RemoteTransmit(3,1)"><rect fill="#F1F1F1" height="36.4883" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="165" x="435.96" y="641"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="145" x="445.96" y="664.5352">RemoteTransmit(3,1)</text></g><!--MD5=[ad2955a3ef1c912f11d39524f1d9ac10]
+entity RemoteTransmit(3,2)--><g id="elem_RemoteTransmit(3,2)"><rect fill="#F1F1F1" height="36.4883" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="165" x="80.96" y="641"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="145" x="90.96" y="664.5352">RemoteTransmit(3,2)</text></g><!--MD5=[9cd00cc67ec19883510d6e312ec8bb43]
+link Clone1 to RemoteTransmit(1,2)--><g id="link_Clone1_RemoteTransmit(1,2)"><path d="M346.7,68.13 C336.2,76.55 322.74,86.3 309.46,93 C269.18,113.34 250.52,98.75 212.46,123 C195.04,134.1 179.57,151.78 169,165.75 " fill="none" id="Clone1-to-RemoteTransmit(1,2)" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="165.88,169.96,174.4607,165.1257,168.864,165.948,168.0416,160.3513,165.88,169.96" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="66" x="213.46" y="136.5684">send.1.2...</text></g><!--MD5=[c3ce4e083fc602f02e0e0f253d2bb80e]
+link Clone1 to RemoteTransmit(1,3)--><g id="link_Clone1_RemoteTransmit(1,3)"><path d="M375.84,68.22 C395.81,104.9 442.5,190.65 464.54,231.12 " fill="none" id="Clone1-to-RemoteTransmit(1,3)" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="467.1,235.82,466.2885,226.0046,464.6997,231.4338,459.2706,229.8451,467.1,235.82" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="66" x="415.46" y="136.5684">send.1.3...</text></g><!--MD5=[a26da220bff7d9f6cee4505ed437a43b]
+link Clone2 to RemoteTransmit(2,1)--><g id="link_Clone2_RemoteTransmit(2,1)"><path d="M139.17,338.03 C158.45,351.54 186.59,370.49 212.46,385 C230.2,394.95 250.4,404.72 267.98,412.76 " fill="none" id="Clone2-to-RemoteTransmit(2,1)" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="272.86,414.97,266.3219,407.6043,268.3082,412.901,263.0115,414.8872,272.86,414.97" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="66" x="213.46" y="381.5684">send.2.1...</text></g><!--MD5=[f1283fe7bccb1f66a24ce7da7fb53097]
+link Clone2 to RemoteTransmit(2,3)--><g id="link_Clone2_RemoteTransmit(2,3)"><path d="M110.42,338.24 C108.1,347.06 105.61,358.01 104.46,368 C102.85,381.92 104.73,397.52 107.06,409.84 " fill="none" id="Clone2-to-RemoteTransmit(2,3)" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="108.09,414.9,110.2365,405.2879,107.1039,409.9982,102.3936,406.8656,108.09,414.9" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="66" x="105.46" y="381.5684">send.2.3...</text></g><!--MD5=[dcf44d40c4cd314abd80c96f4d1ba151]
+link Clone3 to RemoteTransmit(3,1)--><g id="link_Clone3_RemoteTransmit(3,1)"><path d="M361.96,564.1 C395.23,584.06 450.17,617.03 485.32,638.11 " fill="none" id="Clone3-to-RemoteTransmit(3,1)" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="489.93,640.88,484.2705,632.8196,485.6425,638.3075,480.1546,639.6795,489.93,640.88" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="66" x="438.46" y="607.5684">send.3.1...</text></g><!--MD5=[6b83b88d08e9665f1f1da521b09b03de]
+link Clone3 to RemoteTransmit(3,2)--><g id="link_Clone3_RemoteTransmit(3,2)"><path d="M307.27,564.1 C276.7,584.06 226.21,617.03 193.92,638.11 " fill="none" id="Clone3-to-RemoteTransmit(3,2)" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="189.68,640.88,199.4039,639.3161,193.8686,638.1495,195.0351,632.6143,189.68,640.88" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="66" x="260.46" y="607.5684">send.3.2...</text></g><!--MD5=[c54491b47e4ad80e80b3bce389e84537]
+link RemoteTransmit(1,2) to Clone2--><g id="link_RemoteTransmit(1,2)_Clone2"><path d="M149.28,206.26 C142.29,229.57 129.82,271.14 122.13,296.76 " fill="none" id="RemoteTransmit(1,2)-to-Clone2" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="120.66,301.67,127.0877,294.2077,122.1033,296.8828,119.4282,291.8985,120.66,301.67" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="80" x="141.46" y="259.0684">receive.1.2...</text></g><!--MD5=[a1ff3163100539def204aa61b84e41d2]
+link RemoteTransmit(1,3) to Clone3--><g id="link_RemoteTransmit(1,3)_Clone3"><path d="M473.18,272.15 C465.95,307.36 446.54,389.67 412.46,451 C397.05,478.72 372.88,505.96 355.33,523.92 " fill="none" id="RemoteTransmit(1,3)-to-Clone3" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="351.47,527.84,360.6408,524.2488,354.984,524.2831,354.9498,518.6264,351.47,527.84" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="80" x="449.46" y="381.5684">receive.1.3...</text></g><!--MD5=[e44d8c9df9dcd2d7dc1d2c983a293809]
+link RemoteTransmit(2,1) to Clone1--><g id="link_RemoteTransmit(2,1)_Clone1"><path d="M307.72,414.81 C298.96,380.52 282.2,301.32 294.46,236 C306.04,174.34 337.56,106.82 354.8,72.96 " fill="none" id="RemoteTransmit(2,1)-to-Clone1" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="357.24,68.21,349.5658,74.3831,354.9526,72.6561,356.6796,78.0429,357.24,68.21" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="80" x="295.46" y="259.0684">receive.2.1...</text></g><!--MD5=[0e7a43ea6e50584ff41bf3da9b61f72a]
+link RemoteTransmit(2,3) to Clone3--><g id="link_RemoteTransmit(2,3)_Clone3"><path d="M146.51,451.1 C186.58,471.23 252.95,504.57 294.89,525.63 " fill="none" id="RemoteTransmit(2,3)-to-Clone3" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="299.37,527.88,293.1187,520.2694,294.9007,525.6382,289.5319,527.4202,299.37,527.88" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="80" x="237.46" y="494.5684">receive.2.3...</text></g><!--MD5=[1eb5556894e3858735b027084445abe1]
+link RemoteTransmit(3,1) to Clone1--><g id="link_RemoteTransmit(3,1)_Clone1"><path d="M535.95,640.92 C554.9,620.5 582.46,584.37 582.46,547 C582.46,187 582.46,187 582.46,187 C582.46,106.83 474.58,72.05 411.3,58.55 " fill="none" id="RemoteTransmit(3,1)-to-Clone1" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="406.08,57.46,414.0663,63.2236,410.9734,58.4872,415.7098,55.3942,406.08,57.46" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="80" x="583.46" y="381.5684">receive.3.1...</text></g><!--MD5=[0e8711c3b40991b49134841fbcd290c1]
+link RemoteTransmit(3,2) to Clone2--><g id="link_RemoteTransmit(3,2)_Clone2"><path d="M144.83,640.88 C110.63,608.04 38.93,532.2 12.46,451 C7.5,435.79 6,429.64 12.46,415 C26.44,383.31 56.97,357.67 81.19,341.23 " fill="none" id="RemoteTransmit(3,2)-to-Clone2" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="85.63,338.27,75.9227,339.9341,81.4697,341.0435,80.3603,346.5905,85.63,338.27" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="80" x="34.46" y="494.5684">receive.3.2...</text></g><!--MD5=[fe0a720eacbf0df9ab087515b7cc4885]
+@startuml
+'https://plantuml.com/component-diagram
+skinparam componentStyle rectangle
+
+component Clone #lightyellow [
+  Clone(this) = let
+    State(data) = ...
+  within
+    State(empty)
+]
+
+component "Clone(1)" as Clone1 #lightyellow
+component "Clone(2)" as Clone2 #lightyellow
+component "Clone(3)" as Clone3 #lightyellow
+
+Clone1 - -> [RemoteTransmit(1,2)] : send.1.2...
+Clone1 - -> [RemoteTransmit(1,3)] : send.1.3...
+Clone2 - -> [RemoteTransmit(2,1)] : send.2.1...
+Clone2 - -> [RemoteTransmit(2,3)] : send.2.3...
+Clone3 - -> [RemoteTransmit(3,1)] : send.3.1...
+Clone3 - -> [RemoteTransmit(3,2)] : send.3.2...
+
+[RemoteTransmit(1,2)] - -> Clone2 : receive.1.2...
+[RemoteTransmit(1,3)] - -> Clone3 : receive.1.3...
+[RemoteTransmit(2,1)] - -> Clone1 : receive.2.1...
+[RemoteTransmit(2,3)] - -> Clone3 : receive.2.3...
+[RemoteTransmit(3,1)] - -> Clone1 : receive.3.1...
+[RemoteTransmit(3,2)] - -> Clone2 : receive.3.2...
+
+@enduml
+
+@startuml
+skinparam componentStyle rectangle
+
+component Clone #lightyellow [
+  Clone(this) = let
+    State(data) = ...
+  within
+    State(empty)
+]
+
+component "Clone(1)" as Clone1 #lightyellow
+component "Clone(2)" as Clone2 #lightyellow
+component "Clone(3)" as Clone3 #lightyellow
+
+Clone1 - -> [RemoteTransmit(1,2)] : send.1.2...
+Clone1 - -> [RemoteTransmit(1,3)] : send.1.3...
+Clone2 - -> [RemoteTransmit(2,1)] : send.2.1...
+Clone2 - -> [RemoteTransmit(2,3)] : send.2.3...
+Clone3 - -> [RemoteTransmit(3,1)] : send.3.1...
+Clone3 - -> [RemoteTransmit(3,2)] : send.3.2...
+
+[RemoteTransmit(1,2)] - -> Clone2 : receive.1.2...
+[RemoteTransmit(1,3)] - -> Clone3 : receive.1.3...
+[RemoteTransmit(2,1)] - -> Clone1 : receive.2.1...
+[RemoteTransmit(2,3)] - -> Clone3 : receive.2.3...
+[RemoteTransmit(3,1)] - -> Clone1 : receive.3.1...
+[RemoteTransmit(3,2)] - -> Clone2 : receive.3.2...
+
+@enduml
+
+PlantUML version 1.2022.8(Sun Sep 25 10:00:33 BST 2022)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: GB
+--></g></svg>
