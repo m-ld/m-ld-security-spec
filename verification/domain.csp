@@ -11,11 +11,10 @@ datatype Operator = add | subtract
 nametype Operation = Operator.{1}
 
 -- Vector clock definition
-maxTick = CN * N - 1 -- A tick for each possible message
+maxTick = CN * N -- A tick for each possible message
 nametype Tick = {0..maxTick}
 -- To pass over a channel, clock must be a tuple. Vector length = card(CID)
 nametype Clock = (Tick, Tick, Tick)
-maxTime = (maxTick, maxTick, maxTick)
 
 -- Remote channels are from.to.clock.operation
 channel send, receive : CID.CID.Clock.Operation
@@ -45,10 +44,6 @@ min(n, nn) = if nn < n then nn else n
 join((t1, t2, t3), (t1n, t2n, t3n)) =
   (max(t1, t1n), max(t2, t2n), max(t3, t3n))
 
-sumOther((_, t2, t3), 1) = t2 + t3
-sumOther((t1, _, t3), 2) = t1 + t3
-sumOther((t1, t2, _), 3) = t1 + t2
-
 --------------------------------------------------------------------------------
 -- Remotes
 RemotesEvents = {| send, receive |}
@@ -68,7 +63,7 @@ Clone(local) = let
   State(
     state, -- CRDT state
     clock, -- Local clock, has internal ticks
-    n,     -- User transaction #
+    counts,     -- User transaction # per clone
     public -- Latest public times seen
   ) = let
     lastTime(remote) = peek(public, remote)
@@ -98,34 +93,35 @@ Clone(local) = let
       t1 <- {l1..u1}, t2 <- {l2..u2}, t3 <- {next(3, t1-l1 + t2-l2)}, t3 <= maxTick
     }
   within
-    -- Only our tick matters for end of time check
-    if peek(clock, local) < maxTick then
+    if counts < (N, N, N) then
       -- Only allow N user txns
-      n < N & user.local?op -> (
+      peek(counts, local) < N & user.local?op -> (
         let
           time = tick(clock, local) -- local txn ticks our own clock
-          Publish = ||| remote : CID, remote != local @ send.local.remote.time.op -> SKIP
+          -- Do the sends sequentially in arbitrary order rather than interleave
+          -- This makes a massive difference to compilation time (partial order reduction)
+          Publish = ; remote : seq(CID), remote != local @ send.local.remote.time.op -> SKIP
         within Publish; State(
           apply(op, state),
           time,
-          n + 1,
+          tick(counts, local),
           put(public, local, time) -- local txn is always public
         )
       )
       []
       -- We can only receive a message for which we have the cause
-      [] remote : CID, remote != local, time : acceptable(remote) @ (
+      [] remote : CID, remote != local, peek(counts, remote) < N, time : acceptable(remote) @ (
         receive.remote.local.time?op -> State(
           apply(op, state),
           tick(join(clock, time), local),
-          n, -- no change to local user txns
+          tick(counts, remote),
           -- Update both remote and local public time
           put(put(public, remote, time), local, join(peek(public, local), time))
         )
       )
     else
       final.local.state -> STOP
-within State(0, GENESIS, 0, genesis(GENESIS))
+within State(0, GENESIS, GENESIS, genesis(GENESIS))
 
 assert Clone(1) :[divergence-free]
 
@@ -138,10 +134,10 @@ CrdtDomain = (Clones [| RemotesEvents |] Remotes) \ RemotesEvents
 -- One user per clone does N events, but these all operate sequentially on a
 -- single shared state variable.
 DomainSpec = let
-  Running(state, clock) =
-    if clock < (N, N, N) then
-      [] cid : CID, peek(clock, cid) < N @
-        user.cid?op -> Running(apply(op, state), tick(clock, cid))
+  Running(state, counts) =
+    if counts < (N, N, N) then
+      [] cid : CID, peek(counts, cid) < N @
+        user.cid?op -> Running(apply(op, state), tick(counts, cid))
     else
       -- Every user reports the same final state value
       ||| cid : CID @ final.cid.state -> SKIP
