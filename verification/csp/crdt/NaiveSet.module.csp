@@ -1,0 +1,16 @@
+module NaiveSet
+  Value = {1}
+exports
+  nametype Data = Set(Value)
+  data(state) = state
+  initialState = {}
+  datatype Update = Add.Value | Remove.Value
+  nametype Operation = Update
+  example = Add.1
+  possible(_) = Operation
+  -- apply :: (TID, State, Operation) -> State
+  apply(tid, state, Add.n) = union(state, {n})
+  apply(tid, state, Remove.n) = diff(state, {n})
+  -- transact :: (TID, State, Update) -> (State, Operation)
+  transact(tid, state, up) = (apply(tid, state, up), up)
+endmodule

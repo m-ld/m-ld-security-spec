@@ -1,0 +1,16 @@
+module IntegerSum
+  Delta = {1}
+exports
+  nametype Data = Int
+  data(state) = state
+  initialState = 0
+  datatype Update = Add.Delta | Subtract.Delta
+  nametype Operation = Update
+  example = Add.1
+  possible(_) = Operation
+  -- apply :: (TID, State, Operation) -> State
+  apply(tid, state, Add.n) = state + n
+  apply(tid, state, Subtract.n) = state - n
+  -- transact :: (TID, State, Update) -> (State, Operation)
+  transact(tid, state, up) = (apply(tid, state, up), up)
+endmodule

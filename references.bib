@@ -1,4 +1,3 @@
-
 @article{boerProofTheoryAsynchronously2001,
   title = {A {{Proof Theory}} of {{Asynchronously Communicating Sequential Processes}}},
   author = {Boer, Es and Francez, Nissim and Hutst, Van and Stomp, Fa},
@@ -185,6 +184,23 @@
   keywords = {ACT,acute cloud types,Data structures,eventual consistency,fault-tolerance,mixed consistency,Protocols,Reactive power,Scalability,Semantics,Servers,Synchronization}
 }
 
+@inproceedings{kwiatkowskaPossibleGuaranteedConcurrency1995,
+  title = {Possible and {{Guaranteed Concurrency}} in {{CSP}}},
+  booktitle = {Structures in {{Concurrency Theory}}},
+  author = {Kwiatkowska, Marta and Phillips, Iain},
+  editor = {Desel, J{\"o}rg},
+  year = {1995},
+  series = {Workshops in {{Computing}}},
+  pages = {220--235},
+  publisher = {{Springer}},
+  address = {{London}},
+  doi = {10.1007/978-1-4471-3078-9_15},
+  abstract = {As part of an effort to give a ``truly concurrent'' semantics to process algebra, we propose a framework of refinements of the failures model for CSP with concurrency, conflict and causality relations on traces. These relations are defined by induction over syntax of CSP processes. We study in detail two new semantics: the possible concurrency (where two traces are said to be concurrent if they may be observations of the same concurrent run) and the possible conflict (two traces are said to be in conflict if they may be observations of two different runs). The guaranteed concurrency is obtained from the possible conflict semantics. Although the expansion law is necessarily weakened to an inequality, we show that most of the CSP laws are preserved, the exception being the idempotency of choice for the possible conflict refinement. Finally, we show that our semantics is well-founded by demonstrating a strong connection with the existing event structures semantics for CSP. The latter results show that, in a certain sense, concurrency distinctions can be made at the level of syntax, without resorting to reasoning about event occurrences.},
+  isbn = {978-1-4471-3078-9},
+  langid = {english},
+  keywords = {Communicate Sequential Process,Conflict Relation,Event Structure,Process Algebra,Trace Theory}
+}
+
 @article{lamportTemporalLogicActions1994,
   title = {The Temporal Logic of Actions},
   author = {Lamport, Leslie},
@@ -309,6 +325,23 @@
   month = mar,
   url = {https://www.basware.com/Basware/files/c6/c69a3db2-8e57-460a-9631-c19572a0c9ba.pdf},
   urldate = {2021-07-02}
+}
+
+@incollection{raynalLogicalInstantaneityCausal2000,
+  title = {Logical {{Instantaneity}} and {{Causal Order}}: {{Two}} ``{{First Class}}'' {{Communication Modes}} for {{Parallel Computing}}},
+  shorttitle = {Logical {{Instantaneity}} and {{Causal Order}}},
+  booktitle = {Euro-{{Par}} 2000 {{Parallel Processing}}},
+  author = {Raynal, Michel},
+  editor = {Goos, Gerhard and Hartmanis, Juris and {van Leeuwen}, Jan and Bode, Arndt and Ludwig, Thomas and Karl, Wolfgang and Wism{\"u}ller, Roland},
+  year = {2000},
+  volume = {1900},
+  pages = {35--42},
+  publisher = {{Springer Berlin Heidelberg}},
+  address = {{Berlin, Heidelberg}},
+  doi = {10.1007/3-540-44520-X_4},
+  abstract = {This paper focuses on two communication modes, namely Logically Instantaneity (li) and Causal Order (co). These communication modes address two different levels of quality of service in message delivery. li means that it is possible to timestamp communication events with integers in such a way that (1) timestamps increase within each process and (2) the sending and the delivery events associated with each message have the same timestamp. So, there is a logical time frame in which for each message, the send event and the corresponding delivery events occur simultaneously. co means that when a process delivers a message m, its delivery occurs in a context where the receiving process knows all the causal past of m. Actually, li is a property strictly stronger than co.},
+  isbn = {978-3-540-67956-1 978-3-540-44520-3},
+  langid = {english}
 }
 
 @misc{rixhamRDFNamedGraphs2012,
@@ -464,5 +497,4 @@
   url = {http://www.philzimmermann.com/EN/essays/WhyIWrotePGP.html},
   urldate = {2021-06-22}
 }
-
 

@@ -1,0 +1,31 @@
+--------------------------------------------------------------------------------
+-- Model bounds globals
+N = 1 -- Expected transactions per user
+CN = 3 -- Clone/process/user IDs
+nametype CID = {1..CN} -- Clone ID
+nametype TID = CID.{1..N}
+
+--------------------------------------------------------------------------------
+-- Tuple for per-process data
+cidTuple(v) = (v, v, v) -- length = CN, sadly not inferable
+
+peek((t, _, _), 1) = t
+peek((_, t, _), 2) = t
+peek((_, _, t), 3) = t
+
+put((_, t2, t3), 1, v) = (v, t2, t3)
+put((t1, _, t3), 2, v) = (t1, v, t3)
+put((t1, t2, _), 3, v) = (t1, t2, v)
+
+update((t1, t2, t3), 1, f) = (f(t1), t2, t3)
+update((t1, t2, t3), 2, f) = (t1, f(t2), t3)
+update((t1, t2, t3), 3, f) = (t2, t2, f(t3))
+
+updateOthers((t1, t2, t3), 1, f) = (t1, f(t2), f(t3))
+updateOthers((t1, t2, t3), 2, f) = (f(t1), t2, f(t3))
+updateOthers((t1, t2, t3), 3, f) = (f(t1), f(t2), t3)
+
+--------------------------------------------------------------------------------
+-- Utility
+max(n, nn) = if nn > n then nn else n
+min(n, nn) = if nn < n then nn else n

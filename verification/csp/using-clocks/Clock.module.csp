@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+-- Vector clock
+module Clock
+exports
+  maxTick = CN * N -- A tick for each possible message
+  nametype Tick = {0..maxTick}
+  -- To pass over a channel, clock must be a tuple
+  nametype Clock = (Tick, Tick, Tick)
+
+  -- Genesis clock, also used for user transaction counts for bounds checking
+  GENESIS = cidTuple(0)
+
+  -- Vector clock functions
+  tick(time, cid) = update(time, cid, \ t @ t + 1)
+
+  join((t1, t2, t3), (t1n, t2n, t3n)) =
+    (max(t1, t1n), max(t2, t2n), max(t3, t3n))
+
+  after((t1, t2, t3), 1) =
+   { (t1n, t2n, t3n) | t1n <- Tick, t2n <- Tick, t3n <- Tick, t1n > t1, t2n >= t2, t3n >= t3 }
+  after((t1, t2, t3), 2) =
+   { (t1n, t2n, t3n) | t1n <- Tick, t2n <- Tick, t3n <- Tick, t1n >= t1, t2n > t2, t3n >= t3 }
+  after((t1, t2, t3), 3) =
+   { (t1n, t2n, t3n) | t1n <- Tick, t2n <- Tick, t3n <- Tick, t1n >= t1, t2n >= t2, t3n > t3 }
+endmodule

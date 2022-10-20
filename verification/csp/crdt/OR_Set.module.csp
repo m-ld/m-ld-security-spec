@@ -1,0 +1,30 @@
+module OR_Set
+  Value = {1}
+  tids(dataTids, n) = if mapMember(dataTids, n) then mapLookup(dataTids, n) else {}
+  ourTids((dataTids, _), n) = tids(dataTids, n)
+  toData(<>) = {}
+  toData(<(n, tids)>) = {n}
+  toData(valueTidsPairs) =
+    union(toData(<head(valueTidsPairs)>), toData(tail(valueTidsPairs)))
+  add(tid, (dataTids, insertTids), n) =
+    (mapUpdate(dataTids, n, union(tids(dataTids, n), {tid})), union(insertTids, {tid}))
+  remove(tid, (dataTids, insertTids), newTids, n) =
+    (if newTids == {} then mapDelete(dataTids, n) else mapUpdate(dataTids, n, newTids), insertTids)
+exports
+  nametype Data = Set(Value)
+  data((dataTids, _)) = toData(mapToList(dataTids))
+  initialState = (emptyMap, {})
+  datatype Update = Add.Value | Remove.Value
+  datatype Operation = Insert.Value | Delete.Set(TID).Value
+  example = Insert.1
+  -- Allowing no-op Deletes, with empty attached TIDs
+  possible((_, insertTids)) =
+    union({| Insert |}, {| Delete.ops | ops <- Set(insertTids) |})
+  -- apply :: (TID, State, Operation) -> State
+  apply(tid, state, Insert.n) = add(tid, state, n)
+  apply(tid, state, Delete.theirTids.n) =
+    remove(tid, state, diff(ourTids(state, n), theirTids), n)
+  -- transact :: (TID, State, Update) -> (State, Operation)
+  transact(tid, state, Add.n) = (add(tid, state, n), Insert.n)
+  transact(tid, state, Remove.n) = (remove(tid, state, {}, n), Delete.ourTids(state, n).n)
+endmodule

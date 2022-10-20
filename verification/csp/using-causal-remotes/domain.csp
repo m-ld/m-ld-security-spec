@@ -1,0 +1,78 @@
+include "../globals.csp"
+
+--------------------------------------------------------------------------------
+-- CRDT
+include "../crdt/IntegerSum.module.csp"
+include "../crdt/NaiveSet.module.csp"
+include "../crdt/OR_Set.module.csp"
+
+-- Selection of CRDT module
+instance Crdt = OR_Set
+
+-- A user operates on a clone
+channel user : CID.Crdt::Update
+-- Final state channel per-clone
+channel final : CID.Crdt::Data
+
+--------------------------------------------------------------------------------
+-- Remotes
+include "CausalRemotes.module.csp"
+
+--------------------------------------------------------------------------------
+-- CRDT domain
+Clone(local) = let
+  State(
+    state, -- CRDT state
+    counts -- User transaction # per clone
+  ) = if counts < (N, N, N) then let
+    n = peek(counts, local) + 1
+    -- Only allow N user txns
+    within n <= N & user.local?up -> (
+      let
+        (newState, op) = Crdt::transact(local.n, state, up)
+      within publish.local.n.op -> State(
+        newState,
+        put(counts, local, n)
+      )
+    )
+    []
+    -- We can be delivered any next message
+    [] remote : CID, remote != local @ ( let
+      n = peek(counts, remote) + 1
+    within
+      n <= N & deliver.local.remote.n?op : Crdt::possible(state) -> State(
+        Crdt::apply(remote.n, state, op),
+        put(counts, remote, n)
+      )
+    )
+    else
+      -- Report the final state
+      final.local.Crdt::data(state) -> SKIP
+within State(Crdt::initialState, (0, 0, 0))
+
+assert Clone(1) :[divergence-free]
+
+Clones = ||| cid : CID @ Clone(cid)
+CrdtDomain = (Clones [| RemotesEvents |] Remotes) \ RemotesEvents
+
+--------------------------------------------------------------------------------
+-- Domain Specification
+--
+-- One user per clone does N events, but these all operate sequentially on a
+-- single shared state variable.
+DomainSpec = let
+  Running(state, counts) =
+    if counts < (N, N, N) then
+      [] cid : CID @ let
+        n = peek(counts, cid) + 1
+      within n <= N & user.cid?up -> let
+        -- In our spec we ignore the operation for the update
+        (newState, _) = Crdt::transact(cid.n, state, up)
+      within Running(newState, put(counts, cid, n))
+    else
+      -- Every user reports the final state values, in arbitrary order
+      ||| cid : CID @ final.cid.Crdt::data(state) -> SKIP
+within
+  Running(Crdt::initialState, (0, 0, 0))
+
+assert DomainSpec [T= CrdtDomain

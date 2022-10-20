@@ -1,0 +1,128 @@
+include "../globals.csp"
+include "Clock.module.csp"
+
+--------------------------------------------------------------------------------
+-- CRDT
+include "../crdt/IntegerSum.module.csp"
+include "../crdt/NaiveSet.module.csp"
+include "../crdt/OR_Set.module.csp"
+
+-- Selection of CRDT module
+instance Crdt = OR_Set
+
+-- A user operates on a clone
+channel user : CID.Crdt::Update
+-- Final state channel per-clone
+channel final : CID.Crdt::Data
+
+--------------------------------------------------------------------------------
+-- Remotes
+-- Remote channels are from.to
+channel send, receive : CID.CID.Clock::Clock.Crdt::Operation
+
+RemotesEvents = {| send, receive |}
+
+-- Time increases monotonically
+RemoteTransmit(from, to, lastTime) =
+  send.from.to?time : Clock::after(lastTime, from)?op ->
+    receive.from.to!time!op -> RemoteTransmit(from, to, time)
+
+Remotes = ||| from : CID, to : CID, to != from @ RemoteTransmit(from, to, Clock::GENESIS)
+
+--------------------------------------------------------------------------------
+-- CRDT domain
+Clone(local) = let
+  State(
+    state,  -- CRDT state
+    clock,  -- Local clock, has internal ticks
+    counts, -- User transaction # per clone
+    public  -- Latest public times seen (i.e. excluding internal ticks)
+  ) = let
+    lastTime(remote) = peek(public, remote)
+    -- over the last receipt, we expect to jump one, plus once per incremented cause
+    next(remote, nc) = peek(lastTime(remote), remote) + 1 + nc
+    -- Seen local tick can be anything up to a current local tick, same as...
+    -- Third-party tick can be anything from the last cause that the remote saw
+    -- (inclusive) up to what local has seen (causal order)
+    causeRange(remote, other) = (peek(lastTime(remote), other), peek(lastTime(local), other))
+    -- (remote) -> acceptable remoteTime
+    acceptable(1) = let
+      (l2, u2) = causeRange(1, 2)
+      (l3, u3) = causeRange(1, 3)
+    within { (t1, t2, t3) |
+      t2 <- {l2..u2}, t3 <- {l3..u3}, t1 <- {next(1, t2-l2 + t3-l3)}, t1 <= Clock::maxTick
+    }
+    acceptable(2) = let
+      (l1, u1) = causeRange(2, 1)
+      (l3, u3) = causeRange(2, 3)
+    within { (t1, t2, t3) |
+      t1 <- {l1..u1}, t3 <- {l3..u3}, t2 <- {next(2, t1-l1 + t3-l3)}, t2 <= Clock::maxTick
+    }
+    acceptable(3) = let
+      (l1, u1) = causeRange(3, 1)
+      (l2, u2) = causeRange(3, 2)
+    within { (t1, t2, t3) |
+      t1 <- {l1..u1}, t2 <- {l2..u2}, t3 <- {next(3, t1-l1 + t2-l2)}, t3 <= Clock::maxTick
+    }
+  within
+    if counts < (N, N, N) then
+      let n = peek(counts, local) + 1
+      -- Only allow N user txns
+      within n <= N & user.local?up -> (
+        let
+          time = Clock::tick(clock, local) -- local txn ticks our own clock
+          (newState, op) = Crdt::transact(local.n, state, up)
+          -- Do the sends sequentially in arbitrary order rather than interleave
+          -- This prevents compilation hang (partial order reduction)
+          Publish = ; remote : seq(CID), remote != local @
+            send.local.remote.time.op -> SKIP
+        within Publish; State(
+          newState,
+          time,
+          put(counts, local, n),
+          put(public, local, time) -- local txn is always public
+        )
+      )
+      []
+      -- We can only receive a message for which we have the cause
+      [] remote : CID, remote != local, peek(counts, remote) < N @ (
+        receive.remote.local?time : acceptable(remote)?op : Crdt::possible(state) -> let
+          n = peek(counts, remote) + 1
+        within State(
+          Crdt::apply(remote.n, state, op),
+          Clock::tick(Clock::join(clock, time), local),
+          put(counts, remote, n),
+          -- Update both remote and local public time
+          put(put(public, remote, time), local, Clock::join(peek(public, local), time))
+        )
+      )
+    else
+      -- Report the final state
+      final.local.Crdt::data(state) -> SKIP
+within State(Crdt::initialState, Clock::GENESIS, Clock::GENESIS, cidTuple(Clock::GENESIS))
+
+assert Clone(1) :[divergence-free]
+
+Clones = ||| cid : CID @ Clone(cid)
+CrdtDomain = (Clones [| RemotesEvents |] Remotes) \ RemotesEvents
+
+--------------------------------------------------------------------------------
+-- Domain Specification
+--
+-- One user per clone does N events, but these all operate sequentially on a
+-- single shared state variable.
+DomainSpec = let
+  Running(state, counts) =
+    if counts < (N, N, N) then
+      [] cid : CID, peek(counts, cid) < N @ user.cid?up -> let
+        n = peek(counts, cid) + 1
+        -- In our spec we ignore the operation
+        (newState, _) = Crdt::transact(cid.n, state, up)
+      within Running(newState, put(counts, cid, n))
+    else
+      -- Every user reports the final state values, in arbitrary order
+      ||| cid : CID @ final.cid.Crdt::data(state) -> SKIP
+within
+  Running(Crdt::initialState, Clock::GENESIS)
+
+assert DomainSpec [T= CrdtDomain
