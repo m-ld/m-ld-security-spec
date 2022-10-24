@@ -17,9 +17,9 @@ exports
     (max(t1, t1n), max(t2, t2n), max(t3, t3n))
 
   after((t1, t2, t3), 1) =
-   { (t1n, t2n, t3n) | t1n <- Tick, t2n <- Tick, t3n <- Tick, t1n > t1, t2n >= t2, t3n >= t3 }
+   { (t1n, t2n, t3n) | (t1n, t2n, t3n) <- Clock, t1n > t1, t2n >= t2, t3n >= t3 }
   after((t1, t2, t3), 2) =
-   { (t1n, t2n, t3n) | t1n <- Tick, t2n <- Tick, t3n <- Tick, t1n >= t1, t2n > t2, t3n >= t3 }
+   { (t1n, t2n, t3n) | (t1n, t2n, t3n) <- Clock, t1n >= t1, t2n > t2, t3n >= t3 }
   after((t1, t2, t3), 3) =
-   { (t1n, t2n, t3n) | t1n <- Tick, t2n <- Tick, t3n <- Tick, t1n >= t1, t2n >= t2, t3n > t3 }
+   { (t1n, t2n, t3n) | (t1n, t2n, t3n) <- Clock, t1n >= t1, t2n >= t2, t3n > t3 }
 endmodule

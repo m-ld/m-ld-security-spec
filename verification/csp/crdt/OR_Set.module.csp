@@ -16,7 +16,6 @@ exports
   initialState = (emptyMap, {})
   datatype Update = Add.Value | Remove.Value
   datatype Operation = Insert.Value | Delete.Set(TID).Value
-  example = Insert.1
   -- Allowing no-op Deletes, with empty attached TIDs
   possible((_, insertTids)) =
     union({| Insert |}, {| Delete.ops | ops <- Set(insertTids) |})

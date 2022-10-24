@@ -1,12 +1,11 @@
 module IntegerSum
   Delta = {1}
 exports
-  nametype Data = Int
+  nametype Data = { -CN*N..CN*N }
   data(state) = state
   initialState = 0
   datatype Update = Add.Delta | Subtract.Delta
   nametype Operation = Update
-  example = Add.1
   possible(_) = Operation
   -- apply :: (TID, State, Operation) -> State
   apply(tid, state, Add.n) = state + n

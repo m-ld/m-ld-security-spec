@@ -1,0 +1,64 @@
+--------------------------------------------------------------------------------
+-- Domain Specification
+-- requires globals and Crdt module
+
+-- A user operates on a clone
+channel user : CID.Crdt::Update
+
+-- Data state channel per-clone – notifies after every update, including local
+channel data : CID.Crdt::Data
+
+-- App
+AppEvents(cid) = {| user.cid, data.cid |}
+
+-- A user who ignores all other users
+BlitheUser(cid) =
+  user.cid$up -> BlitheUser(cid)
+  []
+  data.cid?d -> BlitheUser(cid)
+
+-- A user who will only update based on someone else's update (seen locally)
+ReactiveUser(cid) = data.cid?d -> (
+  (user.cid$up -> data.cid?d -> ReactiveUser(cid))
+  []
+  ReactiveUser(cid)
+)
+
+-- A convergent domain allows any user input and any data state, but the final
+-- data state must be the same for all nodes
+datatype Converged = Unknown | Final.Crdt::Data
+
+ConvergentDomain = let
+  initialData = Crdt::data(Crdt::initialState)
+  DN = CN * N -- Expected number of data events per user
+  allowedData(n, Unknown) = Crdt::Data
+  allowedData(n, Final.d) = if n == DN then {d} else Crdt::Data
+  -- The first clone to reach CN*N data updates sets the expected final data
+  Running(counts, final) =
+    [] cid : CID @ let
+      n = peek(counts, cid) + 1
+    within n <= DN & [] d : allowedData(n, final) @
+      data.cid.d -> let
+        n = peek(counts, cid) + 1
+      within Running(
+        put(counts, cid, n),
+        if final == Unknown and n == CN * N then Final.d else final
+      )
+within Running(cidTuple(0), Unknown)
+
+exampleData1 = head(seq(Crdt::Data))
+exampleData2 = head(tail(seq(Crdt::Data)))
+
+assert ConvergentDomain :[has trace [T]]: <
+  data.1.exampleData1, data.1.exampleData1, data.1.exampleData1, -- final
+  data.2.exampleData2, data.2.exampleData2 -- any data allowed before final
+>
+
+assert not ConvergentDomain :[has trace [T]]: <
+  data.1.exampleData1, data.1.exampleData1, data.1.exampleData1, -- final
+  data.2.exampleData2, data.2.exampleData2, data.2.exampleData2 -- different final
+>
+
+-- Users is CID -> Proc
+ConvergentSystem(Users) =
+  ConvergentDomain [| {| data |} |] ||| cid : CID @ Users(cid)

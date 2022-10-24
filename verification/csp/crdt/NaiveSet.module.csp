@@ -6,7 +6,6 @@ exports
   initialState = {}
   datatype Update = Add.Value | Remove.Value
   nametype Operation = Update
-  example = Add.1
   possible(_) = Operation
   -- apply :: (TID, State, Operation) -> State
   apply(tid, state, Add.n) = union(state, {n})
