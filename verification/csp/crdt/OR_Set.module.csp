@@ -1,5 +1,4 @@
-module OR_Set
-  Value = {1}
+module OR_Set(Value)
   tids(dataTids, n) = if mapMember(dataTids, n) then mapLookup(dataTids, n) else {}
   ourTids((dataTids, _), n) = tids(dataTids, n)
   toData(<>) = {}

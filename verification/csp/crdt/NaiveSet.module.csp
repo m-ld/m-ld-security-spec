@@ -1,5 +1,4 @@
-module NaiveSet
-  Value = {1}
+module NaiveSet(Value)
 exports
   nametype Data = Set(Value)
   data(state) = state

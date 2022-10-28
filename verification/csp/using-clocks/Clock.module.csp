@@ -15,11 +15,41 @@ exports
 
   join((t1, t2, t3), (t1n, t2n, t3n)) =
     (max(t1, t1n), max(t2, t2n), max(t3, t3n))
+endmodule
 
-  after((t1, t2, t3), 1) =
-   { (t1n, t2n, t3n) | (t1n, t2n, t3n) <- Clock, t1n > t1, t2n >= t2, t3n >= t3 }
-  after((t1, t2, t3), 2) =
-   { (t1n, t2n, t3n) | (t1n, t2n, t3n) <- Clock, t1n >= t1, t2n > t2, t3n >= t3 }
-  after((t1, t2, t3), 3) =
-   { (t1n, t2n, t3n) | (t1n, t2n, t3n) <- Clock, t1n >= t1, t2n >= t2, t3n > t3 }
+--------------------------------------------------------------------------------
+-- Great Westminster Clock is a process-internal tuple of clocks, tracking the
+-- latest public times seen (i.e. excluding internal ticks). It's used to
+-- determine the acceptable tick range from any remote.
+module Gwc
+  lastTimeSeen(gwc, remote) = peek(gwc, remote)
+  -- over the last receipt, we expect to jump one, plus once per incremented cause
+  next(gwc, remote, nc) =
+    min(peek(lastTimeSeen(gwc, remote), remote) + 1 + nc, Clock::maxTick)
+exports
+  GENESIS = cidTuple(Clock::GENESIS)
+  -- Seen local tick can be anything up to a current local tick, same as...
+  -- Third-party tick can be anything from the last cause that the remote saw
+  -- (inclusive) up to what local has seen (causal order)
+  causeRange(gwc, local, remote, other) =
+    (peek(lastTimeSeen(gwc, remote), other), peek(lastTimeSeen(gwc, local), other))
+  -- (gwc, local, remote) -> acceptable remoteTime
+  acceptable(gwc, local, 1) = let
+    (l2, u2) = causeRange(gwc, local, 1, 2)
+    (l3, u3) = causeRange(gwc, local, 1, 3)
+  within { (t1, t2, t3) | t2 <- {l2..u2}, t3 <- {l3..u3}, t1 <- {next(gwc, 1, t2-l2 + t3-l3)} }
+  acceptable(gwc, local, 2) = let
+    (l1, u1) = causeRange(gwc, local, 2, 1)
+    (l3, u3) = causeRange(gwc, local, 2, 3)
+  within { (t1, t2, t3) | t1 <- {l1..u1}, t3 <- {l3..u3}, t2 <- {next(gwc, 2, t1-l1 + t3-l3)} }
+  acceptable(gwc, local, 3) = let
+    (l1, u1) = causeRange(gwc, local, 3, 1)
+    (l2, u2) = causeRange(gwc, local, 3, 2)
+  within { (t1, t2, t3) | t1 <- {l1..u1}, t2 <- {l2..u2}, t3 <- {next(gwc, 3, t1-l1 + t2-l2)} }
+
+  -- local txn is always public
+  updateLocal(gwc, local, time) = put(gwc, local, time)
+  -- Update both remote and local public time
+  updateRemote(gwc, local, remote, time) =
+    put(put(gwc, remote, time), local, Clock::join(peek(gwc, local), time))
 endmodule

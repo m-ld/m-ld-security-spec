@@ -1,9 +1,9 @@
 --------------------------------------------------------------------------------
 -- Model bounds globals
-N = 1 -- Expected transactions per user
+N = 2 -- Expected transactions per user
 CN = 3 -- Clone/process/user IDs
-nametype CID = {1..CN} -- Clone ID
-nametype TID = CID.{1..N}
+nametype CID = {1..CN} -- Clone identity
+nametype TID = CID.{1..N} -- Transaction identity (may be used by CRDT)
 
 --------------------------------------------------------------------------------
 -- Tuple for per-process data

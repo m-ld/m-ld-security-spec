@@ -49,11 +49,13 @@ within Running(cidTuple(0), Unknown)
 exampleData1 = head(seq(Crdt::Data))
 exampleData2 = head(tail(seq(Crdt::Data)))
 
+-- NOTE: Assertion requires N = 1
 assert ConvergentDomain :[has trace [T]]: <
   data.1.exampleData1, data.1.exampleData1, data.1.exampleData1, -- final
   data.2.exampleData2, data.2.exampleData2 -- any data allowed before final
 >
 
+-- NOTE: Assertion requires N = 1
 assert not ConvergentDomain :[has trace [T]]: <
   data.1.exampleData1, data.1.exampleData1, data.1.exampleData1, -- final
   data.2.exampleData2, data.2.exampleData2, data.2.exampleData2 -- different final
