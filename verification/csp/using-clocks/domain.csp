@@ -6,6 +6,8 @@ include "../crdt/IntegerSum.module.csp"
 include "../crdt/NaiveSet.module.csp"
 include "../crdt/OR_Set.module.csp"
 -- Selection of CRDT module and value set
+--instance Crdt = IntegerSum
+--instance Crdt = NaiveSet({1})
 instance Crdt = OR_Set({1})
 
 --------------------------------------------------------------------------------
@@ -32,9 +34,9 @@ Clone(local) = let
   State(
     state,  -- CRDT state
     clock,  -- Local clock, has internal ticks
-    counts, -- User transaction # per clone
     gwc     -- Latest public times seen
   ) = let
+    counts = Gwc::counts(gwc)
     -- Local user transaction
     Transact = let
       n = peek(counts, local) + 1
@@ -50,8 +52,7 @@ Clone(local) = let
       within data.local.Crdt::data(newState) -> Publish; State(
         newState,
         time,
-        put(counts, local, n),
-        Gwc::updateLocal(gwc, local, time)
+        Gwc::update(gwc, local, time)
       )
     -- Remote transaction; we can only receive a message for which we have the cause
     Apply = [] remote : CID, remote != local, peek(counts, remote) < N @
@@ -63,11 +64,10 @@ Clone(local) = let
       within data.local.Crdt::data(newState) -> State(
         newState,
         Clock::tick(Clock::join(clock, time), local),
-        put(counts, remote, n),
         Gwc::updateRemote(gwc, local, remote, time)
       )
   within counts < (N, N, N) & (Transact [] Apply)
-within State(Crdt::initialState, Clock::GENESIS, cidTuple(0), Gwc::GENESIS)
+within State(Crdt::initialState, Clock::GENESIS, Gwc::GENESIS)
 
 assert Clone(1) :[divergence-free]
 

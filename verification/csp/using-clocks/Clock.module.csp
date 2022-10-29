@@ -19,37 +19,55 @@ endmodule
 
 --------------------------------------------------------------------------------
 -- Great Westminster Clock is a process-internal tuple of clocks, tracking the
--- latest public times seen (i.e. excluding internal ticks). It's used to
--- determine the acceptable tick range from any remote.
+-- public times seen (i.e. excluding internal ticks). It's used to determine the
+-- acceptable tick range from any remote.
 module Gwc
-  lastTimeSeen(gwc, remote) = peek(gwc, remote)
-  -- over the last receipt, we expect to jump one, plus once per incremented cause
-  next(gwc, remote, nc) =
-    min(peek(lastTimeSeen(gwc, remote), remote) + 1 + nc, Clock::maxTick)
-exports
-  GENESIS = cidTuple(Clock::GENESIS)
+  -- obtain a descending seq of unique ticks, each a possible cause
+  cauSeq(seen, last) = if head(seen) == last then <last>
+    else let rest = cauSeq(tail(seen), last)
+    within if head(seen) == head(tail(seen)) then rest else <head(seen)> ^ rest
+  -- associate each candidate causal tick with a count of preceding public causes
+  cauSet(<last>) = {(last, 0)}
+  cauSet(causes) = union({(head(causes), length(causes) - 1)}, cauSet(tail(causes)))
+  --
+  lastTickSeen(clocks, cid) = peek(head(clocks), cid)
+  -- seq Clock -> seq Tick
+  allTicksSeen(<>, cid) = <>
+  allTicksSeen(clocks, cid) = <lastTickSeen(clocks, cid)> ^ allTicksSeen(tail(clocks), cid)
+  --
+  next(gwc, remote, n) =
+    min(lastTickSeen(peek(gwc, remote), remote) + 1 + n, Clock::maxTick)
   -- Seen local tick can be anything up to a current local tick, same as...
   -- Third-party tick can be anything from the last cause that the remote saw
   -- (inclusive) up to what local has seen (causal order)
-  causeRange(gwc, local, remote, other) =
-    (peek(lastTimeSeen(gwc, remote), other), peek(lastTimeSeen(gwc, local), other))
+  causes(gwc, local, remote, other) = cauSet(cauSeq(
+    allTicksSeen(peek(gwc, local), other),
+    lastTickSeen(peek(gwc, remote), other)
+  ))
+exports
+  GENESIS = cidTuple(<Clock::GENESIS>)
   -- (gwc, local, remote) -> acceptable remoteTime
-  acceptable(gwc, local, 1) = let
-    (l2, u2) = causeRange(gwc, local, 1, 2)
-    (l3, u3) = causeRange(gwc, local, 1, 3)
-  within { (t1, t2, t3) | t2 <- {l2..u2}, t3 <- {l3..u3}, t1 <- {next(gwc, 1, t2-l2 + t3-l3)} }
-  acceptable(gwc, local, 2) = let
-    (l1, u1) = causeRange(gwc, local, 2, 1)
-    (l3, u3) = causeRange(gwc, local, 2, 3)
-  within { (t1, t2, t3) | t1 <- {l1..u1}, t3 <- {l3..u3}, t2 <- {next(gwc, 2, t1-l1 + t3-l3)} }
-  acceptable(gwc, local, 3) = let
-    (l1, u1) = causeRange(gwc, local, 3, 1)
-    (l2, u2) = causeRange(gwc, local, 3, 2)
-  within { (t1, t2, t3) | t1 <- {l1..u1}, t2 <- {l2..u2}, t3 <- {next(gwc, 3, t1-l1 + t2-l2)} }
-
+  acceptable(gwc, local, 1) = if local == 1 then error("echo!") else {
+    (next(gwc, 1, n2 + n3), t2, t3) |
+    (t2, n2) <- causes(gwc, local, 1, 2),
+    (t3, n3) <- causes(gwc, local, 1, 3)
+  }
+  acceptable(gwc, local, 2) = if local == 2 then error("echo!") else {
+    (t1, next(gwc, 2, n1 + n3), t3) |
+    (t1, n1) <- causes(gwc, local, 2, 1),
+    (t3, n3) <- causes(gwc, local, 2, 3)
+  }
+  acceptable(gwc, local, 3) = if local == 3 then error("echo!") else {
+    (t1, t2, next(gwc, 3, n1 + n2)) |
+    (t1, n1) <- causes(gwc, local, 3, 1),
+    (t2, n2) <- causes(gwc, local, 3, 2)
+  }
   -- local txn is always public
-  updateLocal(gwc, local, time) = put(gwc, local, time)
-  -- Update both remote and local public time
-  updateRemote(gwc, local, remote, time) =
-    put(put(gwc, remote, time), local, Clock::join(peek(gwc, local), time))
+  update(gwc, cid, time) = put(gwc, cid, <time> ^ peek(gwc, cid))
+  -- Update both remote and local public times – we have now seen this remote time
+  updateRemote(gwc, local, remote, time) = let
+    gwc_ = update(gwc, remote, time)
+  within update(gwc_, local, Clock::join(head(peek(gwc, local)), time))
+  -- How many public ticks have we had?
+  counts(gwc) = map(gwc, \ times, cid @ length(cauSeq(allTicksSeen(times, cid), 0)) - 1)
 endmodule

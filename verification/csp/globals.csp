@@ -1,6 +1,6 @@
 --------------------------------------------------------------------------------
 -- Model bounds globals
-N = 2 -- Expected transactions per user
+N = 1 -- Expected transactions per user
 CN = 3 -- Clone/process/user IDs
 nametype CID = {1..CN} -- Clone identity
 nametype TID = CID.{1..N} -- Transaction identity (may be used by CRDT)
@@ -24,6 +24,8 @@ update((t1, t2, t3), 3, f) = (t1, t2, f(t3))
 updateOthers((t1, t2, t3), 1, f) = (t1, f(t2), f(t3))
 updateOthers((t1, t2, t3), 2, f) = (f(t1), t2, f(t3))
 updateOthers((t1, t2, t3), 3, f) = (f(t1), f(t2), t3)
+
+map((t1, t2, t3), f) = (f(t1, 1), f(t2, 2), f(t3, 3))
 
 --------------------------------------------------------------------------------
 -- Utility
