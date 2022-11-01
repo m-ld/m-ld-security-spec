@@ -47,12 +47,12 @@ within State(Crdt::initialState, (0, 0, 0))
 
 assert Clone(1) :[divergence-free]
 
-User(1) = BlitheUser(1)
-User(2) = ReactiveUser(2)
-User(3) = ReactiveUser(3)
+Users(1) = BlitheUser(1)
+Users(2) = ReactiveUser(2)
+Users(3) = ReactiveUser(3)
 
 -- 'Node' here is user + clone
-Nodes = ||| cid : CID @ Clone(cid) [| AppEvents(cid) |] User(cid)
+Nodes = ||| cid : CID @ Clone(cid) [| AppEvents(cid) |] Users(cid)
 CrdtSystem = (Nodes [| RemotesEvents |] Remotes) \ RemotesEvents
 
-assert ConvergentSystem(User) [T= CrdtSystem
+assert ConvergentSystem(Users) [T= CrdtSystem

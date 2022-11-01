@@ -8,7 +8,9 @@ channel user : CID.Crdt::Update
 -- Data state channel per-clone – notifies after every update, including local
 channel data : CID.Crdt::Data
 
--- App
+--------------------------------------------------------------------------------
+-- App and Users
+-- Note that users must participate in the app events, even if they ignore them
 AppEvents(cid) = {| user.cid, data.cid |}
 
 -- A user who ignores all other users
@@ -21,15 +23,14 @@ BlitheUser(cid) =
 ReactiveUser(cid) = data.cid?d -> (
   (user.cid$up -> data.cid?d -> ReactiveUser(cid))
   []
-  ReactiveUser(cid)
-)
+  ReactiveUser(cid))
 
+--------------------------------------------------------------------------------
 -- A convergent domain allows any user input and any data state, but the final
 -- data state must be the same for all nodes
 datatype Converged = Unknown | Final.Crdt::Data
 
 ConvergentDomain = let
-  initialData = Crdt::data(Crdt::initialState)
   DN = CN * N -- Expected number of data events per user
   allowedData(n, Unknown) = Crdt::Data
   allowedData(n, Final.d) = if n == DN then {d} else Crdt::Data
@@ -42,7 +43,7 @@ ConvergentDomain = let
         n = peek(counts, cid) + 1
       within Running(
         put(counts, cid, n),
-        if final == Unknown and n == CN * N then Final.d else final
+        if final == Unknown and n == DN then Final.d else final
       )
 within Running(cidTuple(0), Unknown)
 

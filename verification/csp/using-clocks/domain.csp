@@ -7,8 +7,8 @@ include "../crdt/NaiveSet.module.csp"
 include "../crdt/OR_Set.module.csp"
 -- Selection of CRDT module and value set
 --instance Crdt = IntegerSum
---instance Crdt = NaiveSet({1})
-instance Crdt = OR_Set({1})
+instance Crdt = NaiveSet({1})
+--instance Crdt = OR_Set({1})
 
 --------------------------------------------------------------------------------
 -- Remotes delivering messages with clocks
@@ -41,19 +41,18 @@ Clone(local) = let
     Transact = let
       n = peek(counts, local) + 1
       -- Only allow N user txns
-    within n <= N & user.local?up ->
-      let
-        time = Clock::tick(clock, local) -- local txn ticks our own clock
-        (newState, op) = Crdt::transact(local.n, state, up)
-        -- Do the sends sequentially in arbitrary order rather than interleave
-        -- This prevents compilation hang (partial order reduction)
-        Publish = ; remote : seq(CID), remote != local @
-          send.local.remote.time.op -> SKIP
-      within data.local.Crdt::data(newState) -> Publish; State(
-        newState,
-        time,
-        Gwc::update(gwc, local, time)
-      )
+    within n <= N & user.local?up -> let
+      time = Clock::tick(clock, local) -- local txn ticks our own clock
+      (newState, op) = Crdt::transact(local.n, state, up)
+      -- Do the sends sequentially in arbitrary order rather than interleave
+      -- This prevents compilation hang (partial order reduction)
+      Publish = ; remote : seq(CID), remote != local @
+        send.local.remote.time.op -> SKIP
+    within data.local.Crdt::data(newState) -> Publish; State(
+      newState,
+      time,
+      Gwc::update(gwc, local, time)
+    )
     -- Remote transaction; we can only receive a message for which we have the cause
     Apply = [] remote : CID, remote != local, peek(counts, remote) < N @
       receive.remote.local
