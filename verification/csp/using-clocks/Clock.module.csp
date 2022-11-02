@@ -15,6 +15,9 @@ exports
 
   join((t1, t2, t3), (t1n, t2n, t3n)) =
     (max(t1, t1n), max(t2, t2n), max(t3, t3n))
+
+  beforeEq((t1, t2, t3), (t1o, t2o, t3o)) =
+    t1 <= t1o and t2 <= t2o and t3 <= t3o
 endmodule
 
 --------------------------------------------------------------------------------

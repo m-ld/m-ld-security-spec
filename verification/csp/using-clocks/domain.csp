@@ -7,20 +7,20 @@ include "../crdt/NaiveSet.module.csp"
 include "../crdt/OR_Set.module.csp"
 -- Selection of CRDT module and value set
 --instance Crdt = IntegerSum
-instance Crdt = NaiveSet({1})
---instance Crdt = OR_Set({1})
+--instance Crdt = NaiveSet({1})
+instance Crdt = OR_Set({1, 2})
 
 --------------------------------------------------------------------------------
 -- Remotes delivering messages with clocks
 include "Clock.module.csp"
 -- Remote channels are from.to
-channel send, receive : CID.CID.Clock::Clock.Crdt::Operation
+channel send, receive : CID.CID.Clock::Clock.Crdt::Operation.Agree
 
 RemotesEvents = {| send, receive |}
 
 RemoteTransmit(from, to) =
-  send.from.to?time?op ->
-    receive.from.to.time.op ->
+  send.from.to?time?op?agree ->
+    receive.from.to.time.op.agree ->
       RemoteTransmit(from, to)
 
 Remotes = ||| from : CID, to : CID, to != from @ RemoteTransmit(from, to)
@@ -31,65 +31,97 @@ include "../DomainSpec.module.csp"
 --------------------------------------------------------------------------------
 -- CRDT domain
 Clone(local) = let
-  State(
-    state,  -- CRDT state
-    clock,  -- Local clock, has internal ticks
-    gwc     -- Latest public times seen
-  ) = let
-    counts = Gwc::counts(gwc)
+  State(log, gwc) = let
+    (state, clock, lastAgree) = head(log) -- CRDT state and local clock, has internal ticks
+    counts = Gwc::counts(gwc) -- how many transactions has each clone done
     -- Local user transaction
     Transact = let
       n = peek(counts, local) + 1
       -- Only allow N user txns
-    within n <= N & user.local?up -> let
+    within n <= N & user.local?up?agree -> let
       time = Clock::tick(clock, local) -- local txn ticks our own clock
-      (newState, op) = Crdt::transact(local.n, state, up)
+      (postState, op) = Crdt::transact(local.n, state, up)
       -- Do the sends sequentially in arbitrary order rather than interleave
       -- This prevents compilation hang (partial order reduction)
       Publish = ; remote : seq(CID), remote != local @
-        send.local.remote.time.op -> SKIP
-    within data.local.Crdt::data(newState) -> Publish; State(
-      newState,
-      time,
+        send.local.remote.time.op.agree -> SKIP
+    within data.local.Crdt::data(postState) -> Publish; State(
+      <(postState, time, agree)> ^ log,
       Gwc::update(gwc, local, time)
     )
+    -- History lookup
+    stateBefore(time, log) = let (state, clock, _) = head(log)
+    within if Clock::beforeEq(clock, time) then (state, clock)
+    else stateBefore(time, tail(log))
     -- Remote transaction; we can only receive a message for which we have the cause
     Apply = [] remote : CID, remote != local, peek(counts, remote) < N @
       receive.remote.local
         ?time : Gwc::acceptable(gwc, local, remote)
-        ?op : Crdt::possible(state) -> let
+        ?op : Crdt::possible(state)
+        ?agree -> let
         n = peek(counts, remote) + 1
-        newState = Crdt::apply(remote.n, state, op)
-      within data.local.Crdt::data(newState) -> State(
-        newState,
-        Clock::tick(Clock::join(clock, time), local),
-        Gwc::updateRemote(gwc, local, remote, time)
-      )
+        -- If Agreed, backtrack to a state prior to the agreement time
+        (preState, preClock) = if agree == Agreed then stateBefore(time, log) else
+          (state, clock)
+        postState = Crdt::apply(remote.n, preState, op)
+        localTime = Clock::tick(Clock::join(preClock, time), local)
+      -- If received pre-dates prior agreement, ignore it
+      within lastAgree != Agreed or Clock::beforeEq(clock, time) &
+        data.local.Crdt::data(postState) -> State(
+          <(postState, localTime, agree)> ^ log,
+          Gwc::updateRemote(gwc, local, remote, time)
+        )
   within counts < (N, N, N) & (Transact [] Apply)
-within State(Crdt::initialState, Clock::GENESIS, Gwc::GENESIS)
+within State(<(Crdt::initialState, Clock::GENESIS, Free)>, Gwc::GENESIS)
 
 assert Clone(1) :[divergence-free]
-
-Users(1) = BlitheUser(1)
-Users(2) = ReactiveUser(2)
-Users(3) = ReactiveUser(3)
 
 -- 'Node' here is user + clone
 Nodes(Users) = ||| cid : CID @ Clone(cid) [| AppEvents(cid) |] Users(cid)
 CrdtSystem(Users) = (Nodes(Users) [| RemotesEvents |] Remotes) \ RemotesEvents
 
+--------------------------------------------------------------------------------
+-- Set up some users of the plain CRDT (no agreements)
+CrdtUsers(1) = BlitheUser(1)
+CrdtUsers(2) = BlitheUser(2)
+CrdtUsers(3) = BlitheUser(3)
+
 -- NaiveSet counterexample
---assert CrdtSystem(Users) [T=
---  user.1.Crdt::Add.1 ->   -- (1,0,0) (0,0,0) (0,0,0)
---  data.1.{1} ->           -- (1,0,0) (0,0,0) (0,0,0)
---  data.3.{1} ->           -- (1,0,0) (0,0,0) (1,0,1)
---  user.3.Crdt::Add.1 ->   -- (1,0,0) (0,0,0) (1,0,2)
---  data.3.{1} ->           -- (1,0,0) (0,0,0) (1,0,2)
---  data.2.{1} ->           -- (1,0,0) (1,1,0) (0,0,0)
---  user.2.Crdt::Remove.1 ->-- (1,0,0) (1,2,0) (0,0,0)
---  data.2.{} ->            -- (1,0,0) (1,2,0) (0,0,0)
---  data.1.{} ->            -- (2,1,0) (1,2,0) (0,0,0)
---  data.2.{1} ->           -- (1,0,0) (1,3,2) (1,0,2)
+--assert CrdtSystem(CrdtUsers) [T=
+--  user.1.Crdt::Add.1.Free ->   -- (1,0,0) (0,0,0) (0,0,0)
+--  data.1.{1} ->                -- (1,0,0) (0,0,0) (0,0,0)
+--  data.3.{1} ->                -- (1,0,0) (0,0,0) (1,0,1)
+--  user.3.Crdt::Add.1.Free ->   -- (1,0,0) (0,0,0) (1,0,2)
+--  data.3.{1} ->                -- (1,0,0) (0,0,0) (1,0,2)
+--  data.2.{1} ->                -- (1,0,0) (1,1,0) (0,0,0)
+--  user.2.Crdt::Remove.1.Free ->-- (1,0,0) (1,2,0) (0,0,0)
+--  data.2.{} ->                 -- (1,0,0) (1,2,0) (0,0,0)
+--  data.1.{} ->                 -- (2,1,0) (1,2,0) (0,0,0)
+--  data.2.{1} ->                -- (1,0,0) (1,3,2) (1,0,2)
 --  data.3.{} -> STOP
 
-assert ConvergentSystem(Users) [T= CrdtSystem(Users)
+assert ConvergentSystem(CrdtUsers, Crdt::Data) [T= CrdtSystem(CrdtUsers)
+
+--------------------------------------------------------------------------------
+-- Set up some users with a bolshy "authority" who claims agreement, after which
+-- everyone else stops
+AgreeUsers(1) = BolshyUser(1, Crdt::Remove.1.Agreed)
+AgreeUsers(2) = ShyUser(2)
+AgreeUsers(3) = ShyUser(3)
+
+-- Agreement failure defect counterexample
+assert not CrdtSystem(AgreeUsers) [T=
+  user.2.Crdt::Remove.1.Free ->
+  data.2.{} ->
+  user.3.Crdt::Add.2.Free ->
+  data.3.{2} ->
+  data.2.{2} ->
+  data.1.{} ->
+  data.1.{2} ->
+  user.1.Crdt::Remove.1.Agreed -> -- (3,1,1)
+  data.1.{2} ->
+  data.2.{} -> -- pre:(0,2,1), backtracks incorrectly, tick 2 is internal
+  STOP
+
+-- Final state should match what the bolshy user wanted, regardless
+assert ConvergentSystem(AgreeUsers, Set({2})) [T= CrdtSystem(AgreeUsers)

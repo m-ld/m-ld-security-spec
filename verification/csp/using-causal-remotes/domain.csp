@@ -24,7 +24,7 @@ Clone(local) = let
     n = peek(counts, local) + 1
     -- Only allow N user txns
   within n <= N & (
-    user.local?up -> let
+    user.local?up?agree -> let
       (newState, op) = Crdt::transact(local.n, state, up)
       newCounts = put(counts, local, n)
     within

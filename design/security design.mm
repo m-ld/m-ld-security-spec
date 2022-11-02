@@ -449,7 +449,7 @@
 <node TEXT="snapshot: don&apos;t have principal yet" ID="ID_816506247" CREATED="1646154672188" MODIFIED="1647865024371"/>
 </node>
 </node>
-<node TEXT="conflict-free constraints" ID="ID_1175901092" CREATED="1632751608347" MODIFIED="1633339694830">
+<node TEXT="conflict-free constraints" FOLDED="true" ID="ID_1175901092" CREATED="1632751608347" MODIFIED="1633339694830">
 <icon BUILTIN="button_cancel"/>
 <node TEXT="principle" ID="ID_1241771470" CREATED="1632751862175" MODIFIED="1632751864497">
 <node TEXT="merge of a constraint change with a violation&#xa;is an unviolating state" ID="ID_943811079" CREATED="1632751864785" MODIFIED="1632751958819"/>
@@ -592,7 +592,7 @@
 </node>
 </node>
 </node>
-<node TEXT="after agreement, no message can&#xa;be accepted which is not caused by it" ID="ID_317373433" CREATED="1628086333506" MODIFIED="1628667782196">
+<node TEXT="after agreement, no message can&#xa;be accepted which is not caused by it" FOLDED="true" ID="ID_317373433" CREATED="1628086333506" MODIFIED="1628667782196">
 <icon BUILTIN="idea"/>
 <node TEXT="≡ optimistic lock on data/domain" ID="ID_1360421986" CREATED="1628160809525" MODIFIED="1628161883160"/>
 <node TEXT="agreement has no data" ID="ID_1555161856" CREATED="1628258599851" MODIFIED="1643450210995">
@@ -962,6 +962,14 @@
 <node TEXT="1. cause &lt; effect" ID="ID_1928536148" CREATED="1643131433766" MODIFIED="1643131497343"/>
 <node TEXT="2. total ticks" ID="ID_671584667" CREATED="1643131465863" MODIFIED="1643131486712"/>
 <node TEXT="3. leftmost ID wins" ID="ID_1117180127" CREATED="1643131498444" MODIFIED="1643131508346"/>
+</node>
+</node>
+<node TEXT="apply normal CRDT" ID="ID_771699445" CREATED="1667377974533" MODIFIED="1667378006450">
+<node TEXT="never void agreements" ID="ID_1234527388" CREATED="1667378006813" MODIFIED="1667378264349"/>
+<node TEXT="reduces value for integrity" ID="ID_1409944422" CREATED="1667378074844" MODIFIED="1667378188248">
+<icon BUILTIN="negative"/>
+<node TEXT="can still get garbage" ID="ID_1458734803" CREATED="1667378175062" MODIFIED="1667378197432"/>
+<node TEXT="esp. if unilateral" ID="ID_1375847790" CREATED="1667378200702" MODIFIED="1667378225557"/>
 </node>
 </node>
 </node>

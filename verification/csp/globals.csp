@@ -6,6 +6,9 @@ nametype CID = {1..CN} -- Clone identity
 nametype TID = CID.{1..N} -- Transaction identity (may be used by CRDT)
 
 --------------------------------------------------------------------------------
+datatype Agree = Agreed | Free
+
+--------------------------------------------------------------------------------
 -- Tuple for per-process data
 cidTuple(v) = (v, v, v) -- length = CN, sadly not inferable
 
