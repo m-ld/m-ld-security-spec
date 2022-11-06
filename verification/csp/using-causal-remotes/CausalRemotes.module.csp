@@ -8,6 +8,7 @@
 -- - injection (| TID => {antecedent-tids} |), populated on publish
 -- - per-node <inbox> & {seen-tids}
 
+nametype TID = CID.{1..N} -- Transaction identity (used by CRDT)
 nametype Event = TID.Crdt::Operation
 channel publish : Event
 channel deliver : CID.Event -- deliver at a remote process

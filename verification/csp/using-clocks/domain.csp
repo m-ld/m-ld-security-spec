@@ -7,8 +7,9 @@ include "../crdt/NaiveSet.module.csp"
 include "../crdt/OR_Set.module.csp"
 -- Selection of CRDT module and value set
 --instance Crdt = IntegerSum
---instance Crdt = NaiveSet({1})
-instance Crdt = OR_Set({1, 2})
+Values = {1, 2}
+--instance Crdt = NaiveSet(Values)
+instance Crdt = OR_Set(Values)
 
 --------------------------------------------------------------------------------
 -- Remotes delivering messages with clocks
@@ -31,48 +32,69 @@ include "../DomainSpec.module.csp"
 --------------------------------------------------------------------------------
 -- CRDT domain
 Clone(local) = let
-  State(log, gwc) = let
-    (state, clock, lastAgree) = head(log) -- CRDT state and local clock, has internal ticks
-    counts = Gwc::counts(gwc) -- how many transactions has each clone done
+  initial = (Crdt::initialState, Clock::GENESIS, Gwc::GENESIS, Clock::GENESIS, <>)
+  State(current, counts) = let
+    (
+      state,  -- CRDT state
+      clock,  -- Local clock, has internal ticks
+      gwc,    -- Latest public times seen
+      agreed, -- Clock with cumulative agreement time
+      log     -- Operations log, for replay
+    ) = current
+    -- Everything is strictly inferable from the log, this function defines how
+    next(cid.n.time.op.agree, (state, clock, gwc, agreed, log)) = (
+      Crdt::apply(cid.n, state, op),
+      -- TODO: redundant with given time for local clock
+      Clock::tick(if cid == local then clock else Clock::join(clock, time), local),
+      Gwc::update(if cid == local then gwc else Gwc::seen(gwc, local, time), cid, time),
+      if agree != Free then Clock::join(agreed, time) else agreed,
+      log ^ <cid.n.time.op.agree>
+    )
+    dataEvent((state, _, _, _, _)) = data.local.Crdt::data(state)
+    ----------------------------------------------------------------------------
+    -- Log replay TODO: Document:
+    -- Hypothesis: a voided time will never be reused.
+    -- Remote op time will only have wrong ticks if itself voided.
+    -- So, it's OK to re-calculate local clock & gwc.
+    replay(<>, ifBefore, current) = current
+    replay(log, ifBefore, current) = let
+      cid.n.time.op.agree = head(log)
+      first = if not Clock::anyLt(ifBefore, time) then
+        next(cid.n.time.op.agree, current)
+      else current
+    within replay(tail(log), ifBefore, first)
+    ----------------------------------------------------------------------------
     -- Local user transaction
-    Transact = let
+    Transact = peek(counts, local) < N & user.local?up?agree -> let
       n = peek(counts, local) + 1
-      -- Only allow N user txns
-    within n <= N & user.local?up?agree -> let
+      op = Crdt::transact(state, up)
       time = Clock::tick(clock, local) -- local txn ticks our own clock
-      (postState, op) = Crdt::transact(local.n, state, up)
+      post = next(local.n.time.op.agree, current)
       -- Do the sends sequentially in arbitrary order rather than interleave
       -- This prevents compilation hang (partial order reduction)
       Publish = ; remote : seq(CID), remote != local @
         send.local.remote.time.op.agree -> SKIP
-    within data.local.Crdt::data(postState) -> Publish; State(
-      <(postState, time, agree)> ^ log,
-      Gwc::update(gwc, local, time)
-    )
-    -- History lookup
-    stateBefore(time, log) = let (state, clock, _) = head(log)
-    within if Clock::beforeEq(clock, time) then (state, clock)
-    else stateBefore(time, tail(log))
+    within dataEvent(post) -> Publish; State(post, put(counts, local, n))
+    ----------------------------------------------------------------------------
     -- Remote transaction; we can only receive a message for which we have the cause
     Apply = [] remote : CID, remote != local, peek(counts, remote) < N @
       receive.remote.local
         ?time : Gwc::acceptable(gwc, local, remote)
         ?op : Crdt::possible(state)
         ?agree -> let
-        n = peek(counts, remote) + 1
-        -- If Agreed, backtrack to a state prior to the agreement time
-        (preState, preClock) = if agree == Agreed then stateBefore(time, log) else
-          (state, clock)
-        postState = Crdt::apply(remote.n, preState, op)
-        localTime = Clock::tick(Clock::join(preClock, time), local)
-      -- If received pre-dates prior agreement, ignore it
-      within lastAgree != Agreed or Clock::beforeEq(clock, time) &
-        data.local.Crdt::data(postState) -> State(
-          <(postState, localTime, agree)> ^ log,
-          Gwc::updateRemote(gwc, local, remote, time)
-        )
+          n = peek(counts, remote) + 1
+        within if agree == Free and Clock::anyLt(time, agreed) then
+          -- If received Free is concurrent with a prior agreement, ignore it
+          State(current, update(counts, remote, \ n @ n + 1))
+        else let
+          -- If agreement, purge from the log any Free ops that post-date the
+          -- new agreement, unless they caused an already-accepted agreement
+          pre = if agree == Free then current else
+            replay(log, Clock::join(agreed, time), initial)
+          post = next(remote.n.time.op.agree, pre)
+        within dataEvent(post) -> State(post, put(counts, remote, n))
   within counts < (N, N, N) & (Transact [] Apply)
-within State(<(Crdt::initialState, Clock::GENESIS, Free)>, Gwc::GENESIS)
+within State(initial, cidTuple(0))
 
 assert Clone(1) :[divergence-free]
 
@@ -108,8 +130,10 @@ assert ConvergentSystem(CrdtUsers, Crdt::Data) [T= CrdtSystem(CrdtUsers)
 AgreeUsers(1) = BolshyUser(1, Crdt::Remove.1.Agreed)
 AgreeUsers(2) = ShyUser(2)
 AgreeUsers(3) = ShyUser(3)
+AgreeableData = Set(diff(Values, {1}))
 
--- Agreement failure defect counterexample
+-- Agreement failure defect counterexample: internal ticks can make a clone
+-- think it needs to rewind, and so remove a pre-agreement txn.
 assert not CrdtSystem(AgreeUsers) [T=
   user.2.Crdt::Remove.1.Free ->
   data.2.{} ->
@@ -123,5 +147,12 @@ assert not CrdtSystem(AgreeUsers) [T=
   data.2.{} -> -- pre:(0,2,1), backtracks incorrectly, tick 2 is internal
   STOP
 
+-- Problem: head(log) does pre-date agreement, but head(tail(log)) post-dates it
+-- e.g. agree.time=1@(2,0,0), head(log)=1@(1,0,0), head(tail(log))=2@(0,1,0)
+-- Precondition: I have all causes(agree)
+-- Solution: rewind until gwc.time(local) < agree.time (i.e. everything prior
+-- must be in causes(agree)). Fast-forward, replaying only if op ∈ causes(agree).
+-- Model: fast-forward from GENESIS. Don't need to log gwc
+
 -- Final state should match what the bolshy user wanted, regardless
-assert ConvergentSystem(AgreeUsers, Set({2})) [T= CrdtSystem(AgreeUsers)
+assert ConvergentSystem(AgreeUsers, AgreeableData) [T= CrdtSystem(AgreeUsers)

@@ -25,23 +25,24 @@ Clone(local) = let
     -- Only allow N user txns
   within n <= N & (
     user.local?up?agree -> let
-      (newState, op) = Crdt::transact(local.n, state, up)
+      op = Crdt::transact(state, up)
+      postState = Crdt::apply(local.n, state, op)
       newCounts = put(counts, local, n)
     within
-      data.local.Crdt::data(newState) ->
+      data.local.Crdt::data(postState) ->
       publish.local.n.op ->
-      State(newState, newCounts)
+      State(postState, newCounts)
   ) [] (
     -- We can be delivered any next message
     [] remote : CID, remote != local @ let
       n = peek(counts, remote) + 1
     within
       n <= N & deliver.local.remote.n?op : Crdt::possible(state) -> let
-        newState = Crdt::apply(remote.n, state, op)
+        postState = Crdt::apply(remote.n, state, op)
         newCounts = put(counts, remote, n)
       within
-        data.local.Crdt::data(newState) ->
-        State(newState, newCounts)
+        data.local.Crdt::data(postState) ->
+        State(postState, newCounts)
   )
 within State(Crdt::initialState, (0, 0, 0))
 
@@ -55,4 +56,4 @@ Users(3) = ReactiveUser(3)
 Nodes = ||| cid : CID @ Clone(cid) [| AppEvents(cid) |] Users(cid)
 CrdtSystem = (Nodes [| RemotesEvents |] Remotes) \ RemotesEvents
 
-assert ConvergentSystem(Users) [T= CrdtSystem
+assert ConvergentSystem(Users, Crdt::Data) [T= CrdtSystem

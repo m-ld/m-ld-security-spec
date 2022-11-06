@@ -16,8 +16,8 @@ exports
   join((t1, t2, t3), (t1n, t2n, t3n)) =
     (max(t1, t1n), max(t2, t2n), max(t3, t3n))
 
-  beforeEq((t1, t2, t3), (t1o, t2o, t3o)) =
-    t1 <= t1o and t2 <= t2o and t3 <= t3o
+  anyLt((t1, t2, t3), (t1o, t2o, t3o)) =
+    t1 < t1o or t2 < t2o or t3 < t3o
 endmodule
 
 --------------------------------------------------------------------------------
@@ -65,12 +65,8 @@ exports
     (t1, n1) <- causes(gwc, local, 3, 1),
     (t2, n2) <- causes(gwc, local, 3, 2)
   }
-  -- local txn is always public
+  -- update the given clock ID with the given time
   update(gwc, cid, time) = put(gwc, cid, <time> ^ peek(gwc, cid))
-  -- Update both remote and local public times – we have now seen this remote time
-  updateRemote(gwc, local, remote, time) = let
-    gwc_ = update(gwc, remote, time)
-  within update(gwc_, local, Clock::join(head(peek(gwc, local)), time))
-  -- How many public ticks have we had?
-  counts(gwc) = map(gwc, \ times, cid @ length(cauSeq(allTicksSeen(times, cid), 0)) - 1)
+  -- register with the local clock that we have seen a remote time
+  seen(gwc, local, time) = update(gwc, local, Clock::join(head(peek(gwc, local)), time))
 endmodule

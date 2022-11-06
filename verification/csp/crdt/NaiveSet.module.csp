@@ -6,9 +6,10 @@ exports
   datatype Update = Add.Value | Remove.Value
   nametype Operation = Update
   possible(_) = Operation
+  -- TID is opaque transaction ID – probably a clock
   -- apply :: (TID, State, Operation) -> State
   apply(tid, state, Add.n) = union(state, {n})
   apply(tid, state, Remove.n) = diff(state, {n})
-  -- transact :: (TID, State, Update) -> (State, Operation)
-  transact(tid, state, up) = (apply(tid, state, up), up)
+  -- transact :: (State, Update) -> (State, Operation)
+  transact(state, up) = up
 endmodule

@@ -7,9 +7,10 @@ exports
   datatype Update = Add.Delta | Subtract.Delta
   nametype Operation = Update
   possible(_) = Operation
+  -- TID is opaque transaction ID – probably a clock
   -- apply :: (TID, State, Operation) -> State
   apply(tid, state, Add.n) = state + n
   apply(tid, state, Subtract.n) = state - n
-  -- transact :: (TID, State, Update) -> (State, Operation)
-  transact(tid, state, up) = (apply(tid, state, up), up)
+  -- transact :: (State, Update) -> Operation
+  transact(state, up) = up
 endmodule

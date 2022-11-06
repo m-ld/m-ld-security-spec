@@ -22,7 +22,7 @@ exports
   apply(tid, state, Insert.n) = add(tid, state, n)
   apply(tid, state, Delete.theirTids.n) =
     remove(tid, state, diff(ourTids(state, n), theirTids), n)
-  -- transact :: (TID, State, Update) -> (State, Operation)
-  transact(tid, state, Add.n) = (add(tid, state, n), Insert.n)
-  transact(tid, state, Remove.n) = (remove(tid, state, {}, n), Delete.ourTids(state, n).n)
+  -- transact :: (State, Update) -> Operation
+  transact(state, Add.n) = Insert.n
+  transact(state, Remove.n) = Delete.ourTids(state, n).n
 endmodule
