@@ -1,23 +1,39 @@
+--------------------------------------------------------------------------------
+-- OR_Set CRDT
+-- Value type parameter is superset of all allowed values in this set.
 module OR_Set(Value)
+  -- What TIDs have been seen for a given value, n?
   tids(dataTids, n) = if mapMember(dataTids, n) then mapLookup(dataTids, n) else {}
   ourTids((dataTids, _), n) = tids(dataTids, n)
+  -- Convert sequence of (value, {TID}) to a Set of values
   toData(<>) = {}
   toData(<(n, tids)>) = {n}
   toData(valueTidsPairs) =
     union(toData(<head(valueTidsPairs)>), toData(tail(valueTidsPairs)))
+  -- Utility functions to add and remove values from the state
   add(tid, (dataTids, insertTids), n) =
     (mapUpdate(dataTids, n, union(tids(dataTids, n), {tid})), union(insertTids, {tid}))
   remove(tid, (dataTids, insertTids), newTids, n) =
     (if newTids == {} then mapDelete(dataTids, n) else mapUpdate(dataTids, n, newTids), insertTids)
 exports
+  ------------------------------------------------------------------------------
+  -- Data for inspection is a set of values, derived from an internal Map of
+  -- Values to the transaction IDs that inserted the values
   nametype Data = Set(Value)
   data((dataTids, _)) = toData(mapToList(dataTids))
   initialState = (emptyMap, {})
+  ------------------------------------------------------------------------------
+  -- User updates are adding some value or removing it
   datatype Update = Add.Value | Remove.Value
+  -- CRDT Operations are inserts (for which the TID is known) or deletes, which
+  -- come with the known TIDs at the clone doing the delete
   datatype Operation = Insert.Value | Delete.Set(TID).Value
-  -- Allowing no-op Deletes, with empty attached TIDs
+  -- Plausible operations include only TIDs that have been seen. This is a
+  -- consequence of causal delivery (and therefore redundant with it).
+  -- Note we do allow no-op Deletes, with empty attached TIDs.
   possible((_, insertTids)) =
     union({| Insert |}, {| Delete.ops | ops <- Set(insertTids) |})
+  ------------------------------------------------------------------------------
   -- apply :: (TID, State, Operation) -> State
   apply(tid, state, Insert.n) = add(tid, state, n)
   apply(tid, state, Delete.theirTids.n) =

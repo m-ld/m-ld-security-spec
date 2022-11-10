@@ -1,8 +1,8 @@
 --------------------------------------------------------------------------------
 -- Domain Specification
--- requires globals and Crdt module
+-- (requires globals and Crdt module)
 
--- A user operates on a clone
+-- A user operates on a clone, providing an Update and potentially an agreement
 channel user : CID.Crdt::Update.Agree
 
 -- Data state channel per-clone – notifies after every update, including local
@@ -25,7 +25,7 @@ ReactiveUser(cid) = data.cid?d -> (
   []
   ReactiveUser(cid))
 
--- A user who insists on one particular update (with agreement)
+-- A user who insists on one particular update (potentially with agreement)
 BolshyUser(cid, up) =
   user.cid!up -> BolshyUser(cid, up)
   []
@@ -62,18 +62,20 @@ within Running(cidTuple(0), Unknown)
 exampleData1 = head(seq(Crdt::Data))
 exampleData2 = head(tail(seq(Crdt::Data)))
 
--- NOTE: Assertion requires N = 1
+--------------------------------------------------------------------------------
+-- Test assertions to check ConvergentDomain behaviour
+-- NOTE: Assertions require N = 1
 assert ConvergentDomain(Crdt::Data) :[has trace [T]]: <
   data.1.exampleData1, data.1.exampleData1, data.1.exampleData1, -- final
   data.2.exampleData2, data.2.exampleData2 -- any data allowed before final
 >
-
--- NOTE: Assertion requires N = 1
 assert not ConvergentDomain(Crdt::Data) :[has trace [T]]: <
   data.1.exampleData1, data.1.exampleData1, data.1.exampleData1, -- final
   data.2.exampleData2, data.2.exampleData2, data.2.exampleData2 -- different final
 >
 
+--------------------------------------------------------------------------------
+-- A convergent system has a domain and a set of users
 -- users is CID -> Proc
 ConvergentSystem(users, Allowed) =
   ConvergentDomain(Allowed) [| {| data |} |] ||| cid : CID @ users(cid)

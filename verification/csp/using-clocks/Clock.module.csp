@@ -10,12 +10,16 @@ exports
   -- Genesis clock, also used for user transaction counts for bounds checking
   GENESIS = cidTuple(0)
 
+  ------------------------------------------------------------------------------
   -- Vector clock functions
   tick(time, cid) = update(time, cid, \ t @ t + 1)
 
+  -- Returns the maximal clock based on the given clocks
   join((t1, t2, t3), (t1n, t2n, t3n)) =
     (max(t1, t1n), max(t2, t2n), max(t3, t3n))
 
+  -- Determines whether any component of the first clock is less-than (before)
+  -- any component of the second
   anyLt((t1, t2, t3), (t1o, t2o, t3o)) =
     t1 < t1o or t2 < t2o or t3 < t3o
 endmodule
@@ -23,7 +27,7 @@ endmodule
 --------------------------------------------------------------------------------
 -- Great Westminster Clock is a process-internal tuple of clocks, tracking the
 -- public times seen (i.e. excluding internal ticks). It's used to determine the
--- acceptable tick range from any remote.
+-- acceptable tick range from any remote, applying causal ordering.
 module Gwc
   -- obtain a descending seq of unique ticks, each a possible cause
   cauSeq(seen, last) = if head(seen) == last then <last>
@@ -32,12 +36,13 @@ module Gwc
   -- associate each candidate causal tick with a count of preceding public causes
   cauSet(<last>) = {(last, 0)}
   cauSet(causes) = union({(head(causes), length(causes) - 1)}, cauSet(tail(causes)))
-  --
+  -- What is the last tick seen in the given clock history for the given process ID
   lastTickSeen(clocks, cid) = peek(head(clocks), cid)
+  -- Return all ticks seen in the given clock history for the given process ID
   -- seq Clock -> seq Tick
   allTicksSeen(<>, cid) = <>
   allTicksSeen(clocks, cid) = <lastTickSeen(clocks, cid)> ^ allTicksSeen(tail(clocks), cid)
-  --
+  -- The exact next expected tick for a remote process ID, based on a count of causes
   next(gwc, remote, n) =
     min(lastTickSeen(peek(gwc, remote), remote) + 1 + n, Clock::maxTick)
   -- Seen local tick can be anything up to a current local tick, same as...

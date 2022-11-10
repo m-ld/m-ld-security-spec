@@ -14,6 +14,40 @@
   abstract = {Common approach of the threat modelling includes an analysis of computer system architecture on early stages of development process and creation of threat model. Data Flow Diagrams (DFD) are often used to represent the system organization. The main challenge with threat modelling is that there are no formal approaches to describe the computer system architecture and structured knowledge sources of threats and countermeasures. To overcome these restrictions we have created ontology-driven threat modelling (OdTM) framework based on base threat model, used to develop various domain-specific threat models. Each domain-specific threat model contains a set of typical components of some architectural domain, threats and countermeasures. A system architect describes its computer system with DFD diagram; then automatic reasoning procedures are used to semantically interpret the diagram and figure out relevant threats and countermeasures for the system. We approach a conception of context security patterns as countermeasures. Context security pattern contains a precise description of security problem and its solution. Also it has criteria that allow to automatically map it to system component. We propose three ways to integrate context security patterns with domain-specific threat models: with data flow templates, through association with threats, and the use of labels. All the models, discussed in this work, can be implemented as OWL (Web Ontology Language) ontologies with Description logics (DL) as a mathematical background.}
 }
 
+@inproceedings{buthCombiningMethodsLivelock1999,
+  title = {Combining {{Methods}} for the {{Livelock Analysis}} of a {{Fault-Tolerant System}}},
+  booktitle = {Algebraic {{Methodology}} and {{Software Technology}}},
+  author = {Buth, Bettina and Peleska, Jan and Shi, Hui},
+  editor = {Haeberer, Armando M.},
+  year = {1999},
+  series = {Lecture {{Notes}} in {{Computer Science}}},
+  pages = {124--139},
+  publisher = {{Springer}},
+  address = {{Berlin, Heidelberg}},
+  doi = {10.1007/3-540-49253-4_11},
+  abstract = {This article presents experiences gained from the verification of communication properties of a large-scale real-world embedded system by means of formal methods. This industrial verification project was performed for a fault-tolerant system designed and implemented by Daimler-Benz Aerospace for the International Space Station ISS and focused essentially on deadlock and livelock analysis. The approach is based on CSP specifications and the model-checking tool FDR. The tasks are split into manageable subtasks by applying abstraction techniques for restricting the specifications to the essential communication behavior, modularization according to the process structure, and a set of generic theories developed for the application.},
+  isbn = {978-3-540-49253-5},
+  langid = {english},
+  keywords = {Communication Behavior,Communication Graph,International Space Station,Model Check,Proof Obligation}
+}
+
+@inproceedings{buthDeadlockAnalysisFaulttolerant1997,
+  title = {Deadlock Analysis for a Fault-Tolerant System},
+  booktitle = {Algebraic {{Methodology}} and {{Software Technology}}},
+  author = {Buth, Bettina and Kouvaras, Michel and Peleska, Jan and Shi, Hui},
+  editor = {Johnson, Michael},
+  year = {1997},
+  series = {Lecture {{Notes}} in {{Computer Science}}},
+  pages = {60--74},
+  publisher = {{Springer}},
+  address = {{Berlin, Heidelberg}},
+  doi = {10.1007/BFb0000463},
+  abstract = {This article presents an approach for the verification of communication properties in large-scale real-world embedded systems by means of formal methods. It is illustrated by examples and results obtained during an industrial verification project performed for a fault-tolerant system designed and implemented by Daimler-Benz Aerospace for the International Space Station ISS. The approach is based on CSP specifications and the model-checking tool FDR. The task is split into manageable subtasks by applying an abstraction technique for restricting the specifications to the essential communication behaviour, modularization according to the process structure, and a set of generic theories developed for the application.},
+  isbn = {978-3-540-69661-2},
+  langid = {english},
+  keywords = {Communication Behaviour,Deadlock Situation,Input Channel,Model Checker,Proof Obligation}
+}
+
 @article{casanovasSemanticWebLegal2016,
   title = {Semantic {{Web}} for the {{Legal Domain}}: {{The}}\&nbsp;next Step},
   shorttitle = {Semantic {{Web}} for the {{Legal Domain}}},
@@ -148,6 +182,32 @@
   url = {https://www.w3.org/2009/07/NamedGraph.html},
   urldate = {2022-01-19},
   abstract = {This document introduces a formal semantics for (RDF) Graph Literals and Named Graphs. Graph Literals allow applications to make statements on triples (eg, provenance) without really asserting them, ie, without ensuring their existence. Named Graphs makes it possible to assign a URI to a collection of triples, and being able to make statements on the whole set (in some ways, the URI of an RDF/XML file that contains a number of triples can be considered to be a Named Graph).}
+}
+
+@book{hoareCommunicatingSequentialProcesses2015,
+  title = {Communicating {{Sequential Processes}}},
+  author = {Hoare, C A R},
+  year = {2015},
+  month = may,
+  url = {http://www.usingcsp.com/cspbook.pdf},
+  copyright = {\textcopyright{} C. A. R. Hoare, 1985\textendash 2004},
+  langid = {english}
+}
+
+@article{ibanezLiveLinkedData2013,
+  title = {Live Linked Data: Synchronising Semantic Stores with Commutative Replicated Data Types},
+  shorttitle = {Live Linked Data},
+  author = {Ib{\'a}{\~n}ez, Luis-Daniel and {Skaf-Molli}, Hala and Molli, Pascal and Corby, Olivier},
+  year = {2013},
+  month = jan,
+  journal = {International Journal of Metadata, Semantics and Ontologies},
+  volume = {8},
+  number = {2},
+  pages = {119--133},
+  publisher = {{Inderscience Publishers}},
+  issn = {1744-2621},
+  doi = {10.1504/IJMSO.2013.056605},
+  abstract = {Linked Data is currently interconnecting information on the web, creating the web of data. It allows data consumers to combine different data sets and perform powerful queries. However, this means either to copy data sets locally or perform distributed querying. Local copies have problems of freshness, distributed queries, of scalability and performance. Linked Data producers are currently going live by providing streams of data updates, opening a third way to query: synchronise and search. Each Linked Data node can follow update streams of others, creating a social network of live updates: the Live Linked Data (LLD). Unfortunately, synchronising data among autonomous participants raises issues of concurrency and consistency. In this paper, we propose SU-Set, a Commutative Replicated Data Type (CRDT) for RDF graph updated with SPARQL Update 1.1. We describe how a semantic store can use SU-Set to ensure eventual consistency in LLD, with a low overhead in time, space and communication.}
 }
 
 @misc{jagannathanAdvancedThreatModelling2012,
@@ -354,6 +414,19 @@
   url = {http://webr3.org/blog/semantic-web/rdf-named-graphs-vs-graph-literals/},
   urldate = {2022-01-19},
   abstract = {An overview of Named Graphs and Graph Literals and the distinctions between them.}
+}
+
+@book{roscoeUnderstandingConcurrentSystems2010,
+  title = {Understanding {{Concurrent Systems}}},
+  author = {Roscoe, A. W.},
+  year = {2010},
+  month = oct,
+  publisher = {{Springer Science \& Business Media}},
+  abstract = {CSP notation has been used extensively for teaching and applying concurrency theory, ever since the publication of the text Communicating Sequential Processes by C.A.R. Hoare in 1985. Both a programming language and a specification language, the theory of CSP helps users to understand concurrent systems, and to decide whether a program meets its specification. As a member of the family of process algebras, the concepts of communication and interaction are presented in an algebraic style. An invaluable reference on the state of the art in CSP, Understanding Concurrent Systems also serves as a comprehensive introduction to the field, in addition to providing material for a number of more advanced courses. A first point of reference for anyone wanting to use CSP or learn about its theory, the book also introduces other views of concurrency, using CSP to model and explain these. The text is fully integrated with CSP-based tools such as FDR, and describes how to create new tools based on FDR. Most of the book relies on no theoretical background other than a basic knowledge of sets and sequences. Sophisticated mathematical arguments are avoided whenever possible. Topics and features: presents a comprehensive introduction to CSP; discusses the latest advances in CSP, covering topics of operational semantics, denotational models, finite observation models and infinite-behaviour models, and algebraic semantics; explores the practical application of CSP, including timed modelling, discrete modelling, parameterised verifications and the state explosion problem, and advanced topics in the use of FDR; examines the ability of CSP to describe and enable reasoning about parallel systems modelled in other paradigms; covers a broad variety of concurrent systems, including combinatorial, timed, priority-based, mobile, shared variable, statecharts, buffered and asynchronous systems; contains exercises and case studies to support the text; supplies further tools and information at the associated website: http://www.comlab.ox.ac.uk/ucs/. From undergraduate students of computer science in need of an introduction to the area, to researchers and practitioners desiring a more in-depth understanding of theory and practice of concurrent systems, this broad-ranging text/reference is essential reading for anyone interested in Hoare's CSP.},
+  googlebooks = {SZCWr4bCCtcC},
+  isbn = {978-1-84882-258-0},
+  langid = {english},
+  keywords = {Computers / Operating Systems / General,Computers / Programming / General}
 }
 
 @techreport{Sabadello:21:DI,
