@@ -449,7 +449,7 @@
 <node TEXT="snapshot: don&apos;t have principal yet" ID="ID_816506247" CREATED="1646154672188" MODIFIED="1647865024371"/>
 </node>
 </node>
-<node TEXT="conflict-free constraints" FOLDED="true" ID="ID_1175901092" CREATED="1632751608347" MODIFIED="1633339694830">
+<node TEXT="conflict-free constraints" ID="ID_1175901092" CREATED="1632751608347" MODIFIED="1633339694830">
 <icon BUILTIN="button_cancel"/>
 <node TEXT="principle" ID="ID_1241771470" CREATED="1632751862175" MODIFIED="1632751864497">
 <node TEXT="merge of a constraint change with a violation&#xa;is an unviolating state" ID="ID_943811079" CREATED="1632751864785" MODIFIED="1632751958819"/>
@@ -592,8 +592,22 @@
 </node>
 </node>
 </node>
-<node TEXT="after agreement, no message can&#xa;be accepted which is not caused by it" FOLDED="true" ID="ID_317373433" CREATED="1628086333506" MODIFIED="1628667782196">
+<node TEXT="after agreement, no message can&#xa;be accepted which is not caused by it" ID="ID_317373433" CREATED="1628086333506" MODIFIED="1668185350295">
 <icon BUILTIN="idea"/>
+<richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      <span charset="utf-8" style="color: rgb(32, 33, 36); font-family: Roboto, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: normal; text-align: start; text-indent: 0px; text-transform: none; white-space: pre-wrap; word-spacing: 0px; background-color: rgb(255, 255, 255); display: inline !important; float: none"><font color="rgb(32, 33, 36)" face="Roboto, sans-serif" size="14px">Note: </font></span><font color="rgb(32, 33, 36)" face="Roboto, sans-serif" size="14px"><span charset="utf-8" style="color: rgb(32, 33, 36); font-family: Roboto, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: normal; text-align: start; text-indent: 0px; text-transform: none; white-space: pre-wrap; word-spacing: 0px; display: inline !important; float: none">'caused-by' means 'strictly-subsequent-to' according to causal ordering, not necessarily any </span><span charset="utf-8" style="color: rgb(32, 33, 36); font-family: Roboto, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: normal; text-align: start; text-indent: 0px; text-transform: none; white-space: pre-wrap; word-spacing: 0px; background-color: rgb(255, 255, 255); display: inline !important; float: none">dependency between the data affected by the changes</span><span charset="utf-8" style="color: rgb(32, 33, 36); font-family: Roboto, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: normal; text-align: start; text-indent: 0px; text-transform: none; white-space: pre-wrap; word-spacing: 0px; display: inline !important; float: none">.</span></font>
+    </p>
+  </body>
+</html>
+
+</richcontent>
 <node TEXT="≡ optimistic lock on data/domain" ID="ID_1360421986" CREATED="1628160809525" MODIFIED="1628161883160"/>
 <node TEXT="agreement has no data" ID="ID_1555161856" CREATED="1628258599851" MODIFIED="1643450210995">
 <icon BUILTIN="help"/>
