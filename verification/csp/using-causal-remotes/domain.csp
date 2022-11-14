@@ -1,0 +1,59 @@
+include "../globals.csp"
+
+--------------------------------------------------------------------------------
+-- CRDT
+include "../crdt/IntegerSum.module.csp"
+include "../crdt/NaiveSet.module.csp"
+include "../crdt/OR_Set.module.csp"
+-- Selection of CRDT module
+instance Crdt = IntegerSum
+
+--------------------------------------------------------------------------------
+include "CausalRemotes.module.csp"
+
+--------------------------------------------------------------------------------
+include "../DomainSpec.module.csp"
+
+--------------------------------------------------------------------------------
+-- CRDT domain
+Clone(local) = let
+  State(
+    state, -- CRDT state
+    counts -- User transaction # per clone
+  ) = counts < (N, N, N) & let
+    n = peek(counts, local) + 1
+    -- Only allow N user txns
+  within n <= N & (
+    user.local?up?agree -> let
+      op = Crdt::transact(state, up)
+      postState = Crdt::apply(local.n, state, op)
+      newCounts = put(counts, local, n)
+    within
+      data.local.Crdt::data(postState) ->
+      publish.local.n.op ->
+      State(postState, newCounts)
+  ) [] (
+    -- We can be delivered any next message
+    [] remote : CID, remote != local @ let
+      n = peek(counts, remote) + 1
+    within
+      n <= N & deliver.local.remote.n?op : Crdt::possible(state) -> let
+        postState = Crdt::apply(remote.n, state, op)
+        newCounts = put(counts, remote, n)
+      within
+        data.local.Crdt::data(postState) ->
+        State(postState, newCounts)
+  )
+within State(Crdt::initialState, (0, 0, 0))
+
+assert Clone(1) :[divergence-free]
+
+Users(1) = BlitheUser(1)
+Users(2) = ReactiveUser(2)
+Users(3) = ReactiveUser(3)
+
+-- 'Node' here is user + clone
+Nodes = ||| cid : CID @ Clone(cid) [| AppEvents(cid) |] Users(cid)
+CrdtSystem = (Nodes [| RemotesEvents |] Remotes) \ RemotesEvents
+
+assert ConvergentSystem(Users, Crdt::Data) [T= CrdtSystem

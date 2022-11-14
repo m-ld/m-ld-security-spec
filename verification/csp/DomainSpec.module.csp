@@ -1,0 +1,81 @@
+--------------------------------------------------------------------------------
+-- Domain Specification
+-- (requires globals and Crdt module)
+
+-- A user operates on a clone, providing an Update and potentially an agreement
+channel user : CID.Crdt::Update.Agree
+
+-- Data state channel per-clone – notifies after every update, including local
+channel data : CID.Crdt::Data
+
+--------------------------------------------------------------------------------
+-- App and Users
+-- Note that users must participate in the app events, even if they ignore them
+AppEvents(cid) = {| user.cid, data.cid |}
+
+-- A user who ignores all other users
+BlitheUser(cid) =
+  user.cid$up.Free -> BlitheUser(cid)
+  []
+  data.cid?d -> BlitheUser(cid)
+
+-- A user who will only update based on someone else's update (seen locally)
+ReactiveUser(cid) = data.cid?d -> (
+  (user.cid$up.Free -> data.cid?d -> ReactiveUser(cid))
+  []
+  ReactiveUser(cid))
+
+-- A user who insists on one particular update (potentially with agreement)
+BolshyUser(cid, up) =
+  user.cid!up -> BolshyUser(cid, up)
+  []
+  data.cid?d -> BolshyUser(cid, up)
+
+-- A user who does not contribute
+Lurker(cid) = data.cid?d -> Lurker(cid)
+
+-- A user who stops contributing if anyone else appears
+ShyUser(cid) =
+  user.cid$up.Free -> data.cid?d -> ShyUser(cid)
+  []
+  data.cid?d -> Lurker(cid)
+
+--------------------------------------------------------------------------------
+-- A convergent domain allows any user input and any data state, but the converged
+-- data state must be the same for all nodes.
+datatype Converged = Unknown | Final.Crdt::Data
+
+-- It's possible to specify the allowable converged state upfront, or allow any.
+ConvergentDomain(Allowed) = let
+  DN = CN * N -- Expected number of data events per user
+  allowedData(n, Unknown) = if n == DN then Allowed else Crdt::Data
+  allowedData(n, Final.d) = if n == DN then {d} else Crdt::Data
+  -- The first clone to reach CN*N data updates sets the expected converged data
+  Running(counts, converged) = [] cid : CID @ let
+    n = peek(counts, cid) + 1
+  within n <= DN & data.cid?d : allowedData(n, converged) -> Running(
+    put(counts, cid, n),
+    if converged == Unknown and n == DN then Final.d else converged
+  )
+within Running(cidTuple(0), Unknown)
+
+exampleData1 = head(seq(Crdt::Data))
+exampleData2 = head(tail(seq(Crdt::Data)))
+
+--------------------------------------------------------------------------------
+-- Test assertions to check ConvergentDomain behaviour
+-- NOTE: Assertions require N = 1
+assert ConvergentDomain(Crdt::Data) :[has trace [T]]: <
+  data.1.exampleData1, data.1.exampleData1, data.1.exampleData1, -- final
+  data.2.exampleData2, data.2.exampleData2 -- any data allowed before final
+>
+assert not ConvergentDomain(Crdt::Data) :[has trace [T]]: <
+  data.1.exampleData1, data.1.exampleData1, data.1.exampleData1, -- final
+  data.2.exampleData2, data.2.exampleData2, data.2.exampleData2 -- different final
+>
+
+--------------------------------------------------------------------------------
+-- A convergent system has a domain and a set of users
+-- users is CID -> Proc
+ConvergentSystem(users, Allowed) =
+  ConvergentDomain(Allowed) [| {| data |} |] ||| cid : CID @ users(cid)

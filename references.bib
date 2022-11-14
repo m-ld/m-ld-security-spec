@@ -1,3 +1,10 @@
+@article{boerProofTheoryAsynchronously2001,
+  title = {A {{Proof Theory}} of {{Asynchronously Communicating Sequential Processes}}},
+  author = {Boer, Es and Francez, Nissim and Hutst, Van and Stomp, Fa},
+  year = {2001},
+  month = sep,
+  abstract = {We present compositional Hoare logics for distributed systems in which communication is asynchronous via FIFO channels. The logics are proved sound and relative complete.}
+}
 
 @book{brazhukSecurityPatternsBased2020,
   title = {Security Patterns Based Approach to Automatically Select Mitigations in Ontology-Driven Threat Modelling},
@@ -5,6 +12,40 @@
   year = {2020},
   month = feb,
   abstract = {Common approach of the threat modelling includes an analysis of computer system architecture on early stages of development process and creation of threat model. Data Flow Diagrams (DFD) are often used to represent the system organization. The main challenge with threat modelling is that there are no formal approaches to describe the computer system architecture and structured knowledge sources of threats and countermeasures. To overcome these restrictions we have created ontology-driven threat modelling (OdTM) framework based on base threat model, used to develop various domain-specific threat models. Each domain-specific threat model contains a set of typical components of some architectural domain, threats and countermeasures. A system architect describes its computer system with DFD diagram; then automatic reasoning procedures are used to semantically interpret the diagram and figure out relevant threats and countermeasures for the system. We approach a conception of context security patterns as countermeasures. Context security pattern contains a precise description of security problem and its solution. Also it has criteria that allow to automatically map it to system component. We propose three ways to integrate context security patterns with domain-specific threat models: with data flow templates, through association with threats, and the use of labels. All the models, discussed in this work, can be implemented as OWL (Web Ontology Language) ontologies with Description logics (DL) as a mathematical background.}
+}
+
+@inproceedings{buthCombiningMethodsLivelock1999,
+  title = {Combining {{Methods}} for the {{Livelock Analysis}} of a {{Fault-Tolerant System}}},
+  booktitle = {Algebraic {{Methodology}} and {{Software Technology}}},
+  author = {Buth, Bettina and Peleska, Jan and Shi, Hui},
+  editor = {Haeberer, Armando M.},
+  year = {1999},
+  series = {Lecture {{Notes}} in {{Computer Science}}},
+  pages = {124--139},
+  publisher = {{Springer}},
+  address = {{Berlin, Heidelberg}},
+  doi = {10.1007/3-540-49253-4_11},
+  abstract = {This article presents experiences gained from the verification of communication properties of a large-scale real-world embedded system by means of formal methods. This industrial verification project was performed for a fault-tolerant system designed and implemented by Daimler-Benz Aerospace for the International Space Station ISS and focused essentially on deadlock and livelock analysis. The approach is based on CSP specifications and the model-checking tool FDR. The tasks are split into manageable subtasks by applying abstraction techniques for restricting the specifications to the essential communication behavior, modularization according to the process structure, and a set of generic theories developed for the application.},
+  isbn = {978-3-540-49253-5},
+  langid = {english},
+  keywords = {Communication Behavior,Communication Graph,International Space Station,Model Check,Proof Obligation}
+}
+
+@inproceedings{buthDeadlockAnalysisFaulttolerant1997,
+  title = {Deadlock Analysis for a Fault-Tolerant System},
+  booktitle = {Algebraic {{Methodology}} and {{Software Technology}}},
+  author = {Buth, Bettina and Kouvaras, Michel and Peleska, Jan and Shi, Hui},
+  editor = {Johnson, Michael},
+  year = {1997},
+  series = {Lecture {{Notes}} in {{Computer Science}}},
+  pages = {60--74},
+  publisher = {{Springer}},
+  address = {{Berlin, Heidelberg}},
+  doi = {10.1007/BFb0000463},
+  abstract = {This article presents an approach for the verification of communication properties in large-scale real-world embedded systems by means of formal methods. It is illustrated by examples and results obtained during an industrial verification project performed for a fault-tolerant system designed and implemented by Daimler-Benz Aerospace for the International Space Station ISS. The approach is based on CSP specifications and the model-checking tool FDR. The task is split into manageable subtasks by applying an abstraction technique for restricting the specifications to the essential communication behaviour, modularization according to the process structure, and a set of generic theories developed for the application.},
+  isbn = {978-3-540-69661-2},
+  langid = {english},
+  keywords = {Communication Behaviour,Deadlock Situation,Input Channel,Model Checker,Proof Obligation}
 }
 
 @article{casanovasSemanticWebLegal2016,
@@ -143,6 +184,32 @@
   abstract = {This document introduces a formal semantics for (RDF) Graph Literals and Named Graphs. Graph Literals allow applications to make statements on triples (eg, provenance) without really asserting them, ie, without ensuring their existence. Named Graphs makes it possible to assign a URI to a collection of triples, and being able to make statements on the whole set (in some ways, the URI of an RDF/XML file that contains a number of triples can be considered to be a Named Graph).}
 }
 
+@book{hoareCommunicatingSequentialProcesses2015,
+  title = {Communicating {{Sequential Processes}}},
+  author = {Hoare, C A R},
+  year = {2015},
+  month = may,
+  url = {http://www.usingcsp.com/cspbook.pdf},
+  copyright = {\textcopyright{} C. A. R. Hoare, 1985\textendash 2004},
+  langid = {english}
+}
+
+@article{ibanezLiveLinkedData2013,
+  title = {Live Linked Data: Synchronising Semantic Stores with Commutative Replicated Data Types},
+  shorttitle = {Live Linked Data},
+  author = {Ib{\'a}{\~n}ez, Luis-Daniel and {Skaf-Molli}, Hala and Molli, Pascal and Corby, Olivier},
+  year = {2013},
+  month = jan,
+  journal = {International Journal of Metadata, Semantics and Ontologies},
+  volume = {8},
+  number = {2},
+  pages = {119--133},
+  publisher = {{Inderscience Publishers}},
+  issn = {1744-2621},
+  doi = {10.1504/IJMSO.2013.056605},
+  abstract = {Linked Data is currently interconnecting information on the web, creating the web of data. It allows data consumers to combine different data sets and perform powerful queries. However, this means either to copy data sets locally or perform distributed querying. Local copies have problems of freshness, distributed queries, of scalability and performance. Linked Data producers are currently going live by providing streams of data updates, opening a third way to query: synchronise and search. Each Linked Data node can follow update streams of others, creating a social network of live updates: the Live Linked Data (LLD). Unfortunately, synchronising data among autonomous participants raises issues of concurrency and consistency. In this paper, we propose SU-Set, a Commutative Replicated Data Type (CRDT) for RDF graph updated with SPARQL Update 1.1. We describe how a semantic store can use SU-Set to ensure eventual consistency in LLD, with a low overhead in time, space and communication.}
+}
+
 @misc{jagannathanAdvancedThreatModelling2012,
   title = {Advanced {{Threat Modelling Knowledge Session}}},
   author = {Jagannathan, Venkatesh},
@@ -175,6 +242,38 @@
   doi = {10.1109/TPDS.2021.3090318},
   abstract = {In this article we study the properties of distributed systems that mix eventual and strong consistency. We formalize such systems through acute cloud types (ACTs), abstractions similar to conflict-free replicated data types (CRDTs), which by default work in a highly available, eventually consistent fashion, but which also feature strongly consistent operations for tasks which require global agreement. Unlike other mixed-consistency solutions, ACTs can rely on efficient quorum-based protocols, such as Paxos. Hence, ACTs gracefully tolerate machine and network failures also for the strongly consistent operations. We formally study ACTs and demonstrate phenomena which are neither present in purely eventually consistent nor strongly consistent systems. In particular, we identify temporary operation reordering, which implies interim disagreement between replicas on the relative order in which the client requests were executed. When not handled carefully, this phenomenon may lead to undesired anomalies, including circular causality. We prove an impossibility result which states that temporary operation reordering is unavoidable in mixed-consistency systems with sufficiently complex semantics. Our result is startling, because it shows that apparent strengthening of the semantics of a system (by introducing strongly consistent operations to an eventually consistent system) results in the weakening of the guarantees on the eventually consistent operations.},
   keywords = {ACT,acute cloud types,Data structures,eventual consistency,fault-tolerance,mixed consistency,Protocols,Reactive power,Scalability,Semantics,Servers,Synchronization}
+}
+
+@inproceedings{kwiatkowskaPossibleGuaranteedConcurrency1995,
+  title = {Possible and {{Guaranteed Concurrency}} in {{CSP}}},
+  booktitle = {Structures in {{Concurrency Theory}}},
+  author = {Kwiatkowska, Marta and Phillips, Iain},
+  editor = {Desel, J{\"o}rg},
+  year = {1995},
+  series = {Workshops in {{Computing}}},
+  pages = {220--235},
+  publisher = {{Springer}},
+  address = {{London}},
+  doi = {10.1007/978-1-4471-3078-9_15},
+  abstract = {As part of an effort to give a ``truly concurrent'' semantics to process algebra, we propose a framework of refinements of the failures model for CSP with concurrency, conflict and causality relations on traces. These relations are defined by induction over syntax of CSP processes. We study in detail two new semantics: the possible concurrency (where two traces are said to be concurrent if they may be observations of the same concurrent run) and the possible conflict (two traces are said to be in conflict if they may be observations of two different runs). The guaranteed concurrency is obtained from the possible conflict semantics. Although the expansion law is necessarily weakened to an inequality, we show that most of the CSP laws are preserved, the exception being the idempotency of choice for the possible conflict refinement. Finally, we show that our semantics is well-founded by demonstrating a strong connection with the existing event structures semantics for CSP. The latter results show that, in a certain sense, concurrency distinctions can be made at the level of syntax, without resorting to reasoning about event occurrences.},
+  isbn = {978-1-4471-3078-9},
+  langid = {english},
+  keywords = {Communicate Sequential Process,Conflict Relation,Event Structure,Process Algebra,Trace Theory}
+}
+
+@article{lamportTemporalLogicActions1994,
+  title = {The Temporal Logic of Actions},
+  author = {Lamport, Leslie},
+  year = {1994},
+  month = may,
+  journal = {ACM Transactions on Programming Languages and Systems},
+  volume = {16},
+  number = {3},
+  pages = {872--923},
+  issn = {0164-0925},
+  doi = {10.1145/177492.177726},
+  abstract = {The temporal logic of actions (TLA) is a logic for specifying and reasoning about concurrent systems. Systems and their properties are represented in the same logic, so the assertion that a system meets its specification and the assertion that one system implements another are both expressed by logical implication. TLA is very simple; its syntax and complete formal semantics are summarized in about a page. Yet, TLA is not just a logician's toy; it is extremely powerful, both in principle and in practice. This report introduces TLA and describes how it is used to specify and verify concurrent algorithms. The use of TLA to specify and reason about open systems will be described elsewhere.},
+  keywords = {concurrent programming,liveness properties,safety properties}
 }
 
 @article{Ma2020Writing,
@@ -257,6 +356,18 @@
   keywords = {Communication Technologies (ICT),Industry 4.0,Information,Security Challenges,Security Incidents}
 }
 
+@misc{presslerTLAPracticeTheoryPart2017,
+  title = {{{TLA}}+ in {{Practice}} and {{Theory}}{$<$}br/{$>$}{{Part}} 3: {{The}} ({{Temporal}}) {{Logic}} of {{Actions}}},
+  shorttitle = {{{TLA}}+ in {{Practice}} and {{Theory Part}} 3},
+  author = {Pressler, Ron},
+  year = {2017},
+  month = jun,
+  journal = {Ron Pressler},
+  url = {https://pron.github.io/posts/tlaplus_part3},
+  urldate = {2022-10-04},
+  abstract = {TLA, the Temporal Logic of Actions is the core of TLA+. It is a temporal logic that minimizes the use of temporal reasoning in favor of more ordinary mathematics. It is a general mathematical framework for describing and reasoning about algorithms and systems.}
+}
+
 @misc{ProofMarkSystemTechnical2007,
   title = {{{ProofMark System Technical Overview}}},
   year = {2007},
@@ -276,6 +387,23 @@
   urldate = {2021-07-02}
 }
 
+@incollection{raynalLogicalInstantaneityCausal2000,
+  title = {Logical {{Instantaneity}} and {{Causal Order}}: {{Two}} ``{{First Class}}'' {{Communication Modes}} for {{Parallel Computing}}},
+  shorttitle = {Logical {{Instantaneity}} and {{Causal Order}}},
+  booktitle = {Euro-{{Par}} 2000 {{Parallel Processing}}},
+  author = {Raynal, Michel},
+  editor = {Goos, Gerhard and Hartmanis, Juris and {van Leeuwen}, Jan and Bode, Arndt and Ludwig, Thomas and Karl, Wolfgang and Wism{\"u}ller, Roland},
+  year = {2000},
+  volume = {1900},
+  pages = {35--42},
+  publisher = {{Springer Berlin Heidelberg}},
+  address = {{Berlin, Heidelberg}},
+  doi = {10.1007/3-540-44520-X_4},
+  abstract = {This paper focuses on two communication modes, namely Logically Instantaneity (li) and Causal Order (co). These communication modes address two different levels of quality of service in message delivery. li means that it is possible to timestamp communication events with integers in such a way that (1) timestamps increase within each process and (2) the sending and the delivery events associated with each message have the same timestamp. So, there is a logical time frame in which for each message, the send event and the corresponding delivery events occur simultaneously. co means that when a process delivers a message m, its delivery occurs in a context where the receiving process knows all the causal past of m. Actually, li is a property strictly stronger than co.},
+  isbn = {978-3-540-67956-1 978-3-540-44520-3},
+  langid = {english}
+}
+
 @misc{rixhamRDFNamedGraphs2012,
   type = {Blog},
   title = {{{RDF}}: {{Named Graphs}} -vs- {{Graph Literals}} \textendash{} Webr3.Org},
@@ -286,6 +414,19 @@
   url = {http://webr3.org/blog/semantic-web/rdf-named-graphs-vs-graph-literals/},
   urldate = {2022-01-19},
   abstract = {An overview of Named Graphs and Graph Literals and the distinctions between them.}
+}
+
+@book{roscoeUnderstandingConcurrentSystems2010,
+  title = {Understanding {{Concurrent Systems}}},
+  author = {Roscoe, A. W.},
+  year = {2010},
+  month = oct,
+  publisher = {{Springer Science \& Business Media}},
+  abstract = {CSP notation has been used extensively for teaching and applying concurrency theory, ever since the publication of the text Communicating Sequential Processes by C.A.R. Hoare in 1985. Both a programming language and a specification language, the theory of CSP helps users to understand concurrent systems, and to decide whether a program meets its specification. As a member of the family of process algebras, the concepts of communication and interaction are presented in an algebraic style. An invaluable reference on the state of the art in CSP, Understanding Concurrent Systems also serves as a comprehensive introduction to the field, in addition to providing material for a number of more advanced courses. A first point of reference for anyone wanting to use CSP or learn about its theory, the book also introduces other views of concurrency, using CSP to model and explain these. The text is fully integrated with CSP-based tools such as FDR, and describes how to create new tools based on FDR. Most of the book relies on no theoretical background other than a basic knowledge of sets and sequences. Sophisticated mathematical arguments are avoided whenever possible. Topics and features: presents a comprehensive introduction to CSP; discusses the latest advances in CSP, covering topics of operational semantics, denotational models, finite observation models and infinite-behaviour models, and algebraic semantics; explores the practical application of CSP, including timed modelling, discrete modelling, parameterised verifications and the state explosion problem, and advanced topics in the use of FDR; examines the ability of CSP to describe and enable reasoning about parallel systems modelled in other paradigms; covers a broad variety of concurrent systems, including combinatorial, timed, priority-based, mobile, shared variable, statecharts, buffered and asynchronous systems; contains exercises and case studies to support the text; supplies further tools and information at the associated website: http://www.comlab.ox.ac.uk/ucs/. From undergraduate students of computer science in need of an introduction to the area, to researchers and practitioners desiring a more in-depth understanding of theory and practice of concurrent systems, this broad-ranging text/reference is essential reading for anyone interested in Hoare's CSP.},
+  googlebooks = {SZCWr4bCCtcC},
+  isbn = {978-1-84882-258-0},
+  langid = {english},
+  keywords = {Computers / Operating Systems / General,Computers / Programming / General}
 }
 
 @techreport{Sabadello:21:DI,
@@ -384,6 +525,13 @@
   langid = {english}
 }
 
+@misc{wardScalabilityMonitoringDebugging,
+  title = {On the {{Scalability}} of {{Monitoring}} and {{Debugging Distributed Computations}}: {{Vector-Clock Size}}},
+  shorttitle = {On the {{Scalability}} of {{Monitoring}} and {{Debugging Distributed Computations}}},
+  author = {Ward, Paul A. S.},
+  abstract = {The vector-clock size necessary to characterize causality in an arbitrary distributed computation is equal to the number of processes in that computation. However, in practice the vector-clock size necessary may be much smaller. The vector-clock size is not strictly bounded by the number of processes, but rather by the dimension of the partial order induced by the computation. While the dimension theoretically can be as large as the number of processes, in practice we have found it to be much smaller. In this paper we quantify exactly how small the dimension, and hence the vector-clock size required, is over a range of typical distributed computations. We have found that typical distributed computations, with as many as 300 processes, have dimension less than 10. In order to achieve this quantification we developed several novel theorems and algorithms which we also describe.}
+}
+
 @article{yaacoubRoboticsCyberSecurity2021,
   title = {Robotics Cyber Security: Vulnerabilities, Attacks, Countermeasures, and Recommendations},
   shorttitle = {Robotics Cyber Security},
@@ -397,6 +545,23 @@
   langid = {english}
 }
 
+@misc{zhangMETModelCheckingDriven2022,
+  title = {{{MET}}: {{Model Checking-Driven Explorative Testing}} of {{CRDT Designs}} and {{Implementations}}},
+  shorttitle = {{{MET}}},
+  author = {Zhang, Yuqi and Huang, Yu and Wei, Hengfeng and Ma, Xiaoxing},
+  year = {2022},
+  month = apr,
+  number = {arXiv:2204.14129},
+  eprint = {2204.14129},
+  eprinttype = {arxiv},
+  primaryclass = {cs},
+  publisher = {{arXiv}},
+  doi = {10.48550/arXiv.2204.14129},
+  abstract = {Internet-scale distributed systems often replicate data at multiple geographic locations to provide low latency and high availability. The Conflict-free Replicated Data Type (CRDT) is a framework that provides a principled approach to maintaining eventual consistency among data replicas. CRDTs have been notoriously difficult to design and implement correctly. Subtle deep bugs lie in the complex and tedious handling of all possible cases of conflicting data updates. We argue that the CRDT design should be formally specified and model-checked to uncover deep bugs. The implementation further needs to be systematically tested. On the one hand, the testing needs to inherit the exhaustive nature of the model checking and ensures the coverage of testing. On the other hand, the testing is expected to find coding errors which cannot be detected by design level verification. Towards the challenges above, we propose the Model Checking-driven Explorative Testing (MET) framework. At the design level, MET uses TLA+ to specify and model check CRDT designs. At the implementation level, MET conducts model checking-driven explorative testing, in the sense that the test cases are automatically generated from the model checking traces. The system execution is controlled to proceed deterministically, following the model checking trace. The explorative testing systematically controls and permutes all nondeterministic message reorderings. We apply MET in our practical development of CRDTs. The bugs in both designs and implementations of CRDTs are found. As for bugs which can be found by traditional testing techniques, MET greatly reduces the cost of fixing the bugs. Moreover, MET can find subtle deep bugs which cannot be found by existing techniques at a reasonable cost. We further discuss how MET provides us with sufficient confidence in the correctness of our CRDT designs and implementations.},
+  archiveprefix = {arXiv},
+  keywords = {Computer Science - Distributed; Parallel; and Cluster Computing,Computer Science - Software Engineering}
+}
+
 @misc{zimmermannWhyWrotePGP1999,
   type = {Essay},
   title = {Why {{I Wrote PGP}}},
@@ -405,5 +570,4 @@
   url = {http://www.philzimmermann.com/EN/essays/WhyIWrotePGP.html},
   urldate = {2021-06-22}
 }
-
 

@@ -1,0 +1,75 @@
+--------------------------------------------------------------------------------
+-- Causal remotes
+
+-- We can deliver any event to any process (internal choice) for which all
+-- antecedents have been delivered to that process.
+
+-- Remotes has:
+-- - injection (| TID => {antecedent-tids} |), populated on publish
+-- - per-node <inbox> & {seen-tids}
+
+nametype TID = CID.{1..N} -- Transaction identity (used by CRDT)
+nametype Event = TID.Crdt::Operation
+channel publish : Event
+channel deliver : CID.Event -- deliver at a remote process
+
+RemotesEvents = {| publish, deliver |}
+
+Remotes = let
+  RemoteState(nodes, antecedents) = (
+    -- Processing a sent event
+    [] from : CID, op : Crdt::Operation @ let
+      (prev, inbox, seen) = peek(nodes, from)
+      n = prev + 1
+    within n <= N & publish.from.n.op -> let
+      nodes_ = put(nodes, from, (n, inbox, union(seen, {from.n})))
+    within RemoteState(
+      updateOthers(nodes_, from, \ (nO, inbox, seen) @ (nO, union(inbox, {from.n.op}), seen)),
+      mapUpdate(antecedents, from.n, seen)
+    )
+  ) [] ( let
+    -- Deliver a queued event for which the antecedent has been delivered
+    deliverable = Union({ let
+        (_, inbox, seen) = peek(nodes, to)
+      within { to.e | e <- inbox, let
+        from.n.op = e
+        causes = mapLookup(antecedents, from.n)
+      within causes <= seen } | to <- CID
+    })
+  within not empty(deliverable) &
+    |~| to.from.n.op: deliverable @ deliver.to.from.n.op -> RemoteState(
+      update(nodes, to, \ (nT, inbox, seen) @
+        (nT, diff(inbox, {from.n.op}), union(seen, {from.n}))),
+      antecedents
+    )
+  )
+within RemoteState(cidTuple((0, {}, {})), emptyMap)
+
+-- Examples from M. Raynal, ‘Logical Instantaneity and Causal Order: Two “First
+-- Class” Communication Modes for Parallel Computing’
+
+exampleOp = head(seq(Crdt::Operation))
+
+assert Remotes :[has trace [T]]: <
+  publish.1.1.exampleOp,
+  deliver.2.1.1.exampleOp,
+  publish.3.1.exampleOp,
+  publish.2.1.exampleOp,
+  deliver.1.2.1.exampleOp,
+  deliver.3.1.1.exampleOp,
+  deliver.1.3.1.exampleOp,
+  deliver.2.3.1.exampleOp,
+  deliver.3.2.1.exampleOp
+>
+
+assert not Remotes :[has trace [T]]: <
+  publish.1.1.exampleOp,
+  deliver.2.1.1.exampleOp,
+  publish.3.1.exampleOp,
+  publish.2.1.exampleOp,
+  deliver.1.2.1.exampleOp,
+  deliver.3.2.1.exampleOp,
+  deliver.1.3.1.exampleOp,
+  deliver.2.3.1.exampleOp,
+  deliver.3.1.1.exampleOp
+>

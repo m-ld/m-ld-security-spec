@@ -1,0 +1,77 @@
+--------------------------------------------------------------------------------
+-- Vector clock
+module Clock
+exports
+  maxTick = CN * N -- A tick for each possible message
+  nametype Tick = {0..maxTick}
+  -- To pass over a channel, clock must be a tuple
+  nametype Clock = (Tick, Tick, Tick)
+
+  -- Genesis clock, also used for user transaction counts for bounds checking
+  GENESIS = cidTuple(0)
+
+  ------------------------------------------------------------------------------
+  -- Vector clock functions
+  tick(time, cid) = update(time, cid, \ t @ t + 1)
+
+  -- Returns the maximal clock based on the given clocks
+  join((t1, t2, t3), (t1n, t2n, t3n)) =
+    (max(t1, t1n), max(t2, t2n), max(t3, t3n))
+
+  -- Determines whether any component of the first clock is less-than (before)
+  -- any component of the second
+  anyLt((t1, t2, t3), (t1o, t2o, t3o)) =
+    t1 < t1o or t2 < t2o or t3 < t3o
+endmodule
+
+--------------------------------------------------------------------------------
+-- Great Westminster Clock is a process-internal tuple of clocks, tracking the
+-- public times seen (i.e. excluding internal ticks). It's used to determine the
+-- acceptable tick range from any remote, applying causal ordering.
+module Gwc
+  -- obtain a descending seq of unique ticks, each a possible cause
+  cauSeq(seen, last) = if head(seen) == last then <last>
+    else let rest = cauSeq(tail(seen), last)
+    within if head(seen) == head(tail(seen)) then rest else <head(seen)> ^ rest
+  -- associate each candidate causal tick with a count of preceding public causes
+  cauSet(<last>) = {(last, 0)}
+  cauSet(causes) = union({(head(causes), length(causes) - 1)}, cauSet(tail(causes)))
+  -- What is the last tick seen in the given clock history for the given process ID
+  lastTickSeen(clocks, cid) = peek(head(clocks), cid)
+  -- Return all ticks seen in the given clock history for the given process ID
+  -- seq Clock -> seq Tick
+  allTicksSeen(<>, cid) = <>
+  allTicksSeen(clocks, cid) = <lastTickSeen(clocks, cid)> ^ allTicksSeen(tail(clocks), cid)
+  -- The exact next expected tick for a remote process ID, based on a count of causes
+  next(gwc, remote, n) =
+    min(lastTickSeen(peek(gwc, remote), remote) + 1 + n, Clock::maxTick)
+  -- Seen local tick can be anything up to a current local tick, same as...
+  -- Third-party tick can be anything from the last cause that the remote saw
+  -- (inclusive) up to what local has seen (causal order)
+  causes(gwc, local, remote, other) = cauSet(cauSeq(
+    allTicksSeen(peek(gwc, local), other),
+    lastTickSeen(peek(gwc, remote), other)
+  ))
+exports
+  GENESIS = cidTuple(<Clock::GENESIS>)
+  -- (gwc, local, remote) -> acceptable remoteTime
+  acceptable(gwc, local, 1) = if local == 1 then error("echo!") else {
+    (next(gwc, 1, n2 + n3), t2, t3) |
+    (t2, n2) <- causes(gwc, local, 1, 2),
+    (t3, n3) <- causes(gwc, local, 1, 3)
+  }
+  acceptable(gwc, local, 2) = if local == 2 then error("echo!") else {
+    (t1, next(gwc, 2, n1 + n3), t3) |
+    (t1, n1) <- causes(gwc, local, 2, 1),
+    (t3, n3) <- causes(gwc, local, 2, 3)
+  }
+  acceptable(gwc, local, 3) = if local == 3 then error("echo!") else {
+    (t1, t2, next(gwc, 3, n1 + n2)) |
+    (t1, n1) <- causes(gwc, local, 3, 1),
+    (t2, n2) <- causes(gwc, local, 3, 2)
+  }
+  -- update the given clock ID with the given time
+  update(gwc, cid, time) = put(gwc, cid, <time> ^ peek(gwc, cid))
+  -- register with the local clock that we have seen a remote time
+  seen(gwc, local, time) = update(gwc, local, Clock::join(head(peek(gwc, local)), time))
+endmodule

@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+-- Naive Set, which conforms to CRDT interface but is NOT actually a CRDT, because
+-- different operation ordering (even if causal) will give rise to different states.
+-- Value type parameter is superset of all allowed values in this set.
+module NaiveSet(Value)
+exports
+  ------------------------------------------------------------------------------
+  -- (Non-)CRDT data for inspection is just the CRDT state,
+  -- which is just any set of the allowable values
+  nametype Data = Set(Value)
+  data(state) = state
+  initialState = {}
+  ------------------------------------------------------------------------------
+  -- User updates are adding some value or removing it
+  datatype Update = Add.Value | Remove.Value
+  -- For this CRDT, operations are identical to user updates
+  nametype Operation = Update
+  -- At any moment, any operation is possible
+  possible(_) = Operation
+  ------------------------------------------------------------------------------
+  -- TID is opaque transaction ID – probably a clock
+  -- apply :: (TID, State, Operation) -> State
+  apply(tid, state, Add.n) = union(state, {n})
+  apply(tid, state, Remove.n) = diff(state, {n})
+  -- transact :: (State, Update) -> Operation
+  transact(state, up) = up
+endmodule

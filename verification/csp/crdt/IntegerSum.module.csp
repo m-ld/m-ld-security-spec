@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+-- Integer sum CRDT, see Update type
+module IntegerSum
+  -- Allowable delta magnitude, positive or negative
+  -- this is a trivial bound on the state-space
+  Delta = {1}
+exports
+  ------------------------------------------------------------------------------
+  -- Based on the allowable Delta, the final state is
+  -- ± count of clones × count of user transactions
+  nametype Data = { -CN*N..CN*N }
+  -- CRDT data for inspection is just the CRDT state
+  data(state) = state
+  initialState = 0
+  ------------------------------------------------------------------------------
+  datatype Update = Add.Delta | Subtract.Delta
+  -- For this CRDT, operations are identical to user updates
+  nametype Operation = Update
+  -- At any moment, any operation is possible
+  possible(_) = Operation
+  ------------------------------------------------------------------------------
+  -- TID is opaque transaction ID
+  -- apply :: (TID, State, Operation) -> State
+  apply(tid, state, Add.n) = state + n
+  apply(tid, state, Subtract.n) = state - n
+  -- transact :: (State, Update) -> Operation
+  transact(state, up) = up
+endmodule

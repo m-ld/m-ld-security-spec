@@ -1,0 +1,166 @@
+include "../globals.csp"
+
+--------------------------------------------------------------------------------
+-- CRDT
+include "../crdt/IntegerSum.module.csp"
+include "../crdt/NaiveSet.module.csp"
+include "../crdt/OR_Set.module.csp"
+
+-- Selection of CRDT module and value set
+--instance Crdt = IntegerSum
+Values = {1, 2}
+--instance Crdt = NaiveSet(Values)
+instance Crdt = OR_Set(Values)
+
+--------------------------------------------------------------------------------
+-- Remotes delivering messages with clocks
+include "Clock.module.csp"
+-- Remote channels are from.to.time.op.agree
+channel send, receive : CID.CID.Clock::Clock.Crdt::Operation.Agree
+
+RemotesEvents = {| send, receive |}
+
+RemoteTransmit(from, to) =
+  send.from.to?time?op?agree ->
+    receive.from.to.time.op.agree ->
+      RemoteTransmit(from, to)
+
+Remotes = ||| from : CID, to : CID, to != from @ RemoteTransmit(from, to)
+
+--------------------------------------------------------------------------------
+-- Domain specification: encodes struct definition of strong eventual consistency
+-- and eventual strong consistency
+include "../DomainSpec.module.csp"
+
+--------------------------------------------------------------------------------
+-- CRDT domain
+Clone(local) = let
+  initial = (Crdt::initialState, Clock::GENESIS, Gwc::GENESIS, Clock::GENESIS, <>)
+  State(current, counts) = let
+    (
+      state,  -- CRDT state
+      clock,  -- Local clock, has internal ticks
+      gwc,    -- Latest public times seen
+      agreed, -- Clock with cumulative agreement time
+      log     -- Operations log, for replay
+    ) = current
+    -- Everything is strictly inferable from the log, this function defines how
+    next(cid.n.time.op.agree, (state, clock, gwc, agreed, log)) = (
+      Crdt::apply(cid.n, state, op),
+      -- TODO: redundant with given time for local clock
+      Clock::tick(if cid == local then clock else Clock::join(clock, time), local),
+      Gwc::update(if cid == local then gwc else Gwc::seen(gwc, local, time), cid, time),
+      if agree != Free then Clock::join(agreed, time) else agreed,
+      log ^ <cid.n.time.op.agree>
+    )
+    dataEvent((state, _, _, _, _)) = data.local.Crdt::data(state)
+    ----------------------------------------------------------------------------
+    -- Log replay TODO: Document:
+    -- Hypothesis: a voided time will never be reused.
+    -- Remote op time will only have wrong ticks if itself voided.
+    -- So, it's OK to re-calculate local clock & gwc.
+    replay(<>, ifBefore, current) = current
+    replay(log, ifBefore, current) = let
+      cid.n.time.op.agree = head(log)
+      first = if not Clock::anyLt(ifBefore, time) then
+        next(cid.n.time.op.agree, current)
+      else current
+    within replay(tail(log), ifBefore, first)
+    ----------------------------------------------------------------------------
+    -- Local user transaction
+    Transact = peek(counts, local) < N & user.local?up?agree -> let
+      n = peek(counts, local) + 1
+      op = Crdt::transact(state, up)
+      time = Clock::tick(clock, local) -- local txn ticks our own clock
+      post = next(local.n.time.op.agree, current)
+      -- Do the sends sequentially in arbitrary order rather than interleave
+      -- This prevents compilation hang (partial order reduction)
+      Publish = ; remote : seq(CID), remote != local @
+        send.local.remote.time.op.agree -> SKIP
+    within dataEvent(post) -> Publish; State(post, put(counts, local, n))
+    ----------------------------------------------------------------------------
+    -- Remote transaction; we can only receive a message for which we have the cause
+    Apply = [] remote : CID, remote != local, peek(counts, remote) < N @
+      receive.remote.local
+        ?time : Gwc::acceptable(gwc, local, remote)
+        ?op : Crdt::possible(state)
+        ?agree -> let
+          n = peek(counts, remote) + 1
+        within if agree == Free and Clock::anyLt(time, agreed) then
+          -- If received Free is concurrent with a prior agreement, ignore it
+          State(current, update(counts, remote, \ n @ n + 1))
+        else let
+          -- If agreement, purge from the log any Free ops that post-date the
+          -- new agreement, unless they caused an already-accepted agreement
+          pre = if agree == Free then current else
+            replay(log, Clock::join(agreed, time), initial)
+          post = next(remote.n.time.op.agree, pre)
+        within dataEvent(post) -> State(post, put(counts, remote, n))
+  within counts < (N, N, N) & (Transact [] Apply)
+within State(initial, cidTuple(0))
+
+-- Trivial assertion checks that Clone has no undefined behaviour
+-- This is primarily used to isolate model evaluation to the Clone process
+-- to test for spinning in FDR
+assert Clone(1) :[divergence-free]
+
+-- 'Node' here is user + clone
+Nodes(Users) = ||| cid : CID @ Clone(cid) [| AppEvents(cid) |] Users(cid)
+-- A CRDT system has nodes communicating via remotes. Its external vocabulary
+-- contains only AppEvents, i.e. operation messages (RemoteEvents) are hidden.
+CrdtSystem(Users) = (Nodes(Users) [| RemotesEvents |] Remotes) \ RemotesEvents
+
+--------------------------------------------------------------------------------
+-- Set up some users of the plain CRDT (no agreements)
+CrdtUsers(1) = BlitheUser(1)
+CrdtUsers(2) = BlitheUser(2)
+CrdtUsers(3) = BlitheUser(3)
+
+-- NaiveSet counterexample: clones do not converge
+--assert CrdtSystem(CrdtUsers) [T=
+--  user.1.Crdt::Add.1.Free ->   -- (1,0,0) (0,0,0) (0,0,0)
+--  data.1.{1} ->                -- (1,0,0) (0,0,0) (0,0,0)
+--  data.3.{1} ->                -- (1,0,0) (0,0,0) (1,0,1)
+--  user.3.Crdt::Add.1.Free ->   -- (1,0,0) (0,0,0) (1,0,2)
+--  data.3.{1} ->                -- (1,0,0) (0,0,0) (1,0,2)
+--  data.2.{1} ->                -- (1,0,0) (1,1,0) (0,0,0)
+--  user.2.Crdt::Remove.1.Free ->-- (1,0,0) (1,2,0) (0,0,0)
+--  data.2.{} ->                 -- (1,0,0) (1,2,0) (0,0,0)
+--  data.1.{} ->                 -- (2,1,0) (1,2,0) (0,0,0)
+--  data.2.{1} ->                -- (1,0,0) (1,3,2) (1,0,2)
+--  data.3.{} -> STOP
+
+-- Assert that a CRDT-based system (so far, without agreements) exhibits
+-- strong eventual consistency (it's convergent to some unspecified data
+-- content, without coordination)
+assert ConvergentSystem(CrdtUsers, Crdt::Data) [T= CrdtSystem(CrdtUsers)
+
+--------------------------------------------------------------------------------
+-- Set up some users with a bolshy "authority" who claims agreement, after which
+-- everyone else stops
+AgreeUsers(1) = BolshyUser(1, Crdt::Remove.1.Agreed)
+AgreeUsers(2) = ShyUser(2)
+AgreeUsers(3) = ShyUser(3)
+-- The bolshy user demands that the value 1 is not in the resultant set
+AgreeableData = Set(diff(Values, {1}))
+
+-- Agreement failure defect counterexample: internal ticks can make a clone
+-- think it needs to rewind, and so remove a pre-agreement txn.
+-- See https://github.com/m-ld/m-ld-security-spec/issues/16
+assert not CrdtSystem(AgreeUsers) [T=
+  user.2.Crdt::Remove.1.Free ->
+  data.2.{} ->
+  user.3.Crdt::Add.2.Free ->
+  data.3.{2} ->
+  data.2.{2} ->
+  data.1.{} ->
+  data.1.{2} ->
+  user.1.Crdt::Remove.1.Agreed -> -- (3,1,1)
+  data.1.{2} ->
+  data.2.{} -> -- pre:(0,2,1), backtracks incorrectly, tick 2 is internal
+  STOP
+
+-- Assert that a CRDT-based system with agreements exhibits
+-- "eventual strong consistency" (it converges to some specific constrained data content).
+-- I.e. final state should match what the bolshy user wanted
+assert ConvergentSystem(AgreeUsers, AgreeableData) [T= CrdtSystem(AgreeUsers)
