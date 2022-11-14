@@ -64,7 +64,7 @@ The first property belongs intuitively to the messaging substrate. While this is
 2. No messages are dropped (lossless)
 
 In CSP, this is straightforward to model as 'pipes', which are processes accepting a `send` event specific to some source process (a clone, in this case) and carrying some data payload, and sometime later emitting the same payload to some target process with a `receive` event:
-![messaging](https://raw.githubusercontent.com/m-ld/m-ld-security-spec/formal-verification/verification/csp/using-clocks/img/domain.svg)
+![messaging](./csp/using-clocks/img/domain.svg)
 
 Note that while this has the appearance of a 'mesh' network, which implies an implementation having certain properties (such as every node in the network having knowledge of the network address of every other), this is actually a fully abstract model which could be implemented in a variety of ways, including using a central message broker.
 
