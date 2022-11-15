@@ -63,10 +63,10 @@ The first property belongs intuitively to the messaging substrate. While this is
 1. Every message between a pair of clones is delivered in-order (First-In First-Out, FIFO)
 2. No messages are dropped (lossless)
 
-In CSP, this is straightforward to model as 'pipes', which are processes accepting a `send` event specific to some source process (a clone, in this case) and carrying some data payload, and sometime later emitting the same payload to some target process with a `receive` event:
+In CSP, this is straightforward to model as 'pipes', which are CSP processes (here labelled `RemoteTransmit`) each participating in a `send` event specific to some source process (the clone sending the message, in this case) and carrying some data payload, and sometime later participating in a `receive` event, carrying the same payload, which is specific to some target process [hoareCommunicatingSequentialProcesses2015 §4.4]:
 ![messaging](./csp/using-clocks/img/domain.svg)
 
-Note that while this has the appearance of a 'mesh' network, which implies an implementation having certain properties (such as every node in the network having knowledge of the network address of every other), this is actually a fully abstract model which could be implemented in a variety of ways, including using a central message broker.
+Note that while this has the appearance of a 'mesh' network, which implies an implementation having certain properties (such as every node in the network having knowledge of the network address of every other), this is actually a fully abstract model. For example, a `RemoteTransmit` CSP process may not correspond to any recognisable implementation artefact, such as an OS process. Instead, the model could be implemented in a variety of ways, including using a central message broker.
 
 The conundrum arises in the modelling of the second property, that of state equivalence after update receipt, or 'convergence'. Note that this requires _the same_ update messages to have been received. In a live system of effectively infinite processes (which is the ideal to which we aspire in our model), at any moment in 'time', according to some global wall clock, there is no guarantee that any two clones will ever have received the same updates (trivially, a clone can always emit another update of its own before it receives someone else's).
 
