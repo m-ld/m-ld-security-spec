@@ -30,6 +30,27 @@ primitives of the **m-ld** core protocol to natively support strong assurance of
 1. Cryptographic data attribution to identified actors
 1. A model for delegation to other authority protocols, e.g. consensus
 
+## milestones
+& documentation of work:
+1. threat modelling [(ticket)](https://github.com/m-ld/m-ld-security-spec/issues/1)
+   - [Approach](https://github.com/m-ld/m-ld-security-spec/tree/main/threats)
+   - [Collaborative e-Invoice Composition Threat Model](https://github.com/m-ld/m-ld-security-spec/blob/main/threats/e-invoicing.md)
+   - [Legal Documents Threat Model](https://github.com/m-ld/m-ld-security-spec/blob/main/threats/legal-docs.md)
+1. security design [(ticket)](https://github.com/m-ld/m-ld-security-spec/issues/2)
+   - [Introduction](https://github.com/m-ld/m-ld-security-spec/tree/main/design)
+   - [Symmetric Unilateral Access Control](https://github.com/m-ld/m-ld-security-spec/blob/main/design/suac.md)
+   - [Traceability Design](https://github.com/m-ld/m-ld-security-spec/blob/main/design/traceability.md)
+1. prototype [(ticket)](https://github.com/m-ld/m-ld-security-spec/issues/3)
+   - [Whole domain authorisation](https://github.com/m-ld/m-ld-js/pull/85)
+   - [Data-driven authorisation](https://github.com/m-ld/m-ld-js/pull/94)
+   - [Externally-driven authorisation](https://github.com/m-ld/m-ld-iroha)
+   - [Journal API prototype](https://github.com/m-ld/m-ld-security-spec/pull/13)
+   - [Signed journal entries prototype](https://github.com/m-ld/timeld/pull/50)
+1. formal verification [(ticket)](https://github.com/m-ld/m-ld-security-spec/issues/4)
+   - [Formal verification](https://github.com/m-ld/m-ld-security-spec/blob/main/verification/formal%20verification.md)
+1. verification with tests [(ticket)](https://github.com/m-ld/m-ld-security-spec/issues/14)
+1. write-up [(ticket)](https://github.com/m-ld/m-ld-security-spec/issues/5)
+
 ## goals
 
 With this project, we will contribute a new take on decentralised authority for live information sharing, not just for **m-ld** but also logically applicable to other technologies.
