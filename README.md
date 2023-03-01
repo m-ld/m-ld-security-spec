@@ -49,6 +49,7 @@ primitives of the **m-ld** core protocol to natively support strong assurance of
 1. formal verification [(ticket)](https://github.com/m-ld/m-ld-security-spec/issues/4)
    - [Formal verification](https://github.com/m-ld/m-ld-security-spec/blob/main/verification/formal%20verification.md)
 1. verification with tests [(ticket)](https://github.com/m-ld/m-ld-security-spec/issues/14)
+   - [Verification with tests](./verification/verification%20with%20tests.md)
 1. write-up [(ticket)](https://github.com/m-ld/m-ld-security-spec/issues/5)
 
 ## goals
