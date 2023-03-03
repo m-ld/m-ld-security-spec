@@ -8,7 +8,7 @@ This milestone further explored the [security prototype](https://github.com/m-ld
 
 First, we analysed the existing architecture and [security model](https://github.com/m-ld/timeld/tree/main/architecture/security) of **timeld** to establish additional useful controls which would also exercise our prototype.
 
-**timeld** is a hybrid centralised-decentralised application with similar security requirements to the p2pl-doc (peer-to-peer legal documents) and CIC (collaborative invoice composition) apps analysed in this project's [threat modelling](https://github.com/m-ld/m-ld-security-spec/tree/main/threats) phase.
+**timeld** is a hybrid centralised-decentralised application with similar security requirements to the [p2pl-doc](../threats/e-invoicing.md) (peer-to-peer legal documents) and [CIC](../threats/legal-docs.md) (collaborative invoice composition) apps analysed in this project's [threat modelling](https://github.com/m-ld/m-ld-security-spec/tree/main/threats) phase.
 
 Users of the **timeld** Command-Line Interface (CLI) are able to author 'timesheets' on their local device, which then have the property of automatically staying in synchronisation with other replicas ("clones") with no additional application code, enabled by the use of **m-ld** for state management. The timesheets are also replicated on the **timeld** Gateway, a service in the architecture that provides user account management, a namespace for the timesheets, **m-ld** protocol message delivery, and import/export functionality – including connectors to other time-tracking systems.
 
