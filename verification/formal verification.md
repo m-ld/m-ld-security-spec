@@ -158,7 +158,3 @@ We have identified the following potential scope for future formal modelling and
 ## bibliography
 
 > Please see [/references.bib](https://github.com/m-ld/m-ld-security-spec/blob/main/references.bib)
-
-## notes
-
-![mindmap](./img/security%20verification.png)
