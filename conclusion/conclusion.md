@@ -83,7 +83,7 @@ In the [formal verification milestone](../verification/formal%20verification.md#
 
 The next step for the prototype implementation developed in this project is release as a feature of **m-ld**. This will involve, at a minimum:
 
-1. Discussion of the security approach in the [**m-ld** documentation](https://m-ld.org/doc/#security)
+1. Discussion of the security approach in the [**m-ld** documentation](https://m-ld.org/doc/#security) (underway, see [Pull Request](https://github.com/m-ld/m-ld-website/pull/80))
 2. Documentation of _agreements_ in the [**m-ld** specification](https://spec.m-ld.org/)
 3. Incorporation of agreements testing into the [compliance tests](https://github.com/m-ld/m-ld-spec/tree/master/compliance), and so into the Javascript engine test suite
 4. Completed documentation of agreements, statutes, transport security and write permissions in the [Javascript engine](https://js.m-ld.org/), and removal from experimental status
