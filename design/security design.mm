@@ -447,7 +447,7 @@
 </node>
 </node>
 <node TEXT="if don&apos;t have principal yet" ID="ID_1246080071" CREATED="1647865027327" MODIFIED="1647865239032">
-<node TEXT="keep response signature for later validation" ID="ID_681164369" CREATED="1647883899476" MODIFIED="1647884071870">
+<node TEXT="keep response signature&#xa;for later validation" ID="ID_681164369" CREATED="1647883899476" MODIFIED="1677780232404">
 <icon BUILTIN="idea"/>
 <icon BUILTIN="pencil"/>
 </node>
@@ -1052,7 +1052,7 @@
 </node>
 </node>
 </node>
-<node TEXT="concurrent agreement" ID="ID_1626443289" CREATED="1628183024002" MODIFIED="1646035920483">
+<node TEXT="concurrent agreement" ID="ID_1626443289" CREATED="1628183024002" MODIFIED="1677780656714">
 <icon BUILTIN="pencil"/>
 <icon BUILTIN="messagebox_warning"/>
 <node TEXT="can arise" ID="ID_1435143021" CREATED="1628232491374" MODIFIED="1628232493469">
@@ -1100,7 +1100,7 @@
 </node>
 </node>
 </node>
-<node TEXT="viewpoints" ID="ID_409366356" CREATED="1628515812873" MODIFIED="1628515815451">
+<node TEXT="viewpoints" ID="ID_409366356" CREATED="1628515812873" MODIFIED="1677780704438">
 <node TEXT="ledger: collaboration on the next block" ID="ID_490872709" CREATED="1628261053410" MODIFIED="1628515873098"/>
 <node TEXT="CRDT: agree to start again" ID="ID_1034467886" CREATED="1628515824934" MODIFIED="1628515868789"/>
 </node>
