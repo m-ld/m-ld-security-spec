@@ -3,6 +3,19 @@
 ## summary and findings
 In this project we set out to create an authority and traceability model for live, decentralised shared information, with a prototype reference implementation in m-ld, that is informative to knowledge management in general.
 
+### artefacts
+
+- All research findings (summarised below) are in this repository and itemised in the [project README](https://github.com/m-ld/m-ld-security-spec#milestones)
+- [**m-ld** v0.9.2](https://www.npmjs.com/package/@m-ld/m-ld/v/0.9.2) contains experimental features directly created in this project:
+  - [ACL Transport Security](https://js.m-ld.org/classes/meldacltransportsecurity.html) allows an app to encrypt and apply digital signatures to m-ld protocol network traffic.
+  - [Statutes](https://js.m-ld.org/classes/statutory.html) allow an app to require that certain changes, such as changes to access controls, are agreed before they are shared in the domain.
+  - [Write Permissions](https://js.m-ld.org/classes/writepermitted.html) allow an app to add fine-grained access controls based on data [shapes](https://js.m-ld.org/classes/shape.html).
+- The app [**timeld**](https://github.com/m-ld/timeld) was enhanced with specific features created in this project, for testing in a realistic application (documentation to follow in that project, see below for research findings):
+  - audit logging of timesheet changes with digitally signed entries
+  - fine-grained write access controls for shared organisation timesheets
+
+### story
+
 We analysed [security threats](../threats) to live collaboration applications in two business domains: ordering & invoicing, and legal documents. We then [designed](../design) and [prototyped](../prototype) extensions to the m-ld information sharing library to provide security controls that addressed the identified threats. We [verified](../verification) the approach with a formal verification language, and with system-level tests of a real application.
 
 Our design for data integrity began with the principle of [symmetric unilateral access control](../design/suac.md) (SUAC): that access permissions can be checked independently by peer nodes of a decentralised network, with guarantee of convergence independent of a central authority node. We proposed the novel foundational concept of an _agreement_, which is defined as a data structure operation that does not admit any concurrent non-agreement operations according to causal ordering. Agreements have desirable properties, including applicability to other use-cases outside of security, and an intuitive mental model for extensibility with [external coordination schemes](https://github.com/m-ld/m-ld-iroha) and conditions.
@@ -83,7 +96,7 @@ In the [formal verification milestone](../verification/formal%20verification.md#
 
 The next step for the prototype implementation developed in this project is release as a feature of **m-ld**. This will involve, at a minimum:
 
-1. Discussion of the security approach in the [**m-ld** documentation](https://m-ld.org/doc/#security) (underway, see [Pull Request](https://github.com/m-ld/m-ld-website/pull/80))
+1. Discussion of the security approach in the [**m-ld** documentation](https://m-ld.org/doc/#security) (**update**: now published)
 2. Documentation of _agreements_ in the [**m-ld** specification](https://spec.m-ld.org/)
 3. Incorporation of agreements testing into the [compliance tests](https://github.com/m-ld/m-ld-spec/tree/master/compliance), and so into the Javascript engine test suite
 4. Completed documentation of agreements, statutes, transport security and write permissions in the [Javascript engine](https://js.m-ld.org/), and removal from experimental status
